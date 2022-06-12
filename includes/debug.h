@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexar.h                                            :+:      :+:    :+:   */
+/*   debug.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 15:14:41 by ommohame         ###   ########.fr       */
+/*   Created: 2022/06/12 15:04:50 by ommohame          #+#    #+#             */
+/*   Updated: 2022/06/12 15:17:47 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXAR_H
-# define LEXAR_H
+#ifndef DEBUG_H
+# define DEBUG_H
 
-# include <stdlib.h>
+# include "lexar.h"
 
-# include "ft_printf.h"
-# include "structure.h"
-# include "debug.h"
+void	print_line(t_line *line);
 
 #endif
