@@ -6,13 +6,14 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 03:53:48 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/12 04:34:53 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXAR_H
 # define LEXAR_H
 
+# include <stdlib.h>
 # include "structure.h"
 
 #endif

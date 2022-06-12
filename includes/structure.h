@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 04:28:03 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/12 04:33:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 * linked list of every command
 *	- nargs: how many arguments in the line including the function
 *	- args: the arguments stored in double array
-*		---> args[0]: the command
+*	╵---> args[0]: the command
 *	- next: the next command
 */
 typedef struct s_cmd
@@ -44,6 +44,7 @@ typedef struct s_line
 	char	*infile;
 	char	*outfile;
 	char	*errfile;
+	t_cmd	*cmd;
 }	t_line;
 
 #endif
