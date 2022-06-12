@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexar.h                                            :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 16:29:22 by ommohame         ###   ########.fr       */
+/*   Created: 2022/01/09 19:18:30 by ommohame          #+#    #+#             */
+/*   Updated: 2022/01/12 23:16:44 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXAR_H
-# define LEXAR_H
+#include "libft.h"
 
-# include <stdlib.h>
+/*
+* Deletes and frees the given element
+* using the function ’del’and free(3).
+* Finally, the pointer to the list must be set to NULL
+*/
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list	*tmp;
 
-# include "libft.h"
-# include "ft_printf.h"
-# include "structure.h"
-# include "debug.h"
-
-#endif
+	while (*lst)
+	{
+		tmp = (*lst)-> next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
+	}
+}

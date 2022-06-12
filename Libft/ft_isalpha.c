@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexar.h                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: ommohame <ommohame@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 16:29:22 by ommohame         ###   ########.fr       */
+/*   Created: 2021/12/19 21:26:52 by ommohame          #+#    #+#             */
+/*   Updated: 2021/12/22 20:49:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXAR_H
-# define LEXAR_H
+#include "libft.h"
 
-# include <stdlib.h>
+/*
+ * checks if int c is an alphabet
+ */
+int	ft_isalpha(int c)
+{
+	unsigned char	ch;
 
-# include "libft.h"
-# include "ft_printf.h"
-# include "structure.h"
-# include "debug.h"
-
-#endif
+	ch = (unsigned char)c;
+	if (ch >= 65 && ch <= 90)
+		return (1);
+	else if (ch >= 97 && ch <= 122)
+		return (1);
+	else
+		return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 15:35:52 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:42:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 int	analyze_line(char *str, t_line *line)
 {
 	size_t	i;
+	char	**array;
 
 	i = 0;
-	while (str[i])
+	array = ft_split(str, ' ');
+	while (array[i])
 	{
-		if (str[i] == '|')
+		if (!ft_strncmp(array[i], "|", 1))
 		{
 			line->ncmds++;
 			line->npipes++;
 		}
-		else if (str[i] == ' ')
-			line->nargs++;
+		else if (!ft_strncmp(array[i], ">>", 2))
+			line->outfile = array[i + 1];
 		i++;
 	}
+	(void)line;
 	return (1);
 }
 
@@ -52,7 +55,6 @@ t_line	*lexar(char *str)
 	line = (t_line *)malloc(sizeof(t_line));
 	init_values(line);
 	analyze_line(str, line);
-
 	return (line);
 }
 
@@ -60,6 +62,6 @@ int	main(void)
 {
 	t_line	*line;
 
-	line = lexar("echo hi | ls -la");
+	line = lexar("echo hi | ls -la >> test");
 	print_line(line);
 }

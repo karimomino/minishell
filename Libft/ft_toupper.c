@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexar.h                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 16:29:22 by ommohame         ###   ########.fr       */
+/*   Created: 2021/12/23 06:02:34 by ommohame          #+#    #+#             */
+/*   Updated: 2021/12/23 07:23:18 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXAR_H
-# define LEXAR_H
+#include "libft.h"
 
-# include <stdlib.h>
+/*
+* If C is lowercase changes it to uppercase
+* else it returns C 
+*/
+int	ft_toupper(int c)
+{
+	unsigned char	ch;
 
-# include "libft.h"
-# include "ft_printf.h"
-# include "structure.h"
-# include "debug.h"
-
-#endif
+	ch = (unsigned char)c;
+	if (ch >= 97 && ch <= 122)
+		return (ch - 32);
+	else
+		return (ch);
+}

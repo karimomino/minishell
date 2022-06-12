@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexar.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 16:29:22 by ommohame         ###   ########.fr       */
+/*   Created: 2022/01/09 02:40:11 by ommohame          #+#    #+#             */
+/*   Updated: 2022/01/12 23:11:44 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXAR_H
-# define LEXAR_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-# include "libft.h"
-# include "ft_printf.h"
-# include "structure.h"
-# include "debug.h"
-
-#endif
+/*
+* adds a node to the back of the list
+* moves the NULL to the end
+*/
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	if (*lst)
+	{
+		ft_lstlast(*lst)-> next = new;
+	}
+	else
+		*lst = new;
+}

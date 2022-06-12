@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexar.h                                            :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 16:29:22 by ommohame         ###   ########.fr       */
+/*   Created: 2022/01/10 22:46:46 by ommohame          #+#    #+#             */
+/*   Updated: 2022/01/12 23:21:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXAR_H
-# define LEXAR_H
+#include "libft.h"
 
-# include <stdlib.h>
-
-# include "libft.h"
-# include "ft_printf.h"
-# include "structure.h"
-# include "debug.h"
-
-#endif
+/*
+* applies the function f to the current element
+* keeps going in the list until it applies it to every function
+*/
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		(f)(lst -> content);
+		lst = lst -> next;
+	}
+}
