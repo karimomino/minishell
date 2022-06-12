@@ -6,47 +6,46 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/06/12 16:31:20 by ommohame         ###   ########.fr        #
+#    Updated: 2022/06/13 00:22:59 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	lexar
+NAME		=		parser
 
-SRCS	=	./srcs/lexar.c \
-
-SRCS_D	=	./debug/print_list.c \
+SRCS		=		./srcs/parser.c \
+					./srcs/utils/print_list.c \
+					./srcs/utils/ft_strlenx2.c \
+					./srcs/linked_list/cmd_node.c \
 
 LIBFT_PATH	=		./Libft
 
 LIBFT		=		./Libft/libft.a
 
-FT_PF_PATH	 =		./ft_printf
+FT_PF_PATH	=		./ft_printf
 
-FT_PRINT_F	 =		./ft_printf/libftprintf.a
+FT_PRINT_F	=		./ft_printf/libftprintf.a
 
-CC		=	gcc
+CC			=		gcc
 
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS		=		-Wall -Werror -Wextra -g
 
-AR		=	ar rcs
+AR			=		ar rcs
 
-RM		=	rm -rf
+RM			=		rm -rf
 
-OBJS 	=	$(SRCS:.c=.o)
+OBJS 		=		$(SRCS:.c=.o)
 
-OBJS_D 	=	$(SRCS_D:.c=.o)
-
-$(NAME)	:	$(OBJS) $(OBJS_D)
+$(NAME)	:	$(OBJS)
 			make -C $(LIBFT_PATH)
 			make -C $(FT_PF_PATH)
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINT_F) $(OBJS_D) -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINT_F) -o $(NAME)
 
 all		:	$(NAME)
 
 clean	:
 			make clean -C $(LIBFT_PATH)
 			make clean -C $(FT_PF_PATH)
-			$(RM) $(OBJS) $(OBJS_D)
+			$(RM) $(OBJS)
 
 fclean	:	clean
 			make fclean -C $(LIBFT_PATH)
