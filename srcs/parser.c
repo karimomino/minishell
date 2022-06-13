@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/13 05:35:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/13 19:20:13 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,13 @@ char	**get_pipes(char *str, t_line *line)
 
 void	get_cmds(char **str, t_line *line)
 {
-	// int		ret;
 	size_t	i;
-	size_t	x;
 
 	i = 0;
 	while (str[i])
 	{
-		x = 0;
-		cmd_node(str[i], &line->cmd);
-		while (line->cmd->cmd[x++])
-			token_node(line->cmd->cmd[x], &line->cmd->token);
+		// cmd_node(str[i], &line->cmd);
+		cmds(str[i], line);
 		i++;
 	}
 }

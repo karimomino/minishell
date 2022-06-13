@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/13 05:34:44 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/13 19:24:06 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,36 +66,36 @@ struct s_token	*token_node_v2(char *str, t_token *token, size_t x)
 	return (new);
 }
 
-int	token_node(char *str, t_token **token)
-{
-	size_t			x;
-	struct s_token	*tmp;
-	struct s_token	*new;
+// int	token_node(char *str, t_cmd **cmd)
+// {
+// 	size_t			x;
+// 	struct s_cmd	*tmp;
+// 	struct s_token	*new;
 
-	x = 0;
-	tmp = *token;
+// 	x = 0;
+// 	tmp = *cmd;
 
-	new = (struct s_token *)malloc(sizeof(struct s_token));
-	if (!new)
-		return (-1);
-	new->i = x;
-	new->token = str;
-	new->next = NULL;
-	tmp = *token;
-	if (!tmp)
-	{
-		new->prev = NULL;
-		tmp = new;
-	}
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp = token_node_v2(str, tmp, x);
-	}
-	x++;
-	return (1);
-}
+// 	new = (struct s_token *)malloc(sizeof(struct s_token));
+// 	if (!new)
+// 		return (-1);
+// 	new->i = x;
+// 	new->token = str;
+// 	new->next = NULL;
+// 	tmp = *token;
+// 	if (!tmp)
+// 	{
+// 		new->prev = NULL;
+// 		tmp = new;
+// 	}
+// 	else
+// 	{
+// 		while (tmp->next)
+// 			tmp = tmp->next;
+// 		tmp = token_node_v2(str, tmp, x);
+// 	}
+// 	x++;
+// 	return (1);
+// }
 
 int	cmd_node(char *str, t_cmd **cmd)
 {
@@ -123,5 +123,15 @@ int	cmd_node(char *str, t_cmd **cmd)
 		new->prev = tmp;
 		tmp->next = new;
 	}
+	return (1);
+}
+
+int	cmds(char *str, t_line *line)
+{
+	static int	i = 0;
+
+	cmd_node (str, &line->cmd);
+	token_node_v2 (str, line->cmd->token, i);
+	i++;
 	return (1);
 }
