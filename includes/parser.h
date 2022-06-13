@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/12 23:56:01 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/13 05:33:46 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	print_line(t_line *line);
 size_t	ft_strlenx2(char **str);
 
 int		cmd_node(char *str, t_cmd **cmd);
+int		token_node(char *str, t_token **token);
 
 #endif

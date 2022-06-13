@@ -6,11 +6,27 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/13 00:26:06 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/13 05:14:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
+
+void	print_token(t_cmd cmd)
+{
+	size_t	i;
+
+	i = 0;
+	while (cmd.token)
+	{
+		ft_printf("\n-------T-%u-T-------\n", i);
+		ft_printf("|  %s  |\n", cmd.token->token);
+		// if (cmd.token->prev->prev)
+			// ft_printf("|  %s  |\n", cmd.token->prev->token);
+		ft_printf("-------------------\n\n");
+		cmd.token = cmd.token->next;
+	}
+}
 
 void	print_cmd(t_line line)
 {
@@ -30,6 +46,7 @@ void	print_cmd(t_line line)
 			ft_printf(" |\n");
 			x++;
 		}
+		print_token(*line.cmd);
 		ft_printf("----------------\n\n");
 		i++;
 		line.cmd = line.cmd->next;
@@ -43,6 +60,6 @@ void	print_line(t_line *line)
 {
 	ft_printf("ncmds: %d\n", line->ncmds);
 	ft_printf("nexec: %d\n", line->nexec);
-	ft_printf("npipes: %d\n", line->npipes);
+	ft_printf("npipes: %d\n\n", line->npipes);
 	print_cmd(*line);
 }
