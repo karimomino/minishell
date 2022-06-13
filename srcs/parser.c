@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/13 19:20:13 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/14 03:51:54 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_cmds(char **str, t_line *line)
 	while (str[i])
 	{
 		// cmd_node(str[i], &line->cmd);
-		cmds(str[i], line);
+		line = cmds(str[i], line);
 		i++;
 	}
 }

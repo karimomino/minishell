@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/13 19:21:37 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/14 03:52:16 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 
 void	print_token(t_cmd cmd)
 {
-	size_t	i;
-
-	i = 0;
 	while (cmd.token)
 	{
-		ft_printf("\n-------T-%u-T-------\n", i);
-		ft_printf("|  %s  |\n", cmd.token->token);
-		// if (cmd.token->prev->prev)
-			// ft_printf("|  %s  |\n", cmd.token->prev->token);
-		ft_printf("-------------------\n\n");
+		ft_printf("token[%u]: %s\n", cmd.token->i, cmd.token->token);
 		cmd.token = cmd.token->next;
 	}
 }
@@ -38,14 +31,13 @@ void	print_cmd(t_line line)
 	{
 		x = 0;
 		ft_printf("-------%u-------\n", i);
-		ft_printf("cmd nargs: %u\n", line.cmd->nargs);
+		ft_printf("cmd nargs: %u\n\n", line.cmd->nargs);
 		while (line.cmd->cmd[x])
 		{
-			ft_printf("| ");
-			ft_printf("%s", line.cmd->cmd[x]);
-			ft_printf(" |\n");
+			ft_printf("cmd[%u]: %s\n", x, line.cmd->cmd[x]);
 			x++;
 		}
+		ft_printf("\n");
 		print_token(*line.cmd);
 		ft_printf("----------------\n\n");
 		i++;
