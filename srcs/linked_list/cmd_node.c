@@ -6,12 +6,16 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/14 03:56:32 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/14 04:59:35 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
+/*
+* creates the new command node
+*	- cmd: is 2d array of the whole line
+*/
 t_cmd	*cmd_node(char *str, t_cmd **cmd)
 {
 	struct s_cmd	*new;
@@ -41,6 +45,10 @@ t_cmd	*cmd_node(char *str, t_cmd **cmd)
 	return (new);
 }
 
+/*
+* creates one node for a new token
+* returns the new node
+*/
 t_token	*new_token(t_token **token, char *str, int x)
 {
 	struct s_token	*new;
@@ -65,6 +73,10 @@ t_token	*new_token(t_token **token, char *str, int x)
 	return (new);
 }
 
+/*
+* links all the tokens nodes
+* return linked list of tokens
+*/
 t_token	*get_tokens(t_cmd *cmd)
 {
 	size_t		x;
@@ -83,9 +95,14 @@ t_token	*get_tokens(t_cmd *cmd)
 	return (head);
 }
 
+/*
+* fill the linked lists
+* - first fill the cmd linked list
+* - gets the linked list of tokens and links it to the cmd
+* --> wip - link the redirections
+*/
 t_line	*cmds(char *str, t_line *line)
 {
-	static int	i = 0;
 	t_cmd		*head;
 
 	head = line->cmd;
@@ -96,6 +113,5 @@ t_line	*cmds(char *str, t_line *line)
 	line->cmd->token = get_tokens(line->cmd);
 	if (head)
 		line->cmd = head;
-	i++;
 	return (line);
 }
