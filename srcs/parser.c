@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/14 03:51:54 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/14 16:28:27 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(void)
 {
 	t_line	*line;
 
-	line = parser("echo hi | ls -la >> test");
+	line = parser("echo \"hi  d\" | ls -la >> test");
 	if (!line)
 		return (-1);
 	print_line(line);
