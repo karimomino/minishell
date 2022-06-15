@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/14 04:59:35 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/15 21:32:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,10 @@ t_token	*get_tokens(t_cmd *cmd)
 */
 t_line	*cmds(char *str, t_line *line)
 {
+	int			i;
 	t_cmd		*head;
 
+	i = 0;
 	head = line->cmd;
 	if (line->cmd)
 		while (line->cmd->next)

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/14 21:11:36 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/15 23:18:41 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,20 @@ char	**get_pipes(char *str, t_line *line)
 void	get_cmds(char **str, t_line *line)
 {
 	size_t	i;
+	char	*tmp;
 
 	i = 0;
 	while (str[i])
 	{
-		// cmd_node(str[i], &line->cmd);
-		line = cmds(str[i], line);
+		tmp = ft_strdup(str[i++]);
+		tmp = ft_strjoin(tmp, " ");
+		while (str[i] && ft_strncmp(str[i], "|", 1))
+		{
+			tmp = ft_strjoin(tmp, str[i++]);
+			tmp = ft_strjoin(tmp, " ");
+		}
+		line = cmds(tmp, line);
+		free(tmp);
 		i++;
 	}
 }
@@ -50,27 +58,43 @@ void	init_values(t_line *line)
 */
 t_line	*parser(char *str)
 {
-	char	**pip_str;
+	char	**splitq;
 	t_line	*line;
 
 	line = (t_line *)malloc(sizeof(t_line));
 	if (!line)
 		return (NULL);
 	init_values(line);
-	pip_str = get_pipes(str, line);
-	if (!pip_str)
+	splitq = ft_splitq(str);
+	if (!splitq)
 		return (NULL);
-	get_cmds(pip_str, line);
+	get_cmds(splitq, line);
 	return (line);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	t_line	*line;
+	// t_line	*line;
+	(void)ac;
+	(void)av;
 
-	line = parser("echo hi  d | ls -la >> test");
-	if (!line)
-		return (-1);
-	print_line(line);
+	// ft_printf("%s\n", av[1]);
+	char	*str;
+	char **new = ft_splitq(av[1]);
+	for (int i = 0; new[i]; i++)
+	{
+		str = ft_strdup(new[i]);
+		// if (str[0] == '"')
+		// 	str = ft_strtrim(str, "\"");
+		// else if (str[0] == '\'')
+		// 	str = ft_strtrim(str, "'");
+		if (new[i + 1])
+			str = ft_strjoin(str, " ");
+		ft_printf("%s", str);
+	}
+	// line = parser("\"one\" is \"less\" \'\"than\"  \'five\'\' ");
+	// if (!line)
+	// 	return (-1);
+	// print_line(line);1
 	return (1);
 }
