@@ -3,6 +3,8 @@
 		"libft.h": "c",
 		"parser.h": "c",
 		"random": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"__tuple": "c",
+		"array": "c"
 	}
 }

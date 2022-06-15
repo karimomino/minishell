@@ -6,95 +6,112 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:09:00 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/14 21:10:04 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/15 00:54:16 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
+#include <stdio.h>
 
 /*
 * counts how many words do I have to use it for malloc
 */
-static int	word_count(char const *s, char c)
+static int	arg_count(char *str)
 {
-	int	i;
-	int	count;
+	int		count;
+	size_t	i;
+	char	c;
 
 	i = 0;
 	count = 0;
-	while (s[i] == c && s[i])
-		i++;
-	while (s[i])
+	while (str[i])
 	{
-		if ((s[i] == c && s[i]) || s[i + 1] == 0)
-		{
-			count++;
-			while (s[i] == c && s[i + 1] == c)
+		while (str[i] == ' ')
 				i++;
+		if (str[i] == '\0')
+			return (count);
+		if ((str[i - 1] == ' ' && str[i] != ' ') || i == 0)
+			count++;
+		if (str[i] == '"' || str[i] == '\'')
+		{
+			c = str[i++];
+			count++;
+			while (str[i] != c && str[i])
+				i++;
+			if (str[i] != c)
+				return (-1);
 		}
 		i++;
 	}
 	return (count);
 }
 
-/*
-* checks out my word len to use it for malloc
-*/
-static int	word_len(char const *s, char c, int i)
+static int	arg_len(char *str, int i)
 {
-	while (s[i])
-	{
-		if (s[i] == c && s[i])
-			return (i);
-		i++;
-	}
+	char	c;
+
+	c = str[i];
+	i++;
+	if (c == '"' || c == '\'')
+		while (str[i] && str[i] != c)
+			i++;
+	else
+		while (str[i] != ' ' || str[i + 1] == '\'' || str[i + 1] == '"')
+			i++;
 	return (i);
 }
 
-/*
-* split but norminette friendly
-*/
-static char	**splitbutnotsplit(char **str, char const *s, char c, int i)
+static char	**split(char **args, char *str, int args_count)
 {
-	int	x;
+	int		i;
+	int		j;
+	int		x;
 
+	i = 0;
 	x = 0;
-	while (x < word_count(s, c) && s[i])
+	while (x < args_count && str[i])
 	{
-		if (s[i] == c || i == 0)
+		if (str[i] == ' ' || i == 0 || str[i] == '\'' || str[i] == '"')
 		{
-			while (s[i] == c && s[i])
+			j = i + arg_len(str, i);
+			while (str[i] == ' ')
 				i++;
-			str[x] = (char *)malloc(sizeof(char) * (word_len(s, c, i) - i + 1));
-			if (!str[x])
+			args[x] = (char *)malloc(sizeof(char) * (j - i + 1));
+			if (!args[x])
 				return (NULL);
-			ft_strlcpy(str[x], s + i, (word_len(s, c, i) - i + 1));
-			i = word_len(s, c, i) - 1;
+			ft_strlcpy(args[x], str + i, j - i + 1);
+			i = j - 1;
 			x++;
 		}
 		i++;
 	}
-	str[x] = NULL;
-	return (str);
+	args[x] = NULL;
+	return (args);
 }
 
-/*
-* split char s into words
-* splits them every time it finds char c
-* copies every word into the new string
-* returns double pointer string
-*/
-char	**ft_split(char const *s, char c)
+char	**ft_splitq(char	*str)
 {
-	int		i;
-	char	**str;
+	int		args_count;
+	char	**args;
 
-	if (!s)
+	args_count = arg_count(str);
+	args = (char **)malloc(sizeof(char *) * (args_count + 1));
+	if (!args_count)
 		return (NULL);
-	str = (char **)malloc(sizeof(char *) * (word_count(s, c) + 1));
-	if (!str)
+	args = split(args, str, args_count);
+	if (!args_count)
 		return (NULL);
-	i = 0;
-	splitbutnotsplit(str, s, c, i);
-	return (str);
+	return (args);
+
+}
+
+
+int	main(void)
+{
+	char 	*str = "111'222 \"  333'444 55";
+	char	**args;
+
+	args = ft_splitq(str);
+	for (int i = 0; args[i]; i++)
+		printf("%s\n", args[i]);
 }
