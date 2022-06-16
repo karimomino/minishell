@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/15 21:32:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/17 03:30:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ t_cmd	*cmd_node(char *str, t_cmd **cmd)
 	new = (struct s_cmd *)malloc(sizeof(struct s_cmd));
 	if (!new)
 		return (NULL);
-	new->cmd = ft_split(str, ' ');
+	new->cmd = ft_strtrim(str, " ");
 	if (!new)
 		return (NULL);
-	new->nargs = ft_strlenx2(new->cmd);
+	new->nargs = 2;
 	new->next = NULL;
 	if (!*cmd)
 	{
@@ -74,23 +74,60 @@ t_token	*new_token(t_token **token, char *str, int x)
 }
 
 /*
+* get the tokens as a string
+*	- if flag is 0 it looks for the command token which is gonna be the first one
+*	- else it takes the rest of the line as a token except redirections
+*/
+char	*define_token(t_cmd *cmd, int flag)
+{
+	size_t	i;
+	char	*token;
+
+	i = 0;
+	while (cmd->cmd[i] != ' ')
+		i++;
+	if (flag == 0)
+		token = ft_substr(cmd->cmd, 0, i);
+	else
+		token = ft_substr(cmd->cmd, i, ft_strlen(cmd->cmd) - i);
+	token = ft_strtrim(token, " ");
+	token = qoutes(token);
+	i = 0;
+	if (flag == 0)
+	{
+		while (token[i])
+		{
+			token[i] = ft_tolower(token[i]);
+			i++;
+		}
+		cmd->type = is_builtin(token);
+	}
+	return (token);
+}
+
+/*
 * links all the tokens nodes
 * return linked list of tokens
 */
 t_token	*get_tokens(t_cmd *cmd)
 {
-	size_t		x;
+	int			flag;
+	size_t		i;
+	char		*token;
 	t_token		*head;
 
-	x = 0;
-	cmd->token = new_token(&cmd->token, cmd->cmd[x], x);
-	head = cmd->token;
-	cmd->token = cmd->token->next;
-	while (cmd->cmd[++x])
+	i = 0;
+	flag = 0;
+	while (i < 2)
 	{
-		cmd->token = head;
-		cmd->token = new_token(&cmd->token, cmd->cmd[x], x);
+		token = define_token(cmd, flag);
+		cmd->token = new_token(&cmd->token, token, i);
+		if (flag == 0)
+			head = cmd->token;
 		cmd->token = cmd->token->next;
+		cmd->token = head;
+		flag++;
+		i++;
 	}
 	return (head);
 }
@@ -103,10 +140,8 @@ t_token	*get_tokens(t_cmd *cmd)
 */
 t_line	*cmds(char *str, t_line *line)
 {
-	int			i;
 	t_cmd		*head;
 
-	i = 0;
 	head = line->cmd;
 	if (line->cmd)
 		while (line->cmd->next)

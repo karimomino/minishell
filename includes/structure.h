@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/14 15:56:13 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:20:21 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_redir
 * linked list of every command
 *	- type: type of command
 		╵---> 0: exec
-		╵---> 1: built in
+		╵---> > 0: built in
 *	- nargs: how many arguments in the function including the function
 *	- cmd: the command line splited by space
 *		╵---> gonna have an issue with quotes
@@ -64,7 +64,7 @@ typedef struct s_cmd
 {
 	int				type;
 	size_t			nargs;
-	char			**cmd;
+	char			*cmd;
 	struct s_token	*token;
 	struct s_redir	*redir;
 	struct s_cmd	*prev;

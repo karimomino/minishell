@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:09:00 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/15 23:13:43 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/16 03:06:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	arg_len(char *str, int i)
 	}
 	else
 	{
-		while (str[i] != ' ' && str[i] != '\'' && str[i] != '"' && str[i])
+		while (str[i] != ' ' && str[i] != '\'' && str[i] != '"' && str[i] && str[i + 1] != ' ')
 			i++;
 	}
 	return (i);
@@ -79,8 +79,9 @@ static char	**split(char **args, char *str, int args_count)
 		if (str[i] == '\'' || str[i] == '"' || str[i] == ' ' || i == 0
 			|| str[i - 1] == '\'' || str[i - 1] == '"')
 		{
-			while (str[i] == ' ')
-				i++;
+			if (str[i] == ' ')
+				while (str[i] == ' ' && str[i + 1] != ' ')
+					i++;
 			j = arg_len(str, i);
 			args[x] = (char *)malloc(sizeof(char) * (j - i + 1));
 			if (!args[x])
@@ -100,17 +101,15 @@ static char	**split(char **args, char *str, int args_count)
 *		- if there's quotes it takes the whole quotes as a string
 		- if not it ignores the space
 */
-char	**ft_splitq(char	*str)
+char	**ft_splitq(char *str)
 {
 	int		args_count;
 	char	**args;
 
 	args_count = arg_count(str);
 	args = (char **)malloc(sizeof(char *) * (args_count + 1));
-	if (!args_count)
+	if (!args)
 		return (NULL);
 	args = split(args, str, args_count);
-	if (!args_count)
-		return (NULL);
 	return (args);
 }
