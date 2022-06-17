@@ -6,17 +6,18 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/06/17 03:17:20 by ommohame         ###   ########.fr        #
+#    Updated: 2022/06/17 19:32:03 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=		parser
 
 SRCS		=		./srcs/parser.c \
-					./srcs/utils/print_list.c \
-					./srcs/utils/ft_strlenx2.c \
-					./srcs/utils/ft_splitq.c \
-					./srcs/linked_list/cmd_node.c \
+					./utils/print_list.c \
+					./utils/ft_strlenx2.c \
+					./utils/ft_splitq.c \
+					./utils/ft_split_sc.c \
+					./linked_list/cmd_node.c \
 					./srcs/cmp_cmd.c \
 					./srcs/get_quotes.c \
 

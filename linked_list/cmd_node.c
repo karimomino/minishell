@@ -6,11 +6,11 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 17:08:56 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:30:36 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../includes/parser.h"
 
 /*
 * creates the new command node

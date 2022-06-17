@@ -6,11 +6,11 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 21:09:00 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/16 03:06:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/17 19:30:02 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parser.h"
+#include "../includes/parser.h"
 #include <stdio.h>
 
 /*
