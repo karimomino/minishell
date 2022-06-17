@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 03:19:19 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:04:42 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	close_quotes(char **str, int i)
 			*str = trim_quotes(new, i, j);
 			return (j);
 		}
-		else if (new[j] == 39 && new[j - 1] == 92)
+		else if (new[j] == 34 && c == 34 && new[j - 1] == 92)
 		{
 			new = ft_substr(*str, 0, j - 1);
 			new = ft_strjoin(new, *str + j);

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 03:30:58 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/17 17:08:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ char	*define_token(t_cmd *cmd, int flag)
 	char	*token;
 
 	i = 0;
-	while (cmd->cmd[i] != ' ')
+	while (cmd->cmd[i] != ' ' && cmd->cmd[i])
 		i++;
 	if (flag == 0)
 		token = ft_substr(cmd->cmd, 0, i);
 	else
 		token = ft_substr(cmd->cmd, i, ft_strlen(cmd->cmd) - i);
+	if (!token)
+		return (NULL);
 	token = ft_strtrim(token, " ");
 	token = qoutes(token);
 	i = 0;
