@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 20:23:54 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 02:08:16 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ t_line	*parser(char *str)
 		return (NULL);
 	init_values(line);
 	cmd = ft_split_sc(str, '|');
-	line->ncmds = ft_strlenx2(cmd);
-	line->npipes = ft_strlenx2(cmd) - 1;
 	if (!cmd)
 		return (NULL);
 	get_cmds(cmd, line);
@@ -77,7 +75,5 @@ int	main(void)
 	if (!line)
 		return (-1);
 	print_line(line);
-	ft_printf("cmds: %d\n", line->ncmds);
-	ft_printf("pipes: %d\n", line->npipes);
 	return (1);
 }

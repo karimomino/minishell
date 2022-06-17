@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 17:04:42 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 01:53:28 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,10 @@ static int	close_quotes(char **str, int i)
 	j = i + 1;
 	while (new[j])
 	{
-		if (new[j] == c && new[j - 1] != 92)
+		if (new[j] == c)
 		{
 			*str = trim_quotes(new, i, j);
 			return (j);
-		}
-		else if (new[j] == 34 && c == 34 && new[j - 1] == 92)
-		{
-			new = ft_substr(*str, 0, j - 1);
-			new = ft_strjoin(new, *str + j);
-			j--;
 		}
 		j++;
 	}
@@ -107,7 +101,7 @@ char	*qoutes(char *str)
 	new = ft_strdup(str);
 	while (new[i])
 	{
-		if ((new[i] == 34 || new[i] == 39) && (i == 0 || new[i - 1] != 92))
+		if (new[i] == 34 || new[i] == 39)
 			i = close_quotes(&new, i);
 		if (i == -1)
 			return (NULL);
@@ -123,9 +117,11 @@ char	*qoutes(char *str)
 // #include <stdio.h>
 // int	main(void)
 // {
+// 	int		i;
 // 	char	str[10000];
 // 	char	*new;
 
+// 	i = 1;
 // 	scanf("%99[^\n]", str);
 // 	new = qoutes(str);
 // 	printf("%s\n", new);
