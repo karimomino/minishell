@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 02:08:16 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 03:20:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	get_cmds(char **str, t_line *line)
 	while (str[i])
 	{
 		line = cmds(str[i], line);
+		if (!line)
+			return ;
 		i++;
 	}
 }
