@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "gcc - Build and debug active file",
+            "name": "debug",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/Users/omarelghamry/Documents/42-Devcontainer/src/minishell/parser",
-//          "args": ["6514825 154154 5522254 84514894 513563"],
+            "program": "/Users/ommohame/Desktop/minishell/parser",
+            "args": [],
             // "args": ["830884005 1192601089 -376511175 1680392178 -129833966"],
             "stopAtEntry": false,
-            "cwd": "/Users/omarelghamry/Documents/42-Devcontainer/src/minishell",
+            "cwd": "/Users/ommohame/Desktop/minishell",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "lldb",
-            "preLaunchTask": "Build"
+            "preLaunchTask": "debug"
         }
     ]
 }

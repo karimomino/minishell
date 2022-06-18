@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 03:20:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:09:30 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(void)
 	t_line	*line;
 
 	scanf("%99[^\n]", str);
+	ft_printf("%s\n", str);
 	line = parser(str);
 	if (!line)
 		return (-1);

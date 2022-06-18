@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 01:53:28 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:08:33 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ static int	close_quotes(char **str, int i)
 	char	c;
 	char	*new;
 
-	new = ft_strdup(*str);
+	new = *str;
 	c = new[i];
 	j = i + 1;
+	ft_printf("str[i]: %c\n", new[i]);
+	ft_printf("str[j + 1]: %c\n", new[j]);
+	ft_printf("str[j + 2]: %c\n", new[j + 1]);
 	while (new[j])
 	{
+		// ft_printf("")
 		if (new[j] == c)
 		{
 			*str = trim_quotes(new, i, j);
@@ -71,10 +75,10 @@ static char	*trim_space(char *str, int i)
 	char	*trim;
 	char	*new;
 
-	j = i;
+	j = i + 1;
 	while (str[j] == ' ')
 		j++;
-	trim = ft_substr(str, 0, i + 1);
+	trim = ft_substr(str, 0, j);
 	new = ft_substr(str, j, ft_strlen(str) - j);
 	if (!new || !trim)
 	{
@@ -103,10 +107,11 @@ char	*qoutes(char *str)
 	{
 		if (new[i] == 34 || new[i] == 39)
 			i = close_quotes(&new, i);
-		if (i == -1)
-			return (NULL);
+		ft_printf("%d\n", i);
 		if (new[i] == ' ')
 			new = trim_space(new, i);
+		if (i == -1)
+			return (NULL);
 		if (!new)
 			return (NULL);
 		i++;

@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 03:20:43 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 17:41:24 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-static int	skip_quotes(char *str, int i)
+static int	skip_quotess(char *str, int i)
 {
 	char	c;
 
@@ -40,7 +40,7 @@ static int	cmd_count(char *str, char c)
 		while (str[i] == ' ')
 			i++;
 		if (str[i] == 34 || str[i] == 39)
-			i = skip_quotes(str, i);
+			i = skip_quotess(str, i);
 		if (i == -1)
 			return (-1);
 		if (str[i] == c || str[i + 1] == '\0')
@@ -56,7 +56,7 @@ static int	cmd_len(char *str, char c, int i)
 	while (str[i])
 	{
 		if (str[i] == 34 || str[i] == 39)
-			i = skip_quotes(str, i);
+			i = skip_quotess(str, i);
 		if (str[i] == c)
 			return (i);
 		i++;
@@ -74,8 +74,6 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 	x = 0;
 	while (x < count && str[i])
 	{
-		if (str[i] == 34 || str[i] == 39)
-			i = skip_quotes(str, i);
 		if (str[i] == c || i == 0)
 		{
 			if (str[i] == c)
@@ -89,6 +87,8 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 			i = j - 1;
 			x++;
 		}
+		if (str[i] == 34 || str[i] == 39)
+			i = skip_quotess(str, i);
 		i++;
 	}
 	cmds[x] = NULL;

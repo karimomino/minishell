@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:07:15 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 03:54:43 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:24:21 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/parser.h"
 
-static int	skip_quotes(char *str, int i)
+int	skip_quotes(char *str, int i)
 {
 	char	c;
 
@@ -113,20 +113,20 @@ char	**ft_split_rd(char *str)
 	return (rds);
 }
 
-#include <stdio.h>
+// #include <stdio.h>
 
-int	main(void)
-{
-	char	str[1000];
-	char	**rds;
+// int	main(void)
+// {
+// 	char	str[1000];
+// 	char	**rds;
 
-	scanf("%99[^\n]", str);
-	rds = ft_split_rd(str);
-	for (int i = 0; rds[i]; i++)
-	{
-		printf("%s\n", rds[i]);
-		free(rds[i]);
-	}
-	free(rds);
-	return (1);
-}
+// 	scanf("%99[^\n]", str);
+// 	rds = ft_split_rd(str);
+// 	for (int i = 0; rds[i]; i++)
+// 	{
+// 		printf("%s\n", rds[i]);
+// 		free(rds[i]);
+// 	}
+// 	free(rds);
+// 	return (1);
+// }

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 18:57:54 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/18 16:24:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,9 @@ int		is_builtin(char *str);
 char	*qoutes(char *str);
 
 char	**ft_split_sc(char *str, char c);
+
+char	**ft_split_rd(char *str);
+
+int	skip_quotes(char *str, int i);
 
 #endif
