@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 20:22:41 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/20 00:43:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ typedef struct s_token
 *		╵---> 0: stdin
 *		╵---> 1: stdout
 *		╵---> 2: stderr
+*	- type: type of redirection
 *	- file: file name
 */
 typedef struct s_redir
 {
 	int				fd;
+	int				type;
 	char			*file;
 	struct s_redir	*prev;
 	struct s_redir	*next;

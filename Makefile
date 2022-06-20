@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/06/18 17:23:26 by ommohame         ###   ########.fr        #
+#    Updated: 2022/06/20 00:32:31 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		=		./srcs/parser.c \
 					./utils/ft_split_sc.c \
 					./utils/ft_split_rd.c \
 					./linked_list/cmd_node.c \
+					./linked_list/redir_node.c \
 					./srcs/cmp_cmd.c \
 					./srcs/get_quotes.c \
 
@@ -32,7 +33,7 @@ FT_PRINT_F	=		./ft_printf/libftprintf.a
 
 CC			=		gcc
 
-CFLAGS		=		-Wall -Werror -Wextra -g3
+CFLAGS		=		-Wall -Werror -Wextra -g
 
 AR			=		ar rcs
 

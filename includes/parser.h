@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 16:24:31 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/20 00:34:33 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	**ft_split_sc(char *str, char c);
 
 char	**ft_split_rd(char *str);
 
-int	skip_quotes(char *str, int i);
+int		skip_quotes(char *str, int i);
+
+t_redir	*get_redir(t_cmd *cmd, char **str);
 
 #endif

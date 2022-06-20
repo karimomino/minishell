@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:07:15 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 16:24:21 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/20 02:58:15 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,21 @@ static char	**split_rds(char **rds, char *str, int count)
 	x = 0;
 	while (x < count && str[i])
 	{
-		if (str[i] == 34 || str[i] == 39)
-			i = skip_quotes(str, i);
 		if (str[i] == '>' || str[i] == '<' || i == 0)
 		{
 			j = rd_len(str, i);
-			rds[x] = (char *)malloc(sizeof(char) * (j - i + 1));
+			if (i == 0)
+				rds[x] = ft_substr(str, i, j - i - 1); 
+			else
+				rds[x] = ft_substr(str, i, j - i); 
 			if (!rds[x])
-				return (NULL);
-			ft_strlcpy(rds[x], str + i, j - i + 1);
+				return (NULL);		
 			rds[x] = ft_strtrim(rds[x], " ");
 			i = j - 1;
 			x++;
 		}
+		if (str[i] == 34 || str[i] == 39)
+			i = skip_quotes(str, i);
 		i++;
 	}
 	rds[x] = NULL;
@@ -110,6 +112,8 @@ char	**ft_split_rd(char *str)
 	if (!rds_count)
 		return (NULL);
 	rds = split_rds(rds, str, rds_count);
+	for (int i = 0; rds[i]; i++)
+		ft_printf("rds[%d]: %s\n", i, rds[i]);
 	return (rds);
 }
 

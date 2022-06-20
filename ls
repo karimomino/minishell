@@ -1,0 +1,11 @@
+Libft
+Makefile
+README.md
+ft_printf
+includes
+linked_list
+ls
+parser
+srcs
+test
+utils

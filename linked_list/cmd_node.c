@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 21:21:28 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/20 02:47:52 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,11 @@ char	*define_token(t_cmd *cmd, int flag)
 
 	i = 0;
 	while (cmd->cmd[i] != ' ' && cmd->cmd[i])
+	{
+		if (cmd->cmd[i] == 34 || cmd->cmd[i] == 39)
+			i = skip_quotes(cmd->cmd, i);
 		i++;
+	}
 	if (flag == 0)
 		token = ft_substr(cmd->cmd, 0, i);
 	else
@@ -94,7 +98,6 @@ char	*define_token(t_cmd *cmd, int flag)
 		return (NULL);
 	token = ft_strtrim(token, " ");
 	token = qoutes(token);
-	ft_printf("%s\n", token);
 	i = 0;
 	if (flag == 0)
 	{
@@ -143,14 +146,19 @@ t_token	*get_tokens(t_cmd *cmd)
 */
 t_line	*cmds(char *str, t_line *line)
 {
+	char		**redir;
 	t_cmd		*head;
 
 	head = line->cmd;
 	if (line->cmd)
 		while (line->cmd->next)
 			line->cmd = line->cmd->next;
-	line->cmd = cmd_node(str, &line->cmd);
+	ft_printf("str: %s\n", str);
+	redir = ft_split_rd(str);
+	ft_printf("redir[0]: %s\n", redir[0]);
+	line->cmd = cmd_node(redir[0], &line->cmd);
 	line->cmd->token = get_tokens(line->cmd);
+	line->cmd->redir = get_redir(line->cmd, redir);
 	if (head)
 		line->cmd = head;
 	return (line);

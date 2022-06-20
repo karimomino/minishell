@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/17 19:30:23 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/20 02:10:22 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	print_token(t_cmd cmd)
 	{
 		ft_printf("token[%u]: %s\n", cmd.token->i, cmd.token->token);
 		cmd.token = cmd.token->next;
+	}
+}
+
+void	print_redir(t_cmd cmd)
+{
+	while (cmd.redir)
+	{
+		ft_printf("redir[%d]: %s - %d\n",
+			cmd.redir->fd, cmd.redir->file, cmd.redir->type);
+		cmd.redir = cmd.redir->next;
 	}
 }
 
@@ -33,6 +43,7 @@ void	print_cmd(t_line line)
 		ft_printf("cmd: %s\n", line.cmd->cmd);
 		ft_printf("\n");
 		print_token(*line.cmd);
+		print_redir(*line.cmd);
 		ft_printf("----------------\n\n");
 		i++;
 		line.cmd = line.cmd->next;

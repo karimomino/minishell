@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/18 22:08:33 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/19 17:36:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,8 @@ static int	close_quotes(char **str, int i)
 	new = *str;
 	c = new[i];
 	j = i + 1;
-	ft_printf("str[i]: %c\n", new[i]);
-	ft_printf("str[j + 1]: %c\n", new[j]);
-	ft_printf("str[j + 2]: %c\n", new[j + 1]);
 	while (new[j])
 	{
-		// ft_printf("")
 		if (new[j] == c)
 		{
 			*str = trim_quotes(new, i, j);
@@ -107,7 +103,6 @@ char	*qoutes(char *str)
 	{
 		if (new[i] == 34 || new[i] == 39)
 			i = close_quotes(&new, i);
-		ft_printf("%d\n", i);
 		if (new[i] == ' ')
 			new = trim_space(new, i);
 		if (i == -1)
