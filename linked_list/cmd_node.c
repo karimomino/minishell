@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/20 02:47:52 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:31:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_cmd	*cmd_node(char *str, t_cmd **cmd)
 {
 	struct s_cmd	*new;
 	struct s_cmd	*tmp;
-
 	new = (struct s_cmd *)malloc(sizeof(struct s_cmd));
 	if (!new)
 		return (NULL);
@@ -155,10 +154,10 @@ t_line	*cmds(char *str, t_line *line)
 			line->cmd = line->cmd->next;
 	ft_printf("str: %s\n", str);
 	redir = ft_split_rd(str);
-	ft_printf("redir[0]: %s\n", redir[0]);
 	line->cmd = cmd_node(redir[0], &line->cmd);
 	line->cmd->token = get_tokens(line->cmd);
-	line->cmd->redir = get_redir(line->cmd, redir);
+	if (ft_strlenx2(redir) > 1)
+		line->cmd->redir = get_redir(line->cmd, redir);
 	if (head)
 		line->cmd = head;
 	return (line);

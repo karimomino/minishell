@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:16:23 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/20 02:13:38 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/23 21:36:50 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	redir_type(char *str)
 	i = 0;
 	in = 0;
 	out = 0;
-	ft_printf("type: %s\n", str);
 	while (str[i] == '>')
 	{
 		if (str[i] == '<')
@@ -100,6 +99,7 @@ t_redir	*get_redir(t_cmd *cmd, char **str)
 	i = 1;
 	while (str[i])
 	{
+		ft_printf("i: %d\n", i);
 		cmd->redir = new_redir(&cmd->redir, str[i]);
 		if (cmd->redir->type == -1 || !cmd->redir->file)
 			return (NULL);

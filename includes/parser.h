@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/20 00:34:33 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/23 20:30:27 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PARSER_H
 
 # include <stdlib.h>
-
+# include <stddef.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "structure.h"

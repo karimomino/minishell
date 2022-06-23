@@ -6,11 +6,11 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:07:15 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/20 02:58:15 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/23 21:33:42 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/parser.h"
+#include "../includes/parser.h"
 
 int	skip_quotes(char *str, int i)
 {
@@ -82,13 +82,10 @@ static char	**split_rds(char **rds, char *str, int count)
 		if (str[i] == '>' || str[i] == '<' || i == 0)
 		{
 			j = rd_len(str, i);
-			if (i == 0)
-				rds[x] = ft_substr(str, i, j - i - 1); 
-			else
-				rds[x] = ft_substr(str, i, j - i); 
+			rds[x] = (char *)malloc(sizeof(char *) * (j - i + 1));
 			if (!rds[x])
-				return (NULL);		
-			rds[x] = ft_strtrim(rds[x], " ");
+				return (NULL);
+			ft_strlcpy(rds[x], str + i, j - i + 1);
 			i = j - 1;
 			x++;
 		}
@@ -105,19 +102,18 @@ char	**ft_split_rd(char *str)
 	int		rds_count;
 	char	**rds;
 
+	if (!str)
+		return (NULL);
 	rds_count = rd_count(str);
+	ft_printf("count: %d\n", rds_count);
 	if (rds_count == -1)
 		return (NULL);
 	rds = (char **)malloc(sizeof(char) * (rds_count + 1));
 	if (!rds_count)
 		return (NULL);
 	rds = split_rds(rds, str, rds_count);
-	for (int i = 0; rds[i]; i++)
-		ft_printf("rds[%d]: %s\n", i, rds[i]);
 	return (rds);
 }
-
-// #include <stdio.h>
 
 // int	main(void)
 // {
@@ -125,12 +121,16 @@ char	**ft_split_rd(char *str)
 // 	char	**rds;
 
 // 	scanf("%99[^\n]", str);
+// 	// char	*str = ft_strdup("0123>567");
 // 	rds = ft_split_rd(str);
-// 	for (int i = 0; rds[i]; i++)
+// 	int		i = 0;
+// 	while (rds[i])
 // 	{
-// 		printf("%s\n", rds[i]);
+// 		ft_printf("rds[%d]: %s\n", i, rds[i]);
 // 		free(rds[i]);
+// 		i++;
 // 	}
+// 	// free(rds[i]);
 // 	free(rds);
 // 	return (1);
 // }
