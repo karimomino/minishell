@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:07:15 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/23 21:33:42 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/24 17:44:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static char	**split_rds(char **rds, char *str, int count)
 	x = 0;
 	while (x < count && str[i])
 	{
+		ft_printf("x: %d | count: %d\n", x, count);
 		if (str[i] == '>' || str[i] == '<' || i == 0)
 		{
 			j = rd_len(str, i);
@@ -93,7 +94,8 @@ static char	**split_rds(char **rds, char *str, int count)
 			i = skip_quotes(str, i);
 		i++;
 	}
-	rds[x] = NULL;
+	ft_printf("x: %d | count: %d\n", x, count);
+	rds[x] = (void *)0;
 	return (rds);
 }
 

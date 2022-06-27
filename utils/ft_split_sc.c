@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/20 00:33:09 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:24:15 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 	int		i;
 	int		j;
 	int		x;
+	char	*tmp;
 
 	i = 0;
 	x = 0;
@@ -81,13 +82,14 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 			if (str[i] == c)
 				i++;
 			j = cmd_len(str, c, i);
-			cmds[x] = (char *)malloc(sizeof(char) * (j - i + 1));
+			// tmp = (char *)malloc(sizeof(char) * (j - i + 1));
+			cmds[x] = ft_substr(str, i, j - i);
 			if (!cmds[x])
 				return (NULL);
-			ft_strlcpy(cmds[x], str + i, j - i + 1);
+			// ft_strlcpy(cmds[x], str + i, j - i + 1);
 			cmds[x] = ft_strtrim(cmds[x], " ");
-			i = j - 1;
 			x++;
+			i = j - 1;
 		}
 		if (str[i] == 34 || str[i] == 39)
 			i = skip_quotess(str, i);
@@ -96,6 +98,8 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 	cmds[x] = NULL;
 	return (cmds);
 }
+
+#include <stdio.h>
 
 char	**ft_split_sc(char *str, char c)
 {
@@ -109,17 +113,20 @@ char	**ft_split_sc(char *str, char c)
 	if (!cmds_count)
 		return (NULL);
 	cmds = split_cmds(cmds, str, c, cmds_count);
-	
 	return (cmds);
 }
-// int	main(void)
-// {
-// 	char	str[1000];
-// 	char	**cmds;
 
-// 	scanf("%99[^\n]", str);
-// 	cmds = ft_split_sc(str, '|');
-// 	for (int i = 0; cmds[i]; i++)
-// 		printf("%s\n", cmds[i]);
-// 	return (1);
-// }
+int	main(void)
+{
+	char	str[1000];
+	char	**cmds;
+
+	scanf("%99[^\n]", str);
+	cmds = ft_split_sc(str, '|');
+	for (int i = 0; cmds[i]; i++)
+		printf("%s\n", cmds[i]);
+	for (int i = 0; cmds[i]; i++)
+		free (cmds[i]);
+	free (cmds);
+	return (1);
+}

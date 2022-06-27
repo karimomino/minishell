@@ -1,22 +1,28 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "debug",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "/Users/ommohame/Desktop/minishell/parser",
-            "args": [],
-            // "args": ["830884005 1192601089 -376511175 1680392178 -129833966"],
-            "stopAtEntry": false,
-            "cwd": "/Users/ommohame/Desktop/minishell",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "lldb",
-            "preLaunchTask": "debug"
-        }
-    ]
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "(lldb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/a.out",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": true,
+			"MIMode": "lldb"
+		},
+		// {
+		// 	"type": "lldb",
+		// 	"request": "launch",
+		// 	"name": "Debug",
+		// 	"program": "${workspaceFolder}/parser",
+		// 	"args": [],
+		// 	"cwd": "${workspaceFolder}"
+		// }
+	]
 }

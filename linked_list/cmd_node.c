@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/23 20:31:31 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/26 22:13:27 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ t_cmd	*cmd_node(char *str, t_cmd **cmd)
 {
 	struct s_cmd	*new;
 	struct s_cmd	*tmp;
+
 	new = (struct s_cmd *)malloc(sizeof(struct s_cmd));
 	if (!new)
-		return (NULL);
+		return (NULL); 
 	new->cmd = ft_strtrim(str, " ");
 	if (!new)
 		return (NULL);
@@ -53,12 +54,14 @@ t_token	*new_token(t_token **token, char *str, int x)
 	struct s_token	*new;
 	struct s_token	*tmp;
 
+	ft_printf("CHECK_3\n");
 	new = (struct s_token *)malloc(sizeof(struct s_token));
 	if (!new)
 		return (NULL);
 	new->i = x;
 	new->next = NULL;
 	new->token = str;
+	ft_printf("CHECK_4\n");
 	if (!*token)
 		new->prev = NULL;
 	else
@@ -68,6 +71,7 @@ t_token	*new_token(t_token **token, char *str, int x)
 			tmp = tmp->next;
 		new->prev = tmp;
 		tmp->next = new;
+		ft_printf("CHECK_5\n");
 	}
 	return (new);
 }
@@ -80,6 +84,7 @@ t_token	*new_token(t_token **token, char *str, int x)
 char	*define_token(t_cmd *cmd, int flag)
 {
 	size_t	i;
+	char	*tmp;
 	char	*token;
 
 	i = 0;
@@ -95,8 +100,10 @@ char	*define_token(t_cmd *cmd, int flag)
 		token = ft_substr(cmd->cmd, i, ft_strlen(cmd->cmd) - i);
 	if (!token)
 		return (NULL);
-	token = ft_strtrim(token, " ");
-	token = qoutes(token);
+	tmp = ft_strtrim(token, " ");
+	free (token);
+	token = qoutes(tmp);
+	free (tmp);
 	i = 0;
 	if (flag == 0)
 	{
@@ -116,22 +123,19 @@ char	*define_token(t_cmd *cmd, int flag)
 */
 t_token	*get_tokens(t_cmd *cmd)
 {
-	int			flag;
 	size_t		i;
 	char		*token;
 	t_token		*head;
 
 	i = 0;
-	flag = 0;
 	while (i < 2)
 	{
-		token = define_token(cmd, flag);
+		token = define_token(cmd, i);
 		cmd->token = new_token(&cmd->token, token, i);
-		if (flag == 0)
+		if (i == 0)
 			head = cmd->token;
 		cmd->token = cmd->token->next;
 		cmd->token = head;
-		flag++;
 		i++;
 	}
 	return (head);
@@ -145,7 +149,7 @@ t_token	*get_tokens(t_cmd *cmd)
 */
 t_line	*cmds(char *str, t_line *line)
 {
-	char		**redir;
+	// char		**redir;
 	t_cmd		*head;
 
 	head = line->cmd;
@@ -153,11 +157,11 @@ t_line	*cmds(char *str, t_line *line)
 		while (line->cmd->next)
 			line->cmd = line->cmd->next;
 	ft_printf("str: %s\n", str);
-	redir = ft_split_rd(str);
-	line->cmd = cmd_node(redir[0], &line->cmd);
+	// redir = ft_split_rd(str);
+	line->cmd = cmd_node(str, &line->cmd);
 	line->cmd->token = get_tokens(line->cmd);
-	if (ft_strlenx2(redir) > 1)
-		line->cmd->redir = get_redir(line->cmd, redir);
+	// if (ft_strlenx2(redir) > 1)
+	// 	line->cmd->redir = get_redir(line->cmd, redir);
 	if (head)
 		line->cmd = head;
 	return (line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame <ommohame@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 22:01:58 by ommohame          #+#    #+#             */
-/*   Updated: 2022/01/28 16:08:52 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/24 19:51:50 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

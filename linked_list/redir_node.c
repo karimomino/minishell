@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 19:16:23 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/23 21:36:50 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/23 22:02:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_redir	*get_redir(t_cmd *cmd, char **str)
 	size_t	i;
 	t_redir	*head;
 
-	i = 1;
+	i = 0;
 	while (str[i])
 	{
 		ft_printf("i: %d\n", i);

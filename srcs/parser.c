@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/20 00:37:26 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:06:46 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,26 @@ void	init_values(t_line *line)
 /*
 *	returns -1 if for an error
 */
-t_line	*parser(char *str)
+// t_line	*parser(char *str)
+// {
+// 	char	**cmd;
+// 	t_line	*line;
+
+// 	line = (t_line *)malloc(sizeof(t_line));
+// 	if (!line)
+// 		return (NULL);
+// 	init_values(line);
+// 	cmd = ft_split_sc(str, '|');
+// 	if (!cmd)
+// 		return (NULL);
+// 	get_cmds(cmd, line);
+// 	free_2d(cmd);
+// 	return (line);
+// }
+/*
+*	returns -1 if for an error
+*/
+t_line	*parser_v3_0(char *str)
 {
 	char	**cmd;
 	t_line	*line;
@@ -62,20 +81,21 @@ t_line	*parser(char *str)
 	if (!cmd)
 		return (NULL);
 	get_cmds(cmd, line);
+	free_2d(cmd);
 	return (line);
 }
-
-#include <stdio.h>
 
 int	main(void)
 {
 	char	str[1000];
 	t_line	*line;
 
-	scanf("%99[^\n]", str);
-	line = parser(str);
+ 	scanf("%99[^\n]", str);
+	line = parser_v3_0(str);
 	if (!line)
 		return (EXIT_FAILURE);
 	print_line(line);
+	free_nodes(line);
+	free(line);
 	return (EXIT_SUCCESS);
 }

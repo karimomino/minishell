@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:20:25 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/16 19:25:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:05:47 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,18 @@ int	is_builtin(char *str)
 	char	**bins;
 
 	i = 0;
-	bins = (char **)malloc(sizeof(char *) * 8);
 	bins = builtins();
 	if (!bins)
 		return (-1);
 	while (bins[i])
 	{
-		if (ft_strncmp(str, bins[i], ft_strlen(bins[i])) == 0)
+		if (ft_strncmp(str, bins[i], ft_strlen(str)) == 0)
+		{
+			// free_2d(bins);
 			return (i + 1);
+		}
 		i++;
 	}
+	// free_2d(bins);
 	return (0);
 }

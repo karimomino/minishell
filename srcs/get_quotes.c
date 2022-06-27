@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/19 17:36:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/24 19:43:54 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ static char	*trim_quotes(char *str, int i, int j)
 	tmp2 = ft_substr(str, i + 1, j - i - 1);
 	tmp3 = ft_substr(str, j + 1, ft_strlen(str) - j);
 	new = ft_strjoin(tmp1, tmp2);
-	new = ft_strjoin(new, tmp3);
 	free(tmp1);
 	free(tmp2);
+	tmp1 = ft_strjoin(new, tmp3);
 	free(tmp3);
+	free(new);
 	free(str);
-	return (new);
+	return (tmp1);
 }
 
 /*
