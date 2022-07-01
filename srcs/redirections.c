@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/01 20:59:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:42:19 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,6 @@ int	redir_len(char *str, size_t j)
 	return (j);
 }
 
-char	*get_redir(char *str, int *i)
-{
-	int		j;
-	char	*tmp;
-	char	*ret;
-
-	j = redir_len(str, *i);
-	tmp = ft_substr(str, *i, j - *i);
-	*i = j;
-	if (!str[j])
-		*i = -1;
-	ret = squeeze_space(tmp);
-	free(tmp);
-	return (ret);
-}
-
 int	define_redir(char *str, char **ret, int *i)
 {
 	int		j;
@@ -61,9 +45,8 @@ int	define_redir(char *str, char **ret, int *i)
 		return (-1);
 	if (!*ret)
 	{
-		free(*ret);
 		*ret = new;
-		*i = j - 1;
+		*i = j;
 		return (1);
 	}
 	tmp = ft_strjoin(*ret, new);
@@ -72,8 +55,32 @@ int	define_redir(char *str, char **ret, int *i)
 	if (!tmp)
 		return (-1);
 	*ret = tmp;
-	*i = j - 1;
+	*i = j;
 	return (1);
+}
+
+char	*get_redir(char *str, int *i)
+{
+	int		j;
+	int		flag;
+	char	*tmp;
+	char	*ret;
+
+	j = redir_len(str, *i);
+	tmp = ft_substr(str, *i, j - *i);
+	ret = squeeze_space(tmp);
+	free(tmp);
+	*i = j;
+	flag = 1;
+	while (str[j])
+	{
+		if (str[j] == '>' || str[j] == '<')
+			flag = -1;
+		j++;
+	}
+	if (flag == 1)
+		*i = -1;
+	return (ret);
 }
 
 int	redir_what(char *str)

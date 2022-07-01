@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/01 21:05:50 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/01 22:15:04 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ FT_PRINT_F	=		./ft_printf/libftprintf.a
 
 CC			=		gcc
 
-CFLAGS		=		-Wall -Werror -Wextra -g
+CFLAGS		=		-Wall -Werror -Wextra -g3
 
 AR			=		ar rcs
 

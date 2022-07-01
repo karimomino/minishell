@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/01 21:06:18 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:42:41 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_line	*parser_v3_0(char *str)
 	char	**cmd;
 	t_line	*line;
 
-	line = (t_line *)malloc(sizeof(t_line));
+	line = (t_line *)ft_calloc(1, sizeof(t_line));
 	if (!line)
 		return (NULL);
 	init_values(line);
@@ -66,7 +66,7 @@ int	main(void)
 	if (!line)
 		return (EXIT_FAILURE);
 	print_line(line);
-	// free_nodes(line);
+	free_nodes(line);
 	free(line);
 	return (EXIT_SUCCESS);
 }

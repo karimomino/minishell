@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:49:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/30 01:23:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/02 00:32:47 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ char	**parse(char *str)
 	char	**ret;
 
 	i = 0;
-	ret = (char **)malloc(sizeof(char *) * 4);
+	ret = (char **)ft_calloc(4, sizeof(char *));
 	if (!ret)
 		return (NULL);
+	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '>' || str[i] == '<')
@@ -30,10 +31,11 @@ char	**parse(char *str)
 			if (define_redir(str, &ret[2], &i) == -1)
 				return (NULL);
 		}
+		if (!str[i])
+			break ;
 		// else if (!ret[0])
 		// 	define_cmd(str, &ret[0], &i)
 		i++;
 	}
-	ret[3] = NULL;
 	return (ret);
 }
