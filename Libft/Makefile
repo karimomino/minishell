@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/09 18:24:09 by daelee            #+#    #+#              #
-#    Updated: 2022/01/17 07:36:08 by ommohame         ###   ########.fr        #
+#    Updated: 2022/06/28 20:03:20 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ SRCS_B = 	ft_lstnew.c \
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 AR		=	ar rcs
 

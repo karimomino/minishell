@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/06/24 17:55:59 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/01 21:05:50 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,13 @@ SRCS		=		./srcs/parser.c \
 					./utils/ft_split_sc.c \
 					./utils/ft_split_rd.c \
 					./linked_list/cmd_node.c \
-					./linked_list/redir_node.c \
 					./srcs/cmp_cmd.c \
 					./srcs/get_quotes.c \
 					./srcs/free.c \
+					./srcs/redirections.c \
+					./srcs/commands.c \
+					./srcs/split_line.c \
+					./utils/squeeze.c \
 
 LIBFT_PATH	=		./Libft
 

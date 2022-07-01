@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:07:15 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/24 17:44:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/30 04:30:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 
-int	skip_quotes(char *str, int i)
+long	skip_quotes(char *str, size_t i)
 {
 	char	c;
 
@@ -79,7 +79,6 @@ static char	**split_rds(char **rds, char *str, int count)
 	x = 0;
 	while (x < count && str[i])
 	{
-		ft_printf("x: %d | count: %d\n", x, count);
 		if (str[i] == '>' || str[i] == '<' || i == 0)
 		{
 			j = rd_len(str, i);
@@ -87,6 +86,7 @@ static char	**split_rds(char **rds, char *str, int count)
 			if (!rds[x])
 				return (NULL);
 			ft_strlcpy(rds[x], str + i, j - i + 1);
+			ft_strtrim(rds[x], " ");
 			i = j - 1;
 			x++;
 		}
@@ -94,7 +94,6 @@ static char	**split_rds(char **rds, char *str, int count)
 			i = skip_quotes(str, i);
 		i++;
 	}
-	ft_printf("x: %d | count: %d\n", x, count);
 	rds[x] = (void *)0;
 	return (rds);
 }
@@ -107,7 +106,6 @@ char	**ft_split_rd(char *str)
 	if (!str)
 		return (NULL);
 	rds_count = rd_count(str);
-	ft_printf("count: %d\n", rds_count);
 	if (rds_count == -1)
 		return (NULL);
 	rds = (char **)malloc(sizeof(char) * (rds_count + 1));
@@ -128,7 +126,6 @@ char	**ft_split_rd(char *str)
 // 	int		i = 0;
 // 	while (rds[i])
 // 	{
-// 		ft_printf("rds[%d]: %s\n", i, rds[i]);
 // 		free(rds[i]);
 // 		i++;
 // 	}

@@ -5,12 +5,9 @@ a.out
 a.out.dSYM
 ft_printf
 includes
-l
 la
 linked_list
-ls
 parser
 srcs
 test
-test.c
 utils

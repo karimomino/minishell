@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/26 22:24:15 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:16:24 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 	int		i;
 	int		j;
 	int		x;
-	char	*tmp;
 
 	i = 0;
 	x = 0;
@@ -86,8 +85,8 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 			cmds[x] = ft_substr(str, i, j - i);
 			if (!cmds[x])
 				return (NULL);
-			// ft_strlcpy(cmds[x], str + i, j - i + 1);
-			cmds[x] = ft_strtrim(cmds[x], " ");
+			ft_strlcpy(cmds[x], str + i, j - i + 1);
+			// cmds[x] = ft_strtrim(cmds[x], " ");
 			x++;
 			i = j - 1;
 		}
@@ -116,17 +115,17 @@ char	**ft_split_sc(char *str, char c)
 	return (cmds);
 }
 
-int	main(void)
-{
-	char	str[1000];
-	char	**cmds;
+// int	main(void)
+// {
+// 	char	str[1000];
+// 	char	**cmds;
 
-	scanf("%99[^\n]", str);
-	cmds = ft_split_sc(str, '|');
-	for (int i = 0; cmds[i]; i++)
-		printf("%s\n", cmds[i]);
-	for (int i = 0; cmds[i]; i++)
-		free (cmds[i]);
-	free (cmds);
-	return (1);
-}
+// 	scanf("%99[^\n]", str);
+// 	cmds = ft_split_sc(str, '|');
+// 	for (int i = 0; cmds[i]; i++)
+// 		printf("%s\n", cmds[i]);
+// 	for (int i = 0; cmds[i]; i++)
+// 		free (cmds[i]);
+// 	free (cmds);
+// 	return (1);
+// }
