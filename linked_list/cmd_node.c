@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/02 00:40:28 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:56:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int	cmd_red(char *str, t_redir **redir)
 		while (i != -1)
 		{
 			red = get_redir(str, &i);
-			if (redir_node(str, &(*redir)) == -1)
+			if (!red)
+				return (-1);
+			if (redir_node(red, &(*redir)) == -1)
 				return (-1);
 			if (f++ == 0)
 				head = *redir;
@@ -64,15 +66,64 @@ int	cmd_red(char *str, t_redir **redir)
 	return (1);
 }
 
+int	cmd_cmd(char *str, t_token **token)
+{
+	t_token		*new;
+
+	new = (t_token *)malloc(sizeof(t_token));
+	if (!new)
+		return (-1);
+	new->i = 0;
+	new->token = ft_strtrim(str, " ");
+	new->next = NULL;
+	new->prev = NULL;
+	*token = new;
+	return (1);
+}
+
+int	cmd_arg(char *str, t_token **token)
+{
+	t_token		*new;
+
+	new = (t_token *)malloc(sizeof(t_token));
+	if (!new)
+		return (-1);
+	new->i = 1;
+	new->next = NULL;
+	new->prev = *token;
+	new->token = ft_strdup(str);
+	(*token)->next = new;
+	return (1);
+}
+
+
 int	last_cmd_node(char **str, t_cmd **cmd)
 {
+	int		ret;
+
 	while ((*cmd)->next)
 		(*cmd) = (*cmd)->next;
+	if (str[0])
+	{
+		(*cmd)->type = is_builtin(str[0]);
+		ret = cmd_cmd(str[0], &(*cmd)->token);
+		free(str[0]);
+		if (ret == -1)
+			return (-1);
+	}
+	if (str[1])
+	{
+		ret = cmd_arg(str[1], &(*cmd)->token);
+		free(str[1]);
+		if (ret == -1)
+			return (-1);
+	}
 	if (str[2])
 	{
-		if (cmd_red(str[2], &(*cmd)->redir) == -1)
-			return (-1);
+		ret = cmd_red(str[2], &(*cmd)->redir);
 		free(str[2]);
+		if (ret == -1)
+			return (-1);
 	}
 	return (1);
 }

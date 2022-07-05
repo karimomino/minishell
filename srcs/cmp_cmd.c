@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:20:25 by ommohame          #+#    #+#             */
-/*   Updated: 2022/06/27 17:05:47 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/05 18:58:25 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ int	is_builtin(char *str)
 	{
 		if (ft_strncmp(str, bins[i], ft_strlen(str)) == 0)
 		{
-			// free_2d(bins);
+			free_2d(bins);
 			return (i + 1);
 		}
 		i++;
 	}
-	// free_2d(bins);
+	free_2d(bins);
 	return (0);
 }
+// echo       -n   < test2.txt "hello    world" > test hello again | cat -e << ls |   >> idkatthispoint exit

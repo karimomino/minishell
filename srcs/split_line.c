@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/27 22:49:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/02 00:32:47 by ommohame         ###   ########.fr       */
+/*   Created: 2022/07/05 16:40:53 by ommohame          #+#    #+#             */
+/*   Updated: 2022/07/05 17:36:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
-
-char	*get_quotes(char *str, size_t i);
 
 char	**parse(char *str)
 {
@@ -31,10 +29,13 @@ char	**parse(char *str)
 			if (define_redir(str, &ret[2], &i) == -1)
 				return (NULL);
 		}
-		if (!str[i])
-			break ;
-		// else if (!ret[0])
-		// 	define_cmd(str, &ret[0], &i)
+		else if (str[i] != ' ' && str[i] != '>' && str[i] != '<')
+		{
+			if (!ret[0])
+				get_cmd(str, &ret[0], &i);
+			else
+				get_args(str, &ret[1], &i);
+		}
 		i++;
 	}
 	return (ret);

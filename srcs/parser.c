@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/02 00:42:41 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/05 19:00:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_line	*parser_v3_0(char *str)
 		return (NULL);
 	init_values(line);
 	cmd = ft_split(str, '|');
+	ft_printf("cmd[2]: %s\n", cmd[2]);
 	if (!cmd)
 		return (NULL);
 	line = get_cmds(cmd, line);
