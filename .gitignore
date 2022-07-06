@@ -37,7 +37,7 @@
 *.i*86
 *.x86_64
 *.hex
-parser
+*/parser
 
 # Debug files
 *.dSYM/

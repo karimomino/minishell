@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/06 19:34:44 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/06 22:14:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ char	*get_redir(char *str, int *i)
 	}
 	if (flag == 1)
 		*i = -1;
-	tmp = ft_strtrim(ret, "> <");
-	free(ret);
-	return (tmp);
+	return (ret);
 }
 
 int	redir_what(char *str)
@@ -138,7 +136,7 @@ int	redir_node(char *str, t_redir **redir)
 	if (new->fd == -1 || new->type == -1)
 		return (-1);
 	new->next = NULL;
-	new->file = ft_strdup(str);
+	new->file = ft_strtrim(str, "> <");
 	if (!*redir)
 	{
 		new->prev = NULL;
