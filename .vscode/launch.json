@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/parser",
 			"args": [],
-			"stopAtEntry": true,
+			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],
 			"externalConsole": true,
