@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/06 20:50:33 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:05:02 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_line	*get_cmds(char **str, t_line *line)
 	while (str[i])
 	{
 		if (cmds(str[i], &line) == -1)
+		{
+			free_nodes(line);
 			return (NULL);
+		}
 		i++;
 	}
 	return (line);
@@ -42,21 +45,26 @@ t_line	*parser_v3_0(char *str)
 	char	**cmd;
 	t_line	*line;
 
+	cmd = ft_split_sc(str, '|');
+	if (!cmd)
+		return (NULL);
 	line = (t_line *)ft_calloc(1, sizeof(t_line));
 	if (!line)
 		return (NULL);
 	init_values(line);
-	cmd = ft_split_sc(str, '|');
-	if (!cmd)
-		return (NULL);
-	if (check_pipes(cmd, str) == -1)
+	if (check_pipes(cmd, str, &line) == -1)
 	{
-		free(line);
 		free_2d(cmd);
+		free(line);
 		return (NULL);
 	}
 	line = get_cmds(cmd, line);
 	free_2d(cmd);
+	if (!line)
+	{
+		free(line);
+		return (NULL);
+	}
 	return (line);
 }
 

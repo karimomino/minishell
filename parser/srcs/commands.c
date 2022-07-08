@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 01:00:48 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/06 22:19:42 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/08 18:35:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	cmd_len(char *str, size_t i)
 		if (str[i] == '>' || str[i + 1] == '<')
 			return (i);
 		else if (str[i] == '\"' || str[i] == '\'')
-			return (skip_quotes(str, i) + 1);
+			i = skip_quotes(str, i) + 1;
 		else if (str[i] == ' ')
 			return (i);
 		i++;
@@ -57,7 +57,7 @@ int	get_args(char *str, char **ret, int *i)
 		*i = j - 1;
 		return (1);
 	}
-	if (str[j] == ' ')
+	if (str[*i - 1] == ' ')
 		tmp = ft_strjoin(*ret, " ");
 	else
 		tmp = ft_strdup(*ret);

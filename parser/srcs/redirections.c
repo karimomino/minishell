@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/06 22:14:39 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/08 19:10:50 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,21 +133,23 @@ int	redir_node(char *str, t_redir **redir)
 		return (-1);
 	new->fd = redir_what(str);
 	new->type = redir_type(str);
-	if (new->fd == -1 || new->type == -1)
-		return (-1);
-	new->next = NULL;
 	new->file = ft_strtrim(str, "> <");
+	new->next = NULL;
+	if (new->fd == -1 || new->type == -1 || ft_strncmp(new->file, "", 1) == 0)
+	{
+		free(new->file);
+		free(new);
+		return (-1);
+	}
 	if (!*redir)
 	{
 		new->prev = NULL;
 		*redir = new;
+		return (1);
 	}
-	else
-	{
-		while ((*redir)->next)
-			(*redir) = (*redir)->next;
-		new->prev = (*redir);
-		(*redir)->next = new;
-	}
+	while ((*redir)->next)
+		(*redir) = (*redir)->next;
+	new->prev = (*redir);
+	(*redir)->next = new;
 	return (1);
 }

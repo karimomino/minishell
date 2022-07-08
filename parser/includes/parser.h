@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/06 20:28:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:39:45 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int		get_cmd(char *str, char **ret, int *i);
 
 int		get_args(char *str, char **ret, int *i);
 
-int		check_pipes(char **cmd, char *str);
+int		check_pipes(char **cmd, char *str, t_line **line);
+
+t_line	*parser_v3_0(char *str);
 
 #endif

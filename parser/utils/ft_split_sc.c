@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/06 20:52:25 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:06:00 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static int	cmd_count(char *str, char c)
 	count = 0;
 	while (str[i])
 	{
-		while (str[i] == ' ')
-			i++;
 		if (!str[i])
 			return (count);
 		if (str[i] == 34 || str[i] == 39)
@@ -86,8 +84,13 @@ char	**ft_split_sc(char *str, char c)
 	char	**cmds;
 
 	cmds_count = cmd_count(str, c);
-	if (cmds_count == -1)
+	if (cmds_count == -1 || cmds_count == 0)
+	{
+		if (cmds_count == -1)
+			ft_printf(
+				"minishell: handling open quotes isn't required so..\n");
 		return (NULL);
+	}
 	cmds = (char **)ft_calloc((cmds_count + 1), sizeof(char *));
 	if (!cmds_count)
 		return (NULL);
