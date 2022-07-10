@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/06/19 11:14:46 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/10 18:02:58 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 static int	check_flag(char *token)
 {
-	int	notFlag;
+	int	not_flag;
 
-	notFlag = 0;
+	not_flag = 0;
 	if (*token == '-')
 		token++;
 	else
-		notFlag = 1;
-	while (*token && !notFlag)
+		not_flag = 1;
+	while (*token && !not_flag)
 	{
 		if (*token != 'n')
-			notFlag = 1;
+			not_flag = 1;
 		token++;
 	}
-	return (notFlag);
+	return (not_flag);
 }
 
-int			ft_echo(t_cmd *cmd)
+int	ft_echo(t_cmd *cmd)
 {
 	int		flag;
 
@@ -51,6 +51,8 @@ int			ft_echo(t_cmd *cmd)
 			cmd->token = cmd->token->next;
 		}
 	}
+	//debug setting
+	cmd->nargs = 1;
 	if (flag == 1 || cmd->nargs == 1)
 		write(1, "\n", 1);
 	return (SUCCESS);

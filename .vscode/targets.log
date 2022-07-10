@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Sun Jul 10 14:35:11 2022
+# Make data base, printed on Sun Jul 10 17:15:51 2022
 
 # Variables
 
@@ -15,7 +16,7 @@ REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-efeb7cc15ee08924aaa5af2c03d0e
 # environment
 LC_ALL = C
 # makefile (from 'Makefile', line 19)
-SRC = builtins/env.c builtins/echo.c builtins/pwd.c execution/exec.c 
+SRC = builtins/env.c builtins/echo.c builtins/pwd.c execution/exec.c main.c 
 # environment
 VSCODE_CWD = /vscode/vscode-server/bin/linux-arm64/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
 # environment
@@ -88,7 +89,7 @@ VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 ENVIRONMENT = DEBUG
 # default
 MAKE_HOST := aarch64-unknown-linux-gnu
-# makefile (from 'Makefile', line 24)
+# makefile (from 'Makefile', line 25)
 OBJS = $(addprefix $(DIR_S),$(SRC:.c=.o))
 # makefile
 SHELL = /bin/sh
@@ -144,7 +145,7 @@ PAGER = less
 VSCODE_AGENT_FOLDER = /root/.vscode-server
 # environment
 _ = /bin/cat
-# makefile (from 'Makefile', line 28)
+# makefile (from 'Makefile', line 29)
 CFLAGS = -Wall -Werror -Wextra -g3
 # environment
 VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-83d26fb1-17c3-4b91-b01e-c534a86b8d97.sock
@@ -164,7 +165,7 @@ ELECTRON_RUN_AS_NODE = 1
 SUFFIXES := 
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
-# makefile (from 'Makefile', line 26)
+# makefile (from 'Makefile', line 27)
 CC = gcc -fcommon
 # variable set hash-table stats:
 # Load=78/1024=8%, Rehash=0, Collisions=6/113=5%
@@ -175,9 +176,9 @@ CC = gcc -fcommon
 
 # Directories
 
-# . (device 63, inode 6618854): 14 files, no impossibilities.
+# . (device 63, inode 6618854): 17 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -188,32 +189,35 @@ CC = gcc -fcommon
 # Not a target:
 src/execution/exec.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-18 14:46:43.486565039
+#  Last modified 2022-07-10 17:09:29.934148284
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/builtins/pwd.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-19 11:25:31.612748357
+#  Last modified 2022-07-10 16:39:06.506969675
 #  File has been updated.
 #  Successfully updated.
 
-minishell: src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o
+minishell: src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o src/main.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-06-19 11:25:32.530425647
+#  Last modified 2022-07-10 17:15:06.069807714
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 31):
+#  recipe to execute (from 'Makefile', line 32):
 		@$(MAKE) -C libft
 		@echo "Make libft successful"
 		@mv libft/libft.a libft.a
-		$(CC) $(CFLAGS) $(addprefix $(DIR_S),$(SRC)) libft.a -I$(INCLUDES) -o $(NAME)
+		@$(MAKE) -C src/parser
+		echo "Make parser successful"
+		@mv src/parser/parser parser
+		$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-19 11:25:30.480831824
+#  Last modified 2022-07-10 17:15:04.125135233
 #  File has been updated.
 #  Successfully updated.
 
@@ -221,13 +225,21 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 39):
+#  recipe to execute (from 'Makefile', line 43):
+		make clean -C src/parser
 		rm -f $(OBJS)
 
 re: fclean all
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+# Not a target:
+src/main.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-10 17:12:30.721297554
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -246,7 +258,8 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 42):
+#  recipe to execute (from 'Makefile', line 47):
+		make fclean -C src/parser
 		rm -f $(NAME)
 		rm -f libft.a
 		rm -f libft/*.o
@@ -255,31 +268,32 @@ fclean: clean
 # Not a target:
 src/builtins/env.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-19 11:14:09.654003808
+#  Last modified 2022-07-10 16:39:06.254347136
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/builtins/echo.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-19 11:14:47.987365952
+#  Last modified 2022-07-10 16:39:06.406179467
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=12/1024=1%, Rehash=0, Collisions=0/31=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/33=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 26 / storage = 260 B / avg = 10 B
-# current buf: size = 8162 B / used = 260 B / count = 26 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 30 / storage = 287 B / avg = 9 B
+ 
+# current buf: size = 8162 B / used = 287 B / count = 30 / avg = 9 B
 
-# strcache performance: lookups = 41 / hit rate = 36%
+# strcache performance: lookups = 45 / hit rate = 33%
 # hash-table stats:
-# Load=26/8192=0%, Rehash=0, Collisions=0/41=0%
-# Finished Make data base on Sun Jul 10 14:35:11 2022
+# Load=30/8192=0%, Rehash=0, Collisions=0/45=0%
+# Finished Make data base on Sun Jul 10 17:15:51 2022
 
  

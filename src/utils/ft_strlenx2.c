@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_strlenx2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 11:23:00 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/10 18:03:39 by kamin            ###   ########.fr       */
+/*   Created: 2022/06/12 23:02:24 by ommohame          #+#    #+#             */
+/*   Updated: 2022/07/10 15:38:57 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/parser.h"
 
-int	ft_pwd(void)
+/*
+* strlen but x2
+*/
+size_t	ft_strlenx2(char **str)
 {
-	char	cwd[MAX_PATH];
+	size_t	x;
 
-	if (getcwd(cwd, MAX_PATH))
-	{
-		ft_putstr_fd(cwd, 1);
-		ft_putstr_fd("\n", 1);
-		return (SUCCESS);
-	}
-	else
-		return (ERROR);
+	x = 0;
+	while (str[x])
+		x++;
+	return (x);
 }

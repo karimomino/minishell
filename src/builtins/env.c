@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setenv.c                                           :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/06/19 09:54:29 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/10 18:01:21 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,7 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 		else if (overwrite == 0 && i == ac - 2)
 			overwrite = ft_set(i, val);
 		else if (overwrite == 2 && !ft_strncmp(name, environ[i], ft_strlen(name)))
-		{
-			printf("IM in\n");
 			overwrite = ft_unset(i);
-		}
-		// i++;
 	}
 	environ[i] = NULL;
 	if (overwrite != 2)

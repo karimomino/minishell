@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_putchars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 11:23:00 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/10 18:03:39 by kamin            ###   ########.fr       */
+/*   Created: 2022/01/02 23:52:05 by ommohame          #+#    #+#             */
+/*   Updated: 2022/07/10 16:09:58 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/ft_printf.h"
 
-int	ft_pwd(void)
+int	ft_putchar_len(char c, int len)
 {
-	char	cwd[MAX_PATH];
+	write(1, &c, 1);
+	len++;
+	return (len);
+}
 
-	if (getcwd(cwd, MAX_PATH))
+int	ft_putstr_len(char *str, int len)
+{
+	if (!str)
+		str = "(null)";
+	while (*str)
 	{
-		ft_putstr_fd(cwd, 1);
-		ft_putstr_fd("\n", 1);
-		return (SUCCESS);
+		len = ft_putchar_len(*str, len);
+		str++;
 	}
-	else
-		return (ERROR);
+	return (len);
 }
