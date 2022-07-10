@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/06/18 11:52:43 by kamin            ###   ########.fr        #
+#    Updated: 2022/06/19 11:25:30 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ INCLUDES	=	./includes
 
 DIR_S		=	./src/
 
-SRC		=	env/setenv.c \
+SRC		=	builtins/env.c \
+			builtins/echo.c \
+			builtins/pwd.c \
 			execution/exec.c \
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))

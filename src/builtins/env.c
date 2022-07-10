@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/06/18 14:50:18 by kamin            ###   ########.fr       */
+/*   Updated: 2022/06/19 09:54:29 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,13 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 	environ[i] = NULL;
 	if (overwrite != 2)
 		free(val);
+}
+
+void	ft_env(void)
+{
+	int	i;
+
+	i = 0;
+	while (environ[i] != NULL)
+		printf("%s\n", environ[i++]);
 }

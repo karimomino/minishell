@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/06/18 13:41:45 by kamin            ###   ########.fr       */
+/*   Updated: 2022/06/19 11:22:42 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <errno.h>
+
+# define SUCCESS 0
+# define ERROR 0
+# define MAX_PATH 4096
 
 extern char **environ;
 
@@ -106,5 +110,7 @@ typedef struct s_line
 }	t_line;
 
 void	ft_setenv(const char* name, const char *value, int overwrite);
+void	ft_env(void);
+int		ft_echo(t_cmd *cmd);
 
 #endif
