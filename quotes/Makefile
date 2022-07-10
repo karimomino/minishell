@@ -5,28 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/09 18:59:23 by ommohame         ###   ########.fr        #
+#    Created: 2022/07/09 18:38:50 by ommohame          #+#    #+#              #
+#    Updated: 2022/07/09 18:58:53 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=		parser
+NAME		=		quotes
 
-SRCS		=		./srcs/parser.c \
-					./utils/print_list.c \
-					./utils/ft_strlenx2.c \
-					./utils/ft_splitq.c \
-					./utils/ft_split_sc.c \
-					./utils/ft_split_rd.c \
-					./srcs/cmd_node.c \
-					./srcs/cmp_cmd.c \
-					./srcs/get_quotes.c \
-					./srcs/free.c \
-					./srcs/redirections.c \
-					./srcs/commands.c \
-					./srcs/split_line.c \
-					./utils/squeeze.c \
-					./utils/pipes.c \
+SRCS		=		./srcs/quotes.c \
+
+OBJS		=		$(SRCS:.c=.o)
 
 LIBFT_PATH	=		./Libft
 
@@ -41,8 +29,6 @@ CC			=		gcc
 CFLAGS		=		-Wall -Werror -Wextra -g3
 
 RM			=		rm -rf
-
-OBJS 		=		$(SRCS:.c=.o)
 
 $(NAME)	:	$(OBJS)
 			make -C $(LIBFT_PATH)
