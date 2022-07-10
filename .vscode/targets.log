@@ -1,0 +1,285 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for aarch64-unknown-linux-gnu
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sun Jul 10 14:35:11 2022
+
+# Variables
+
+# environment
+REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-efeb7cc15ee08924aaa5af2c03d0ef3b3dd85c02.sock"]
+# environment
+LC_ALL = C
+# makefile (from 'Makefile', line 19)
+SRC = builtins/env.c builtins/echo.c builtins/pwd.c execution/exec.c 
+# environment
+VSCODE_CWD = /vscode/vscode-server/bin/linux-arm64/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+# environment
+APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE = DontWarn
+# default
+MAKE_COMMAND := make
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/vscode/src/Cursus/minishell
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+HOSTNAME = 2d82c82321ae
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+OLDPWD = /vscode/vscode-server/bin/linux-arm64/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+LANG = C
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/vscode/src/Cursus/minishell
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+PROMPT_COMMAND = RET=$?; echo -n "[$RET] "
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-efeb7cc15ee08924aaa5af2c03d0ef3b3dd85c02.sock
+# default
+.SHELLFLAGS := -c
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+ZSH = /root/.oh-my-zsh
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# makefile (from 'Makefile', line 15)
+INCLUDES = ./includes
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# environment
+ENVIRONMENT = DEBUG
+# default
+MAKE_HOST := aarch64-unknown-linux-gnu
+# makefile (from 'Makefile', line 24)
+OBJS = $(addprefix $(DIR_S),$(SRC:.c=.o))
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = /vscode/vscode-server/bin/linux-arm64/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# makefile (from 'Makefile', line 17)
+DIR_S = ./src/
+# environment
+REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-efeb7cc15ee08924aaa5af2c03d0ef3b3dd85c02.sock
+# environment
+REMOTE_CONTAINERS = true
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 13)
+NAME = minishell
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+LESS = -R
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+BROWSER = /vscode/vscode-server/bin/linux-arm64/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9/bin/helpers/browser.sh
+# environment
+LOGNAME = root
+# makefile
+.DEFAULT_GOAL := minishell
+# environment
+PYTHONDONTWRITEBYTECODE = 0
+# environment
+PYTHONUNBUFFERED = 0
+# environment
+USER = dfurneau
+# default
+MAKE_VERSION := 4.3
+# environment
+PAGER = less
+# environment
+VSCODE_AGENT_FOLDER = /root/.vscode-server
+# environment
+_ = /bin/cat
+# makefile (from 'Makefile', line 28)
+CFLAGS = -Wall -Werror -Wextra -g3
+# environment
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-83d26fb1-17c3-4b91-b01e-c534a86b8d97.sock
+# environment
+DEBIAN_FRONTEND = dialog
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /root
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 26)
+CC = gcc -fcommon
+# variable set hash-table stats:
+# Load=78/1024=8%, Rehash=0, Collisions=6/113=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 63, inode 6618854): 14 files, no impossibilities.
+
+# 14 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+src/execution/exec.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-18 14:46:43.486565039
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/builtins/pwd.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-19 11:25:31.612748357
+#  File has been updated.
+#  Successfully updated.
+
+minishell: src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-06-19 11:25:32.530425647
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 31):
+		@$(MAKE) -C libft
+		@echo "Make libft successful"
+		@mv libft/libft.a libft.a
+		$(CC) $(CFLAGS) $(addprefix $(DIR_S),$(SRC)) libft.a -I$(INCLUDES) -o $(NAME)
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-19 11:25:30.480831824
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 39):
+		rm -f $(OBJS)
+
+re: fclean all
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: minishell
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+fclean: clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 42):
+		rm -f $(NAME)
+		rm -f libft.a
+		rm -f libft/*.o
+		rm -f libft/libft.a
+
+# Not a target:
+src/builtins/env.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-19 11:14:09.654003808
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/builtins/echo.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-06-19 11:14:47.987365952
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=12/1024=1%, Rehash=0, Collisions=0/31=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 26 / storage = 260 B / avg = 10 B
+# current buf: size = 8162 B / used = 260 B / count = 26 / avg = 10 B
+
+# strcache performance: lookups = 41 / hit rate = 36%
+# hash-table stats:
+# Load=26/8192=0%, Rehash=0, Collisions=0/41=0%
+# Finished Make data base on Sun Jul 10 14:35:11 2022
+
+ 
