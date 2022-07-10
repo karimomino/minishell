@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 15:48:48 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 02:06:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int		get_args(char *str, char **ret, int *i);
 
 int		check_pipes(char **cmd, char *str, t_line **line);
 
-t_line	*parser_v3_0(char *str);
+int		parser_v3_0(char *str, t_line **line);
 
 #endif

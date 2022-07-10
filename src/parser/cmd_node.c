@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 18:08:23 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 01:43:32 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	cmd_node(char *str, t_cmd **cmd)
 	if (!new)
 		return (-1);
 	new->cmd = ft_strtrim(str, " ");
-	new->nargs = 2;
+	new->nargs = 0;
 	new->redir = NULL;
 	new->token = NULL;
 	new->next = NULL;
@@ -64,18 +64,43 @@ int	cmd_cmd(char *str, t_token **token, t_cmd **cmd, t_line **line)
 	return (1);
 }
 
-int	cmd_arg(char *str, t_token **token)
+int	cmd_arg(char *str, t_token **token, int i)
 {
 	t_token		*new;
 
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (-1);
-	new->i = 1;
+	new->i = i;
 	new->next = NULL;
-	new->prev = *token;
 	new->token = ft_strdup(str);
+	while ((*token)->next)
+		*token = (*token)->next;
+	new->prev = (*token);
 	(*token)->next = new;
+	return (1);
+}
+
+int	split_args(char *str, t_token **token, t_cmd **cmd)
+{
+	int			i;
+	char		**new;
+	t_token		*head;
+
+	i = 0;
+	new = ft_split(str, ' ');
+	head = *token;
+	if (!new)
+		return (-1);
+	while (new[i])
+	{
+		if (cmd_arg(new[i], &(*token), i + 1) == -1)
+			return (-1);
+		*token = head;
+		i++;
+	}
+	(*cmd)->nargs = ft_strlenx2(new) + 1;
+	free_2d(new);
 	return (1);
 }
 
@@ -123,7 +148,7 @@ int	last_cmd_node(char **str, t_cmd **cmd, t_line **line)
 	}
 	if (str[1])
 	{
-		ret = cmd_arg(str[1], &(*cmd)->token);
+		ret = split_args(str[1], &(*cmd)->token, &(*cmd));
 		free(str[1]);
 		if (ret == -1)
 			return (-1);

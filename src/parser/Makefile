@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/10 16:30:54 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/10 23:58:35 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,11 @@ LIBFT_SRC	=		../../libft/ft_memset.c ../../libft/ft_bzero.c ../../libft/ft_memcp
 RM			=		rm -rf
 
 OBJS 		=		$(SRCS:.c=.o)
+
+CC		=	gcc
+
+CFLAGS	=	-Wall -Werror -Wextra -g3
+
 LIBFT_OBJS 		=		$(LIBFT_SRC:.c=.o)
 
 $(NAME)	:	$(OBJS)

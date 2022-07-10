@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 15:38:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 02:07:45 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,7 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 	p_count = count_pipes(str);
 	c_count = count_cmds(cmd);
 	if (p_count != c_count - 1 && c_count > 0)
-	{
-		ft_printf("%s%s%s\n",
-			"minishell: in perfect world we should",
-			"read the line again but yeah we're not in a perfect world\n",
-			"or I'm just lazy\nsorry kimo mb -omar\n");
 		return (-1);
-	}
 	else if (c_count == 0 && p_count == 0)
 		return (-1);
 	else

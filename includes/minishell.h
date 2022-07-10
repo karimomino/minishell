@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/10 17:29:28 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 00:51:37 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "./libft.h"
-#include "./parser.h"
+# include "./libft.h"
+# include "./parser.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <errno.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <sys/types.h>
+# include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <errno.h>
 
 # define SUCCESS 0
 # define ERROR 0
 # define MAX_PATH 4096
 
-extern char **environ;
+extern char	**environ;
 
 struct s_info
 {
 	int	retVal;
 } t_infoo;
 
-void	ft_setenv(const char* name, const char *value, int overwrite);
+void	ft_setenv(const char *name, const char *value, int overwrite);
 void	ft_env(void);
 int		ft_echo(t_cmd *cmd);
 int		exec_ft(t_cmd *in);

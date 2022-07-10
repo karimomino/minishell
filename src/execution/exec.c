@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/10 18:07:27 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 00:00:08 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ int	exec_builtin(t_cmd *in)
 	if (in->type == 1)
 		ret = ft_echo(in);
 	if (in->type == 2)
-	{}
+	{
+	}
 	if (in->type == 3)
 		ret = ft_pwd();
-	if (in->type == 4){}
+	if (in->type == 4)
 		ft_env();
-	if (in->type == 5){}
-		//ft_setenv()
+	if (in->type == 5)
+	{
+	}
 	if (in->type == 6){}
 	return (ret);
 }

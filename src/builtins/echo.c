@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/10 18:02:58 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 01:58:55 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ int	ft_echo(t_cmd *cmd)
 			cmd->token = cmd->token->next;
 		}
 	}
-	//debug setting
-	cmd->nargs = 1;
-	if (flag == 1 || cmd->nargs == 1)
+	if (flag == 0 || cmd->nargs == 1)
 		write(1, "\n", 1);
 	return (SUCCESS);
 }
