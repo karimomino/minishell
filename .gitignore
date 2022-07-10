@@ -1,8 +1,11 @@
+.vscode
+
 # Prerequisites
 *.d
 
 # Object files
 *.o
+*/*.o
 *.ko
 *.obj
 *.elf
@@ -35,6 +38,7 @@
 *.i*86
 *.x86_64
 *.hex
+*/parser
 
 # Debug files
 *.dSYM/
