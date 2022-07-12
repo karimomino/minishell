@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/11 00:00:08 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/12 01:49:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,17 @@ int	exec_ft(t_cmd *in)
 	// char	**cmd;
 	//in->type = 0;
 	//TODO: Exapnd before running the command
-
-	if (in->type)
-		ret = exec_builtin(in);
-	else
-		ret = exec_bin(in);
-
+	ret = 0;
+	if (in->nargs)
+	{
+		if (in->type)
+			ret = exec_builtin(in);
+		else
+			ret = exec_bin(in);
+	}
 	return (ret);
 }
-
+=-=
 // int main(int ac, char **av, char **envp)
 // {
 // 	// t_cmd cmd;

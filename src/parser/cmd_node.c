@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/11 01:43:32 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/12 01:05:43 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	cmd_node(char *str, t_cmd **cmd)
 		return (-1);
 	new->cmd = ft_strtrim(str, " ");
 	new->nargs = 0;
+	new->nredir = 0;
+	new->type = 0;
 	new->redir = NULL;
 	new->token = NULL;
 	new->next = NULL;
@@ -49,6 +51,7 @@ int	cmd_cmd(char *str, t_token **token, t_cmd **cmd, t_line **line)
 		return (-1);
 	new->i = 0;
 	new->token = ft_strtrim(str, " ");
+	(*cmd)->nargs = 1;
 	i = 0;
 	while (new->token[i])
 	{
@@ -104,7 +107,7 @@ int	split_args(char *str, t_token **token, t_cmd **cmd)
 	return (1);
 }
 
-int	cmd_red(char *str, t_redir **redir)
+int	cmd_red(char *str, t_redir **redir, t_cmd **cmd)
 {
 	int		i;
 	int		f;
@@ -118,7 +121,7 @@ int	cmd_red(char *str, t_redir **redir)
 		red = get_redir(str, &i);
 		if (!red)
 			return (-1);
-		if (redir_node(red, &(*redir)) == -1)
+		if (redir_node(red, &(*redir), (*cmd)->nredir) == -1)
 		{
 			free(red);
 			ft_printf(
@@ -128,6 +131,7 @@ int	cmd_red(char *str, t_redir **redir)
 		if (f++ == 0)
 			head = *redir;
 		*redir = head;
+		(*cmd)->nredir++;
 		free(red);
 	}
 	return (1);
@@ -155,7 +159,7 @@ int	last_cmd_node(char **str, t_cmd **cmd, t_line **line)
 	}
 	if (str[2])
 	{
-		ret = cmd_red(str[2], &(*cmd)->redir);
+		ret = cmd_red(str[2], &(*cmd)->redir, &(*cmd));
 		free(str[2]);
 		if (ret == -1)
 			return (-1);

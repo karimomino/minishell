@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 15:38:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 16:16:10 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	print_redir(t_cmd cmd)
 {
 	while (cmd.redir)
 	{
-		ft_printf("redir[%d]: %s - %d\n",
-			cmd.redir->fd, cmd.redir->file, cmd.redir->type);
+		ft_printf("redir[%d]: %s - std: %d type: %d\n",
+			cmd.redir->i, cmd.redir->file, cmd.redir->fd, cmd.redir->type);
 		cmd.redir = cmd.redir->next;
 	}
 }
@@ -41,6 +41,8 @@ void	print_cmd(t_line line)
 		ft_printf("-------%u-------\n", i);
 		ft_printf("cmd type: %u\n\n", line.cmd->type);
 		ft_printf("cmd: %s\n", line.cmd->cmd);
+		ft_printf("nargs: %d\n", line.cmd->nargs);
+		ft_printf("nredir: %d\n", line.cmd->nredir);
 		ft_printf("\n");
 		print_token(*line.cmd);
 		print_redir(*line.cmd);

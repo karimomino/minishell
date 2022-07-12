@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 16:11:48 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 16:14:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	redir_type(char *str)
 	return (i);
 }
 
-int	redir_node(char *str, t_redir **redir)
+int	redir_node(char *str, t_redir **redir, size_t i)
 {
 	t_redir	*new;
 
@@ -135,6 +135,7 @@ int	redir_node(char *str, t_redir **redir)
 	new->type = redir_type(str);
 	new->file = ft_strtrim(str, "> <");
 	new->next = NULL;
+	new->i = i;
 	if (new->fd == -1 || new->type == -1 || ft_strncmp(new->file, "", 1) == 0)
 	{
 		free(new->file);

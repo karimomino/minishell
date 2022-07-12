@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 16:02:55 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/12 01:04:19 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_token
 */
 typedef struct s_redir
 {
+	size_t			i;
 	int				fd;
 	int				type;
 	char			*file;
@@ -65,6 +66,7 @@ typedef struct s_cmd
 {
 	int				type;
 	size_t			nargs;
+	size_t			nredir;
 	char			*cmd;
 	char			**envp;
 	struct s_token	*token;
@@ -72,6 +74,20 @@ typedef struct s_cmd
 	struct s_cmd	*prev;
 	struct s_cmd	*next;
 }	t_cmd;
+
+typedef struct s_history
+{
+	size_t				i;
+	char				*cmd;
+	struct s_history	*next;
+}	t_history;
+
+typedef struct s_infohis
+{
+	size_t		total_cmds;
+	t_history	*history;
+}	t_infohis;
+
 
 /*
 * analyzes the line and put it in the struct
@@ -85,10 +101,10 @@ typedef struct s_cmd
 */
 typedef struct s_line
 {
-	size_t	ncmds;
-	size_t	nexec;
-	size_t	npipes;
-	t_cmd	*cmd;
+	size_t		ncmds;
+	size_t		nexec;
+	size_t		npipes;
+	t_cmd		*cmd;
 }	t_line;
 
 #endif

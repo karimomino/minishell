@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/11 02:05:24 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/12 00:57:36 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	init_values(t_line *line)
 */
 int	parser_v3_0(char *str, t_line **line)
 {
+	int		ret;
 	char	**cmd;
 
 	cmd = ft_split_sc(str, '|');
@@ -51,11 +52,12 @@ int	parser_v3_0(char *str, t_line **line)
 	if (!(*line))
 		return (-1);
 	init_values((*line));
-	if (check_pipes(cmd, str, &(*line)) == -1)
+	ret = check_pipes(cmd, str, &(*line));
+	if (ret == 0 || ret == -1)
 	{
 		free_2d(cmd);
 		free((*line));
-		return (0);
+		return (ret);
 	}
 	(*line) = get_cmds(cmd, (*line));
 	free_2d(cmd);

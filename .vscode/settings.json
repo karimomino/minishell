@@ -10,7 +10,10 @@
 		"wait.h": "c",
 		"ft_printf.h": "c",
 		"errno.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"string.h": "c",
+		"libft.h": "c",
+		"random": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

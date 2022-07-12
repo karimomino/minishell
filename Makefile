@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/10 17:15:04 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/11 16:58:42 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRC		=	builtins/env.c \
 			builtins/pwd.c \
 			execution/exec.c \
 			main.c \
+			history/history.c \
+			redirection/redirection.c \
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 

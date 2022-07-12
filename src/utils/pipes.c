@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/11 02:07:45 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/12 00:56:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 	p_count = count_pipes(str);
 	c_count = count_cmds(cmd);
 	if (p_count != c_count - 1 && c_count > 0)
-		return (-1);
+		return (0);
 	else if (c_count == 0 && p_count == 0)
 		return (-1);
 	else
