@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 01:00:48 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 16:11:58 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/14 21:44:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_cmd(char *str, char **ret, int *i)
 
 	j = cmd_len(str, *i);
 	*ret = ft_substr(str, *i, j - *i);
-	*i = j - 1;
+	*i = j;
 	if (!*ret)
 		return (-1);
 	return (1);
@@ -54,7 +54,7 @@ int	get_args(char *str, char **ret, int *i)
 	if (!*ret)
 	{
 		*ret = new;
-		*i = j - 1;
+		*i = j;
 		return (1);
 	}
 	if (str[*i - 1] == ' ')
@@ -67,6 +67,6 @@ int	get_args(char *str, char **ret, int *i)
 	free(new);
 	if (!*ret)
 		return (-1);
-	*i = j - 1;
+	*i = j;
 	return (1);
 }

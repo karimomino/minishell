@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/11 16:14:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/14 21:13:37 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,14 @@ int	redir_len(char *str, size_t j)
 			return (skip_quotes(str, j));
 		j++;
 	}
-	while (str[j] != ' ' && str[j] != '>' && str[j] != '<' && str[j])
+	while (str[j] != '>' && str[j] != '<' && str[j])
 	{
 		if (str[j] == '\"' || str[j] == '\'')
 			return (skip_quotes(str, j));
+		// else if (str[j] == '>' || str[j] == '<')
+		// 	return (j - 1);
+		else if (str[j] ==  ' ')
+			return (j);
 		j++;
 	}
 	return (j);

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/12 01:15:18 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/14 21:05:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	main(void)
 			// print_line(line);
 			while (line->cmd)
 			{
-				// if (line->cmd->token)
-				// {
-				// 	if (ft_strncmp(line->cmd->token->token, "history", 7) == 0) 
-				// 		print_history(*infohis, *line->cmd);
-				// 	else
+				if (line->cmd->token)
+				{
+					if (ft_strncmp(line->cmd->token->token, "history", 7) == 0) 
+						print_history(*infohis, *line->cmd);
+					else
 						exec_ft(line->cmd);
-				// }
+				}
 				redirection(*line->cmd, "test ");
 				line->cmd = line->cmd->next;
 			}
