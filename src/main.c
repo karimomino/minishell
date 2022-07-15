@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/14 21:05:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/15 02:51:42 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ int	main(void)
 {
 	int			ret;
 	char		*str;
+	char		*in;
 	t_line		*line;
 	t_infohis	*infohis;
 
+	// in = NULL;
 	init_minishell(&infohis);
 	while (1)
 	{
-		str = readline("minishell - enter a fucking command: ");
+		str = readline("\033[1m\033[32menter a fucking command: \033[0m");
 		ret = parser_v3_0(str, &line);
 		while (ret == 0)
 		{
@@ -44,7 +46,7 @@ int	main(void)
 		historyy(str, &infohis);
 		if (ret == 1)
 		{
-			// print_line(line);
+			print_line(line);
 			while (line->cmd)
 			{
 				if (line->cmd->token)
@@ -54,7 +56,7 @@ int	main(void)
 					else
 						exec_ft(line->cmd);
 				}
-				redirection(*line->cmd, "test ");
+				redirection(*line->cmd, "test ", &in);
 				line->cmd = line->cmd->next;
 			}
 			free_nodes(line);

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/14 21:45:24 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/15 03:02:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	**parse(char *str)
 		{
 			if (define_redir(str, &ret[2], &i) == -1)
 				return (NULL);
+			if (str[i] == '>' || str[i] == '<')
+				i--;
 		}
 		else if (str[i] != ' ' && str[i] != '>' && str[i] != '<')
 		{
@@ -35,12 +37,8 @@ char	**parse(char *str)
 				get_cmd(str, &ret[0], &i);
 			else
 				get_args(str, &ret[1], &i);
-			if (ft_isalpha(str[i]))
-				i++;
 		}
-		if (str[i] == ' ')
-			i++;
-		if (!str[i])
+		if (!str[i++])
 			return (ret);
 	}
 	return (ret);

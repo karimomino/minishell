@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/11 17:00:53 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:38:13 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define SUCCESS 0
 # define ERROR 0
 # define MAX_PATH 4096
+# define BUFFER_SIZE 1
 
 extern char	**environ;
 

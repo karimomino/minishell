@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/14 20:50:00 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/15 03:17:41 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,63 @@ int		redir_out(t_redir redir, int f, char *str)
 	return (1);
 }
 
-int		check_lastredir(t_redir redir)
+int		redir_in(t_redir redir, char **str)
 {
 	int		fd;
+	char	*tmp1;
+	char	*tmp2;
 
-	fd = redir.fd;
-	while (redir.fd)
+	if (redir.type == 1)
 	{
-		if (redir.fd == fd)
-			return (0);
-		redir = *redir.next;
+		fd = open(redir.file, O_RDONLY);
+		*str = get_next_line(fd);
+		if (!*str)
+			ft_printf("minishell: no such file or directory: %s\n",
+				redir.file);
+	}
+	else if (redir.type == 2)
+	{
+		while (1)
+		{
+			tmp1 = readline("> ");
+			if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1)) && ft_strncmp(tmp1, "", 1))
+			{
+				free(tmp1);
+				tmp2 = ft_strtrim(*str, "\n");
+				free(*str);
+				*str = tmp2;
+				return (1);
+			}
+			tmp2 = ft_strjoin(tmp1, "\n");
+			*str = ft_strjoin(*str, tmp2);
+			free(tmp1);
+			free(tmp2);
+		}
 	}
 	return (1);
 }
 
-int		redirection(t_cmd cmd, char *str)
+int		check_lastredir(t_redir redir)
+{
+	int		fd;
+
+	if (redir.next)
+	{
+		fd = redir.fd;
+		redir = *redir.next;
+		if (redir.fd == fd)
+			return (0);
+		while (redir.fd)
+		{
+			if (redir.fd == fd)
+				return (0);
+			redir = *redir.next;
+		}
+	}
+	return (1);
+}
+
+int		redirection(t_cmd cmd, char *str, char **in)
 {
 	int		f;
 	size_t	i;
@@ -51,10 +93,17 @@ int		redirection(t_cmd cmd, char *str)
 		return (0);
 	while (i < cmd.nredir && cmd.redir)
 	{
-		if (i == cmd.nredir - 1 || check_lastredir(*cmd.redir))
+		if (check_lastredir(*cmd.redir))
 			f = 1;
 		if (cmd.redir->fd == 1)
 			redir_out(*cmd.redir, f, str);
+		else if (cmd.redir->fd == 0 && f == 1)
+		{
+			redir_in(*cmd.redir, &(*in));
+			if (*in)
+				ft_printf("redir in: %s\n", *in);
+		}
+		f = 0;
 		cmd.redir = cmd.redir->next;
 		i++;
 	}
