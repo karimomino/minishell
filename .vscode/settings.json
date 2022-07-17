@@ -13,7 +13,8 @@
 		"sstream": "c",
 		"string.h": "c",
 		"libft.h": "c",
-		"random": "c"
+		"random": "c",
+		"cstdlib": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

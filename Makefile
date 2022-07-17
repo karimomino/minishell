@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/15 02:28:58 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/18 00:08:21 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,5 +53,6 @@ fclean: clean
 		rm -f libft.a
 		rm -f libft/*.o
 		rm -f libft/libft.a
+		rm -f parser
 
 re:		fclean all

@@ -6,68 +6,111 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/11 15:39:42 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/17 23:57:50 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	history_node(char *str, t_history **history, int i)
+int	history_file(char *str, int i)
 {
-	t_history	*new;
+	int		fd;
 
-	new = (t_history *)malloc(sizeof(t_history));
-	if (!new)
-		return (-1);
-	new->i = i;
-	new->cmd = ft_strdup(str);
-	new->next = NULL;
-	if (!(*history))
-		*history = new;
-	else
+	fd = open("./src/history/.history", O_WRONLY | O_APPEND | O_CREAT, 0644);
+	if (fd <= 0)
 	{
-		while ((*history)->next)
-			*history = (*history)->next;
-		(*history)->next = new;
+		ft_printf("minishell: FAILED to save history\n");
+		return (-1);
 	}
+	if (i != 1)
+		ft_putchar_fd('\n', fd);
+	ft_putnbr_fd(i, fd);
+	ft_putchar_fd(' ', fd);
+	ft_putstr_fd(str, fd);
+	close(fd);
 	return (1);
 }
 
-int	historyy(char *str, t_infohis **info)
+size_t	get_cmd_num(void)
 {
-	static int	i = 1;
-	t_history	*head;
+	int		i;
+	int		fd;
+	char	*tmp1;
+	char	**tmp2;
 
+	fd = open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644);
+	tmp1 = get_next_line(fd);
+	close(fd);
+	if (!tmp1)
+		return (1);
+	tmp2 = ft_split(tmp1, '\n');
+	i = ft_strlenx2(tmp2);
+	free_2d(tmp2);
+	return (i + 1);
+}
 
-	head = (*info)->history;
+int	historyy(char *str)
+{
+	size_t		i;
+
+	i = get_cmd_num();
 	add_history(str);
-	if (history_node(str, &(*info)->history, i) == -1)
+	if (history_file(str, i) == -1)
 		return (-1);
-	if (head)
-		(*info)->history = head;
-	(*info)->total_cmds = i;
-	i++;
 	return (1);
 }
 
-int	print_history(t_infohis info, t_cmd cmd)
+int	print_history(t_cmd cmd)
 {
+	int			fd;
 	size_t		num;
-	(void)cmd;
+	size_t		total;
+	size_t		i;
+	char		*tmp1;
+	char		**tmp2;
+
 	if (cmd.nargs > 2)
+	{
+		ft_printf("minishell: history: too many arguments\n");
 		return (-1);
+	}
+	fd = open("./src/history/.history", O_RDONLY);
+	if (fd <= 0)
+	{
+		ft_printf("minishell: FAILED to read history\n");
+		return (-1);
+	}
+	num = 0;
+	tmp1 = get_next_line(fd);
+	if (!tmp1)
+		return (-1);
+	tmp2 = ft_split(tmp1, '\n');
+	free(tmp1);
+	total = ft_strlenx2(tmp2);
 	if (cmd.nargs == 2)
 	{
+		i = 0;
+		while (cmd.token->next->token[i])
+		{
+			if (ft_isdigit(cmd.token->next->token[i++]) == 0)
+			{
+				printf("minishell: history: %s: numeric argument required\n", 
+				cmd.token->next->token);
+			}
+		}
 		num = ft_atoi(cmd.token->next->token);
-		num = info.total_cmds - num;
-		if (num < info.total_cmds)
-			while (num-- > 0 && info.history)
-				info.history = info.history->next;
+		if (num > total)
+			num = 0;
+		else if (num < total)
+			num = total - num;
+		while (num < total)
+			ft_printf("%s\n", tmp2[num++]);
 	}
-	while (info.history)
+	else
 	{
-		ft_printf("%d %s\n", info.history->i, info.history->cmd);
-		info.history = info.history->next;
+		while (tmp2[num])
+			ft_printf("%s\n", tmp2[num++]);
 	}
+	free_2d(tmp2);
 	return (1);
 }

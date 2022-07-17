@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/15 03:17:41 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/18 00:04:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		redir_out(t_redir redir, int f, char *str)
 	return (1);
 }
 
-int		redir_in(t_redir redir, char **str)
+int		redir_in(t_redir redir, char **str, int f)
 {
 	int		fd;
 	char	*tmp1;
@@ -35,10 +35,14 @@ int		redir_in(t_redir redir, char **str)
 	if (redir.type == 1)
 	{
 		fd = open(redir.file, O_RDONLY);
-		*str = get_next_line(fd);
-		if (!*str)
+		if (fd < 0)
+		{
 			ft_printf("minishell: no such file or directory: %s\n",
 				redir.file);
+			return (-1);
+		}
+		if (f == 1)
+			*str = get_next_line(fd);
 	}
 	else if (redir.type == 2)
 	{
@@ -97,9 +101,10 @@ int		redirection(t_cmd cmd, char *str, char **in)
 			f = 1;
 		if (cmd.redir->fd == 1)
 			redir_out(*cmd.redir, f, str);
-		else if (cmd.redir->fd == 0 && f == 1)
+		else if (cmd.redir->fd == 0)
 		{
-			redir_in(*cmd.redir, &(*in));
+			if (redir_in(*cmd.redir, &(*in), f) == -1)
+				return (-1);
 			if (*in)
 				ft_printf("redir in: %s\n", *in);
 		}
