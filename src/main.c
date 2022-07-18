@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/10 18:01:52 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/18 17:53:08 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ int	main(void)
 	{
 		str = readline("enter a fucking command: ");
 		line = parser_v3_0(str);
-		if (!line)
-			return (EXIT_FAILURE);
-		while (line->cmd)
+		if (line)
 		{
-			exec_ft(line->cmd);
-			line->cmd = line->cmd->next;
-		}	
+			while (line->cmd)
+			{
+				exec_ft(line->cmd);
+				line->cmd = line->cmd->next;
+			}
+		}
 		free_nodes(line);
 		free(line);
 	}
