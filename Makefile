@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/18 17:49:14 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/18 18:02:08 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,10 @@ SRC		=	builtins/env.c \
 			builtins/pwd.c \
 			execution/exec.c \
 			main.c \
+			history/history.c \
+			redirection/redirection.c \
+			redirection/get_next_line.c \
+			redirection/get_next_line_utils.c \
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 

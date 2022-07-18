@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/18 17:55:18 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/18 18:01:32 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ int	ft_echo(t_cmd *cmd)
 			cmd->token = cmd->token->next;
 		}
 	}
-	//debug setting
-	cmd->nargs = 1;
-	if (flag == 1 || cmd->nargs == 1)
+	if (flag == 0 || cmd->nargs == 1)
 		write(1, "\n", 1);
 	return (SUCCESS);
 }

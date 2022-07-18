@@ -1,0 +1,13 @@
+1 history
+2 > test1 > test2 >test3
+3 < test1 <test 
+4 < ls
+5 < ls
+6 < test1
+7 < test < test
+8 < test < test2
+9 < test1 < test3 <test
+10 < test1 < test<test1
+11 < test1 < test<test1
+12 echo \n
+13 echo hello

@@ -9,7 +9,12 @@
 		"unistd.h": "c",
 		"wait.h": "c",
 		"ft_printf.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"sstream": "c",
+		"string.h": "c",
+		"libft.h": "c",
+		"random": "c",
+		"cstdlib": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

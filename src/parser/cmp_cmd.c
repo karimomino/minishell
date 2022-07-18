@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmp_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:20:25 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 16:11:21 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/11 15:40:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	**builtins(void)
 {
 	char			**bins;
 
-	bins = (char **)malloc(sizeof(char *) * 8);
+	bins = (char **)malloc(sizeof(char *) * 9);
 	if (!bins)
 		return (NULL);
 	bins[0] = ft_strdup("echo");
@@ -26,7 +26,8 @@ static char	**builtins(void)
 	bins[4] = ft_strdup("export");
 	bins[5] = ft_strdup("unset");
 	bins[6] = ft_strdup("exit");
-	bins[7] = NULL;
+	bins[7] = ft_strdup("history");
+	bins[8] = NULL;
 	return (bins);
 }
 

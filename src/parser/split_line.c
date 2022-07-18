@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 16:11:51 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/15 03:02:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	**parse(char *str)
 		{
 			if (define_redir(str, &ret[2], &i) == -1)
 				return (NULL);
+			if (str[i] == '>' || str[i] == '<')
+				i--;
 		}
 		else if (str[i] != ' ' && str[i] != '>' && str[i] != '<')
 		{
