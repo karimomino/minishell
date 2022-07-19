@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/18 21:08:52 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/19 20:46:21 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,16 +29,16 @@ SRC		=	builtins/env.c \
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
+CFLAGS		=	-Wall -Wextra -Werror -g3 -I/usr/local/Cellar/readline/8.1/include
+
+LDFLAGS 	=	-lreadline -L /usr/local/Cellar/readline/8.1/lib
+
 CC		=	gcc -fcommon
-
-CFLAGS	=	-Wall -Werror -Wextra -g3
-
-
 
 all:	$(NAME)
 
 $(NAME): $(OBJS) libft.a parser.a
-		$(CC) $(CFLAGS) $(OBJS) libft.a  parser -I$(INCLUDES) -lreadline -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) libft.a  parser -I$(INCLUDES) ${LDFLAGS} -o $(NAME)
 
 libft.a: 
 		@$(MAKE) -C libft

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/19 19:14:56 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:58:49 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
-char*	signals(void);
+void	signals(void);
 
 #endif
