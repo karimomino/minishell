@@ -1,5 +1,7 @@
 .vscode
 *test*
+*/*.o
+*/*/*.o
 # Prerequisites
 *.d
 
