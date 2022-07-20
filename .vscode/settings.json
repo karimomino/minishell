@@ -18,7 +18,8 @@
 		"stddef.h": "c",
 		"queue": "c",
 		"stdlib.h": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"ratio": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

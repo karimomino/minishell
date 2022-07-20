@@ -520,3 +520,89 @@
 520 exit
 521 exit
 522 exit
+523 >> test5
+524 >> test5
+525 exit
+526 exigt
+527 exit
+528 exit
+529 exit
+530 exit
+531 ls
+532 la
+533 exit
+534 exit
+535 exit
+536 asdas
+537 exit
+538 exit
+539 echo hi
+540 exit
+541 echo hi
+542 pwd
+543 exit
+544 ls
+545 vim
+546 exit
+547 exit
+548 ifconfig
+549 make
+550 make
+551 ifconfig
+552 make
+553 make
+554 make
+555 exit
+556 exit
+557 echo hi
+558 make
+559 exit
+560 ifconfig
+561 echo hi
+562 exit
+563 exit
+564 ls
+565 echo a
+566 asdasd
+567 >> test
+568 ls
+569 >> test
+570 << test
+571 << test
+572 <<
+573 <<
+574 << t
+575 norminette
+576 ls
+577 ls
+578 l
+579 l
+580 l
+581 l
+582 l
+583 l
+584 l
+585 make
+586 norminette
+587 
+588 
+589 
+590 
+591 
+592 
+593 
+594 
+595 
+596 
+597 norminette
+598 exit
+599 exit
+600 exit
+601 lexi
+602 exit
+603 exit
+604 exit
+605 exit
+606 exit
+607 exit
+608 exit

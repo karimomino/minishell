@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/20 19:40:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:22:59 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	init_minishell(char **in)
 {
+	char *str;
+	char	**tmp;
 	*in = NULL;
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
+	str = get_next_line(open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644));
+	tmp = ft_split(str, '\n');
+	for (int i = 0; tmp[i]; i++)
+		add_history(tmp[i]);
 }
 
 int	reaser(t_line **line)
@@ -26,7 +32,7 @@ int	reaser(t_line **line)
 
 	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
 	if (!str)
-		return (-1);
+		exit (EXIT_FAILURE);
 	ret = parser_v3_0(str, &*line);
 	while (ret == 0)
 	{
@@ -41,7 +47,7 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line, char **in)
 {
-	// print_line(*line);
+	print_line(*line);
 	while ((*line)->cmd)
 	{
 		exec_ft((*line)->cmd);

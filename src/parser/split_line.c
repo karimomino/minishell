@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 18:38:00 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 20:02:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,22 @@ char	**parse(char *str)
 	while (str[i])
 	{
 		if (str[i] == '>' || str[i] == '<')
+		{
 			if (ramadan_redir(str, &ret, &i) == -1)
 				return (NULL);
-		if (str[i] != ' ' && str[i] != '>' && str[i] != '<')
+		}
+		else if (str[i] != ' ' && str[i] != '>' && str[i] != '<')
 		{
 			if (!ret[0])
+			{
 				if (ramadan_cmd(str, &ret, &i) == -1)
 					return (NULL);
-			if (ret[0])
+			}
+			else
+			{
 				if (ramadan_args(str, &ret, &i) == -1)
 					return (NULL);
+			}
 		}
 		if (!str[i++])
 			return (ret);
