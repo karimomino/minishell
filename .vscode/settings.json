@@ -17,7 +17,8 @@
 		"cstdlib": "c",
 		"stddef.h": "c",
 		"queue": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"fcntl.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

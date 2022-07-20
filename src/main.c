@@ -6,55 +6,72 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/19 22:06:13 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 19:40:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	main(void)
+void	init_minishell(char **in)
+{
+	*in = NULL;
+	rl_catch_signals = 0;
+	signal(SIGINT, clear_line);
+}
+
+int	reaser(t_line **line)
 {
 	int			ret;
 	char		*str;
-	char		*in;
+
+	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
+	if (!str)
+		return (-1);
+	ret = parser_v3_0(str, &*line);
+	while (ret == 0)
+	{
+		str = ft_strjoin(str, readline("> "));
+		ret = parser_v3_0(str, &*line);
+	}
+	// if (ret == 1)
+	historyy(str);
+	free(str);
+	return (ret);
+}
+
+int	yalla(t_line **line, char **in)
+{
+	// print_line(*line);
+	while ((*line)->cmd)
+	{
+		exec_ft((*line)->cmd);
+		redirection(*(*line)->cmd, "test ", &*in);
+		(*line)->cmd = (*line)->cmd->next;
+	}
+	free_nodes(*line);
+	free(*line);
+	return (1);
+}
+
+int	minishell_loop(char **in)
+{
 	t_line		*line;
 
-	in = NULL;
-	g_sig = 0;
-	// init_minishell(&infohis);
-	rl_catch_signals = 0;
-	/* str =  */signals();
 	while (1)
 	{
-		str = readline("\033[1m\033[32menter a fucking command: \033[0m");
-		if (!str)
-			exit (0);
-		ret = parser_v3_0(str, &line);
-		while (ret == 0)
-		{
-			str = ft_strjoin(str, readline("> "));
-			ret = parser_v3_0(str, &line);
-		}
-		if (ret == 1)
-		{
-			historyy(str);
-			print_line(line);
-			while (line->cmd)
-			{
-				if (line->cmd->token)
-				{
-					if (ft_strncmp(line->cmd->token->token, "history", 7) == 0) 
-						print_history(*line->cmd);
-					else
-						exec_ft(line->cmd);
-				}
-				redirection(*line->cmd, "test ", &in);
-				line->cmd = line->cmd->next;
-			}
-			free_nodes(line);
-			free(line);
-		}
-		free(str);
+		if (reaser(&line) == 1)
+			yalla(&line, &*in);
+		usleep(100);
 	}
+	return (1);
+}
+
+int	main(void)
+{
+	char		*in;
+
+	init_minishell(&in);
+	if (minishell_loop(&in) == -1)
+		exit (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

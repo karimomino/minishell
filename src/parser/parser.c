@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/19 18:53:35 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 18:01:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_values(t_line *line)
 int	parser_v3_0(char *str, t_line **line)
 {
 	int		ret;
-	char	**cmd; 
+	char	**cmd;
 
 	cmd = ft_split_sc(str, '|');
 	if (!cmd)

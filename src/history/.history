@@ -360,3 +360,163 @@
 360 clear
 361 ls
 362 a
+363 ls
+364 ls
+365 ls
+366 make
+367 ls
+368 ls
+369 make
+370 ls
+371 ls
+372 ls
+373 > test1
+374 > test
+375 echo > test
+376 > test
+377 ls
+378 >> test
+379 test
+380 >> test
+381 >> test
+382 >> test
+383 >> test
+384 ls
+385 ls
+386 ls
+387 ls
+388 ls
+389 la
+390 exit
+391 exit
+392 exit
+393 ls
+394 la
+395 lm
+396 exit
+397 exit
+398 exit
+399 exit
+400 ls | la
+401 exit
+402 exit
+403 exit
+404 exit
+405 ls
+406 exit
+407 exit
+408 cat
+409 exit
+410 exit
+411 ls
+412 aaddsda
+413 edsad
+414 exit
+415 exit
+416 exit
+417 exit
+418 exit
+419 ls
+420 exit
+421 exit
+422 exit
+423 ls
+424 make
+425 echo hello
+426 exit
+427 exit
+428 mls
+429 exit
+430 exit
+431 ls
+432 ls
+433 la
+434 exit
+435 exit
+436 exit
+437 exit
+438 ls
+439 exit
+440 exit
+441 ls
+442 >> ls
+443 make
+444 exit
+445 exit
+446 redir
+447 >> test
+448 > test
+449 > test1 > test2
+450 exit
+451 exit
+452 ls
+453 ls | la
+454 ls | ka
+455 lm | lt
+456 exit
+457 exit
+458 exit
+459 exit
+460 exit
+461 exit
+462 exit
+463 exit
+464 exit
+465 exit
+466 exit
+467 ls
+468 exit
+469 exit
+470 exit
+471 exit
+472 ls
+473 exit
+474 exit
+475 ls
+476 la
+477 echo hhell
+478 exit
+479 exit
+480 echo
+481 ls
+482 echo 
+483 echo he
+484 echo hhell > test1 | echo hi
+485 exit
+486 ls
+487 exit
+488 exit
+489 ls
+490 ls la
+491 exit
+492 exit
+493 exit
+494 ls
+495 exit
+496 exit
+497 /
+498 ||
+499 exit
+500 exit
+501 exit
+502 ls
+503 echo
+504 ||
+505 >> test
+506 > test
+507 echo > test
+508 < test
+509 echo > test
+510 echo >> test
+511 echo > test
+512 echo >> test
+513 echo >> test
+514 echo >> test
+515 exit
+516 exict
+517 exit
+518 exit
+519 exit
+520 exit
+521 exit
+522 exit
