@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 17:55:16 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:45:21 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ char	*gnl_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
 void	clear_line(int sig);
 void	signals(void);
+int		init_history(void);
 
 #endif

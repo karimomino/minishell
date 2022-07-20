@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/20 20:22:59 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:50:15 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 
 void	init_minishell(char **in)
 {
-	char *str;
-	char	**tmp;
 	*in = NULL;
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
-	str = get_next_line(open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644));
-	tmp = ft_split(str, '\n');
-	for (int i = 0; tmp[i]; i++)
-		add_history(tmp[i]);
+	init_history();
 }
 
 int	reaser(t_line **line)
@@ -33,13 +28,14 @@ int	reaser(t_line **line)
 	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
 	if (!str)
 		exit (EXIT_FAILURE);
+	if (!str[0])
+		return (-1);
 	ret = parser_v3_0(str, &*line);
 	while (ret == 0)
 	{
 		str = ft_strjoin(str, readline("> "));
 		ret = parser_v3_0(str, &*line);
 	}
-	// if (ret == 1)
 	historyy(str);
 	free(str);
 	return (ret);
@@ -67,7 +63,6 @@ int	minishell_loop(char **in)
 	{
 		if (reaser(&line) == 1)
 			yalla(&line, &*in);
-		usleep(100);
 	}
 	return (1);
 }

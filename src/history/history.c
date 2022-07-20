@@ -6,11 +6,40 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/17 23:57:50 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:45:34 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int	init_history(void)
+{
+	int		fd;
+	size_t	i;
+	size_t	j;
+	char	*tmp1;
+	char	**his;
+
+	fd = open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644);
+	tmp1 = get_next_line(fd);
+	close(fd);
+	if (!tmp1)
+		return (-1);
+	his = ft_split(tmp1, '\n');
+	free(tmp1);
+	i = 0;
+	while (his[i])
+	{
+		j = 0;
+		while (ft_isdigit(his[i][j]))
+			j++;
+		tmp1 = ft_strtrim(his[i++] + j, " ");
+		add_history(tmp1);
+		free(tmp1);
+	}
+	free_2d(his);
+	return (1);
+}
 
 int	history_file(char *str, int i)
 {

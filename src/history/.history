@@ -606,3 +606,29 @@
 606 exit
 607 exit
 608 exit
+609 ls
+610 513 echo >> test
+611 << a
+612 << a
+613 << a
+614 << test
+615 << test
+616 exit
+617 exit
+618 <<
+619 << asfds
+620 echo i
+621 << asd
+622 << ls
+623 << test
+624 << test
+625 echo"ads"
+626 513 echo >> testmake
+627 > test1 > test2 >test3
+628 exit
+629 ls
+630 exit
+631 exit
+632 make
+633 exit
+634 ls > hello

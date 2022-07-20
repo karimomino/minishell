@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/19 19:03:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:13:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int		redir_out(t_redir redir, int f, char *str)
+int	redir_out(t_redir redir, int f, char *str)
 {
 	int		fd;
 
@@ -49,9 +49,12 @@ int		redir_in(t_redir redir, char **str, int f)
 		while (1)
 		{
 			tmp1 = readline("> ");
-			if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1)) && ft_strncmp(tmp1, "", 1))
+			if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1)) && ft_strncmp(tmp1, "", 1)
+			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
 			{
 				free(tmp1);
+				if (!*str)
+					return (1);
 				tmp2 = ft_strtrim(*str, "\n");
 				free(*str);
 				*str = tmp2;
