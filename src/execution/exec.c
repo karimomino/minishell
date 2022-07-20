@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/14 20:47:51 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/18 02:05:12 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	exec_builtin(t_cmd *in)
 	if (in->type == 5)
 	{
 	}
-	if (in->type == 6){}
+	if (in->type == 7)
+		exit (SUCCESS);
 	return (ret);
 }
 

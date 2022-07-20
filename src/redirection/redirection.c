@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/18 00:04:39 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:03:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ int		redir_in(t_redir redir, char **str, int f)
 				return (1);
 			}
 			tmp2 = ft_strjoin(tmp1, "\n");
-			*str = ft_strjoin(*str, tmp2);
+			if (!*str)
+				*str = ft_strdup(tmp2);
+			else
+				*str = ft_strjoin(*str, tmp2);
 			free(tmp1);
 			free(tmp2);
 		}
@@ -76,11 +79,11 @@ int		check_lastredir(t_redir redir)
 		redir = *redir.next;
 		if (redir.fd == fd)
 			return (0);
-		while (redir.fd)
+		while (redir.next)
 		{
+			redir = *redir.next;
 			if (redir.fd == fd)
 				return (0);
-			redir = *redir.next;
 		}
 	}
 	return (1);
@@ -93,6 +96,7 @@ int		redirection(t_cmd cmd, char *str, char **in)
 
 	f = 0;
 	i = 0;
+	*in = NULL;
 	if (!cmd.redir || cmd.nredir == 0)
 		return (0);
 	while (i < cmd.nredir && cmd.redir)

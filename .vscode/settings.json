@@ -14,7 +14,12 @@
 		"string.h": "c",
 		"libft.h": "c",
 		"random": "c",
-		"cstdlib": "c"
+		"cstdlib": "c",
+		"stddef.h": "c",
+		"queue": "c",
+		"stdlib.h": "c",
+		"fcntl.h": "c",
+		"ratio": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

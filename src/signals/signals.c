@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 23:14:19 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/19 18:57:11 by ommohame         ###   ########.fr       */
+/*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
+/*   Updated: 2022/07/20 17:00:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-void	ft_putendl_fd(char *s, int fd)
+// int		g_sig = 0;
+
+void	clear_line(int sig)
 {
-	write(fd, s, ft_strlen(s));
-	write(fd, "\n", 1);
+	if (sig == SIGINT)
+	{
+		ft_printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
+void	signals(void)
+{
+	signal(SIGINT, clear_line);
 }

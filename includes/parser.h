@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/17 23:30:02 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:55:16 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	**parse(char *str);
 int		define_redir(char *str, char **ret, int *i);
 int		define_cmd(char *str, char **ret, int *i);
 int		redir_node(char *str, t_redir **redir, size_t i);
+int		last_cmd_node(char **str, t_cmd **cmd, t_line **line);
 char	*get_redir(char *str, int *i);
 char	*squeeze_space(char *str);
 int		get_cmd(char *str, char **ret, int *i);
@@ -48,5 +49,7 @@ size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
+void	clear_line(int sig);
+void	signals(void);
 
 #endif

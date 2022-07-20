@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/12 00:56:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/19 00:11:25 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 		return (0);
 	else if (c_count == 0 && p_count == 0)
 		return (-1);
+	else if (p_count > 0 && c_count == 0)
+	{
+		ft_printf("minishell: syntax error near unexpected token '|'\n");
+		return (-1);
+	}
 	else
 	{
 		(*line)->ncmds = c_count;
