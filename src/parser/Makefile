@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/20 18:00:06 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/20 22:33:45 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		=		./parser.c \
 					../utils/ft_split_sc.c \
 					../utils/ft_split_rd.c \
 					./cmd_node.c \
+					./redir_node.c \
 					./last_cmd.c \
 					./cmp_cmd.c \
 					./get_quotes.c \

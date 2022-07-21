@@ -632,3 +632,34 @@
 632 make
 633 exit
 634 ls > hello
+635 exit
+636 exit
+637 \
+638 exit
+639 make
+640 exit
+641 ls
+642 echo ls
+643 echo hello ls
+644 echo hello
+645 echo hello ls
+646 echo hello lsd sa
+647 d 
+648 echo hello lsd sa dasd asd asd asd
+649 ls
+650 sad
+651 dasd
+652 asd
+653 sa
+654 das
+655 d
+656 as
+657 ./minishell 
+658 ldsa
+659 dasd
+660 echo hello
+661 echo hi
+662 echo hi dasd sad as
+663 echo hi dasd sad as > test > test
+664 exit
+665 exit

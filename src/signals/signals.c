@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 17:00:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:07:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	clear_line(int sig)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
+	else if (sig == SIGQUIT)
+		return ;
 }
 
 void	signals(void)
