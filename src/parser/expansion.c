@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/26 20:40:22 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/26 23:01:19 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,13 +150,14 @@ static char	*expand_helper(t_token **cmd)
 	if ((*cmd)->token[i++] == '$')
 	{
 		// while ((*cmd)->token[i] != '\0' && (*cmd)->token[i] != ' ' && (*cmd)->token[i] != '$' && (*cmd)->token[i] != '\'' && (*cmd)->token[i] != '\"')
-		while (!ft_strchr(" $\"\'\0", (*cmd)->token[i]))
-		{
+		while (!ft_strchr(" $\"\'\0", (*cmd)->token[i + tmp]))
+		// {
 			tmp++;
-			i++;
-		}
+		// 	i++;
+		// }
 	}
-	i -= tmp + 1;
+	// i -= tmp + 1;
+	i--;
 	var = (char *)malloc(sizeof(char) * tmp);
 	tmp = 0;
 	if ((*cmd)->token[i++] == '$')
@@ -169,6 +170,15 @@ static char	*expand_helper(t_token **cmd)
 	return (var);
 }
 
+static int	norm_comb(int tok_size, int i, char **com, char *tok)
+{
+	while (tok_size < i)
+	{
+		(*com)[tok_size] = (tok)[tok_size];
+		tok_size++;
+	}
+	return (tok_size);
+}
 static char	*combined(char **tok, char *var)
 {
 	int	tok_size;
@@ -179,29 +189,25 @@ static char	*combined(char **tok, char *var)
 
 	i = 0;
 	s = 0;
-	tok_size = 0;
+	// tok_size = 0;
 	var_size = ft_strlen(var);
 	while ((*tok)[i] != '$')
 		i++;
 	i++;
 	// while ((*tok)[i] != '\0' && (*tok)[i] != ' ' && (*tok)[i] != '$' && (*tok)[i] != '\'' && (*tok)[i] != '\"')
-	while (!ft_strchr(" $\"\'\0", (*tok)[i]))
-	{
+	while (!ft_strchr(" $\"\'\0", (*tok)[i + s]))
 		s++;
-		i++;
-	}
-	tok_size = ft_strlen((*tok)) - s + var_size;
-	com = (char *)malloc(tok_size + 1);
-	tok_size = 0;
-	i -= s + 1;
-	while (tok_size < i)
-	{
-		com[tok_size] = (*tok)[tok_size];
-		tok_size++;
-	}
+	com = (char *)malloc(ft_strlen((*tok)) + var_size + 1);
+	i--;
+	tok_size = norm_comb(0, i, &com, (*tok));
+	// while (tok_size < i)
+	// {
+	// 	com[tok_size] = (*tok)[tok_size];
+	// 	tok_size++;
+	// }
 	i = 0;
 	// while (tok_size < tok_size + var_size && var[i] != '\0' && var[i] != '\'' && var[i] != '\"')
-	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0", (*tok)[i]))
+	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0", var[i]))
 		com[tok_size++] = var[i++];
 	var_size = tok_size - i + s + 1;
 	while ((*tok)[var_size] != '\0')

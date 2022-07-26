@@ -781,3 +781,33 @@
 781 echo $SHELL $SHELL
 782 echo $SHELL
 783 echo $SHELL $SHELL
+784 echo $SHELL
+785 echo $SHELL
+786 echo $SHELL
+787 echo $SHELL
+788 1, 2, 3, 4, 5
+789 1, 2, 3, 4, 5
+790 s
+791 s 0, h 1, e, 2, l 3, l 4, \0 5
+792 echo $SHELL
+793 echo $SHELL
+794  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-ix0wmb04.snl 
+795 echo $SHELL
+796 echo $SHELL $SHELL
+797 echo karim$SHELL karim$SHELL
+798 echo $SHELL
+799 echo $SHELL
+800 echo karim$SHELL karim$SHELL
+801 echo $SHELL
+802 echo $SHELL $SHELL
+803 echo $SHELL karim a$SHELL
+804 echo "$SHELL"
+805 echo "'$SHELL'"
+806 echo '$SHELL'
+807 git
+808 echo '$SHELL'
+809 echo "'$SHELL'"
+810 echo $SHELL karim a$SHELL
+811 exi
+812 exit
+813 exit
