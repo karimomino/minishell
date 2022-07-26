@@ -6,20 +6,22 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jul 18 17:49:45 2022
+# Make data base, printed on Tue Jul 26 19:52:03 2022
 
 # Variables
 
 # environment
-REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-e8545df6f29bdc511c4801cfe09d54cd1529c00d.sock"]
+REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-966a930262455cb039dc44f9ee27e105acc503a3.sock"]
 # environment
 LC_ALL = C
 # makefile (from 'Makefile', line 19)
-SRC = builtins/env.c builtins/echo.c builtins/pwd.c execution/exec.c main.c 
+SRC = builtins/env.c builtins/echo.c builtins/pwd.c execution/exec.c main.c history/history.c redirection/redirection.c redirection/get_next_line.c redirection/get_next_line_utils.c signals/signals.c 
 # environment
-VSCODE_CWD = /vscode/vscode-server/bin/linux-arm64/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+VSCODE_CWD = /vscode/vscode-server/bin/linux-arm64/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE = DontWarn
+# makefile (from 'Makefile', line 33)
+prefix = /opt/homebrew/Cellar/readline/8.1.2
 # default
 MAKE_COMMAND := make
 # environment
@@ -39,7 +41,7 @@ HOSTNAME = 2d82c82321ae
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-OLDPWD = /vscode/vscode-server/bin/linux-arm64/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+OLDPWD = /vscode/vscode-server/bin/linux-arm64/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # automatic
@@ -55,7 +57,7 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/vscode/src/Cursus/minishell
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # environment
 PROMPT_COMMAND = RET=$?; echo -n "[$RET] "
 # automatic
@@ -63,7 +65,7 @@ PROMPT_COMMAND = RET=$?; echo -n "[$RET] "
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-e8545df6f29bdc511c4801cfe09d54cd1529c00d.sock
+SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-966a930262455cb039dc44f9ee27e105acc503a3.sock
 # default
 .SHELLFLAGS := -c
 # automatic
@@ -88,7 +90,7 @@ VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
 ENVIRONMENT = DEBUG
 # default
 MAKE_HOST := aarch64-unknown-linux-gnu
-# makefile (from 'Makefile', line 25)
+# makefile (from 'Makefile', line 30)
 OBJS = $(addprefix $(DIR_S),$(SRC:.c=.o))
 # makefile
 SHELL = /bin/sh
@@ -101,7 +103,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH = /vscode/vscode-server/bin/linux-arm64/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # default
 MAKEFILES := 
 # automatic
@@ -109,7 +111,9 @@ MAKEFILES :=
 # makefile (from 'Makefile', line 17)
 DIR_S = ./src/
 # environment
-REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-e8545df6f29bdc511c4801cfe09d54cd1529c00d.sock
+REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-966a930262455cb039dc44f9ee27e105acc503a3.sock
+# makefile (from 'Makefile', line 34)
+exec_prefix = ${prefix}
 # environment
 REMOTE_CONTAINERS = true
 # automatic
@@ -122,14 +126,16 @@ LS_COLORS =
 +F = $(notdir $+)
 # environment
 LESS = -R
+# makefile (from 'Makefile', line 36)
+includedir = ${prefix}/include
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-BROWSER = /vscode/vscode-server/bin/linux-arm64/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a/bin/helpers/browser.sh
+BROWSER = /vscode/vscode-server/bin/linux-arm64/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/helpers/browser.sh
 # environment
 LOGNAME = root
 # makefile
-.DEFAULT_GOAL := minishell
+.DEFAULT_GOAL := all
 # environment
 PYTHONDONTWRITEBYTECODE = 0
 # environment
@@ -138,16 +144,18 @@ PYTHONUNBUFFERED = 0
 USER = dfurneau
 # default
 MAKE_VERSION := 4.3
+# makefile (from 'Makefile', line 39)
+LDFLAGS = -lreadline -L${libdir}
 # environment
 PAGER = less
 # environment
 VSCODE_AGENT_FOLDER = /root/.vscode-server
 # environment
 _ = /bin/cat
-# makefile (from 'Makefile', line 29)
-CFLAGS = -Wall -Werror -Wextra -g3
+# makefile (from 'Makefile', line 38)
+CFLAGS = -Wall -Wextra -Werror -g3 -I${includedir}
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-10dace5b-0f97-44d3-afdd-c7088c6173e4.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-48cd037a-2bb9-4457-a02e-46571574111a.sock
 # environment
 DEBIAN_FRONTEND = dialog
 # environment
@@ -162,12 +170,14 @@ ELECTRON_RUN_AS_NODE = 1
 <F = $(notdir $<)
 # default
 SUFFIXES := 
+# makefile (from 'Makefile', line 35)
+libdir = ${exec_prefix}/lib
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
-# makefile (from 'Makefile', line 27)
+# makefile (from 'Makefile', line 41)
 CC = gcc -fcommon
 # variable set hash-table stats:
-# Load=78/1024=8%, Rehash=0, Collisions=6/116=5%
+# Load=83/1024=8%, Rehash=0, Collisions=6/122=5%
 
 # Pattern-specific Variable Values
 
@@ -175,9 +185,9 @@ CC = gcc -fcommon
 
 # Directories
 
-# . (device 63, inode 6618854): 17 files, no impossibilities.
+# . (device 63, inode 6618854): 23 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 23 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -202,49 +212,79 @@ libft.a:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 42):
+#  recipe to execute (from 'Makefile', line 56):
 		@echo "Compiling LIBFT Files..."
 		@$(MAKE) -C libft -s
 		@clear
 		@mv libft/libft.a libft.a
 
-parser.a:
-#  Phony target (prerequisite of .PHONY).
+# Not a target:
+src/redirection/get_next_line_utils.o:
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 48):
+
+parser.a:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 62):
 		@echo "Compiling PARSER Files..."
 		@$(MAKE) -C src/parser -s
 		@clear
 		@mv src/parser/parser parser
 
-minishell: .printing_obj src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o src/main.o .clear libft.a parser.a
+minishell: .printing_obj src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o src/main.o src/history/history.o src/redirection/redirection.o src/redirection/get_next_line.o src/redirection/get_next_line_utils.o src/signals/signals.o libft.a parser.a .clear
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-18 17:49:21.458583744
+#  Last modified 2022-07-25 20:12:03.682348226
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/3=0%
-#  recipe to execute (from 'Makefile', line 32):
+#  recipe to execute (from 'Makefile', line 46):
 		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
 		@echo "Compilation Successful!"
+
+parser:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 17:49:14.428466186
+#  Last modified 2022-07-25 15:50:17.897904291
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+src/redirection/get_next_line.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 57):
+#  recipe to execute (from 'Makefile', line 71):
 		@make clean -C src/parser -s
 		@rm -f $(OBJS)
+
+# Not a target:
+src/signals/signals.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+ 
+#  File has not been updated.
+
+# Not a target:
+src/redirection/redirection.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -264,7 +304,7 @@ src/main.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-all: minishell
+all: minishell minishell
 #  Phony target (prerequisite of .PHONY).
 #  Command line target.
 #  Implicit rule search has not been done.
@@ -279,15 +319,20 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 61):
+#  recipe to execute (from 'Makefile', line 75):
 		@make fclean -C src/parser -s
 		@make fclean -C libft -s
 		@rm -f $(NAME)
 
+# Not a target:
+src/history/history.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 .printing_obj:
 #  Implicit rule search has not been done.
 #  Implicit/static pattern stem: ''
- 
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
@@ -309,7 +354,7 @@ fclean: clean
 # | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/11=9%
-#  recipe to execute (from 'Makefile', line 36):
+#  recipe to execute (from 'Makefile', line 50):
 			@echo "Compiling OBJECT Files..."
 
 # Not a target:
@@ -322,7 +367,7 @@ src/builtins/env.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 39):
+#  recipe to execute (from 'Makefile', line 53):
 			@clear
 
 # Not a target:
@@ -337,25 +382,25 @@ src/builtins/echo.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-.PHONY: all re clean fclean libft.a parser.a
+.PHONY: all re clean fclean libft.a parser
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=18/1024=2%, Rehash=0, Collisions=0/53=0%
+# Load=24/1024=2%, Rehash=0, Collisions=0/67=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 324 B / avg = 9 B
-# current buf: size = 8162 B / used = 324 B / count = 34 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 45 / storage = 506 B / avg = 11 B
+# current buf: size = 8162 B / used = 506 B / count = 45 / avg = 11 B
 
-# strcache performance: lookups = 66 / hit rate = 48%
+# strcache performance: lookups = 80 / hit rate = 43%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=0/66=0%
-# Finished Make data base on Mon Jul 18 17:49:45 2022
+# Load=45/8192=1%, Rehash=0, Collisions=0/80=0%
+# Finished Make data base on Tue Jul 26 19:52:03 2022
 
  

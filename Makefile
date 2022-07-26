@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/20 16:44:24 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/25 15:50:17 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ CC		=	gcc -fcommon
 
 all:	$(NAME)
 
-$(NAME): .printing_obj $(OBJS) .clear libft.a parser.a
+$(NAME): .printing_obj $(OBJS) libft.a parser.a .clear
 		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
 		@echo "Compilation Successful!"
 
@@ -78,4 +78,4 @@ fclean: clean
 
 re:		fclean all
 
-.PHONY: all re clean fclean libft.a parser.a
+.PHONY: all re clean fclean libft.a parser

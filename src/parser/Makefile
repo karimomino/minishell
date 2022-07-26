@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
+#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/20 18:00:06 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/20 17:19:27 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS		=		./parser.c \
 					./get_quotes.c \
 					./free.c \
 					./redirections.c \
+					./expansion.c \
 					./commands.c \
 					./split_line.c \
 					../utils/squeeze.c \

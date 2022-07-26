@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/20 16:43:28 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/22 14:20:32 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	init_minishell(char **in)
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
 	str = get_next_line(open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644));
-	tmp = ft_split(str, '\n');
-	for (int i = 0; tmp[i]; i++)
-		add_history(tmp[i]);
+	if (str != NULL)
+	{
+		tmp = ft_split(str, '\n');
+		for (int i = 0; tmp[i]; i++)
+			add_history(tmp[i]);
+	}
 }
 
 int	reaser(t_line **line)
@@ -47,7 +50,8 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line, char **in)
 {
-	print_line(*line);
+	// print_line(*line);
+	ft_expansion(line);
 	while ((*line)->cmd)
 	{
 		exec_ft((*line)->cmd);
