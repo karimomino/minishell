@@ -811,3 +811,11 @@
 811 exi
 812 exit
 813 exit
+814 karim
+815 amin
+816 exit
+817 echo $SHELL
+818 echo $SHELL
+819 echo $SHELL
+820 karim
+821 exit
