@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/18 02:05:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/26 23:14:30 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	exec_bin(t_cmd *in)
 		ret = execve(path, ft_split(in->cmd, ' '), in->envp);
 		printf("minishell: %s: command not found\n", in->token->token);
 		t_infoo.retVal = 127;
-		return (t_infoo.retVal);
+		exit(t_infoo.retVal);
 	}
 	else
 		wait(&t_infoo.retVal);
