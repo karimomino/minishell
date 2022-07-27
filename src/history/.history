@@ -663,3 +663,205 @@
 663 echo hi dasd sad as > test > test
 664 exit
 665 exit
+666 ls
+667 echo
+668 echo hello
+669 echo hello
+670 << t
+671 << t
+672 << t
+673 ls
+674 << test
+675 ls
+676 ls > la
+677 echo hello > test
+678 echo > test
+679 ls
+680 echo > test
+681 echo > test
+682 ls
+683 la
+684 ls | la
+685 echo > test
+686 ls
+687 echo > test
+688 echo hello > test
+689 ls
+690 echo hello > test
+691 echo hello > test
+692 echo hello > test
+693 echo hello > test
+694 echo hello >> test
+695 ls
+696 echo 
+697 echo hello >> test
+698 echo hello >> test
+699 echo hello
+700 echo hello > test
+701 echo hello > test
+702 pwd > test
+703 echo > test
+704 echo >> test
+705 ls
+706 echo >> test
+707 echo
+708 echo hello > test
+709 echo hello
+710 echo hello > test
+711 pwd > test
+712 pwd > test
+713 pwd > test
+714 pwd > test
+715 pwd > test
+716 pwd > test
+717 pwd > test
+718 pwd > test
+719 pwd > test
+720 pwd > test
+721 pwd > test
+722 ls
+723 pwd > test
+724 pwd > test
+725 pwd > test
+726 pwd > test
+727 pwd > test
+728 ls
+729 pwd > test
+730 pwd
+731 pwd > test
+732 pwd > test
+733 pwd > test
+734 echo hello > test
+735 echo hi
+736 echo hello 
+737 echo hello > test2
+738 echo hello > test2 world
+739 echo hello >> test2 world
+740 echo hello >> test2 world
+741 pwd >> test2
+742 pwd >> test2
+743 pwd > test2
+744 pwd > test2
+745 pwd > test
+746 pwd >> test
+747 pwd >> test
+748 pwd >> test
+749 pwd >> test
+750 ls
+751 ls
+752 pwd >> test
+753 pwd >> test
+754 pwd > test
+755 echo hello > test
+756 echo hello > test
+757 echo hello > test
+758 echo hello > test
+759 echo hello > test
+760 pwd >> test
+761 pwd >> test1
+762 pwd >> test1
+763 pwd >> test1
+764 pwd >> test
+765 pwd >> test
+766 pwd >> test
+767 pwd >> test
+768 la
+769 pwd >> test
+770 pwd >> test
+771 pwd >> test
+772 pwd >> test
+773 echo hello >> test
+774 echo hello >> test
+775 echo hello >> test
+776 echo hello >> test
+777 echo hello >> test
+778 echo hello >> test
+779 echo hello >> test
+780 echo hello >> test
+781 echo hello >> test
+782 echo hello >> test
+783 echo hello >> test
+784 echo hello >> test
+785 echo hello >> test
+786 echo hello >> test
+787 echo hello >> test
+788 echo hello >> test
+789 echo hello >> test
+790 echo hello >> test
+791 echo hello >> test
+792 echo hello >> test hi
+793 echo hello >> test hi
+794 ls
+795 echo hello >> test hi
+796 echo hello >> test hi
+797 echo hello > test hi
+798 echo hello > test hi
+799 echo hello >> test hi
+800 echo hello >> test hi
+801 echo hello >> test hi
+802 echo hello >> test hi
+803 echo hello >> test hi
+804 echo hello >> test hi
+805 echo hello >> test hi
+806 echo hello >> test hi
+807 echo hello >> test hi
+808 echo hello >> test hi
+809 echo hello >> test hii
+810 echo hello >> test hiii
+811 echo hello >> test hiii
+812 echo hello >> test hiiieaw
+813 echo hello >> test hiiieawasd
+814 echo hello >> test hiiieawasddas
+815 echo hello >> test hiiieawasddas
+816 ping
+817 /bin/ls
+818 time\/bin/ls
+819 time
+820 time
+821 time
+822 cat
+823 set
+824 times
+825 time
+826 time
+827 mv
+828 whoami
+829 whoami > test6
+830 make
+831 whoami > test6
+832 echo hello > test6
+833 whoami > test6
+834 whoami > test6
+835 echo hello > test6
+836 ls
+837 echo hello > test6
+838 echo hello > test6
+839 echo hello >> test6
+840 m
+841 echo hello >> test6
+842 echo hello >> test6
+843 echo hello >> test6
+844 echo hello >> test6
+845 echo hello >> test6
+846 echo hello >> test6
+847 echo hello >> test6
+848 echo hello >> test6
+849 echo hello >> test6
+850 echo hello >> test6
+851 echo hello >> test6
+852 echo hello >> test6
+853 echo hello >> test6
+854 echo hello >> test6
+855 echo hello >> test6
+856 echo hello >> test6
+857 echo hello >> test6
+858 make
+859 echo hello >> test6
+860 echo hello >> test6
+861 echo hello >> test6
+862 echo hello >> test6
+863 echo hello world
+864 echo hello world >> test200
+865 echo hello world >> test200
+866 echo hello world >> test200
+867 das

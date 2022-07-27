@@ -6,15 +6,15 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 22:33:19 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/26 03:20:23 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include <stdlib.h>
-# include <stddef.h>
+// # include <stdlib.h>
+// # include <stddef.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "structure.h"
@@ -46,7 +46,8 @@ int		check_pipes(char **cmd, char *str, t_line **line);
 int		parser_v3_0(char *str, t_line **line);
 int		historyy(char *str);
 int		print_history(t_cmd cmd);
-int		redirection(t_cmd cmd, char *str, char **in);
+int		redirection(t_cmd *cmd);
+int		redirection(t_cmd *cmd);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);
 char	*gnl_strjoin(char *s1, char *s2);
@@ -54,5 +55,4 @@ char	*get_next_line(int fd);
 void	clear_line(int sig);
 void	signals(void);
 int		init_history(void);
-
 #endif

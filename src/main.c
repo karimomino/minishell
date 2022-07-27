@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/20 22:07:02 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/26 03:45:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,16 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line, char **in)
 {
-	print_line(*line);
+	// int		pid;
+
+	// print_line(*line);
+	(void)in;
 	while ((*line)->cmd)
 	{
-		exec_ft((*line)->cmd);
-		redirection(*(*line)->cmd, "test ", &*in);
+		if (redirection((*line)->cmd) == 1)// || redirection_in((*line)->cmd) == 1)
+			;
+		else
+			exec_ft((*line)->cmd);
 		(*line)->cmd = (*line)->cmd->next;
 	}
 	free_nodes(*line);

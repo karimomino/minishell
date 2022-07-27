@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/20 16:59:06 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/26 03:41:17 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <fcntl.h>
+#include <signal.h>
 
 # define SUCCESS 0
 # define ERROR 0
@@ -34,6 +35,8 @@
 # define BUFFER_SIZE 1
 
 extern char	**environ;
+
+pid_t	pid;
 
 struct s_info
 {
