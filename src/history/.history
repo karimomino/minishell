@@ -865,3 +865,4 @@
 865 echo hello world >> test200
 866 echo hello world >> test200
 867 das
+868 echo hello > test
