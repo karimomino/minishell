@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
+#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/20 16:53:51 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/25 15:50:17 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,32 +42,40 @@ CC		=	gcc -fcommon
 
 all:	$(NAME)
 
-$(NAME): $(OBJS) libft.a parser.a
-		$(CC) $(CFLAGS) $(OBJS) libft.a  parser -I$(INCLUDES) ${LDFLAGS} -o $(NAME)
+$(NAME): .printing_obj $(OBJS) libft.a parser.a .clear
+		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
+		@echo "Compilation Successful!"
 
-libft.a: 
-		@$(MAKE) -C libft
+.printing_obj:
+			@echo "Compiling OBJECT Files..."
+
+.clear:
+			@clear
+
+libft.a:
+		@echo "Compiling LIBFT Files..."
+		@$(MAKE) -C libft -s
+		@clear
 		@mv libft/libft.a libft.a
-		@echo "Make libft successful"
 
 parser.a:
-		@$(MAKE) -C src/parser
+		@echo "Compiling PARSER Files..."
+		@$(MAKE) -C src/parser -s
+		@clear
 		@mv src/parser/parser parser
-		@echo "Make parser successful"
-		
+
+
+all:	$(NAME)
 
 clean:
-		make clean -C src/parser
-		rm -f $(OBJS)
+		@make clean -C src/parser -s
+		@rm -f $(OBJS)
 
 fclean: clean
-		make fclean -C src/parser
-		rm -f $(NAME)
-		rm -f libft.a
-		rm -f libft/*.o
-		rm -f libft/libft.a
-		rm -f parser
+		@make fclean -C src/parser -s
+		@make fclean -C libft -s
+		@rm -f $(NAME)
 
 re:		fclean all
 
-.PHONY: libft.a parser.a $(NAME)
+.PHONY: all re clean fclean libft.a parser

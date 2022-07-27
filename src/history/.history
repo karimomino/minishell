@@ -606,6 +606,7 @@
 606 exit
 607 exit
 608 exit
+<<<<<<< HEAD
 609 ls
 610 513 echo >> test
 611 << a
@@ -865,3 +866,211 @@
 865 echo hello world >> test200
 866 echo hello world >> test200
 867 das
+=======
+609 echo hello"world"
+610 make clean
+611 echo $SHELL
+612 echo k
+613 echo $SHELL
+614 echo $SHELL
+615 echo $SHELL
+616  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-etx1sgoc.2k5 
+617 echo $SHELL
+618 echo $SHELL
+619 echo $SHELL
+620 echo $SHELL
+621 echo $SHELL
+622 echo $SHELL
+623 echo $SHELL
+624 echo $SHELL
+625 echo karim$SHELL
+626 echo karim $SHELL
+627 echo karim "$SHELL"
+628 echo "$SHELL"
+629 echo $SHELL
+630 make
+631 echo $SHELL
+632 echo $SHELL
+633 echo $SHELL
+634 echo $SHELL
+635 echo karim$SHELL
+636 echo $SHELL
+637 echo karim$SHELL
+638 echo karim$SHELL$SHELL
+639 echo karim$SHELL
+640 echo karim$SHELL
+641 echo karim$SHELL
+642 echo karim$SHELL
+643 echo karim$SHELL
+644 echo karim$SHELL
+645 echo karim$SHELL
+646 echo karim$SHELL
+647 echo karim$SHELL
+648 echo karim amin$SHELL
+649 echo karimamin$SHELL
+650 echo karimamin$SHELL
+651 echo karimamin$SHELL
+652 echo karimamin$SHELL
+653 echo karimamin$SHELL
+654 echo karimamin$SHELL
+655 echo karimamin$SHELL
+656 echo karimamin$SHELL
+657 echo karimamin$SHELL
+658 echo karimamin$SHELL
+659 echo karimamin$SHELL
+660 echo karimamin$SHELL
+661 echo karimamin$SHELL
+662 echo karimamin$SHELL
+663 echo karimamin$SHELL
+664 echo karimamin$SHELL
+665 echo karimamin$SHELL
+666 echo karimamin$SHELL
+667 echo karimamin$SHELL
+668 echo karimamin$SHELL
+669 echo karimamin$SHELL
+670 echo karimamin$SHELL
+671 echo karim$SHELL
+672 echo karim$SHELL
+673 echo karim$SHELL
+674 echo karim$SHELL
+675 echo karim$SHELL
+676 echo karim$SHELL
+677 echo karim$SHELL
+678 echo karim$SHELL
+679 echo karim$SHELL
+680 echo karim$SHELL
+681 echo karim$SHELL
+682 echo karim$SHELL
+683 echo karim$SHELL
+684 echo karim$SHELL
+685 echo karim$SHELL
+686 echo karim$SHELL
+687 echo karim$SHELL$SHELL
+688 make
+689 echo karim$SHELL
+690 echo karim$SHELL
+691 make
+692 echo karim$SHELL$SHELL
+693 echo karim$SHELL$SHELL
+694 echo karim$SHELL$SHELL
+695 echo karim$SHELL$SHELL
+696 echo karim$SHELL$SHELL
+697 echo karim$HELLasdasd
+698 echo karim$SHELLasdasd
+699 echo karim$SHELL asdasd
+700 echo karim$SHELL $asdasd
+701 echo karim$SHELL$SHELL $asdasd
+702 echo karim$SHELL$SHELL
+703 echo $SHELL
+704 echo $SHELL
+705 echo $SHELL
+706 echo -n $SHELL
+707 echo "$SHELL"
+708 make
+709 echo karim$SHELL$SHELL
+710 echo karim$SHELL$SHELL
+711 echo karim$SHELL$SHELL
+712 echo karim$SHELL$SHELL
+713 echo karim$SHELL$SHELL
+714 echo karim$SHELL$SHELL
+715 echo karim$SHELL$SHELL
+716 echo $SHELL$SHELL
+717 echo $SHELL$SHELL
+718 echo $SHELL$SHELL
+719 echo $SHELL$SHELL
+720 echo $SHELL
+721 echo karim$SHELL
+722 echo karim$SHELLkarim
+723 echo karim$SHELL$SHELL
+724 echo karim$SHELL$SHELL
+725 echo $SHELL$SHELL
+726 echo $SHELL$SHE
+727 echo $SHELL
+728 echo "$SHELL"
+729 echo "$SHELL"
+730 echo $SHELL
+731 echo $SHELL
+732 echo "$SHELL"
+733 echo "$SHELL"
+734 echo $SHELL
+735 echo $SHELL$SHELL
+736 echo $SHELL$SHELL$SHELL
+737 echo $SHELL$SHELL$SHELLs
+738 echo $SHELL$SHELL$$SHELL
+739 echo "$SHELL"
+740 echo "$SHELL"karim
+741 echo amin"$SHELL"karim
+742 echo -n $SHELL
+743 echo -n "$SHELL"
+744 echo -n "$SHELL"
+745 make
+746 make
+747 echo $SHELL
+748 echo "$SHELL"
+749 echo -n "$SHELL"
+750 echo $SHELL
+751 echo
+752 echo $SHELL
+753 echo $SHELL
+754 echo $SHELL
+755 echo $SHELL
+756 echo $SHELL
+757 echo $SHELL
+758 echo $SHELL
+759 echo $SHELL
+760 echo $SHELL
+761 echo $SHELL
+762 echo "$SHELL"
+763 echo $SHELL
+764 echo "$SHELL"
+765 echo $SHELL
+766 echo $SHELL
+767 echo $SHELL
+768 echo $SHELL
+769 echo $SHELL
+770 echo $SHELL $SHELL
+771 echo $SHELL $SHELLkarim
+772 echo $SHELL karim$SHELL
+773 norm
+774 norminette
+775 echo $SHELL
+776 echo $SHELL $SHELL
+777 echo $SHELL
+778 echo karim
+779 echo $SHELL
+780 echo $SHELL
+781 echo $SHELL $SHELL
+782 echo $SHELL
+783 echo $SHELL $SHELL
+784 echo $SHELL
+785 echo $SHELL
+786 echo $SHELL
+787 echo $SHELL
+788 1, 2, 3, 4, 5
+789 1, 2, 3, 4, 5
+790 s
+791 s 0, h 1, e, 2, l 3, l 4, \0 5
+792 echo $SHELL
+793 echo $SHELL
+794  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-ix0wmb04.snl 
+795 echo $SHELL
+796 echo $SHELL $SHELL
+797 echo karim$SHELL karim$SHELL
+798 echo $SHELL
+799 echo $SHELL
+800 echo karim$SHELL karim$SHELL
+801 echo $SHELL
+802 echo $SHELL $SHELL
+803 echo $SHELL karim a$SHELL
+804 echo "$SHELL"
+805 echo "'$SHELL'"
+806 echo '$SHELL'
+807 git
+808 echo '$SHELL'
+809 echo "'$SHELL'"
+810 echo $SHELL karim a$SHELL
+811 exi
+812 exit
+813 exit
+814 echo $SHELL karim a$SHELL
+>>>>>>> origin/karim_staging
