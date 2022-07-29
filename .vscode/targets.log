@@ -6,12 +6,12 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jul 26 19:52:03 2022
+# Make data base, printed on Fri Jul 29 10:58:39 2022
 
 # Variables
 
 # environment
-REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-966a930262455cb039dc44f9ee27e105acc503a3.sock"]
+REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-2bf79b9ffaab201a5f08fb01438001b35b801ecd.sock"]
 # environment
 LC_ALL = C
 # makefile (from 'Makefile', line 19)
@@ -21,7 +21,7 @@ VSCODE_CWD = /vscode/vscode-server/bin/linux-arm64/3b889b090b5ad5793f524b5d1d39f
 # environment
 APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE = DontWarn
 # makefile (from 'Makefile', line 33)
-prefix = /opt/homebrew/Cellar/readline/8.1.2
+prefix = /opt/homebrew/Cellar/readline/8.1.1
 # default
 MAKE_COMMAND := make
 # environment
@@ -65,7 +65,7 @@ PROMPT_COMMAND = RET=$?; echo -n "[$RET] "
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-966a930262455cb039dc44f9ee27e105acc503a3.sock
+SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-2bf79b9ffaab201a5f08fb01438001b35b801ecd.sock
 # default
 .SHELLFLAGS := -c
 # automatic
@@ -111,7 +111,7 @@ MAKEFILES :=
 # makefile (from 'Makefile', line 17)
 DIR_S = ./src/
 # environment
-REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-966a930262455cb039dc44f9ee27e105acc503a3.sock
+REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-2bf79b9ffaab201a5f08fb01438001b35b801ecd.sock
 # makefile (from 'Makefile', line 34)
 exec_prefix = ${prefix}
 # environment
@@ -155,7 +155,7 @@ _ = /bin/cat
 # makefile (from 'Makefile', line 38)
 CFLAGS = -Wall -Wextra -Werror -g3 -I${includedir}
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-48cd037a-2bb9-4457-a02e-46571574111a.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-0d6a3851-1393-4d7c-af4d-74041e898f6f.sock
 # environment
 DEBIAN_FRONTEND = dialog
 # environment
@@ -185,9 +185,9 @@ CC = gcc -fcommon
 
 # Directories
 
-# . (device 63, inode 6618854): 23 files, no impossibilities.
+# . (device 63, inode 6618854): 24 files, no impossibilities.
 
-# 23 files, no impossibilities in 1 directories.
+# 24 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -236,13 +236,13 @@ parser.a:
 
 minishell: .printing_obj src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o src/main.o src/history/history.o src/redirection/redirection.o src/redirection/get_next_line.o src/redirection/get_next_line_utils.o src/signals/signals.o libft.a parser.a .clear
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-25 20:12:03.682348226
+#  Last modified 2022-07-27 13:48:12.846294644
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 #  recipe to execute (from 'Makefile', line 46):
-		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) $(LDFLAGS) -o $(NAME)
 		@echo "Compilation Successful!"
 
 parser:
@@ -254,7 +254,7 @@ parser:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-25 15:50:17.897904291
+#  Last modified 2022-07-27 08:10:21.239107161
 #  File has been updated.
 #  Successfully updated.
 
@@ -277,10 +277,10 @@ clean:
 src/signals/signals.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 # Not a target:
+ 
 src/redirection/redirection.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -395,12 +395,12 @@ src/builtins/echo.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 45 / storage = 506 B / avg = 11 B
-# current buf: size = 8162 B / used = 506 B / count = 45 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 46 / storage = 513 B / avg = 11 B
+# current buf: size = 8162 B / used = 513 B / count = 46 / avg = 11 B
 
-# strcache performance: lookups = 80 / hit rate = 43%
+# strcache performance: lookups = 81 / hit rate = 43%
 # hash-table stats:
-# Load=45/8192=1%, Rehash=0, Collisions=0/80=0%
-# Finished Make data base on Tue Jul 26 19:52:03 2022
+# Load=46/8192=1%, Rehash=0, Collisions=0/81=0%
+# Finished Make data base on Fri Jul 29 10:58:39 2022
 
  

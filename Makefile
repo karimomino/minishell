@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/25 15:50:17 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/27 08:10:21 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC		=	builtins/env.c \
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
 
-prefix		=	/opt/homebrew/Cellar/readline/8.1.2
+prefix		=	/opt/homebrew/Cellar/readline/8.1.1
 exec_prefix	=	${prefix}
 libdir		=	${exec_prefix}/lib
 includedir	=	${prefix}/include
@@ -43,7 +43,7 @@ CC		=	gcc -fcommon
 all:	$(NAME)
 
 $(NAME): .printing_obj $(OBJS) libft.a parser.a .clear
-		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) $(LDFLAGS) -o $(NAME)
 		@echo "Compilation Successful!"
 
 .printing_obj:

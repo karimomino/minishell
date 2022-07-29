@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/26 23:14:30 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/27 12:42:17 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,40 @@ int	exec_builtin(t_cmd *in)
 	return (ret);
 }
 
+static char	*is_file_found(char *token)
+{
+	char	**paths;
+	char	*path;
+	char	*f_path;
+	int		i;
+	int		is_file;
+
+	paths = ft_split(getenv("PATH"), ':');
+	i = -1;
+	is_file = -1;
+	path = ft_strjoin("/", token);
+	while (is_file == -1 && paths[++i])
+	{
+		f_path = ft_strjoin(paths[i], path);
+		is_file = access(f_path, F_OK);
+		if (is_file == -1)
+			free(f_path);
+	}
+	free(path);
+	if (is_file != 0 && f_path != NULL)
+		free(f_path);
+	if (is_file == 0)
+		return (ft_strjoin(paths[i], ft_strjoin("/", token)));
+	else
+		return (NULL);
+}
 int	exec_bin(t_cmd *in)
 {
 	int		ret;
 	pid_t	pid;
-	//for testing only, this should be retrieved from environment variable
 	char	*path;
 
-	path = strdup("/usr/bin/");
-	path = strncat(path, in->token->token, strlen(in->token->token));
+	path = is_file_found(in->token->token);
 	pid = fork();
 	ret = 0;
 	if (pid == -1)

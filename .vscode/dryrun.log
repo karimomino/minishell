@@ -1,16 +1,18 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/vscode/src/Cursus/minishell'
 echo "Compiling OBJECT Files..."
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/builtins/env.o src/builtins/env.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/builtins/echo.o src/builtins/echo.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/builtins/pwd.o src/builtins/pwd.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/execution/exec.o src/execution/exec.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/main.o src/main.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/history/history.o src/history/history.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/redirection/redirection.o src/redirection/redirection.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/redirection/get_next_line.o src/redirection/get_next_line.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/redirection/get_next_line_utils.o src/redirection/get_next_line_utils.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include   -c -o src/signals/signals.o src/signals/signals.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/env.o src/builtins/env.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/echo.o src/builtins/echo.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/pwd.o src/builtins/pwd.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/execution/exec.o src/execution/exec.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/main.o src/main.c
+ 
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/history/history.o src/history/history.c
+ 
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/redirection/redirection.o src/redirection/redirection.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/redirection/get_next_line.o src/redirection/get_next_line.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/redirection/get_next_line_utils.o src/redirection/get_next_line_utils.c
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/signals/signals.o src/signals/signals.c
 echo "Compiling LIBFT Files..."
 make -C libft -s
 make[1]: Entering directory '/home/vscode/src/Cursus/minishell/libft'
@@ -63,8 +65,10 @@ clear
 mv libft/libft.a libft.a
 echo "Compiling PARSER Files..."
 make -C src/parser -s
+ 
 make[1]: Entering directory '/home/vscode/src/Cursus/minishell/src/parser'
 gcc -Wall -Werror -Wextra -g3   -c -o parser.o parser.c
+ 
 gcc -Wall -Werror -Wextra -g3   -c -o ../utils/print_list.o ../utils/print_list.c
 gcc -Wall -Werror -Wextra -g3   -c -o ../utils/ft_strlenx2.o ../utils/ft_strlenx2.c
 gcc -Wall -Werror -Wextra -g3   -c -o ../utils/ft_splitq.o ../utils/ft_splitq.c
@@ -86,7 +90,7 @@ make[1]: Leaving directory '/home/vscode/src/Cursus/minishell/src/parser'
 clear
 mv src/parser/parser parser
 clear
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.2/include ./src/builtins/env.o ./src/builtins/echo.o ./src/builtins/pwd.o ./src/execution/exec.o ./src/main.o ./src/history/history.o ./src/redirection/redirection.o ./src/redirection/get_next_line.o ./src/redirection/get_next_line_utils.o ./src/signals/signals.o libft.a parser -I./includes -lreadline -o minishell
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include ./src/builtins/env.o ./src/builtins/echo.o ./src/builtins/pwd.o ./src/execution/exec.o ./src/main.o ./src/history/history.o ./src/redirection/redirection.o ./src/redirection/get_next_line.o ./src/redirection/get_next_line_utils.o ./src/signals/signals.o libft.a parser -I./includes -lreadline -L/opt/homebrew/Cellar/readline/8.1.1/lib -o minishell
 echo "Compilation Successful!"
 make: Leaving directory '/home/vscode/src/Cursus/minishell'
  
