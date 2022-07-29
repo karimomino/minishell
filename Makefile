@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/25 15:50:17 by kamin            ###   ########.fr        #
+#    Created: 2022/07/27 05:44:24 by ommohame          #+#    #+#              #
+#    Updated: 2022/07/29 18:13:33 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC		=	builtins/env.c \
 			redirection/get_next_line.c \
 			redirection/get_next_line_utils.c \
 			signals/signals.c \
+			pipe/pipe.c
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
@@ -43,7 +44,7 @@ CC		=	gcc -fcommon
 all:	$(NAME)
 
 $(NAME): .printing_obj $(OBJS) libft.a parser.a .clear
-		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) -lreadline -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) $(LDFLAGS) -o $(NAME)
 		@echo "Compilation Successful!"
 
 .printing_obj:

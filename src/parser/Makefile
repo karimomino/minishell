@@ -3,16 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/07/20 22:33:45 by ommohame         ###   ########.fr        #
-=======
-#    Updated: 2022/07/20 17:19:27 by kamin            ###   ########.fr        #
->>>>>>> origin/karim_staging
+#    Updated: 2022/07/27 05:46:36 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME		=		parser
 

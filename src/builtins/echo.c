@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/26 01:17:41 by ommohame         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/18 18:01:32 by kamin            ###   ########.fr       */
->>>>>>> origin/karim_staging
+/*   Updated: 2022/07/27 05:45:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/minishell.h"
 

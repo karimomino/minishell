@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/26 03:20:23 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/29 18:16:13 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ char	*get_next_line(int fd);
 void	clear_line(int sig);
 void	signals(void);
 int		init_history(void);
+int	pipes(t_cmd *cmd);
 #endif

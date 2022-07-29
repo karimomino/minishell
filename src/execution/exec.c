@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/07/26 21:03:58 by ommohame         ###   ########.fr       */
-=======
-/*   Updated: 2022/07/26 23:14:30 by kamin            ###   ########.fr       */
->>>>>>> origin/karim_staging
+/*   Updated: 2022/07/28 22:36:08 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/minishell.h"
 
@@ -42,18 +39,25 @@ int	exec_bin(t_cmd *in)
 {
 	int		ret;
 	pid_t	pid;
-	//for testing only, this should be retrieved from environment variable
 	char	*path;
 
-	path = strdup("/usr/bin/");
-	path = strncat(path, in->token->token, strlen(in->token->token));
+	path = getenv("PATH");
+	char **tmp = ft_split(path, ':');
+	char *tmp2;
 	pid = fork();
 	ret = 0;
 	if (pid == -1)
 		return (errno);
 	else if (!pid)
 	{
-		ret = execve(path, ft_split(in->cmd, ' '), in->envp);
+		int	i = 0;
+		while (tmp[i])
+		{
+			tmp2 = ft_strjoin(tmp[i++], "/");
+			tmp2 = strncat(tmp2, in->token->token, strlen(in->token->token));
+			// ft_printf("exec: %s\n", in->exec);
+			ret = execve(tmp2, ft_split(in->exec, ' '), environ);
+		}
 		printf("minishell: %s: command not found\n", in->token->token);
 		t_infoo.retVal = 127;
 		exit(t_infoo.retVal);
