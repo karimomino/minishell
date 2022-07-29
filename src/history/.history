@@ -819,3 +819,5 @@
 819 echo $SHELL
 820 karim
 821 exit
+822 ls
+823 echo kairm
