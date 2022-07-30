@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/27 05:01:06 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:36:18 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,64 +25,65 @@ int	redir_out(t_redir redir, int f)
 	else
 	{
 		close (fd);
-		return (0);
+		return (-1);
 	}
 }
 
-// int		redir_in(t_redir redir, int f)
-// {
-// 	int		fd;
-// 	int		tmp;
-// 	char	*tmp1;
-// 	char	*tmp2;
+int		redir_in1(t_redir redir, int f)
+{
+	int		fd;
 
-// 	if (redir.type == 1)
-// 	{
-// 		fd = open(redir.file, O_RDONLY);
-// 		if (fd < 0)
-// 		{
-// 			ft_printf("minishell: no such file or directory: %s\n",
-// 				redir.file);
-// 			return (-1);
-// 		}
-// 		// if (f == 1)
-// 		// 	*str = get_next_line(fd);
-// 	}
-// 	else if (redir.type == 2)
-// 	{
-// 		while (1)
-// 		{
-// 			tmp1 = readline("> ");
-// 			if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1)) && ft_strncmp(tmp1, "", 1)
-// 			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
-// 			{
-// 				free(tmp1);
-// 				if (!*str)
-// 					return (1);
-// 				tmp2 = ft_strtrim(*str, "\n");
-// 				free(*str);
-// 				*str = tmp2;
-// 				return (1);
-// 			}
-// 			tmp2 = ft_strjoin(tmp1, "\n");
-// 			if (!*str)
-// 				*str = ft_strdup(tmp2);
-// 			else
-// 				*str = ft_strjoin(*str, tmp2);
-// 			free(tmp1);
-// 			free(tmp2);
-// 		}
-// 	}
-// 	if (f == 1)
-// 	{
-// 		tmp = dup(STDIN_FILENO);
-// 		dup2(fd, STDIN_FILENO);
-// 		exec_ft(cmd);
-// 		dup2(tmp, STDIN_FILENO);
-// 	}
-// 	close (fd);
-// 	return (1);
-// }
+	if (access(redir.file, F_OK) == -1)
+	{
+		ft_printf("minishell: %s: No such file or directory\n", redir.file);
+		return (-1);
+	}
+	if (access(redir.file, R_OK) == -1)
+	{
+		ft_printf("minishell: %s: Permission denied\n", redir.file);
+		return (-1);
+	}
+	fd = open(redir.file, O_RDONLY);
+	if (f == 1)
+		return (fd);
+	close (fd);
+	return (-1);
+}
+
+int		heredoc(t_redir redir, int f)
+{
+	int		fd;
+	char 	*tmp1;
+
+	fd = -1;
+	if (f == 1)
+		// fd = dup(STDIN_FILENO);
+		fd = open("./src/redirection/.heredoc.txt", O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	while (1)
+	{
+		tmp1 = readline(">");
+		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1)) && ft_strncmp(tmp1, "", 1)
+			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
+		{
+			free(tmp1);
+			return (fd);
+		}
+		ft_putstr_fd(tmp1, fd);
+		ft_putchar_fd('\n', fd);
+		free(tmp1);
+	}
+	if (f == 1)
+		return (fd);
+	return (-1);
+}
+
+int		redir_in(t_redir redir, int f)
+{
+	if (redir.type == 1)
+		return (redir_in1(redir, f));
+	else
+		return (heredoc(redir, f));
+}
 
 int		check_lastredir(t_redir redir)
 {
@@ -104,26 +105,34 @@ int		check_lastredir(t_redir redir)
 	return (1);
 }
 
-int	redirect(t_cmd *cmd, int fd_out)
+int	redirect(t_cmd *cmd, int fd_in, int fd_out)
 {
+	int		tmp_in;
 	int		tmp_out;
 
+	tmp_in = dup(STDIN_FILENO);
 	tmp_out = dup(STDOUT_FILENO);
+	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
 	exec_ft(cmd);
-	dup2(tmp_out, STDOUT_FILENO);
+	close(fd_in);
 	close(fd_out);
+	dup2(tmp_in, STDIN_FILENO);
+	dup2(tmp_out, STDOUT_FILENO);
 	return (1);
 }
 
 int	redirection(t_cmd *cmd)
 {
 	int		f;
+	int		fd_in;
 	int		fd_out;
 	size_t	i;
 
 	f = 0;
 	i = 0;
+	fd_in = -1;
+	fd_out = -1;
 	if (!cmd->redir || cmd->nredir == 0)
 		return (0);
 	while (i < cmd->nredir && cmd->redir)
@@ -132,12 +141,15 @@ int	redirection(t_cmd *cmd)
 			f = 1;
 		if (cmd->redir->fd == 1)
 			fd_out = redir_out(*cmd->redir, f);
-		// else if (cmd->redir->fd == 0)
-		// 	redir_in(*cmd->redir, f);
+		else if (cmd->redir->fd == 0)
+			fd_in = redir_in(*cmd->redir, f);
+		cmd->redir = cmd->redir->next;
 		f = 0;
 		i++;
 	}
-	redirect(cmd, fd_out);
+	// ft_printf("fd in: %d | fd out: %d\n", fd_in, fd_out);
+	redirect(cmd, fd_in, fd_out);
+	unlink("./src/redirection/.heredoc.txt");
 	return (1);
 }
 // int	redirection_in(t_cmd *cmd)

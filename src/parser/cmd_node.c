@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 17:59:46 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/28 20:01:13 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ int	cmds(char *str, t_line **line)
 	parsed = parse(str);
 	if (!parsed)
 		return (-1);
+	if (parsed[0] && parsed[1])
+	{
+		(*line)->cmd->exec = ft_strjoin(parsed[0], " ");
+		(*line)->cmd->exec = ft_strjoin((*line)->cmd->exec, parsed[1]);
+	}
+	else if (parsed[0])
+	{
+		(*line)->cmd->exec = ft_strdup(parsed[0]);
+	}
 	while ((*line)->cmd->next)
 		(*line)->cmd = (*line)->cmd->next;
 	if (last_cmd_node(parsed, &(*line)->cmd, &(*line)) == -1)

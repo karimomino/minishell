@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1 history
 2 > test1 > test2 >test3
 3 < test1 <test 
@@ -866,3 +867,61 @@
 866 echo hello world >> test200
 867 das
 868 echo hello > test
+=======
+1 pwd | cat -e
+2 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+3 pwd | cat -e
+4 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+5 pwd | cat -e
+6 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+7 pwd | cat -e
+8 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+9 pwd | cat -e
+10 pwd | cat -e
+11 pwd | cat -e
+12 menter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command: mmenter a fucking command:  
+13 pwd | cat -e
+14 pwd | cat -e
+15 pwd | cat -e
+16 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+17 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+18 pwd | cat -e
+19 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+20 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+21 pwd | cat -e
+22 pwd | cat -e
+23 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+24 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+25 pwd | cat -e
+26 pwd | cat -e
+27 pwd | cat -e
+28 pwd | cat -e
+29 pwd | cat -e
+30 pwd | cat -e
+31 pwd | cat -e
+32 pwd | wc
+33 pwd | wc
+34 pwd | wc
+35 pwd | wc
+36 pwd | wc
+37 pwd | wc
+38 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+39 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+40 pwd | wc
+41 /Users/omarelghamry/Documents/42-Devcontainer/src/minishell
+42 pwd | cat -e
+43 pwd
+44 pwd | cat -e
+45 pwd | cat -e
+46 pwd | cat -e
+47 pwd | cat -e
+48 pwd | cat -e
+49 pwd
+50 pwd | cat -e
+51 cat -e | pwd
+52 ls | wc -l
+53 ls -la |wc -l
+54 ls -la | wc -l
+55 ls -la | wc -l
+56 ls -la | wc -l
+>>>>>>> omar_byhbd

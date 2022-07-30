@@ -6,9 +6,10 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/20 22:33:45 by ommohame         ###   ########.fr        #
+#    Updated: 2022/07/27 05:46:36 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME		=		parser
 
@@ -25,6 +26,7 @@ SRCS		=		./parser.c \
 					./get_quotes.c \
 					./free.c \
 					./redirections.c \
+					./expansion.c \
 					./commands.c \
 					./split_line.c \
 					../utils/squeeze.c \

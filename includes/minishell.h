@@ -6,9 +6,10 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/26 03:41:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/27 12:43:13 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 
 #ifndef MINISHELL_H
@@ -50,5 +51,6 @@ int		exec_ft(t_cmd *in);
 int		exec_bin(t_cmd *in);
 int		exec_builtin(t_cmd *in);
 int		ft_pwd(void);
+void	ft_expansion(t_line **line);
 
 #endif

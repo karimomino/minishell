@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/12 01:04:19 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/28 19:42:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_cmd
 	size_t			nargs;
 	size_t			nredir;
 	char			*cmd;
+	char			*exec;
 	char			**envp;
 	struct s_token	*token;
 	struct s_redir	*redir;
