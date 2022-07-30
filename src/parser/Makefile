@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/20 17:19:27 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/30 15:48:02 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,6 @@ clean	:
 			$(RM) $(OBJS)
 
 fclean	:	clean
-			$(RM) $(NAME)
+			$(RM) ../../$(NAME)
 
 re		:	fclean all

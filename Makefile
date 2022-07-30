@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/07/27 08:10:21 by kamin            ###   ########.fr        #
+#    Updated: 2022/07/30 15:46:37 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,8 @@ clean:
 		@rm -f $(OBJS)
 
 fclean: clean
+		@$(MAKE) fclean -C libft -s
 		@make fclean -C src/parser -s
-		@make fclean -C libft -s
 		@rm -f $(NAME)
 
 re:		fclean all

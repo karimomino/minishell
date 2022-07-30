@@ -929,3 +929,5 @@
 929 echo is$SHELL
 930 echo is$SHELL $SHELL
 931 echo is$SHELL is$SHELL
+
+932 echo karim amin
