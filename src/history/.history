@@ -811,60 +811,121 @@
 811 exi
 812 exit
 813 exit
-814 echo $SHELL karim a$SHELL
-815 ls
-816 ls
-817 vim
-818 ls
-819 ls
-820 ls
-821 ls
+814 karim
+815 amin
+816 exit
+817 echo $SHELL
+818 echo $SHELL
+819 echo $SHELL
+820 karim
+821 exit
 822 ls
-823 env
-824 env
-825 env
-826 echo $LINES
-827 echo #COLUMNS
-828 echo $COLUMNS
-829 env
-830 env
-831 env
-832 exit
-833 unset LINES
-834 env
-835 unset
-836 env
-837 echo $?
-838 $?
-839 env
-840 ls
-841 ls
-842 ls
-843 exit
-844 ls
-845 ls
-846 exit
-847 ls
-848 ls
-849 ls
-850 ls -la
+823 echo kairm
+824 la
+825 ls
+826  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-wlskpaw2.105 
+827 ls
+828 la
+829 la
+830 la
+831 l
+832 ls
+833 ls -la
+834 ls
+835 cat test
+836 ls -la | grep test
+837 ls
+838 la
+839 set
+840 export
+841 export karim=echo
+842 $echo
+843 echo $karim
+844 env
+845 $karim
+846 echo $karim
+847 $echo
+848 $karim
+849 $karim karim amin
+850 ls
 851 ls
-852 exit
-853 ls
-854 echo << test
-855 cat << test
-856 echo karim >> test
-857 ls
+852 $karim karim
+853 env
+854 $karim
+855 $karim amin
+856 ls
+857 ls -la
 858 ls
-859 echo ls
-860 
-861 << test
-862 <<
-863 exit
-864 export test=karim
-865 export test="echo"
-866 env
-867 env
-868 ls
+859 $karim karim amin is a g
+860 echo $karim
+861 $karim karim am is a g
+862 ls -la
+863 ls -l
+864 ls -a
+865 ls */*
+866 ls -la
+867 ls
+868 $karim karim is a g man
 869 ls
-870 ls
+870 ls -la
+871 $karim karim alaa amin othman el nawawy
+872 echo karim
+873 ls
+874 ls -la
+875 echo karim | echo karim
+876 echo karim | ls
+877 ls -la
+878 ls | ls
+879 |
+880 asasdasdasdasdasdasdasdasd
+881 sasdasfafadsfasdfasdfadsfdsfasdfadsfasdfasdfasdfasdfasdfasdfasdf
+882 asdfghjkl;
+883 echo karim | echo amin
+884 echo karim | echo amin
+885 echo karim | echo amin
+886 echo karim | echo amin
+887 echo karim | echo amin
+888 echo karim | echo amin
+889 echo karim | ls -la
+890 <
+891 s<
+892 
+893 
+894 
+895 ECHO karim
+896 lsssssss < asdasdasd
+897 export karim=swag
+898 env
+899 karim
+900 $karim
+901 $karim
+902 $karim
+903 $karim
+904 $karim amin is amzing
+905 $karim
+906 echo karim
+907 echo karim amin 
+908 echo -nnnnnn karim amin 
+909 env
+910 echo $karim
+911 $karim
+912 echo $SHELL
+913 echo $SHELL | echo $karim
+914 echo $SHELL | echo $karim | echo askjfnakjsnfkjansdkjnaskdjnaksjdnkjasndkjansdkjnasdkjnasdkjnaksjdnkajsndkjansdkjansdkjansdkjnaskjdnakjsdnkajsndkjansdkjansdkjansdkjnasdkjnaskjdnakjsndkjasndkjansdkjansdkjnasdkjnaskdjnaksjdn
+915 echo $karim
+916 $karim amin is$karim $SHELL
+917 $karim is$karim
+918 exi
+919 exit
+920 exit
+921 exit
+922 exit
+923 $karim
+924 is$karim
+925 $karim is amazing$karim amin $SHELL
+926 $karim i$karim
+927 $karim is$SHELL
+928 $karim is$karim
+929 echo is$SHELL
+930 echo is$SHELL $SHELL
+931 echo is$SHELL is$SHELL

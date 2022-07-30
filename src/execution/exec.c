@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/27 12:42:17 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/30 15:40:57 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	exec_builtin(t_cmd *in)
 	if (in->type == 4)
 		ft_env();
 	if (in->type == 5)
-	{
-	}
 	if (in->type == 7)
 		exit (SUCCESS);
 	return (ret);
@@ -51,7 +49,10 @@ static char	*is_file_found(char *token)
 		f_path = ft_strjoin(paths[i], path);
 		is_file = access(f_path, F_OK);
 		if (is_file == -1)
+		{
 			free(f_path);
+			f_path = NULL;
+		}
 	}
 	free(path);
 	if (is_file != 0 && f_path != NULL)
@@ -98,32 +99,3 @@ int	exec_ft(t_cmd *in)
 	}
 	return (ret);
 }
-
-// int main(int ac, char **av, char **envp)
-// {
-// 	// t_cmd cmd;
-
-// 	(void)ac;
-// 	(void)av;
-// 	(void)envp;
-// 	// cmd.envp = (char **)malloc(1 * sizeof(char *));
-// 	// cmd.envp = envp;
-// 	// cmd.cmd = (char **)malloc(1 * sizeof(char *));
-// 	// cmd.cmd = ++av;
-// 	// t_infoo.retVal = 0;
-// 	ft_setenv("test", "karim", 0);
-// 	printf("This is test env: %s\n", getenv("test"));
-// 	ft_setenv("test", "amin", 1);
-// 	printf("This is test env: %s\n", getenv("USER"));
-// 	for (int i = 0;environ[i] != NULL;i++)
-// 	{
-// 		printf("%s\n", environ[i]);
-// 	}
-// 	ft_setenv("test",NULL, 2);
-// 	for (int i = 0;environ[i] != NULL;i++)
-// 	{
-// 		printf("%s\n", environ[i]);
-// 	}
-// 	// exec_ft(cmd);
-// 	return (t_infoo.retVal);
-// }
