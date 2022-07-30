@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jul 29 10:58:39 2022
+# Make data base, printed on Sat Jul 30 15:51:21 2022
 
 # Variables
 
@@ -103,7 +103,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /vscode/vscode-server/bin/linux-arm64/3b889b090b5ad5793f524b5d1d39fda662b96a2a/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # default
 MAKEFILES := 
 # automatic
@@ -236,7 +236,7 @@ parser.a:
 
 minishell: .printing_obj src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/execution/exec.o src/main.o src/history/history.o src/redirection/redirection.o src/redirection/get_next_line.o src/redirection/get_next_line_utils.o src/signals/signals.o libft.a parser.a .clear
 #  Implicit rule search has not been done.
-#  Last modified 2022-07-27 13:48:12.846294644
+#  Last modified 2022-07-30 15:50:15.740029386
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -254,7 +254,7 @@ parser:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-27 08:10:21.239107161
+#  Last modified 2022-07-30 15:46:37.696755803
 #  File has been updated.
 #  Successfully updated.
 
@@ -277,10 +277,10 @@ clean:
 src/signals/signals.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
 #  File has not been updated.
 
 # Not a target:
- 
 src/redirection/redirection.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -320,8 +320,8 @@ fclean: clean
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 75):
+		@$(MAKE) fclean -C libft -s
 		@make fclean -C src/parser -s
-		@make fclean -C libft -s
 		@rm -f $(NAME)
 
 # Not a target:
@@ -401,6 +401,6 @@ src/builtins/echo.o:
 # strcache performance: lookups = 81 / hit rate = 43%
 # hash-table stats:
 # Load=46/8192=1%, Rehash=0, Collisions=0/81=0%
-# Finished Make data base on Fri Jul 29 10:58:39 2022
+# Finished Make data base on Sat Jul 30 15:51:21 2022
 
  

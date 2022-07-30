@@ -931,3 +931,48 @@
 931 echo is$SHELL is$SHELL
 
 932 echo karim amin
+933 echo karim
+934 echo $SHELL
+935 ls -la
+936 exit
+937 exit
+938 exi
+939 exit
+940 exit
+941 exit
+942 exit
+943 exit
+944 exit
+945 exit
+946 exit
+947 exit
+948 exit
+949 exit
+950 exit
+951 exit
+952 exit
+953 exit
+954 exit
+955 exit
+956 exit
+957 exit
+958 exit
+959 exit
+960 exit
+961 exit
+962 exit
+963 exit
+964 exit
+965 exit
+966 exit
+967 exit
+968 exit
+969 exit
+970 exit
+971 exit
+972 exit
+973 cat < test
+974 cat < $blah
+975 ls -la
+976 ls -la
+977 cat < $blah

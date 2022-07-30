@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/30 15:40:21 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/30 15:59:52 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,27 +120,18 @@ static int	check_char(char c, int *dq, int *sq)
 	return (ret);
 }
 
-static void	check_expand_t(void *c, int *i, int *dq, int *sq, int flag)
+static void	check_expand_t(void *cmd, int *i, int *dq, int *sq, int flag)
 {
-	t_token	**t;
-	t_redir	**r;
+	char	**string;
 
 	if (flag)
-	{
-		t = (t_token **)c;
-		if (!check_char((*t)->token[*i], dq, sq)
-			&& (((*t)->token[*i] == '$' && *dq == 1)
-				|| ((*t)->token[*i] == '$' && *sq == 0 && *dq == 0)))
-			expand(t, flag);
-	}
+		string = (char **)&((*(t_token **)cmd)->token);
 	else
-	{
-		r = (t_redir **)c;
-		if (!check_char((*r)->file[*i], dq, sq)
-			&& (((*r)->file[*i] == '$' && *dq == 1)
-				|| ((*r)->file[*i] == '$' && *sq == 0 && *dq == 0)))
-			expand(r, flag);
-	}
+	string = (char **)&((*(t_redir **)cmd)->file);
+	if (!check_char((*string)[*i], dq, sq)
+		&& (((*string)[*i] == '$' && *dq == 1)
+			|| ((*string)[*i] == '$' && *sq == 0 && *dq == 0)))
+		expand(cmd, flag);
 }
 
 void	ft_expansion(t_line **line)
