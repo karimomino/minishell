@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/31 14:43:19 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/31 14:43:57 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int	yalla(t_line **line)
 	// print_line(*line);
 	if ((*line)->cmd->token)
 		ft_expansion(line);
-	// while ((*line)->cmd)
-	// {
-	// 	if (redirection((*line)->cmd) == 1)// || redirection_in((*line)->cmd) == 1)
-	// 		;
-	// 	else
-	// 		exec_ft((*line)->cmd);
-	// 	(*line)->cmd = (*line)->cmd->next;
-	// }
-	pipes((*line)->cmd);
+	while ((*line)->cmd)
+	{
+		if (redirection((*line)->cmd) == 1)// || redirection_in((*line)->cmd) == 1)
+			;
+		else
+			exec_ft((*line)->cmd);
+		(*line)->cmd = (*line)->cmd->next;
+	}
+	// pipes((*line)->cmd);
 	free_nodes(*line);
 	free(*line);
 	return (1);
