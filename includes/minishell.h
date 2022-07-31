@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/30 14:03:26 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/30 21:57:25 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,6 @@ int		exec_bin(t_cmd *in);
 int		exec_builtin(t_cmd *in);
 int		ft_pwd(void);
 void	ft_expansion(t_line **line);
+void	ft_export(t_cmd *cmd, int ow);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/30 15:40:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/30 21:59:24 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	exec_builtin(t_cmd *in)
 	if (in->type == 4)
 		ft_env();
 	if (in->type == 5)
+		ft_export(in, 1);
+	if (in->type == 6)
+		ft_export(in, 2);
 	if (in->type == 7)
 		exit (SUCCESS);
 	return (ret);
@@ -75,7 +78,7 @@ int	exec_bin(t_cmd *in)
 		return (errno);
 	else if (!pid)
 	{
-		ret = execve(path, ft_split(in->cmd, ' '), in->envp);
+		ret = execve(path, ft_split(in->cmd, ' '), environ);
 		printf("minishell: %s: command not found\n", in->token->token);
 		t_infoo.retVal = 127;
 		exit(t_infoo.retVal);

@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/30 15:59:52 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/30 16:35:31 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ static char	*expand_helper(void *cmd, int flag)
 	while ((*string) && (*string)[i] != '\0' && (*string)[i] != '$')
 		i++;
 	if ((*string)[i++] == '$')
-	{
 		while (!ft_strchr(" $\"\'\0", (*string)[i + tmp]))
 			tmp++;
-	}
 	i--;
 	var = (char *)malloc(sizeof(char) * tmp);
 	tmp = 0;
@@ -83,21 +81,6 @@ static char	*combined(char **tok, char *var)
 	return (com);
 }
 
-static void	expand(void *cmd, int flag)
-{
-	char	*var;
-	char	*env;
-
-	var = expand_helper(cmd, flag);
-	env = getenv(var);
-	if (var)
-		free(var);
-	if (env != NULL && flag)
-		(*(t_token **)cmd)->token = combined(& (*(t_token **)cmd)->token, env);
-	else if (env != NULL && !flag)
-		(*(t_redir **)cmd)->file = combined(&(*(t_redir **)cmd)->file, env);
-}
-
 static int	check_char(char c, int *dq, int *sq)
 {
 	int	ret;
@@ -120,32 +103,43 @@ static int	check_char(char c, int *dq, int *sq)
 	return (ret);
 }
 
-static void	check_expand_t(void *cmd, int *i, int *dq, int *sq, int flag)
+static void	expand(void *cmd, int *i, int flag)
 {
-	char	**string;
+	char		*var;
+	char		*env;
+	char		**string;
+	static int	dq;
+	static int	sq;
 
+	dq = 0;
+	sq = 0;
 	if (flag)
 		string = (char **)&((*(t_token **)cmd)->token);
 	else
 	string = (char **)&((*(t_redir **)cmd)->file);
-	if (!check_char((*string)[*i], dq, sq)
-		&& (((*string)[*i] == '$' && *dq == 1)
-			|| ((*string)[*i] == '$' && *sq == 0 && *dq == 0)))
-		expand(cmd, flag);
+	if (!check_char((*string)[*i], &dq, &sq)
+		&& (((*string)[*i] == '$' && dq == 1)
+			|| ((*string)[*i] == '$' && sq == 0 && dq == 0)))
+	{
+		var = expand_helper(cmd, flag);
+		env = getenv(var);
+		if (var)
+			free(var);
+		if (env != NULL && flag)
+			(*(t_token **)cmd)->token = combined(&(*(t_token **)cmd)->token, env);
+		else if (env != NULL && !flag)
+			(*(t_redir **)cmd)->file = combined(&(*(t_redir **)cmd)->file, env);
+	}
 }
 
 void	ft_expansion(t_line **line)
 {
-	int		sq;
-	int		dq;
 	int		i;
 	t_cmd	*head;
 	t_token	*head_t;
 	t_redir	*head_r;
 
 	head = (*line)->cmd;
-	sq = 0;
-	dq = 0;
 	while ((*line)->cmd)
 	{
 		head_t = (*line)->cmd->token;
@@ -154,14 +148,14 @@ void	ft_expansion(t_line **line)
 		{
 			i = -1;
 			while (((*line)->cmd->token) && ((*line)->cmd->token)->token[++i])
-				check_expand_t(&((*line)->cmd->token), &i, &dq, &sq, 1);
+				expand(&((*line)->cmd->token), &i, 1);
 			((*line)->cmd->token) = ((*line)->cmd->token)->next;
 		}
 		while ((*line)->cmd->redir)
 		{
 			i = -1;
 			while (((*line)->cmd->redir) && ((*line)->cmd->redir)->file[++i])
-				check_expand_t(&((*line)->cmd->redir), &i, &dq, &sq, 0);
+				expand(&((*line)->cmd->redir), &i, 0);
 			((*line)->cmd->redir) = ((*line)->cmd->redir)->next;
 		}
 		((*line)->cmd->token) = head_t;
