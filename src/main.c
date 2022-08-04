@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/31 14:43:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/02 20:06:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	reaser(t_line **line)
 		str = ft_strjoin(str, readline("> "));
 		ret = parser_v3_0(str, &*line);
 	}
-	// print_line(*line);
 	historyy(str);
 	free(str);
 	return (ret);
@@ -44,18 +43,8 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line)
 {
+	pipes((*line)->cmd, (*line)->ncmds);
 	// print_line(*line);
-	if ((*line)->cmd->token)
-		ft_expansion(line);
-	while ((*line)->cmd)
-	{
-		if (redirection((*line)->cmd) == 1)// || redirection_in((*line)->cmd) == 1)
-			;
-		else
-			exec_ft((*line)->cmd);
-		(*line)->cmd = (*line)->cmd->next;
-	}
-	// pipes((*line)->cmd);
 	free_nodes(*line);
 	free(*line);
 	return (1);

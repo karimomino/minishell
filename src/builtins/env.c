@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/27 13:02:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:54:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,33 @@ void	ft_env(void)
 	i = 0;
 	while (environ[i] != NULL)
 		printf("%s\n", environ[i++]);
+}
+
+void	ft_export(t_cmd *cmd, int ow)
+{
+	char	*name;
+	char	*val;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = cmd->token->next->token;
+	while (tmp[i] != '=')
+		i++;
+	name = ft_substr(tmp, 0, i);
+	val = ft_substr(tmp, ++i, ft_strlen(tmp));
+	if (ow == 1 && ft_strchr(name, ' '))
+	{
+		errno = 22;
+		perror("minishell: export: \'=\': ");
+		return ;
+	}
+	if (getenv(name) != NULL && ow == 1)
+		ft_setenv(name, val, 1);
+	else if (getenv(name) == NULL && ow == 1)
+		ft_setenv(name, val, 0);
+	else if (ow == 2)
+		ft_setenv(name, NULL, 2);
+	free(name);
+	free(val);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/31 14:41:00 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/31 19:29:46 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int		exec_bin(t_cmd *in);
 int		exec_builtin(t_cmd *in);
 int		ft_pwd(void);
 void	ft_expansion(t_line **line);
+void	ft_export(t_cmd *cmd, int ow);
 
 #endif

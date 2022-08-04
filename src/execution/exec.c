@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/31 14:45:52 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/01 16:09:26 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	exec_builtin(t_cmd *in)
 	if (in->type == 4)
 		ft_env();
 	if (in->type == 5)
+		ft_export(in, 1);
+	if (in->type == 6)
+		ft_export(in, 2);
 	if (in->type == 7)
 		exit (SUCCESS);
 	return (ret);
@@ -77,7 +80,7 @@ int	exec_bin(t_cmd *in)
 		return (errno);
 	else if (!pid)
 	{
-		ret = execve(path, ft_split(in->cmd, ' '), environ);
+		ret = execve(path, ft_split(in->exec, ' '), environ);
 		printf("minishell: %s: command not found\n", in->token->token);
 		t_infoo.retVal = 127;
 		exit(t_infoo.retVal);

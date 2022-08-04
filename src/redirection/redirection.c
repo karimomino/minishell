@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/28 22:36:18 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:08:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,18 +107,12 @@ int		check_lastredir(t_redir redir)
 
 int	redirect(t_cmd *cmd, int fd_in, int fd_out)
 {
-	int		tmp_in;
-	int		tmp_out;
-
-	tmp_in = dup(STDIN_FILENO);
-	tmp_out = dup(STDOUT_FILENO);
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
-	exec_ft(cmd);
 	close(fd_in);
 	close(fd_out);
-	dup2(tmp_in, STDIN_FILENO);
-	dup2(tmp_out, STDOUT_FILENO);
+	// exec_ft(cmd);
+	(void)cmd;
 	return (1);
 }
 

@@ -6,44 +6,44 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/29 23:05:32 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/02 20:07:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	pipes(t_cmd *cmd)
+int	child(t_cmd *cmd, int fd[2], int in)
+{	
+	if (cmd->next)
+		dup2(fd[1], STDOUT_FILENO);
+	dup2(in, STDIN_FILENO);
+	redirection(cmd);
+	close(fd[0]);
+	exec_ft(cmd);
+	exit(0);
+}
+
+int	pipes(t_cmd *cmd, int n)
 {
+	int		i;
 	int		pid;
 	int		fd[2];
-	(void)cmd;
-	// int		tmpin;
-	// int		tmpout;
+	int		in;
 
-	if (pipe(fd) == -1)
+	in = 0;
+	while (cmd)
 	{
-		ft_printf("minishell: pipe failed m3lsh\n");
-		return (-1);
-	}
-	pid = fork();
-	if (pid == -1)
-	{
-		ft_printf("minishell: man down, fork is not working\n");
-		return (-1);
-	}
-	else if (pid == 0)
-	{
-		dup2(fd[0], 0);
+		pipe(fd);
+		pid = fork();
+		if (pid == 0)
+			child(cmd, fd, in);
 		close(fd[1]);
-		char *grep_args[] = {"grep", "test", NULL};
-		execvp("grep", grep_args);
+		in = fd[0];
+		cmd = cmd->next;
 	}
-	else
-	{
-		dup2(fd[1], 1);
-		close(fd[0]);
-		char *grep_args[] = {"ls", "-la", NULL};
-		execvp("ls", grep_args);
-	}
+	i = 0;
+	while (i++ < n * 2)
+		wait(NULL);
+	// close(in);
 	return (1);
 }
