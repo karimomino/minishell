@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 18:55:18 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 18:58:59 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ int	yalla(t_line **line)
 int	minishell_loop(void)
 {
 	t_line		*line;
-	f builtins[7];
+	// f builtins[7];
 
-	builtins[1] = &ft_echo;
-	builtins[2] = &ft_cd;
-	builtins[3] = &ft_pwd;
-	builtins[4] = &ft_env;
-	builtins[5] = &ft_export;
-	builtins[6] = &ft_exit;
+	// builtins[1] = &ft_echo;
+	// builtins[2] = &ft_cd;
+	// builtins[3] = &ft_pwd;
+	// builtins[4] = &ft_env;
+	// builtins[5] = &ft_export;
+	// builtins[6] = &ft_exit;
 	line = (t_line *)malloc(1 * sizeof(t_line));
 	line->exit = 0;
 	while (line->exit == 0)

@@ -1,94 +1,28 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/vscode/src/Cursus/minishell'
 echo "Compiling OBJECT Files..."
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/env.o src/builtins/env.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/echo.o src/builtins/echo.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/pwd.o src/builtins/pwd.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/cd.o src/builtins/cd.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/exit.o src/builtins/exit.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/execution/exec.o src/execution/exec.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/main.o src/main.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/history/history.o src/history/history.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/redirection/redirection.o src/redirection/redirection.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/redirection/get_next_line.o src/redirection/get_next_line.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/redirection/get_next_line_utils.o src/redirection/get_next_line_utils.c
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/signals/signals.o src/signals/signals.c
+ 
 echo "Compiling LIBFT Files..."
+ 
 make -C libft -s
+ 
 make[1]: Entering directory '/home/vscode/src/Cursus/minishell/libft'
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_memset.o ft_memset.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_bzero.o ft_bzero.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_memcpy.o ft_memcpy.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_memmove.o ft_memmove.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_memchr.o ft_memchr.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_memcmp.o ft_memcmp.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strlen.o ft_strlen.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isalpha.o ft_isalpha.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isdigit.o ft_isdigit.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isalnum.o ft_isalnum.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isascii.o ft_isascii.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isprint.o ft_isprint.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_toupper.o ft_toupper.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_tolower.o ft_tolower.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strchr.o ft_strchr.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strrchr.o ft_strrchr.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strncmp.o ft_strncmp.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strlcpy.o ft_strlcpy.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strlcat.o ft_strlcat.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strnstr.o ft_strnstr.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_atoi.o ft_atoi.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_calloc.o ft_calloc.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strdup.o ft_strdup.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_substr.o ft_substr.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strjoin.o ft_strjoin.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strtrim.o ft_strtrim.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_split.o ft_split.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_itoa.o ft_itoa.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strmapi.o ft_strmapi.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_putchar_fd.o ft_putchar_fd.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_putstr_fd.o ft_putstr_fd.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_putendl_fd.o ft_putendl_fd.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_putnbr_fd.o ft_putnbr_fd.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_striteri.o ft_striteri.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_checkdup.o ft_checkdup.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_strcmp.o ft_strcmp.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_split_wc.o ft_split_wc.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isnum.o ft_isnum.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_isint.o ft_isint.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_printf/ft_printf.o ft_printf/ft_printf.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_printf/ft_puthex.o ft_printf/ft_puthex.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_printf/ft_putnums.o ft_printf/ft_putnums.c
-gcc -c -Wall -Wextra -Werror -I.   -c -o ft_printf/ft_putchars.o ft_printf/ft_putchars.c
 ar rcs libft.a ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_strlcpy.o ft_strlcat.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_striteri.o ft_checkdup.o ft_strcmp.o ft_split_wc.o ft_isnum.o ft_isint.o ft_printf/ft_printf.o ft_printf/ft_puthex.o ft_printf/ft_putnums.o ft_printf/ft_putchars.o
 make[1]: Leaving directory '/home/vscode/src/Cursus/minishell/libft'
+ 
 clear
 mv libft/libft.a libft.a
 echo "Compiling PARSER Files..."
 make -C src/parser -s
+ 
 make[1]: Entering directory '/home/vscode/src/Cursus/minishell/src/parser'
-gcc -Wall -Werror -Wextra -g3   -c -o parser.o parser.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/print_list.o ../utils/print_list.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/ft_strlenx2.o ../utils/ft_strlenx2.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/ft_splitq.o ../utils/ft_splitq.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/ft_split_sc.o ../utils/ft_split_sc.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/ft_split_rd.o ../utils/ft_split_rd.c
-gcc -Wall -Werror -Wextra -g3   -c -o cmd_node.o cmd_node.c
-gcc -Wall -Werror -Wextra -g3   -c -o last_cmd.o last_cmd.c
-gcc -Wall -Werror -Wextra -g3   -c -o cmp_cmd.o cmp_cmd.c
-gcc -Wall -Werror -Wextra -g3   -c -o get_quotes.o get_quotes.c
-gcc -Wall -Werror -Wextra -g3   -c -o free.o free.c
-gcc -Wall -Werror -Wextra -g3   -c -o redirections.o redirections.c
-gcc -Wall -Werror -Wextra -g3   -c -o expansion.o expansion.c
-gcc -Wall -Werror -Wextra -g3   -c -o commands.o commands.c
-gcc -Wall -Werror -Wextra -g3   -c -o split_line.o split_line.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/squeeze.o ../utils/squeeze.c
-gcc -Wall -Werror -Wextra -g3   -c -o ../utils/pipes.o ../utils/pipes.c
-ar -rcs parser ./parser.o ../utils/print_list.o ../utils/ft_strlenx2.o ../utils/ft_splitq.o ../utils/ft_split_sc.o ../utils/ft_split_rd.o ./cmd_node.o ./last_cmd.o ./cmp_cmd.o ./get_quotes.o ./free.o ./redirections.o ./expansion.o ./commands.o ./split_line.o ../utils/squeeze.o ../utils/pipes.o ../../libft/ft_memset.o ../../libft/ft_bzero.o ../../libft/ft_memcpy.o ../../libft/ft_memmove.o ../../libft/ft_memchr.o ../../libft/ft_memcmp.o ../../libft/ft_strlen.o ../../libft/ft_isalpha.o ../../libft/ft_isdigit.o ../../libft/ft_isalnum.o ../../libft/ft_isascii.o ../../libft/ft_isprint.o ../../libft/ft_toupper.o ../../libft/ft_tolower.o ../../libft/ft_strchr.o ../../libft/ft_strrchr.o ../../libft/ft_strncmp.o ../../libft/ft_strlcpy.o ../../libft/ft_strlcat.o ../../libft/ft_strnstr.o ../../libft/ft_atoi.o ../../libft/ft_calloc.o ../../libft/ft_strdup.o ../../libft/ft_substr.o ../../libft/ft_strjoin.o ../../libft/ft_strtrim.o ../../libft/ft_split.o ../../libft/ft_itoa.o ../../libft/ft_strmapi.o ../../libft/ft_putchar_fd.o ../../libft/ft_putstr_fd.o ../../libft/ft_putendl_fd.o ../../libft/ft_putnbr_fd.o ../../libft/ft_striteri.o ../../libft/ft_checkdup.o ../../libft/ft_strcmp.o ../../libft/ft_split_wc.o ../../libft/ft_isnum.o ../../libft/ft_isint.o ../../libft/ft_printf/ft_printf.o ../../libft/ft_printf/ft_puthex.o ../../libft/ft_printf/ft_putnums.o ../../libft/ft_printf/ft_putchars.o
+ar -rcs parser ./parser.o ../utils/print_list.o ../utils/ft_strlenx2.o ../utils/ft_splitq.o ../utils/ft_split_sc.o ../utils/ft_split_rd.o ./expansion.o ./cmd_node.o ./redir_node.o ./last_cmd.o ./cmp_cmd.o ./get_quotes.o ./free.o ./redirections.o ./commands.o ./split_line.o ../utils/squeeze.o ../utils/pipes.o ../../libft/ft_memset.o ../../libft/ft_bzero.o ../../libft/ft_memcpy.o ../../libft/ft_memmove.o ../../libft/ft_memchr.o ../../libft/ft_memcmp.o ../../libft/ft_strlen.o ../../libft/ft_isalpha.o ../../libft/ft_isdigit.o ../../libft/ft_isalnum.o ../../libft/ft_isascii.o ../../libft/ft_isprint.o ../../libft/ft_toupper.o ../../libft/ft_tolower.o ../../libft/ft_strchr.o ../../libft/ft_strrchr.o ../../libft/ft_strncmp.o ../../libft/ft_strlcpy.o ../../libft/ft_strlcat.o ../../libft/ft_strnstr.o ../../libft/ft_atoi.o ../../libft/ft_calloc.o ../../libft/ft_strdup.o ../../libft/ft_substr.o ../../libft/ft_strjoin.o ../../libft/ft_strtrim.o ../../libft/ft_split.o ../../libft/ft_itoa.o ../../libft/ft_strmapi.o ../../libft/ft_putchar_fd.o ../../libft/ft_putstr_fd.o ../../libft/ft_putendl_fd.o ../../libft/ft_putnbr_fd.o ../../libft/ft_striteri.o ../../libft/ft_checkdup.o ../../libft/ft_strcmp.o ../../libft/ft_split_wc.o ../../libft/ft_isnum.o ../../libft/ft_isint.o ../../libft/ft_printf/ft_printf.o ../../libft/ft_printf/ft_puthex.o ../../libft/ft_printf/ft_putnums.o ../../libft/ft_printf/ft_putchars.o
 make[1]: Leaving directory '/home/vscode/src/Cursus/minishell/src/parser'
+ 
 clear
 mv src/parser/parser parser
 clear
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include ./src/builtins/env.o ./src/builtins/echo.o ./src/builtins/pwd.o ./src/builtins/cd.o ./src/builtins/exit.o ./src/execution/exec.o ./src/main.o ./src/history/history.o ./src/redirection/redirection.o ./src/redirection/get_next_line.o ./src/redirection/get_next_line_utils.o ./src/signals/signals.o libft.a parser -I./includes -lreadline -L/opt/homebrew/Cellar/readline/8.1.1/lib -o minishell
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include ./src/builtins/env.o ./src/builtins/echo.o ./src/builtins/pwd.o ./src/builtins/cd.o ./src/builtins/exit.o ./src/execution/exec.o ./src/main.o ./src/history/history.o ./src/redirection/redirection.o ./src/redirection/get_next_line.o ./src/redirection/get_next_line_utils.o ./src/signals/signals.o ./src/pipe/pipe.o libft.a parser -I./includes -lreadline -L/opt/homebrew/Cellar/readline/8.1.1/lib -o minishell
 echo "Compilation Successful!"
 make: Leaving directory '/home/vscode/src/Cursus/minishell'
  

@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 18:48:29 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 19:00:36 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@
 // 	return (ret);
 // }
 
-int	exec_builtin(t_cmd *in, f *builtins)
+int	exec_builtin(t_cmd *in)
 {
 	int	ret;
 
 	ret = 0;
-	(void)builtins;
 	if (in->type == 1)
 		ret = ft_echo(in);
 	if (in->type == 2)
@@ -113,7 +112,7 @@ int	exec_bin(t_cmd *in)
 	return (ret);
 }
 
-int	exec_ft(t_cmd *in, f *builtins)
+int	exec_ft(t_cmd *in)
 {
 	int	ret;
 
@@ -121,7 +120,7 @@ int	exec_ft(t_cmd *in, f *builtins)
 	if (in->nargs)
 	{
 		if (in->type)
-			ret = exec_builtin(in, builtins);
+			ret = exec_builtin(in);
 		else
 			ret = exec_bin(in);
 	}

@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/08/05 18:51:05 by kamin            ###   ########.fr        #
+#    Updated: 2022/08/05 19:19:46 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		=		./parser.c \
 					../utils/ft_splitq.c \
 					../utils/ft_split_sc.c \
 					../utils/ft_split_rd.c \
+					./expansion.c \
 					./cmd_node.c \
 					./redir_node.c \
 					./last_cmd.c \
@@ -26,7 +27,6 @@ SRCS		=		./parser.c \
 					./get_quotes.c \
 					./free.c \
 					./redirections.c \
-					./expansion.c \
 					./commands.c \
 					./split_line.c \
 					../utils/squeeze.c \
