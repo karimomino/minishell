@@ -6,9 +6,10 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/07/30 15:48:02 by kamin            ###   ########.fr        #
+#    Updated: 2022/08/05 18:51:05 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME		=		parser
 
@@ -19,6 +20,7 @@ SRCS		=		./parser.c \
 					../utils/ft_split_sc.c \
 					../utils/ft_split_rd.c \
 					./cmd_node.c \
+					./redir_node.c \
 					./last_cmd.c \
 					./cmp_cmd.c \
 					./get_quotes.c \

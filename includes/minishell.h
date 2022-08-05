@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/01 21:04:31 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 18:45:47 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <fcntl.h>
+#include <signal.h>
 
 # define SUCCESS 0
 # define ERROR 0

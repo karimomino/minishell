@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/01 20:15:11 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 18:46:34 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_cmd
 	size_t			nargs;
 	size_t			nredir;
 	char			*cmd;
+	char			*exec;
 	char			**envp;
 	struct s_token	*token;
 	struct s_redir	*redir;

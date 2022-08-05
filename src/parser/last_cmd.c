@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_node_node.c                                    :+:      :+:    :+:   */
+/*   last_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 17:56:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/01 06:01:04 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	cmd_cmd(char *str, t_token **token, t_cmd **cmd, t_line **line)
 {
-	int			i;
 	t_token		*new;
 
 	new = (t_token *)malloc(sizeof(t_token));
@@ -23,13 +22,6 @@ int	cmd_cmd(char *str, t_token **token, t_cmd **cmd, t_line **line)
 	new->i = 0;
 	new->token = ft_strtrim(str, " ");
 	(*cmd)->nargs = 1;
-	i = 0;
-	while (new->token[i])
-	{
-		new->token[i] = ft_tolower(new->token[i]);
-		i++;
-	}
-	(*cmd)->type = is_builtin(new->token);
 	if ((*cmd)->type > 0)
 		(*line)->nexec++;
 	new->next = NULL;

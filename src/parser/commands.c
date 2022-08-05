@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 01:00:48 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/15 02:57:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/07/28 22:35:32 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	get_args(char *str, char **ret, int *i)
 	char	*new;
 
 	j = cmd_len(str, *i);
+	if (*i == j)
+		return (0);
 	new = ft_substr(str, *i, j - *i + 1);
 	if (!new)
 		return (-1);

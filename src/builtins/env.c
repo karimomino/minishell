@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 17:46:44 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 18:47:26 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,41 +75,4 @@ int	ft_env(t_cmd *in)
 	(void)in;
 	while (environ[i] != NULL)
 		printf("%s\n", environ[i++]);
-	return (1);
-}
-
-int	ft_export(t_cmd *cmd, int ow)
-{
-	char	*name;
-	char	*val;
-	char	*tmp;
-	int		i;
-
-	i = 0;
-	if (cmd->token->next)
-		tmp = cmd->token->next->token;
-	else
-	{
-		ft_env(cmd);
-		return (1);
-	}
-	while (tmp[i] != '=' && tmp[i] != '\0')
-		i++;
-	name = ft_substr(tmp, 0, i);
-	val = ft_substr(tmp, ++i, ft_strlen(tmp));
-	if (ow == 1 && ft_strchr(name, ' '))
-	{
-		errno = 22;
-		perror("minishell: export: \'=\': ");
-		return (1);
-	}
-	if (getenv(name) != NULL && ow == 1)
-		ft_setenv(name, val, 1);
-	else if (getenv(name) == NULL && ow == 1)
-		ft_setenv(name, val, 0);
-	else if (ow == 2)
-		ft_setenv(name, NULL, 2);
-	free(name);
-	free(val);
-	return (0);
 }

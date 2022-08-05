@@ -1,1 +1,20 @@
+<<<<<<< HEAD
 karim
+=======
+Makefile
+README.md
+a.out
+includes
+libft
+libft.a
+minishell
+outfile
+parser
+src
+test
+test.c
+test.txt
+test1
+test2
+test3
+>>>>>>> omar_byhbd

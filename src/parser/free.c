@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 16:11:39 by kamin            ###   ########.fr       */
+/*   Updated: 2022/07/20 22:37:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,42 @@ void	free_2d(char **str)
 	free (str);
 }
 
+void	free_tokens(t_token *token)
+{
+	t_token	*tokenn;
+
+	while (token)
+	{
+		tokenn = token;
+		token = token->next;
+		free(tokenn->token);
+		free (tokenn);
+	}
+}
+
+void	free_redirs(t_redir *redir)
+{
+	t_redir	*redirr;
+
+	while (redir)
+	{
+		redirr = redir;
+		redir = redir->next;
+		free (redirr->file);
+		free (redirr);
+	}
+}
+
 void	free_nodes(t_line *line)
 {
 	t_cmd	*cmd;
-	t_redir	*redir;
-	t_token	*token;
 
 	while (line->cmd)
 	{
 		if (line->cmd->token)
-		{
-			while (line->cmd->token)
-			{
-				token = line->cmd->token;
-				line->cmd->token = line->cmd->token->next;
-				free(token->token);
-				free (token);
-			}
-		}
+			free_tokens(line->cmd->token);
 		if (line->cmd->redir)
-		{
-			while (line->cmd->redir)
-			{
-				redir = line->cmd->redir;
-				line->cmd->redir = line->cmd->redir->next;
-				free (redir->file);
-				free (redir);
-			}
-		}
+			free_redirs(line->cmd->redir);
 		cmd = line->cmd;
 		line->cmd = line->cmd->next;
 		free (cmd->cmd);

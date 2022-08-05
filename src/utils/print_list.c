@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/11 16:16:10 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:11:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_cmd(t_line line)
 		ft_printf("-------%u-------\n", i);
 		ft_printf("cmd type: %u\n\n", line.cmd->type);
 		ft_printf("cmd: %s\n", line.cmd->cmd);
+		ft_printf("cmd exec: %s\n", line.cmd->exec);
 		ft_printf("nargs: %d\n", line.cmd->nargs);
 		ft_printf("nredir: %d\n", line.cmd->nredir);
 		ft_printf("\n");
