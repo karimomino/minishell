@@ -6,26 +6,51 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/30 21:59:24 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:34:05 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	exec_builtin(t_cmd *in)
+// int	exec_builtin(t_cmd *in, f *builtins)
+// {
+// 	int		ret;
+// 	pid_t	pid;
+
+// 	pid = fork();
+// 	ret = 0;
+// 	if (pid == -1)
+// 		return (errno);
+// 	else if (!pid)
+// 	{
+// 		if (in->type == 5)
+// 			builtins[5](in, 1);
+// 		else if (in->type == 6)
+// 			builtins[5](in, 2);
+// 		else
+// 			builtins[in->type](in);
+// 		t_infoo.retVal = 127;
+// 		exit(t_infoo.retVal);
+// 	}
+// 	else
+// 		wait(&t_infoo.retVal);
+// 	return (ret);
+// }
+
+int	exec_builtin(t_cmd *in, f *builtins)
 {
 	int	ret;
 
 	ret = 0;
+	(void)builtins;
 	if (in->type == 1)
 		ret = ft_echo(in);
 	if (in->type == 2)
-	{
-	}
+		ret = ft_cd(in);
 	if (in->type == 3)
-		ret = ft_pwd();
+		ret = ft_pwd(in);
 	if (in->type == 4)
-		ft_env();
+		ft_env(in);
 	if (in->type == 5)
 		ft_export(in, 1);
 	if (in->type == 6)
@@ -88,7 +113,7 @@ int	exec_bin(t_cmd *in)
 	return (ret);
 }
 
-int	exec_ft(t_cmd *in)
+int	exec_ft(t_cmd *in, f *builtins)
 {
 	int	ret;
 
@@ -96,7 +121,7 @@ int	exec_ft(t_cmd *in)
 	if (in->nargs)
 	{
 		if (in->type)
-			ret = exec_builtin(in);
+			ret = exec_builtin(in, builtins);
 		else
 			ret = exec_bin(in);
 	}

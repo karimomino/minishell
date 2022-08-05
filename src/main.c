@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/29 19:25:32 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:32:27 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	reaser(t_line **line)
 	return (ret);
 }
 
-int	yalla(t_line **line, char **in)
+int	yalla(t_line **line, char **in, f *builtins)
 {
 	// print_line(*line);
 	ft_expansion(line);
 	while ((*line)->cmd)
 	{
-		exec_ft((*line)->cmd);
+		exec_ft((*line)->cmd, builtins);
 		redirection(*(*line)->cmd, "test ", &*in);
 		(*line)->cmd = (*line)->cmd->next;
 	}
@@ -66,11 +66,20 @@ int	yalla(t_line **line, char **in)
 int	minishell_loop(char **in)
 {
 	t_line		*line;
+	f builtins[7];
 
-	while (1)
+	builtins[1] = &ft_echo;
+	builtins[2] = &ft_cd;
+	builtins[3] = &ft_pwd;
+	builtins[4] = &ft_env;
+	builtins[5] = &ft_export;
+	builtins[6] = &ft_exit;
+	line = (t_line *)malloc(1 * sizeof(t_line));
+	line->exit = 0;
+	while (line->exit == 0)
 	{
 		if (reaser(&line) == 1)
-			yalla(&line, &*in);
+			yalla(&line, &*in, builtins);
 		usleep(100);
 	}
 	return (1);

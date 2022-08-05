@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/07/30 21:57:25 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/01 21:04:31 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define ERROR 0
 # define MAX_PATH 4096
 # define BUFFER_SIZE 1
+# define HOMEFLAG 0
+# define OLDPWDFLAG 1
 
 extern char	**environ;
 
@@ -40,14 +42,19 @@ struct s_info
 	int	retVal;
 } t_infoo;
 
+typedef int	(*f)();
+
+
 void	ft_setenv(const char *name, const char *value, int overwrite);
-void	ft_env(void);
+int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);
-int		exec_ft(t_cmd *in);
+int		exec_ft(t_cmd *in, f *builtins);
 int		exec_bin(t_cmd *in);
-int		exec_builtin(t_cmd *in);
-int		ft_pwd(void);
+int		exec_builtin(t_cmd *in, f *builtins);
+int		ft_pwd(t_cmd *in);
+int		ft_export(t_cmd *cmd, int ow);
+int		ft_cd(t_cmd *cmd);
+int		ft_exit(t_cmd *cmd);
 void	ft_expansion(t_line **line);
-void	ft_export(t_cmd *cmd, int ow);
 
 #endif
