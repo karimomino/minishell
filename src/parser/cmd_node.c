@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 19:59:17 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:05:57 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,16 @@ int	cmd_exec(t_cmd **cmd, char **str)
 		if (!tmp)
 			return (-1);
 		(*cmd)->exec = ft_strjoin(tmp, str[1]);
+		if (!(*cmd)->exec)
+			return (-1);
 		free(tmp);
 	}
 	else if (str[0])
+	{
 		(*cmd)->exec = ft_strdup(str[0]);
-	if (!(*cmd)->exec)
-		return (-1);
+		if (!(*cmd)->exec)
+			return (-1);
+	}
 	return (1);
 }
 
@@ -90,7 +94,8 @@ int	cmds(char *str, t_line **line)
 		return (-1);
 	}
 	ft_expansion(&*line);
-	(*line)->cmd->type = is_builtin((*line)->cmd->token->token);
+	if ((*line)->cmd->token)
+		(*line)->cmd->type = is_builtin((*line)->cmd->token->token);
 	if (head)
 		(*line)->cmd = head;
 	free(parsed);

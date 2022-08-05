@@ -868,3 +868,34 @@
 867 echo hello | cat -e
 868 echo hello > test| cat -e
 869 cat test
+870 < da
+871 < da
+872 > d
+873 ls
+874 ls
+875 < saa
+876 echo hi < saa
+877 < aa
+878 < aa
+879 < aa
+880 < aa
+881 < aa
+882 < aa
+883 < aa
+884 < aa
+885 make
+886 < aa
+887 < aa
+888 > aa
+889 > aa
+890 > aa
+891 > aa
+892 > aa
+893 ls
+894 karim >
+895 karim <
+896 karim >
+897 karim <
+898 exit
+899 < a
+900 ls | cat -e

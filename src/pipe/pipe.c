@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 20:31:43 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:07:12 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int	pipes(t_cmd *cmd, int n)
 	i = 0;
 	while (i++ < n)
 		wait(NULL);
-	// close(in);
+	close(in);
 	return (1);
 }

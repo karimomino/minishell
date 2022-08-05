@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 19:56:34 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 20:53:56 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ extern char	**environ;
 struct s_info
 {
 	int	retVal;
+	int	exit;
 } t_infoo;
 
 

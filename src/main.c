@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 20:31:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:08:07 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,13 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line)
 {
-	if ((*line)->npipes > 0)
+	if ((*line)->npipes != 0)
 		pipes((*line)->cmd, (*line)->ncmds);
 	else
 	{
 		if (redirection((*line)->cmd) != 1)
 			exec_ft((*line)->cmd);
 	}
-	// exec_ft((*line)->cmd);
-	// print_line(*line);
 	free_nodes(*line);
 	free(*line);
 	return (1);
@@ -60,17 +58,8 @@ int	yalla(t_line **line)
 int	minishell_loop(void)
 {
 	t_line		*line;
-	// f builtins[7];
 
-	// builtins[1] = &ft_echo;
-	// builtins[2] = &ft_cd;
-	// builtins[3] = &ft_pwd;
-	// builtins[4] = &ft_env;
-	// builtins[5] = &ft_export;
-	// builtins[6] = &ft_exit;
-	line = (t_line *)malloc(1 * sizeof(t_line));
-	line->exit = 0;
-	while (line->exit == 0)
+	while (t_infoo.exit == 0)
 	{
 		if (reaser(&line) == 1)
 			yalla(&line);
