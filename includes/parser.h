@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 19:13:45 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 19:56:59 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "structure.h"
+
+void	ft_expansion(t_line **line);
 
 void	print_line(t_line *line);
 size_t	ft_strlenx2(char **str);

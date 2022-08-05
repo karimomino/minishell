@@ -5,9 +5,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Fri Aug  5 19:22:14 2022
+# Make data base, printed on Fri Aug  5 19:40:44 2022
 
 # Variables
 
@@ -81,6 +80,7 @@ ZSH = /root/.oh-my-zsh
 ?D = $(patsubst %/,%,$(dir $?))
 # makefile (from 'Makefile', line 15)
 INCLUDES = ./includes
+ 
 # automatic
 *F = $(notdir $*)
 # automatic
@@ -255,7 +255,7 @@ parser:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-05 19:02:42.447204848
+#  Last modified 2022-08-05 19:36:19.902504635
 #  File has been updated.
 #  Successfully updated.
 
@@ -284,7 +284,6 @@ clean:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 74):
 		@make clean -C src/parser -s
- 
 		@rm -f $(OBJS)
 
 # Not a target:
@@ -360,6 +359,7 @@ src/history/history.o:
 # automatic
 # * := 
 # automatic
+ 
 # < := 
 # automatic
 # + := 
@@ -420,6 +420,6 @@ src/builtins/echo.o:
 # strcache performance: lookups = 83 / hit rate = 40%
 # hash-table stats:
 # Load=49/8192=1%, Rehash=0, Collisions=0/83=0%
-# Finished Make data base on Fri Aug  5 19:22:14 2022
+# Finished Make data base on Fri Aug  5 19:40:44 2022
 
  

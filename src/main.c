@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 18:58:59 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 20:31:02 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,14 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line)
 {
-	pipes((*line)->cmd, (*line)->ncmds);
+	if ((*line)->npipes > 0)
+		pipes((*line)->cmd, (*line)->ncmds);
+	else
+	{
+		if (redirection((*line)->cmd) != 1)
+			exec_ft((*line)->cmd);
+	}
+	// exec_ft((*line)->cmd);
 	// print_line(*line);
 	free_nodes(*line);
 	free(*line);

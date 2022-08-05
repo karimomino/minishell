@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/02 20:08:39 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/05 20:30:21 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,19 @@ int		check_lastredir(t_redir redir)
 
 int	redirect(t_cmd *cmd, int fd_in, int fd_out)
 {
+	int	in;
+	int	out;
+
+	in = dup(STDIN_FILENO);
+	out = dup(STDOUT_FILENO);
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
 	close(fd_in);
 	close(fd_out);
-	// exec_ft(cmd);
-	(void)cmd;
+	exec_ft(cmd);
+	dup2(in, STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
+	// (void)cmd;
 	return (1);
 }
 

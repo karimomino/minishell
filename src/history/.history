@@ -820,3 +820,51 @@
 819 ./minishell 
 820 ./minishell 
 821 ls
+822 export x=x
+823 env
+824 echo $x
+825 export x=a
+826 echo $x
+827 pwd
+828 cd src
+829 ls
+830 pwd
+831 echo karim
+832 exit
+833 exit
+834 exit
+835 exit
+836 exit
+837 echo hi
+838 cd ..
+839 cd jjj jjj
+840 pwd
+841 cd src/
+842 pwd
+843 cd 
+844 echo hi
+845 cd 
+846 cd
+847 pwd
+848 cd 
+849 pwd
+850 echo hello > test
+851 echo hello > test
+852 echo hello | cat -e
+853 echo hello > test
+854 echo hello > test
+855 echo hello > test
+856 cat test
+857 cat test
+858 ls
+859 echo hi
+860 cat test
+861 make 
+862 echo hello > test
+863 cat test
+864 echo hello > test world
+865 cat test
+866 echo hello | cat -e
+867 echo hello | cat -e
+868 echo hello > test| cat -e
+869 cat test

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/01 16:35:51 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/05 19:59:17 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../includes/parser.h"
 
 int	cmd_node(char *str, t_cmd **cmd)
 {

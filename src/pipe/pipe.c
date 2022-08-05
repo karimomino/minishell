@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 19:03:03 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 20:31:43 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	child(t_cmd *cmd, int fd[2], int in)
 	if (cmd->next)
 		dup2(fd[1], STDOUT_FILENO);
 	dup2(in, STDIN_FILENO);
-	redirection(cmd);
 	close(fd[0]);
+	if (redirection(cmd) != 1)
 	exec_ft(cmd);
 	exit(0);
 }
@@ -42,7 +42,7 @@ int	pipes(t_cmd *cmd, int n)
 		cmd = cmd->next;
 	}
 	i = 0;
-	while (i++ < n * 2)
+	while (i++ < n)
 		wait(NULL);
 	// close(in);
 	return (1);
