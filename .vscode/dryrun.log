@@ -1,13 +1,11 @@
 make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/vscode/src/Cursus/minishell'
 echo "Compiling OBJECT Files..."
- 
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/env.o src/builtins/env.c
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/echo.o src/builtins/echo.c
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/pwd.o src/builtins/pwd.c
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/cd.o src/builtins/cd.c
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/builtins/exit.o src/builtins/exit.c
- 
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/execution/exec.o src/execution/exec.c
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/main.o src/main.c
 gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include   -c -o src/history/history.o src/history/history.c

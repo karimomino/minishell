@@ -57,3 +57,7 @@ dkms.conf
 src/history/.history
 parser
 src/history/.history
+.vscode/configurationCache.log
+.vscode/dryrun.log
+.vscode/targets.log
+.DS_Store
