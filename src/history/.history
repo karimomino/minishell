@@ -899,3 +899,20 @@
 898 exit
 899 < a
 900 ls | cat -e
+901 as<
+902 asda <
+903 dasd<
+904 das<
+905 ddsa<
+906 <ds
+907 sa<
+908 <test ls | wc -l > outfile
+909 < test ls | wc -l > outfile
+910 < test ls | wc -l > outfile
+911 <test ls | wc -l > outfile
+912 <test ls | wc -l > outfile
+913 <test ls
+914 ls <test
+915 <test ls
+916 <test ls | wc -l > outfile
+917 cat outfile 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 01:00:48 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/28 22:35:32 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/05 21:17:00 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	cmd_len(char *str, size_t i)
 		i++;
 	while (str[i])
 	{
-		if (str[i] == '>' || str[i + 1] == '<')
+		if (str[i] == '>' || str[i] == '<')
 			return (i - 1);
 		else if (str[i] == '\"' || str[i] == '\'')
 			i = skip_quotes(str, i);

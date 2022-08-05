@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 21:07:12 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:21:42 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	child(t_cmd *cmd, int fd[2], int in)
 	dup2(in, STDIN_FILENO);
 	close(fd[0]);
 	if (redirection(cmd) != 1)
-	exec_ft(cmd);
+		exec_ft(cmd);
 	exit(0);
 }
 

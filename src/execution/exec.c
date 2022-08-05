@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 19:49:44 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:24:12 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	exec_bin(t_cmd *in)
 		return (errno);
 	else if (!pid)
 	{
-		ret = execve(path, ft_split(in->cmd, ' '), environ);
+		ret = execve(path, ft_split(in->exec, ' '), environ);
 		printf("minishell: %s: command not found\n", in->token->token);
 		t_infoo.retVal = 127;
 		exit(t_infoo.retVal);

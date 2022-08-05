@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 20:44:12 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 21:11:08 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,8 @@ int	redirection(t_cmd *cmd)
 	i = 0;
 	fd_in = -1;
 	fd_out = -1;
-	printf("####\n");
 	if (!cmd->redir || cmd->nredir == 0)
 		return (0);
-	printf("####\n");
 	while (i < cmd->nredir && cmd->redir)
 	{
 		if (check_lastredir(*cmd->redir))
