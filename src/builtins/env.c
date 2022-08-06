@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/06 00:29:34 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/06 00:58:08 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 		free(tmp);
 	}
 	i = export_executor((char *)name, val, overwrite, ac);
-	environ[i] = NULL;
+	// environ[i] = NULL;
 	if (overwrite != 2)
 		free(val);
 }

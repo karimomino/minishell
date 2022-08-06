@@ -983,3 +983,34 @@
 982 export =
 983 export karimo=amino
 984 env
+985 export z
+986 env
+987 exit
+988 export x
+989 env
+990 export x
+991 env
+992 export x
+993 env
+994 export z=
+995 export z=
+996 export z= zzz=z z=zz z asd as
+997 export z= zzz=z z=zz z asd as
+998 export z= zzz=z z=zz z asd as
+999 export a=
+1000 export =
+1001 export =a
+1002 export 1=a
+1003 ls
+1004 export z=z zzz= 
+1005 export z=z zzz= 
+1006 export z=z zzz= 
+1007 export z=z zzz= 
+1008 export z=z zzz= 
+1009 export z=z zzz= 
+1010 export z=z zzz= 
+1011 unset
+1012 unset
+1013 export z=z zzz= z
+1014 export z=z zzz= z
+1015 unset
