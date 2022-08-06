@@ -6,36 +6,11 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 21:24:12 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/06 00:39:02 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// int	exec_builtin(t_cmd *in, f *builtins)
-// {
-// 	int		ret;
-// 	pid_t	pid;
-
-// 	pid = fork();
-// 	ret = 0;
-// 	if (pid == -1)
-// 		return (errno);
-// 	else if (!pid)
-// 	{
-// 		if (in->type == 5)
-// 			builtins[5](in, 1);
-// 		else if (in->type == 6)
-// 			builtins[5](in, 2);
-// 		else
-// 			builtins[in->type](in);
-// 		t_infoo.retVal = 127;
-// 		exit(t_infoo.retVal);
-// 	}
-// 	else
-// 		wait(&t_infoo.retVal);
-// 	return (ret);
-// }
 
 int	exec_builtin(t_cmd *in)
 {
@@ -59,36 +34,48 @@ int	exec_builtin(t_cmd *in)
 	return (ret);
 }
 
+static void	is_file_helper(int *is, char ***p, char **path, char **f_path)
+{
+	int	i;
+
+	i = -1;
+	while (*is == -1 && (*p)[++i])
+	{
+		*f_path = ft_strjoin((*p)[i], *path);
+		*is = access(*f_path, F_OK);
+		if (*is == -1)
+		{
+			free(*f_path);
+			*f_path = NULL;
+		}
+	}
+}
+
 static char	*is_file_found(char *token)
 {
 	char	**paths;
 	char	*path;
 	char	*f_path;
-	int		i;
 	int		is_file;
+	int		i;
 
-	paths = ft_split(getenv("PATH"), ':');
 	i = -1;
-	is_file = -1;
+	paths = ft_split(getenv("PATH"), ':');
 	path = ft_strjoin("/", token);
-	while (is_file == -1 && paths[++i])
-	{
-		f_path = ft_strjoin(paths[i], path);
-		is_file = access(f_path, F_OK);
-		if (is_file == -1)
-		{
-			free(f_path);
-			f_path = NULL;
-		}
-	}
+	is_file = -1;
+	is_file_helper(&is_file, &paths, &path, &f_path);
 	free(path);
+	while (paths[++i])
+		free(paths[i]);
+	free(paths);
 	if (is_file != 0 && f_path != NULL)
 		free(f_path);
 	if (is_file == 0)
-		return (ft_strjoin(paths[i], ft_strjoin("/", token)));
+		return (f_path);
 	else
 		return (NULL);
 }
+
 int	exec_bin(t_cmd *in)
 {
 	int		ret;
@@ -109,6 +96,8 @@ int	exec_bin(t_cmd *in)
 	}
 	else
 		wait(&t_infoo.retVal);
+	if (path)
+		free(path);
 	return (ret);
 }
 

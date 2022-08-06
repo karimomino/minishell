@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 21:11:08 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 23:34:12 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		heredoc(t_redir redir, int f)
 
 	fd = -1;
 	if (f == 1)
-		// fd = dup(STDIN_FILENO);
 		fd = open("./src/redirection/.heredoc.txt", O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	while (1)
 	{
@@ -66,7 +65,14 @@ int		heredoc(t_redir redir, int f)
 			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
 		{
 			free(tmp1);
-			return (fd);
+			close(fd);
+			if (f == 1)
+			{
+				fd = open("./src/redirection/.heredoc.txt", O_RDONLY);
+				return (fd);
+			}
+			else
+				return (-1);
 		}
 		ft_putstr_fd(tmp1, fd);
 		ft_putchar_fd('\n', fd);
@@ -114,9 +120,9 @@ int	redirect(t_cmd *cmd, int fd_in, int fd_out)
 	out = dup(STDOUT_FILENO);
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
+	exec_ft(cmd);
 	close(fd_in);
 	close(fd_out);
-	exec_ft(cmd);
 	dup2(in, STDIN_FILENO);
 	dup2(out, STDOUT_FILENO);
 	// (void)cmd;
@@ -150,48 +156,6 @@ int	redirection(t_cmd *cmd)
 	}
 	// ft_printf("fd in: %d | fd out: %d\n", fd_in, fd_out);
 	redirect(cmd, fd_in, fd_out);
-	unlink("./src/redirection/.heredoc.txt");
+	// unlink("./src/redirection/.heredoc.txt");
 	return (1);
 }
-// int	redirection_in(t_cmd *cmd)
-// {
-// 	int		f;
-// 	size_t	i;
-
-// 	f = 0;
-// 	i = 0;
-// 	if (!cmd->redir || cmd->nredir == 0)
-// 		return (0);
-// 	while (i < cmd->nredir && cmd->redir)
-// 	{
-// 		if (check_lastredir(*cmd->redir))
-// 			f = 1;
-// 		if (cmd->redir->fd == 1)
-// 			redir_out(cmd, *cmd->redir, f);
-// 		f = 0;
-// 		i++;
-// 	}
-// 	reutn (1);
-// }
-// int	redirection_out(t_cmd *cmd)
-// {
-// 	int		f;
-// 	int		fd;
-// 	size_t	i;
-
-// 	f = 0;
-// 	i = 0;
-// 	if (!cmd->redir || cmd->nredir == 0)
-// 		return (0);
-// 	while (i < cmd->nredir && cmd->redir)
-// 	{
-// 		if (check_lastredir(*cmd->redir))
-// 			f = 1;
-// 		if (cmd->redir->fd == 1)
-// 			redir_out(*cmd->redir, f);
-// 		f = 0;
-// 		i++;
-// 	}
-// 	return (1);
-// }
-// }

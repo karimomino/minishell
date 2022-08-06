@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 18:50:42 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 22:10:24 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,6 @@ static void	expand(void *cmd, int *i, int flag)
 	static int	dq;
 	static int	sq;
 
-	dq = 0;
-	sq = 0;
 	if (flag)
 		string = (char **)&((*(t_token **)cmd)->token);
 	else

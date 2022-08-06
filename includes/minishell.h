@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 20:53:56 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/06 00:31:12 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ struct s_info
 } t_infoo;
 
 
+int		export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);
@@ -58,5 +59,7 @@ int		ft_export(t_cmd *cmd, int ow);
 int		ft_cd(t_cmd *cmd);
 int		ft_exit(t_cmd *cmd);
 void	ft_expansion(t_line **line);
-
+int		count_env(char **env);
+int		ft_set(int i, char *val);
+int		ft_unset(int i);
 #endif

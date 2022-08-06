@@ -916,3 +916,70 @@
 915 <test ls
 916 <test ls | wc -l > outfile
 917 cat outfile 
+918 echo | | ls
+919 echo | | ls
+920 echo | | ls
+921 echo | | ls
+922 echo | | ls
+923 ./minishell
+924 bash
+925 ./minishell
+926 echo | | ls
+927 env
+928 ./minishell
+929 ./minishell
+930 ./minishell
+931 ./minishell
+932 ./minishell
+933 pwd
+934 man getcwd
+935 ./minishell
+936 ./minishell
+937 ./minishell
+938 ls
+939 ls
+940 ls |                   | ls
+941 ls | 
+942 echo '$PATH'
+943 echo $PATH
+944 echo "$PATH"
+945 echo "'$PATH'"
+946 karim
+947 karim
+948 karim
+949 karim
+950 karim
+951 karim
+952 karim
+953 karim
+954 echo kari
+955  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-dkbuipxj.r5y 
+956 xQê≤ˇˇ
+957 ¿
+958 à1Ì±ˇˇ
+959 ¿
+960 
+961 
+962 
+963 
+964 karim
+965 echo karim
+966 echo aminooo
+967 ls
+968 echo karim
+969 export karim=
+970 env
+971 export =karim
+972 export karim
+973 env
+974 export 123ka
+975 export =as
+976 export
+977 export karim
+978 en
+979 env
+980 export 12k
+981 export =k
+982 export =
+983 export karimo=amino
+984 env

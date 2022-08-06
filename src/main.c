@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 21:24:32 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/05 23:26:25 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ void	init_minishell(void)
 
 int	reaser(t_line **line)
 {
-	int			ret;
-	char		*str;
+	int		ret;
+	char	*str;
+	char	*tmp;
 
+	tmp = NULL;
 	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
 	if (!str)
 		exit (EXIT_FAILURE);
@@ -33,11 +35,29 @@ int	reaser(t_line **line)
 	ret = parser_v3_0(str, &*line);
 	while (ret == 0)
 	{
-		str = ft_strjoin(str, readline("> "));
+		tmp  = strdup(str);
+		str = ft_strjoin(tmp, readline("> "));
+		free(tmp);
 		ret = parser_v3_0(str, &*line);
+		tmp = strdup(str);
+		free(str);
+		str = NULL;
+		if (ret == 0)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
 	}
-	historyy(str);
-	free(str);
+	if (tmp != NULL)
+	{
+		historyy(tmp);
+		free(tmp);
+	}
+	else
+	{
+		historyy(str);
+		free(str);
+	}
 	return (ret);
 }
 
