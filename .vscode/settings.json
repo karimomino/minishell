@@ -20,7 +20,9 @@
 		"stdlib.h": "c",
 		"fcntl.h": "c",
 		"ratio": "c",
-		"locale": "c"
+		"locale": "c",
+		"stdio.h": "c",
+		"memcheck.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }

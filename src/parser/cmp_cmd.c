@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 18:20:25 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/01 06:05:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/06 17:46:24 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	is_builtin(char *cmd)
 		if (ft_strncmp(str, bins[i], ft_strlen(str)) == 0
 			&& ft_strlen(str) == ft_strlen(bins[i]))
 		{
+			free(str);
 			free_2d(bins);
 			return (i + 1);
 		}

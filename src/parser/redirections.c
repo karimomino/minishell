@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 23:34:05 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/07 11:07:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	redir_len(char *str, size_t j)
 		j++;
 	while (str[j] == ' ' && str[j])
 	{
-		if (str[j] == '\"' || str[j] == '\'')
+		if (str[j] == '"' || str[j] == '\'')
 			return (skip_quotes(str, j));
 		j++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 21:45:34 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/06 16:31:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ size_t	get_cmd_num(void)
 	if (!tmp1)
 		return (1);
 	tmp2 = ft_split(tmp1, '\n');
+	free(tmp1);
 	i = ft_strlenx2(tmp2);
 	free_2d(tmp2);
 	return (i + 1);

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 19:56:59 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/12 18:07:09 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-// # include <stdlib.h>
-// # include <stddef.h>
+# include <stdlib.h>
+# include <stddef.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "structure.h"
@@ -48,8 +48,7 @@ int		check_pipes(char **cmd, char *str, t_line **line);
 int		parser_v3_0(char *str, t_line **line);
 int		historyy(char *str);
 int		print_history(t_cmd cmd);
-int		redirection(t_cmd *cmd);
-int		redirection(t_cmd *cmd);
+int		redirection(t_line *cmd);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);
 char	*gnl_strjoin(char *s1, char *s2);
@@ -57,5 +56,5 @@ char	*get_next_line(int fd);
 void	clear_line(int sig);
 void	signals(void);
 int		init_history(void);
-int		pipes(t_cmd *cmd, int n);
+int		pipes(t_line *line, int n);
 #endif

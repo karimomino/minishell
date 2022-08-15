@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/08/05 23:41:58 by kamin            ###   ########.fr        #
+#    Updated: 2022/08/15 11:01:02 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,14 +33,14 @@ SRC		=	builtins/env.c \
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
-
-prefix		=	/opt/homebrew/Cellar/readline/8.1.1
+# prefix		=	/opt/homebrew/Cellar/readline/8.1.2
 exec_prefix	=	${prefix}
 libdir		=	${exec_prefix}/lib
 includedir	=	${prefix}/include
-# LDFLAGS 	=	-lreadline -L /usr/local/Cellar/readline/8.1/lib
+LDFLAGS 	=	-lreadline -L /usr/local/Cellar/readline/8.1/lib
 CFLAGS		=	-Wall -Wextra -Werror -g3 -I${includedir}
 LDFLAGS 	=	-lreadline -L${libdir}
+
 
 CC		=	gcc -fcommon
 

@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/06 00:39:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/15 18:13:55 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	exec_builtin(t_cmd *in)
+int	exec_builtin(t_line *line)
 {
 	int	ret;
 
 	ret = 0;
-	if (in->type == 1)
-		ret = ft_echo(in);
-	if (in->type == 2)
-		ret = ft_cd(in);
-	if (in->type == 3)
-		ret = ft_pwd(in);
-	if (in->type == 4)
-		ft_env(in);
-	if (in->type == 5)
-		ft_export(in, 1);
-	if (in->type == 6)
-		ft_export(in, 2);
-	if (in->type == 7)
-		exit (SUCCESS);
+	if (line->cmd->type == 1)
+		ret = ft_echo(line->cmd);
+	else if (line->cmd->type == 2)
+		ret = ft_cd(line->cmd);
+	else if (line->cmd->type == 3)
+		ret = ft_pwd(line->cmd);
+	else if (line->cmd->type == 4)
+		ft_env(line->cmd);
+	else if (line->cmd->type == 5)
+		ft_export(line->cmd, 1);
+	else if (line->cmd->type == 6)
+		ft_export(line->cmd, 2);
+	else if (line->cmd->type == 7)
+		ft_exit(line);
 	return (ret);
 }
 
@@ -76,21 +76,26 @@ static char	*is_file_found(char *token)
 		return (NULL);
 }
 
-int	exec_bin(t_cmd *in)
+int	exec_bin(t_line *line)
 {
 	int		ret;
 	pid_t	pid;
 	char	*path;
+	char	**tmp;
 
-	path = is_file_found(in->token->token);
-	pid = fork();
+	path = is_file_found(line->cmd->token->token);
 	ret = 0;
+	pid = fork();
 	if (pid == -1)
 		return (errno);
 	else if (!pid)
 	{
-		ret = execve(path, ft_split(in->exec, ' '), environ);
-		printf("minishell: %s: command not found\n", in->token->token);
+		tmp = ft_split(line->cmd->exec, ' ');
+		ret = execve(path, tmp, environ);
+		printf("minishell: %s: command not found\n", line->cmd->token->token);
+		free_nodes(line);
+		free(line);
+		free_2d(tmp);
 		t_infoo.retVal = 127;
 		exit(t_infoo.retVal);
 	}
@@ -101,17 +106,23 @@ int	exec_bin(t_cmd *in)
 	return (ret);
 }
 
-int	exec_ft(t_cmd *in)
+int	exec_ft(t_line *line)
 {
-	int	ret;
+	int		ret;
+	t_token	*head;
+	t_cmd	*cmdd;
 
 	ret = 0;
-	if (in->nargs)
+	cmdd = line->cmd;
+	head = line->cmd->token;
+	if (line->cmd->nargs)
 	{
-		if (in->type)
-			ret = exec_builtin(in);
+		if (line->cmd->type)
+			ret = exec_builtin(line);
 		else
-			ret = exec_bin(in);
+			ret = exec_bin(line);
 	}
+	line->cmd = cmdd;
+	line->cmd->token = head;
 	return (ret);
 }

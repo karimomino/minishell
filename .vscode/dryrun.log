@@ -1,27 +1,27 @@
 make --dry-run --keep-going --print-directory
-make: Entering directory '/home/vscode/src/Cursus/minishell'
+make: Entering directory '/home/vscode/src/minishell'
 echo "Compiling OBJECT Files..."
  
 echo "Compiling LIBFT Files..."
 make -C libft -s
  
-make[1]: Entering directory '/home/vscode/src/Cursus/minishell/libft'
+make[1]: Entering directory '/home/vscode/src/minishell/libft'
 ar rcs libft.a ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_strlcpy.o ft_strlcat.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_striteri.o ft_checkdup.o ft_strcmp.o ft_split_wc.o ft_isnum.o ft_isint.o ft_printf/ft_printf.o ft_printf/ft_puthex.o ft_printf/ft_putnums.o ft_printf/ft_putchars.o
-make[1]: Leaving directory '/home/vscode/src/Cursus/minishell/libft'
+make[1]: Leaving directory '/home/vscode/src/minishell/libft'
  
 clear
 mv libft/libft.a libft.a
 echo "Compiling PARSER Files..."
 make -C src/parser -s
  
-make[1]: Entering directory '/home/vscode/src/Cursus/minishell/src/parser'
+make[1]: Entering directory '/home/vscode/src/minishell/src/parser'
 ar -rcs parser ./parser.o ../utils/print_list.o ../utils/ft_strlenx2.o ../utils/ft_splitq.o ../utils/ft_split_sc.o ../utils/ft_split_rd.o ./cmd_node.o ./expansion.o ./redir_node.o ./last_cmd.o ./cmp_cmd.o ./get_quotes.o ./free.o ./redirections.o ./commands.o ./split_line.o ../utils/squeeze.o ../utils/pipes.o ../../libft/ft_memset.o ../../libft/ft_bzero.o ../../libft/ft_memcpy.o ../../libft/ft_memmove.o ../../libft/ft_memchr.o ../../libft/ft_memcmp.o ../../libft/ft_strlen.o ../../libft/ft_isalpha.o ../../libft/ft_isdigit.o ../../libft/ft_isalnum.o ../../libft/ft_isascii.o ../../libft/ft_isprint.o ../../libft/ft_toupper.o ../../libft/ft_tolower.o ../../libft/ft_strchr.o ../../libft/ft_strrchr.o ../../libft/ft_strncmp.o ../../libft/ft_strlcpy.o ../../libft/ft_strlcat.o ../../libft/ft_strnstr.o ../../libft/ft_atoi.o ../../libft/ft_calloc.o ../../libft/ft_strdup.o ../../libft/ft_substr.o ../../libft/ft_strjoin.o ../../libft/ft_strtrim.o ../../libft/ft_split.o ../../libft/ft_itoa.o ../../libft/ft_strmapi.o ../../libft/ft_putchar_fd.o ../../libft/ft_putstr_fd.o ../../libft/ft_putendl_fd.o ../../libft/ft_putnbr_fd.o ../../libft/ft_striteri.o ../../libft/ft_checkdup.o ../../libft/ft_strcmp.o ../../libft/ft_split_wc.o ../../libft/ft_isnum.o ../../libft/ft_isint.o ../../libft/ft_printf/ft_printf.o ../../libft/ft_printf/ft_puthex.o ../../libft/ft_printf/ft_putnums.o ../../libft/ft_printf/ft_putchars.o
-make[1]: Leaving directory '/home/vscode/src/Cursus/minishell/src/parser'
+make[1]: Leaving directory '/home/vscode/src/minishell/src/parser'
  
 clear
 mv src/parser/parser parser
 clear
-gcc -fcommon -Wall -Wextra -Werror -g3 -I/opt/homebrew/Cellar/readline/8.1.1/include ./src/builtins/env.o ./src/builtins/echo.o ./src/builtins/pwd.o ./src/builtins/cd.o ./src/builtins/exit.o ./src/builtins/utils.o ./src/execution/exec.o ./src/main.o ./src/history/history.o ./src/redirection/redirection.o ./src/redirection/get_next_line.o ./src/redirection/get_next_line_utils.o ./src/signals/signals.o ./src/pipe/pipe.o libft.a parser -I./includes -lreadline -L/opt/homebrew/Cellar/readline/8.1.1/lib -o minishell
+gcc -fcommon -Wall -Wextra -Werror -g3 -I/include ./src/builtins/env.o ./src/builtins/echo.o ./src/builtins/pwd.o ./src/builtins/cd.o ./src/builtins/exit.o ./src/builtins/utils.o ./src/execution/exec.o ./src/main.o ./src/history/history.o ./src/redirection/redirection.o ./src/redirection/get_next_line.o ./src/redirection/get_next_line_utils.o ./src/signals/signals.o ./src/pipe/pipe.o libft.a parser -I./includes -lreadline -L/lib -o minishell
 echo "Compilation Successful!"
-make: Leaving directory '/home/vscode/src/Cursus/minishell'
+make: Leaving directory '/home/vscode/src/minishell'
  

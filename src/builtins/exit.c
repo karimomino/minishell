@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:33:43 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/01 21:07:59 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/12 19:51:36 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_exit(t_cmd *in)
+int	ft_exit(t_line *line)
 {
-	(void) in;
-	return (1);
+	free_nodes(line);
+	free(line);
+	exit(SUCCESS);
 }

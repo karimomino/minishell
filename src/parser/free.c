@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 20:59:43 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/12 20:00:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,18 @@ void	free_redirs(t_redir *redir)
 
 void	free_nodes(t_line *line)
 {
-	t_cmd	*cmd;
+	t_cmd	*cmdd;
 
 	while (line->cmd)
 	{
+		cmdd = line->cmd;
 		if (line->cmd->token)
 			free_tokens(line->cmd->token);
 		if (line->cmd->redir)
 			free_redirs(line->cmd->redir);
-		cmd = line->cmd;
 		line->cmd = line->cmd->next;
-		free (cmd->cmd);
-		free (cmd);
+		free(cmdd->exec);
+		free (cmdd->cmd);
+		free (cmdd);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 21:38:00 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/06 20:35:20 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,21 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 	int		i;
 	int		p_count;
 	int		c_count;
+	char 	*tmp;
 
 	p_count = count_pipes(str);
 	c_count = count_cmds(cmd);
 	i = 0;
 	while (cmd[i])
 	{
-		if (!ft_strtrim(cmd[i++], " ")[0])
+		tmp = ft_strtrim(cmd[i++], " ");
+		if (!tmp[0])
 		{
+			free(tmp);
 			ft_putstr_fd("minishell: syntax error near unexpected token \'|\'\n", 2);
 			return (-1);
 		}
+		free(tmp);
 	}
 	if (p_count != c_count - 1 && c_count > 0)
 		return (0);

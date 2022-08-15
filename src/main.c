@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 23:26:25 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/15 18:13:09 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_minishell(void)
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
 	signal(SIGQUIT, clear_line);
-	init_history();
+	// init_history();
 }
 
 int	reaser(t_line **line)
@@ -25,6 +25,7 @@ int	reaser(t_line **line)
 	int		ret;
 	char	*str;
 	char	*tmp;
+	char	*tmp2;
 
 	tmp = NULL;
 	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
@@ -35,9 +36,13 @@ int	reaser(t_line **line)
 	ret = parser_v3_0(str, &*line);
 	while (ret == 0)
 	{
+		tmp2 = readline("> ");
+		if (!tmp2)
+			return (-1);
 		tmp  = strdup(str);
-		str = ft_strjoin(tmp, readline("> "));
+		str = ft_strjoin(tmp, tmp2);
 		free(tmp);
+		free(tmp2);
 		ret = parser_v3_0(str, &*line);
 		tmp = strdup(str);
 		free(str);
@@ -50,12 +55,12 @@ int	reaser(t_line **line)
 	}
 	if (tmp != NULL)
 	{
-		historyy(tmp);
+		// historyy(tmp);
 		free(tmp);
 	}
 	else
 	{
-		historyy(str);
+		// historyy(str);
 		free(str);
 	}
 	return (ret);
@@ -65,14 +70,14 @@ int	yalla(t_line **line)
 {
 	// print_line(*line);
 	if ((*line)->npipes != 0)
-		pipes((*line)->cmd, (*line)->ncmds);
+		pipes((*line), (*line)->ncmds);
 	else
 	{
-		if (redirection((*line)->cmd) != 1)
-			exec_ft((*line)->cmd);
+		if (redirection(*line) != 1)
+			exec_ft((*line));
 	}
-	free_nodes(*line);
-	free(*line);
+	// free_nodes(*line);
+	// free(*line);
 	return (1);
 }
 
@@ -80,10 +85,15 @@ int	minishell_loop(void)
 {
 	t_line		*line;
 
-	while (t_infoo.exit == 0)
+	while (1)
 	{
 		if (reaser(&line) == 1)
+		{
 			yalla(&line);
+			// free_nodes(line);
+			// free(line);
+		}
+		// VALGRIND_DO_LEAK_CHECK;
 	}
 	return (1);
 }

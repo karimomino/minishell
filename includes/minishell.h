@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/06 00:31:12 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/13 21:24:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int		export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrite);
 int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);
-int		exec_ft(t_cmd *in);
-int		exec_bin(t_cmd *in);
-int		exec_builtin(t_cmd *in);
+int		exec_ft(t_line *line);
+int		exec_bin(t_line *line);
+int		exec_builtin(t_line *line);
 int		ft_pwd(t_cmd *in);
 int		ft_export(t_cmd *cmd, int ow);
 int		ft_cd(t_cmd *cmd);
-int		ft_exit(t_cmd *cmd);
+int		ft_exit(t_line *in);
 void	ft_expansion(t_line **line);
 int		count_env(char **env);
 int		ft_set(int i, char *val);
