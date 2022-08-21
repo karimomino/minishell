@@ -1,18 +1,17 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # GNU Make 4.3
- 
 # Built for aarch64-unknown-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug 15 11:02:20 2022
+# Make data base, printed on Sun Aug 21 16:12:03 2022
 
 # Variables
 
 # environment
-REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-85406149f70f61858fa127008f37d33a113d87f1.sock"]
+REMOTE_CONTAINERS_SOCKETS = ["/tmp/vscode-ssh-auth-77a3cdcd12cd7098326d3a834822db0ea96b1db5.sock"]
 # environment
 LC_ALL = C
 # makefile (from 'Makefile', line 19)
@@ -52,13 +51,13 @@ MAKEFLAGS = pqrR
 # makefile
 CURDIR := /home/vscode/src/minishell
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-85406149f70f61858fa127008f37d33a113d87f1.sock
+SSH_AUTH_SOCK = /tmp/vscode-ssh-auth-77a3cdcd12cd7098326d3a834822db0ea96b1db5.sock
 # default
 .SHELLFLAGS := -c
 # automatic
@@ -84,6 +83,7 @@ MAKE_HOST := aarch64-unknown-linux-gnu
 # makefile (from 'Makefile', line 34)
 OBJS = $(addprefix $(DIR_S),$(SRC:.c=.o))
 # makefile
+ 
 SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
@@ -94,7 +94,7 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH = /root/.vscode-server/bin/6d9b74a70ca9c7733b29f0456fd8195364076dda/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 # default
 MAKEFILES := 
 # automatic
@@ -102,7 +102,7 @@ MAKEFILES :=
 # makefile (from 'Makefile', line 17)
 DIR_S = ./src/
 # environment
-REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-85406149f70f61858fa127008f37d33a113d87f1.sock
+REMOTE_CONTAINERS_IPC = /tmp/vscode-remote-containers-ipc-77a3cdcd12cd7098326d3a834822db0ea96b1db5.sock
 # makefile (from 'Makefile', line 37)
 exec_prefix = ${prefix}
 # environment
@@ -138,7 +138,7 @@ _ = /bin/cat
 # makefile (from 'Makefile', line 41)
 CFLAGS = -Wall -Wextra -Werror -g3 -I${includedir}
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-15f6320b-f9ab-4892-800a-ff8c69138672.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-0c395546-c908-4ab5-9529-a5498d433715.sock
 # environment
 DEBIAN_FRONTEND = dialog
 # environment
@@ -168,9 +168,9 @@ CC = gcc -fcommon
 
 # Directories
 
-# . (device 63, inode 22037558): 21 files, no impossibilities.
+# . (device 63, inode 22037558): 18 files, no impossibilities.
 
-# 21 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -225,7 +225,7 @@ parser.a:
 
 minishell: .printing_obj src/builtins/env.o src/builtins/echo.o src/builtins/pwd.o src/builtins/cd.o src/builtins/exit.o src/builtins/utils.o src/execution/exec.o src/main.o src/history/history.o src/redirection/redirection.o src/redirection/get_next_line.o src/redirection/get_next_line_utils.o src/signals/signals.o src/pipe/pipe.o libft.a parser.a .clear
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-15 11:01:18.497237252
+#  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
@@ -243,7 +243,7 @@ parser:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-15 11:01:02.40735623
+#  Last modified 2022-08-21 15:38:38.62423783
 #  File has been updated.
 #  Successfully updated.
 
@@ -279,7 +279,6 @@ src/signals/signals.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 
 # Not a target:
 src/redirection/redirection.o:
@@ -324,6 +323,7 @@ fclean: clean
 		@$(MAKE) fclean -C libft -s
 		@make fclean -C src/parser -s
 		@rm -f $(NAME)
+		@if [ -f src/history/.history ]; then rm src/history/.history; fi
 
 # Not a target:
 src/builtins/exit.o:
@@ -362,6 +362,7 @@ src/history/history.o:
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=1/11=9%
 #  recipe to execute (from 'Makefile', line 54):
+ 
 			@echo "Compiling OBJECT Files..."
 
 # Not a target:
@@ -402,12 +403,12 @@ src/builtins/echo.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 47 / storage = 571 B / avg = 12 B
-# current buf: size = 8162 B / used = 571 B / count = 47 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 46 / storage = 557 B / avg = 12 B
+# current buf: size = 8162 B / used = 557 B / count = 46 / avg = 12 B
 
-# strcache performance: lookups = 82 / hit rate = 42%
+# strcache performance: lookups = 79 / hit rate = 41%
 # hash-table stats:
-# Load=47/8192=1%, Rehash=0, Collisions=0/82=0%
-# Finished Make data base on Mon Aug 15 11:02:20 2022
+# Load=46/8192=1%, Rehash=0, Collisions=0/79=0%
+# Finished Make data base on Sun Aug 21 16:12:03 2022
 
  

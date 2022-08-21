@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/12 20:44:58 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:47:00 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	cmd_exec(t_cmd **cmd, char **str)
 * fill the linked lists
 * - first fill the cmd linked list
 * - gets the linked list of tokens and links it to the cmd
-* --> wip - link the redirections
 */
 int	cmds(char *str, t_line **line)
 {

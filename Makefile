@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/08/15 11:01:02 by ommohame         ###   ########.fr        #
+#    Updated: 2022/08/21 15:38:38 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ fclean: clean
 		@$(MAKE) fclean -C libft -s
 		@make fclean -C src/parser -s
 		@rm -f $(NAME)
-
+		@if [ -f src/history/.history ]; then rm src/history/.history; fi
 re:		fclean all
 
 .PHONY: all re clean fclean libft.a parser

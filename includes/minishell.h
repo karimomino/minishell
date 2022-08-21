@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/13 21:24:56 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:30:55 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ void	ft_expansion(t_line **line);
 int		count_env(char **env);
 int		ft_set(int i, char *val);
 int		ft_unset(int i);
+int		free_cmd(t_cmd *cmd);
+
 #endif

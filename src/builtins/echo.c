@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/15 11:14:35 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:27:49 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ static int	check_flag(char *token)
 int	ft_echo(t_cmd *cmd)
 {
 	int		flag;
+	t_token	*head;
 
 	flag = 0;
+	head = cmd->token;
 	if (cmd->nargs > 1)
 	{
 		cmd->token = cmd->token->next;
@@ -53,5 +55,6 @@ int	ft_echo(t_cmd *cmd)
 	}
 	if (flag == 0 || cmd->nargs == 1)
 		write(1, "\n", 1);
+	cmd->token = head;
 	return (SUCCESS);
 }

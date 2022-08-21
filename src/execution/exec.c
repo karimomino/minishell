@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/15 18:13:55 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/15 18:47:23 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,20 @@ int	exec_bin(t_line *line)
 	int		ret;
 	pid_t	pid;
 	char	*path;
-	char	**tmp;
 
 	path = is_file_found(line->cmd->token->token);
+	if (!path)
+		return (errno);
 	ret = 0;
 	pid = fork();
 	if (pid == -1)
 		return (errno);
 	else if (!pid)
 	{
-		tmp = ft_split(line->cmd->exec, ' ');
-		ret = execve(path, tmp, environ);
+		ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
 		printf("minishell: %s: command not found\n", line->cmd->token->token);
 		free_nodes(line);
 		free(line);
-		free_2d(tmp);
 		t_infoo.retVal = 127;
 		exit(t_infoo.retVal);
 	}
@@ -106,15 +105,12 @@ int	exec_bin(t_line *line)
 	return (ret);
 }
 
+
 int	exec_ft(t_line *line)
 {
 	int		ret;
-	t_token	*head;
-	t_cmd	*cmdd;
 
 	ret = 0;
-	cmdd = line->cmd;
-	head = line->cmd->token;
 	if (line->cmd->nargs)
 	{
 		if (line->cmd->type)
@@ -122,7 +118,7 @@ int	exec_ft(t_line *line)
 		else
 			ret = exec_bin(line);
 	}
-	line->cmd = cmdd;
-	line->cmd->token = head;
+	if (line->ncmds == 1)
+		free_cmd(line->cmd);
 	return (ret);
 }

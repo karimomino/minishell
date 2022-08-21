@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/13 20:59:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/20 12:44:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,23 @@ int	redirect(t_line *line, int fd_in, int fd_out)
 
 	in = dup(STDIN_FILENO);
 	out = dup(STDOUT_FILENO);
-	dup2(fd_in, STDIN_FILENO);
-	dup2(fd_out, STDOUT_FILENO);
+	if (fd_in >= 0)
+		dup2(fd_in, STDIN_FILENO);
+	if (fd_out >= 0)
+		dup2(fd_out, STDOUT_FILENO);
 	exec_ft(line);
-	close(fd_in);
-	close(fd_out);
-	dup2(in, STDIN_FILENO);
-	dup2(out, STDOUT_FILENO);
+	if (fd_in >= 0)
+	{
+		dup2(in, STDIN_FILENO);
+		close(fd_in);
+	}
+	if (fd_out >= 0)
+	{
+		dup2(out, STDOUT_FILENO);
+		close(fd_out);
+	}
+	close(in);
+	close(out);
 	return (1);
 }
 
@@ -136,13 +146,12 @@ int	redirection(t_line *line)
 	int		fd_in;
 	int		fd_out;
 	size_t	i;
-	t_redir	*head;
+	t_redir	*redirr;
 
 	f = 0;
 	i = 0;
 	fd_in = -1;
 	fd_out = -1;
-	head = line->cmd->redir;
 	if (!line->cmd->redir || line->cmd->nredir == 0)
 		return (0);
 	while (i < line->cmd->nredir && line->cmd->redir)
@@ -153,12 +162,14 @@ int	redirection(t_line *line)
 			fd_out = redir_out(*line->cmd->redir, f);
 		else if (line->cmd->redir->fd == 0)
 			fd_in = redir_in(*line->cmd->redir, f);
+		redirr = line->cmd->redir;
 		line->cmd->redir = line->cmd->redir->next;
+		free(redirr->file);
+		free(redirr);
 		f = 0;
 		i++;
 	}
 	redirect(line, fd_in, fd_out);
 	unlink("./src/redirection/.heredoc.txt");
-	line->cmd->redir = head;
 	return (1);
 }

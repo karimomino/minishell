@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/12 20:00:56 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/20 14:53:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,24 @@ void	free_nodes(t_line *line)
 		free (cmdd->cmd);
 		free (cmdd);
 	}
+}
+
+int	free_cmd(t_cmd *cmd)
+{
+	t_token		*tokenn;
+	t_cmd		*cmdd;
+
+	while (cmd->token)
+	{
+		tokenn = cmd->token;
+		cmd->token = cmd->token->next;
+		free(tokenn->token);
+		free(tokenn);
+	}
+	cmdd = cmd;
+	cmd = cmd->next;
+	free(cmdd->exec);
+	free(cmdd->cmd);
+	free(cmdd);
+	return (1);
 }
