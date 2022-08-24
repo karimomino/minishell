@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 10:01:22 by kamin             #+#    #+#             */
-/*   Updated: 2022/01/08 07:48:01 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/23 22:02:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -70,5 +71,6 @@ int			ft_strcmp(char *s1, char *s2);
 int			ft_checkdup(int ac, char **argv);
 int			ft_split_wc(char const *s, char c, char ***sp);
 long long	ft_isint(char *str);
+char		*alpha_strjoin(size_t n, ...);
 
 #endif

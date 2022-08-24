@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/21 16:18:36 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:33:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,15 @@ int	reaser(t_line **line)
 {
 	int		ret;
 	char	*str;
-	char	*tmp;
-	char	*tmp2;
 
-	tmp = NULL;
 	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
 	if (!str)
 		exit(0);
 	if (!str[0])
 		return (-1);
 	ret = parser_v3_0(str, &*line);
-	while (ret == 0)
-	{
-		tmp2 = readline("> ");
-		if (!tmp2)
-			return (-1);
-		tmp  = strdup(str);
-		str = ft_strjoin(tmp, tmp2);
-		free(tmp);
-		free(tmp2);
-		ret = parser_v3_0(str, &*line);
-		tmp = strdup(str);
-		free(str);
-		str = NULL;
-		if (ret == 0)
-		{
-			free(tmp);
-			tmp = NULL;
-		}
-	}
-	if (tmp != NULL)
-	{
-		historyy(tmp);
-		free(tmp);
-	}
-	else
-	{
-		historyy(str);
-		free(str);
-	}
+	historyy(str);
+	free(str);
 	return (ret);
 }
 

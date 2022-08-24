@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/06 16:31:05 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:16:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,9 @@ int	print_history(t_cmd cmd)
 		{
 			if (ft_isdigit(cmd.token->next->token[i++]) == 0)
 			{
-				printf("minishell: history: %s: numeric argument required\n", 
-				cmd.token->next->token);
+				ft_putstr_fd("minishell: history: ", 2);
+				ft_putstr_fd(cmd.token->next->token, 2);
+				ft_putstr_fd(": numeric argument required\n", 2);
 			}
 		}
 		num = ft_atoi(cmd.token->next->token);

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/12 18:07:09 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:07:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		check_pipes(char **cmd, char *str, t_line **line);
 int		parser_v3_0(char *str, t_line **line);
 int		historyy(char *str);
 int		print_history(t_cmd cmd);
+int		redir_in(t_redir redir, int f);
 int		redirection(t_line *cmd);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);

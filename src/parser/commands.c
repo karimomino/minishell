@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 01:00:48 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 21:17:00 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/23 22:27:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,12 @@ int	get_args(char *str, char **ret, int *i)
 		return (1);
 	}
 	if (str[*i - 1] == ' ')
-		tmp = ft_strjoin(*ret, " ");
+		tmp = alpha_strjoin(3, *ret, " ", new);
 	else
-		tmp = ft_strdup(*ret);
-	free (*ret);
-	*ret = ft_strjoin(tmp, new);
-	free (tmp);
+		tmp = ft_strjoin(*ret, new);
+	free(*ret);
 	free(new);
-	if (!*ret)
-		return (-1);
+	*ret = tmp;
 	*i = j;
 	return (1);
 }

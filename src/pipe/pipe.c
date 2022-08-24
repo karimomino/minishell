@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/21 15:22:08 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/23 15:51:59 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	child(t_line *line, int fd[2], int in)
 	free(line);
 	exit(0);
 }
-	
+
 int	pipes(t_line *line, int n)
 {
 	int		i;
 	int		pid;
 	int		fd[2];
-	int		in[n];
+	int		in[n + 1];
 	t_cmd	*cmdd;
 
 	in[0] = -1;
@@ -49,13 +49,11 @@ int	pipes(t_line *line, int n)
 			line->cmd = line->cmd->next;
 			free_cmd(cmdd);
 		}
+		close(in[i - 1]);
 		i++;
 	}
-	i = 1;
-	while (i < n + 1)
-	{
+	i = 0;
+	while (i++ < n)
 		wait(NULL);
-		close(in[i++]);
-	}
 	return (1);
 }

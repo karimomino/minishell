@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/15 18:47:23 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:17:30 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,12 @@ int	exec_bin(t_line *line)
 	return (ret);
 }
 
-
 int	exec_ft(t_line *line)
 {
 	int		ret;
+	t_token	*head;
 
+	head = line->cmd->token;
 	ret = 0;
 	if (line->cmd->nargs)
 	{
@@ -118,6 +119,7 @@ int	exec_ft(t_line *line)
 		else
 			ret = exec_bin(line);
 	}
+	line->cmd->token = head;
 	if (line->ncmds == 1)
 		free_cmd(line->cmd);
 	return (ret);

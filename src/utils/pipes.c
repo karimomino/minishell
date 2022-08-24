@@ -6,16 +6,16 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/06 20:35:20 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 00:44:58 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-int	count_pipes(char *str)
+size_t	count_pipes(char *str)
 {
-	int		i;
-	int		count;
+	size_t		i;
+	size_t		count;
 
 	i = 0;
 	count = 0;
@@ -30,11 +30,11 @@ int	count_pipes(char *str)
 	return (count);
 }
 
-int	count_cmds(char **cmd)
+size_t	count_cmds(char **cmd)
 {
-	int		i;
-	int		count;
-	char	*tmp;
+	size_t		i;
+	size_t		count;
+	char		*tmp;
 
 	i = 0;
 	count = 0;
@@ -49,34 +49,44 @@ int	count_cmds(char **cmd)
 	return (count);
 }
 
-int	check_pipes(char **cmd, char *str, t_line **line)
+size_t	check_empty_pipe(char **cmd)
 {
-	int		i;
-	int		p_count;
-	int		c_count;
-	char 	*tmp;
+	size_t		i;
+	char		*tmp;
 
-	p_count = count_pipes(str);
-	c_count = count_cmds(cmd);
 	i = 0;
 	while (cmd[i])
 	{
 		tmp = ft_strtrim(cmd[i++], " ");
+		printf("cmd[%ld]: %s | tmp[0]: -%c-\n", i,cmd[i] , tmp[0]);
 		if (!tmp[0])
 		{
 			free(tmp);
-			ft_putstr_fd("minishell: syntax error near unexpected token \'|\'\n", 2);
+			ft_putstr_fd("minishell: syntax error ", 2);
+			ft_putstr_fd("near unexpected token '|'\n", 2);
 			return (-1);
 		}
 		free(tmp);
 	}
-	if (p_count != c_count - 1 && c_count > 0)
-		return (0);
-	else if (c_count == 0 && p_count == 0)
+	return (1);
+}
+
+int	check_pipes(char **cmd, char *str, t_line **line)
+{
+	size_t	p_count;
+	size_t	c_count;
+
+	p_count = count_pipes(str);
+	c_count = count_cmds(cmd);
+	if (p_count != 0 && c_count != 0)
+		if (check_empty_pipe(cmd) != 1)
+			return (-1);
+	if (c_count == 0 && p_count == 0)
 		return (-1);
-	else if (p_count > 0 && c_count == 0)
+	else if ((p_count != c_count - 1 && c_count > 0 && p_count > 0)
+		|| (p_count > 0 && c_count == 0))
 	{
-		ft_printf("minishell: syntax error near unexpected token '|'\n");
+		ft_putstr_fd("minishell: syntax error near unexpected token '|'\n", 2);
 		return (-1);
 	}
 	else

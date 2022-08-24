@@ -6,10 +6,9 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/15 18:30:55 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/23 22:35:33 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -45,7 +44,6 @@ struct s_info
 	int	retVal;
 	int	exit;
 } t_infoo;
-
 
 int		export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrite);
