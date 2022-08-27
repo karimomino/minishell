@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/24 00:17:30 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:08:50 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,25 @@ static char	*is_file_found(char *token)
 	int		i;
 
 	i = -1;
-	paths = ft_split(getenv("PATH"), ':');
-	path = ft_strjoin("/", token);
-	is_file = -1;
-	is_file_helper(&is_file, &paths, &path, &f_path);
-	free(path);
-	while (paths[++i])
+	is_file = access(token, F_OK);
+	paths = NULL;
+	if (is_file && getenv("PATH"))
+	{
+		paths = ft_split(getenv("PATH"), ':');
+		path = ft_strjoin("/", token);
+		is_file_helper(&is_file, &paths, &path, &f_path);
+		free(path);
+	}
+	while (paths && paths[++i])
 		free(paths[i]);
-	free(paths);
+	if (paths)
+		free(paths);
 	if (is_file != 0 && f_path != NULL)
 		free(f_path);
 	if (is_file == 0)
 		return (f_path);
 	else
-		return (NULL);
+		return (ft_strdup(token));
 }
 
 int	exec_bin(t_line *line)
@@ -82,11 +87,9 @@ int	exec_bin(t_line *line)
 	pid_t	pid;
 	char	*path;
 
-	path = is_file_found(line->cmd->token->token);
-	if (!path)
-		return (errno);
-	ret = 0;
+	path = is_file_found(in->token->token);
 	pid = fork();
+	ret = 0;
 	if (pid == -1)
 		return (errno);
 	else if (!pid)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/24 00:33:56 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:12:24 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_minishell(void)
 {
+	init_environment();
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
 	signal(SIGQUIT, clear_line);
@@ -53,12 +54,10 @@ int	minishell_loop(void)
 {
 	t_line		*line;
 
-	while (1)
+	while (t_infoo.exit == 0)
 	{
 		if (reaser(&line) == 1)
-		{
 			yalla(&line);
-		}
 	}
 	return (1);
 }

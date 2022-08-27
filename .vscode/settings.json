@@ -1,0 +1,28 @@
+{
+	"files.associations": {
+		"types.h": "c",
+		"structure.h": "c",
+		"history.h": "c",
+		"parser.h": "c",
+		"readline.h": "c",
+		"minishell.h": "c",
+		"unistd.h": "c",
+		"wait.h": "c",
+		"ft_printf.h": "c",
+		"errno.h": "c",
+		"sstream": "c",
+		"string.h": "c",
+		"libft.h": "c",
+		"random": "c",
+		"cstdlib": "c",
+		"stddef.h": "c",
+		"queue": "c",
+		"stdlib.h": "c",
+		"fcntl.h": "c",
+		"ratio": "c",
+		"locale": "c"
+	},
+	"C_Cpp.errorSquiggles": "Disabled",
+	"synthwave84.brightness": 0.9,
+	"synthwave84.disableGlow": false
+}

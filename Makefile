@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
+#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/08/26 18:34:19 by ommohame         ###   ########.fr        #
+#    Updated: 2022/08/27 17:13:11 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		=	builtins/env.c \
 			builtins/cd.c \
 			builtins/exit.c \
 			builtins/utils.c \
+			environment/environment.c \
 			execution/exec.c \
 			main.c \
 			history/history.c \

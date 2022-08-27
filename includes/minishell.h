@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/23 22:35:33 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/27 17:03:28 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ struct s_info
 } t_infoo;
 
 int		export_executor(char *name, char *val, int ow, int ac);
-void	ft_setenv(const char *name, const char *value, int overwrite);
+void	ft_setenv(const char *name, const char *value, int overwrit);
 int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);
 int		exec_ft(t_line *line);
@@ -62,4 +62,6 @@ int		ft_set(int i, char *val);
 int		ft_unset(int i);
 int		free_cmd(t_cmd *cmd);
 
+void	init_environment();
+int		add_to_env(char *val);
 #endif
