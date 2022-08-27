@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/24 00:44:58 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:16:38 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ size_t	check_empty_pipe(char **cmd)
 	while (cmd[i])
 	{
 		tmp = ft_strtrim(cmd[i++], " ");
-		printf("cmd[%ld]: %s | tmp[0]: -%c-\n", i,cmd[i] , tmp[0]);
 		if (!tmp[0])
 		{
 			free(tmp);

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/24 00:14:03 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:15:18 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	redirection(t_line *line)
 	if (!line->cmd->redir || line->cmd->nredir == 0)
 		return (0);
 	redir_loop(line);
-	if (access("./src/redirection/.heredoc.txt", F_OK))
+	if (!access("./src/redirection/.heredoc.txt", F_OK))
 		unlink("./src/redirection/.heredoc.txt");
 	return (1);
 }

@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/23 15:51:59 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/24 15:30:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	child(t_line *line, int fd[2], int in)
+static int	child(t_line *line, int fd[2], int in)
 {	
 	if (line->cmd->next)
 		dup2(fd[1], STDOUT_FILENO);
@@ -25,35 +25,50 @@ int	child(t_line *line, int fd[2], int in)
 	exit(0);
 }
 
-int	pipes(t_line *line, int n)
+/*
+* alka: 1 - kiki: 0
+*/
+static int	pipe_alka(t_line *line, int **in)
 {
 	int		i;
 	int		pid;
 	int		fd[2];
-	int		in[n + 1];
 	t_cmd	*cmdd;
 
-	in[0] = -1;
 	i = 1;
 	while (line->cmd)
 	{
 		pipe(fd);
 		pid = fork();
 		if (!pid)
-			child(line, fd, in[i - 1]);
+			child(line, fd, (*in)[i - 1]);
 		else
 		{
 			close(fd[1]);
 			cmdd = line->cmd;
-			in[i] = fd[0];
+			(*in)[i] = fd[0];
 			line->cmd = line->cmd->next;
 			free_cmd(cmdd);
 		}
-		close(in[i - 1]);
 		i++;
 	}
+	return (1);
+}
+
+int	pipes(t_line *line, int n)
+{
+	int		i;
+	int		*in;
+
+	in = (int *)malloc(sizeof(int) * (n + 1));
+	in[0] = -1;
+	pipe_alka(line, &in);
 	i = 0;
 	while (i++ < n)
+	{
 		wait(NULL);
+		close(in[i]);
+	}
+	free(in);
 	return (1);
 }

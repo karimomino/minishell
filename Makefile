@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/08/24 00:05:30 by ommohame         ###   ########.fr        #
+#    Updated: 2022/08/26 18:34:19 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRC		=	builtins/env.c \
 
 OBJS	=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
-# prefix		=	/opt/homebrew/Cellar/readline/8.1.2
+prefix		=	/opt/homebrew/Cellar/readline/8.1.2
 exec_prefix	=	${prefix}
 libdir		=	${exec_prefix}/lib
 includedir	=	${prefix}/include
@@ -81,6 +81,7 @@ fclean: clean
 		@make fclean -C src/parser -s
 		@rm -f $(NAME)
 		@if [ -f src/history/.history ]; then rm src/history/.history; fi
+
 re:		fclean all
 
 .PHONY: all re clean fclean libft.a parser
