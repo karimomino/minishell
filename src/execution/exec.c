@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/06 00:39:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/07 13:46:16 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,25 @@ static char	*is_file_found(char *token)
 	int		i;
 
 	i = -1;
-	paths = ft_split(getenv("PATH"), ':');
-	path = ft_strjoin("/", token);
-	is_file = -1;
-	is_file_helper(&is_file, &paths, &path, &f_path);
-	free(path);
-	while (paths[++i])
+	is_file = access(token, F_OK);
+	paths = NULL;
+	if (is_file && getenv("PATH"))
+	{
+		paths = ft_split(getenv("PATH"), ':');
+		path = ft_strjoin("/", token);
+		is_file_helper(&is_file, &paths, &path, &f_path);
+		free(path);
+	}
+	while (paths && paths[++i])
 		free(paths[i]);
-	free(paths);
+	if (paths)
+		free(paths);
 	if (is_file != 0 && f_path != NULL)
 		free(f_path);
 	if (is_file == 0)
 		return (f_path);
 	else
-		return (NULL);
+		return (ft_strdup(token));
 }
 
 int	exec_bin(t_cmd *in)

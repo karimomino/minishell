@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/06 00:58:08 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/07 21:48:51 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 	int		ac;
 	int		i;
 
+	val = NULL;
 	if (overwrite == 2)
-		ac = count_env(environ) + 1;
+		ac = count_env((environ)) + 1;
 	else
 	{
-		ac = count_env(environ) + 1 + !overwrite;
+		ac = count_env((environ)) + 1 + !overwrite;
 		tmp = ft_strjoin(name, "=");
 		val = ft_strjoin(tmp, value);
 		free(tmp);
 	}
 	i = export_executor((char *)name, val, overwrite, ac);
-	// environ[i] = NULL;
+	(environ)[i] = NULL;
 	if (overwrite != 2)
 		free(val);
 }
@@ -45,6 +46,16 @@ int	ft_env(t_cmd *in)
 		ft_putstr_fd(environ[i++], 1);
 		ft_putstr_fd("\n", 1);
 	}
+	// (void)in;
+	// t_environ	*envi;
+
+	// envi = *env;
+	// while (envi && envi->next)
+	// {
+	// 	printf("%s=%s\n", envi->var, envi->val);
+	// 	envi = envi->next;
+	// }
+	
 	return (SUCCESS);
 }
 
@@ -53,7 +64,7 @@ static int	export_error(char **name, int ow)
 	if (ow == 1 && (ft_strchr(*name, ' ') || !ft_strcmp(*name, "")
 			|| !ft_isalpha((*name)[0])))
 	{
-		errno = 22;
+		errno = EINVAL;
 		perror("minishell: export: \'=\': ");
 		return (1);
 	}

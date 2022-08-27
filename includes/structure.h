@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/05 19:24:42 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/06 15:43:33 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ typedef struct s_infohis
 	size_t		total_cmds;
 	t_history	*history;
 }	t_infohis;
-
 
 /*
 * analyzes the line and put it in the struct

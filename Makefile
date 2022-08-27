@@ -6,7 +6,7 @@
 #    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/08/05 23:41:58 by kamin            ###   ########.fr        #
+#    Updated: 2022/08/06 02:11:41 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC		=	builtins/env.c \
 			builtins/cd.c \
 			builtins/exit.c \
 			builtins/utils.c \
+			environment/environment.c \
 			execution/exec.c \
 			main.c \
 			history/history.c \

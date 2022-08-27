@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/06 00:31:12 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/07 11:07:10 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ struct s_info
 
 
 int		export_executor(char *name, char *val, int ow, int ac);
-void	ft_setenv(const char *name, const char *value, int overwrite);
+void	ft_setenv(const char *name, const char *value, int overwrit);
 int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);
 int		exec_ft(t_cmd *in);
@@ -62,4 +62,6 @@ void	ft_expansion(t_line **line);
 int		count_env(char **env);
 int		ft_set(int i, char *val);
 int		ft_unset(int i);
+void	init_environment();
+int		add_to_env(char *val);
 #endif

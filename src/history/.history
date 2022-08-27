@@ -1014,3 +1014,141 @@
 1013 export z=z zzz= z
 1014 export z=z zzz= z
 1015 unset
+1016 env
+1017 env
+1018 make
+1019 env
+1020 env
+1021 make
+1022  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-jq5avg35.irh 
+1023  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-neawha5e.0z2 
+1024 h
+1025 env
+1026 exoit
+1027 env
+1028 env
+1029 env
+1030 env
+1031 env
+1032 env
+1033 export x=karim
+1034 env
+1035 env
+1036 export x=karim
+1037 env
+1038 export x=amin
+1039 env
+1040 env
+1041 env
+1042 export x=karim
+1043 env
+1044 export x=karim
+1045 export x=k
+1046 env
+1047 quit
+1048 exit
+1049 env
+1050 export x=k
+1051 env
+1052 export x=k
+1053 export x=l
+1054 env
+1055 export x=m
+1056 env
+1057 echo $x
+1058 exit
+1059 env
+1060 env
+1061 env
+1062 env
+1063 export x=l
+1064 env
+1065 export x=k
+1066 env
+1067 env
+1068 env
+1069 export x=karim
+1070 echo $x
+1071 env
+1072 env
+1073 exit
+1074 env
+1075 export PWD=karim
+1076 env
+1077 export l=n
+1078 env
+1079 env
+1080 env
+1081 export x=l
+1082 env
+1083 env
+1084 env
+1085 export k=l
+1086 env
+1087 man memcpy
+1088 env
+1089 export x=l
+1090 env
+1091 export x=m
+1092 env
+1093 env
+1094 export x=l
+1095 env
+1096 env
+1097 export k=l
+1098 env
+1099 export k=m
+1100 export k=l
+1101 export k=l
+1102 env
+1103 export k=m
+1104 env
+1105 unset k
+1106 env
+1107 env
+1108 unset LINES
+1109 env
+1110 env
+1111 env | ls
+1112 env | ls
+1113 ls | env
+1114 env
+1115 env
+1116 l
+1117 ls
+1118 env
+1119 env
+1120 env | ls
+1121 ls
+1122 /usr/bin/ls
+1123 /usr/bin/ls
+1124  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-rqfvq45i.x5f 
+1125 /usr/bin/ls
+1126 /usr/bin/ls
+1127 /usr/bin/ls
+1128 /usr/bin/ls
+1129 /usr/bin/ls
+1130 /usr/bin/ls
+1131 ls
+1132 /bin/usr/ls
+1133  /usr/bin/env /bin/sh /tmp/Microsoft-MIEngine-Cmd-3i2wkex3.4an 
+1134 asd
+1135 echo hi
+1136 ls
+1137 /usr/bin/ls
+1138 lsad
+1139 asdasd
+1140 /usr/bin/ls
+1141 exit
+1142 env
+1143 echo asdasdasdasdasd
+1144 env
+1145 env -i ./minishell
+1146 env -i kas
+1147 exit
+1148 env
+1149 unset PWD
+1150 env
+1151 export
+1152 env
+1153 exit
