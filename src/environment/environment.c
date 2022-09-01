@@ -6,31 +6,11 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 01:54:06 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/23 16:11:42 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/27 21:15:17 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// static void	add_node(t_environ **head, char *var, char *val)
-// {
-// 	t_environ *new_node;
-// 	new_node = (t_environ *) calloc(1, sizeof(t_environ));
-// 	t_environ *last;
-// 	last = *head;
-// 	new_node->val  = ft_strdup(val);
-// 	new_node->var  = ft_strdup(var);
-// 	new_node->next = NULL;
-// 	if (*head == NULL)
-// 	{
-// 		*head = new_node;
-// 		return ;
-// 	}
-// 	while (last->next != NULL)
-// 		last = last->next;
-// 	last->next = new_node;
-// 	return ;
-// }
 
 int	add_to_env(char *val)
 {
@@ -45,14 +25,22 @@ int	add_to_env(char *val)
 	if (!env)
 		return (-1);
 	while(environ[++i]);
-		// env[i] = (environ[i]);
 	environ[i++] = ft_strdup(val);
 	environ[i] = NULL;
-	// free_2d(environ);
-	// environ = env;
 	return (-1);
 }
 
+static void	init_shlvl(void)
+{
+	int	curr;
+
+	curr = ft_atoi(getenv("SHLVL"));
+	if (curr == 1000)
+		curr = 1;
+	else
+		curr++;
+	ft_setenv("SHLVL", ft_itoa(curr), 1);
+}
 void	init_environment(void)
 {
 	char	**env;
@@ -67,7 +55,7 @@ void	init_environment(void)
 	{
 		env = (char **)malloc((c_size + 1) * sizeof(char *));
 		while(environ[++i])
-			env[i] = (environ[i]);
+			env[i] = ft_strdup((environ[i]));
 		env[i] = NULL;
 	}
 	else
@@ -78,4 +66,6 @@ void	init_environment(void)
 		env[2] = NULL;
 	}
 	environ = env;
+	if (c_size > 0)
+		init_shlvl();
 }

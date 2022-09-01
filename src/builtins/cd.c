@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/15 18:21:24 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/08/27 20:55:50 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,14 @@ static int	go(int flag)
 int	ft_cd(t_cmd *cmd)
 {
 	int		ret;
+	char	cwd[MAX_PATH];
 
 	if (cmd->nargs == 1)
 		return (go(HOMEFLAG));
-	if (ft_strcmp(cmd->token->next->token, "-") == 0)
+	if (ft_strcmp(cmd->token->next->token, (char *)"-") == 0)
+	{
 		ret = go(OLDPWDFLAG);
+	}
 	else
 	{
 		update_oldpwd();
@@ -90,6 +93,11 @@ int	ft_cd(t_cmd *cmd)
 			ret = 1;
 		if (ret != 0)
 			print_error(cmd->token->next->token);
+		if (!ret)
+		{
+			getcwd(cwd, MAX_PATH);
+			ft_setenv("PWD", cwd, 1);
+		}
 	}
 	return (ret);
 }

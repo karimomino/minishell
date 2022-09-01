@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/27 17:05:36 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/27 20:33:46 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 	char	*tmp;
 	char	*val;
 	int		ac;
-	int		i;
+	// int		i;
 
 	if (overwrite == 2)
 		ac = count_env((environ)) + 1;
@@ -28,10 +28,11 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 		val = ft_strjoin(tmp, value);
 		free(tmp);
 	}
-	i = export_executor((char *)name, val, overwrite, ac);
+	export_executor((char *)name, val, overwrite, ac);
 	// environ[i] = NULL;
 	if (overwrite != 2)
 		free(val);
+	// return (i)
 }
 
 int	ft_env(t_cmd *in)

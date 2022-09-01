@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/27 17:08:50 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/30 14:01:28 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char	*is_file_found(char *token)
 	i = -1;
 	is_file = access(token, F_OK);
 	paths = NULL;
+	f_path = NULL;
 	if (is_file && getenv("PATH"))
 	{
 		paths = ft_split(getenv("PATH"), ':');
@@ -78,7 +79,7 @@ static char	*is_file_found(char *token)
 	if (is_file == 0)
 		return (f_path);
 	else
-		return (ft_strdup(token));
+		return (NULL);
 }
 
 int	exec_bin(t_line *line)
@@ -86,14 +87,19 @@ int	exec_bin(t_line *line)
 	int		ret;
 	pid_t	pid;
 	char	*path;
-
-	path = is_file_found(in->token->token);
+	
+	path = is_file_found(line->cmd->token->token);
 	pid = fork();
 	ret = 0;
 	if (pid == -1)
 		return (errno);
 	else if (!pid)
 	{
+		if (path == NULL)
+		{
+			path = ft_strdup(getenv("PWD"));
+			printf("PATH: %s\n", path );
+		}
 		ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
 		printf("minishell: %s: command not found\n", line->cmd->token->token);
 		free_nodes(line);
@@ -102,7 +108,11 @@ int	exec_bin(t_line *line)
 		exit(t_infoo.retVal);
 	}
 	else
+	{
 		wait(&t_infoo.retVal);
+		t_infoo.retVal = WEXITSTATUS(t_infoo.retVal);
+		printf("THIS IS THE EXIT STATUS: %d\n", t_infoo.retVal);
+	}
 	if (path)
 		free(path);
 	return (ret);

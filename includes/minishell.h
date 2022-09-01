@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/27 17:03:28 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/30 10:47:30 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,13 @@
 
 extern char	**environ;
 
-// typedef int	(*f)();
-
 struct s_info
 {
 	int	retVal;
 	int	exit;
 } t_infoo;
 
-int		export_executor(char *name, char *val, int ow, int ac);
+void		export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrit);
 int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);

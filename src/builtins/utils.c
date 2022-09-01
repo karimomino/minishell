@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 23:39:51 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/07 11:57:44 by kamin            ###   ########.fr       */
+/*   Updated: 2022/08/27 20:45:05 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_set(int i, char *val)
 {
 	if (environ[i])
 		free(environ[i]);
+
 	environ[i] = ft_strdup(val);
 	return (-1);
 }
@@ -50,17 +51,18 @@ char *find_name(int i)
 	return (tmp);
 }
 
-int	export_executor(char *name, char *val, int ow, int ac)
+void	export_executor(char *name, char *val, int ow, int ac)
 {
 	int		i;
 	char	*tmp;
 
 	i = -1;
+	tmp = NULL;
 	while (++i < ac - 1 && ow != -1)
 	{
-		if (ow == 1 || ow == 2)
+		if ((ow == 1 || ow == 2))
 			tmp = find_name(i);
-		if (ow == 1 && !ft_strcmp((char *)name, tmp))
+		if (ow == 1 && !ft_strncmp((char *)name, tmp, ft_strlen(tmp)))
 			ow = ft_set(i, val);
 		else if (ow == 0 && i == ac - 2)
 			ow = add_to_env(val);
@@ -70,5 +72,5 @@ int	export_executor(char *name, char *val, int ow, int ac)
 		if (tmp)
 			free (tmp);
 	}
-	return (i);
+	// return (i);
 }
