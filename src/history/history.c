@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/24 13:31:30 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/01 20:26:04 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,13 @@ int	print_history(t_cmd cmd)
 
 	if (cmd.nargs > 2)
 	{
-		ft_printf("minishell: history: too many arguments\n");
+		ft_putstr_fd("minishell: history: too many arguments\n", 2);
 		return (-1);
 	}
 	fd = open("./src/history/.history", O_RDONLY);
 	if (fd <= 0)
 	{
-		ft_printf("minishell: FAILED to read history\n");
+		ft_putstr_fd("minishell: FAILED to read history\n", 2);
 		return (-1);
 	}
 	num = 0;

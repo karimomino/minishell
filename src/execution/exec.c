@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/30 14:01:28 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/01 20:36:30 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,37 @@ static char	*is_file_found(char *token)
 		return (NULL);
 }
 
+static int	cmd_child(t_line *line, char *path, int ret)
+{
+	if (path == NULL)
+	{
+		path = ft_strdup(getenv("PWD"));
+		printf("PATH: %s\n", path);
+	}
+	ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(line->cmd->token->token, 2);
+	ft_putstr_fd(": command not found\n", 2);
+	free_nodes(line);
+	free(line);
+	t_infoo.retVal = 127;
+	exit(t_infoo.retVal);
+	return (ret);
+}
+
 int	exec_bin(t_line *line)
 {
 	int		ret;
 	pid_t	pid;
 	char	*path;
-	
+
 	path = is_file_found(line->cmd->token->token);
 	pid = fork();
 	ret = 0;
 	if (pid == -1)
 		return (errno);
 	else if (!pid)
-	{
-		if (path == NULL)
-		{
-			path = ft_strdup(getenv("PWD"));
-			printf("PATH: %s\n", path );
-		}
-		ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
-		printf("minishell: %s: command not found\n", line->cmd->token->token);
-		free_nodes(line);
-		free(line);
-		t_infoo.retVal = 127;
-		exit(t_infoo.retVal);
-	}
+		ret = cmd_child(line, path, ret);
 	else
 	{
 		wait(&t_infoo.retVal);

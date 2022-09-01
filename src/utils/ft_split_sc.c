@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_sc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/10 15:38:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/01 22:08:54 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ char	**ft_split_sc(char *str, char c)
 	if (cmds_count == -1 || cmds_count == 0)
 	{
 		if (cmds_count == -1)
-			ft_printf(
-				"minishell: handling open quotes isn't required so..\n");
+			ft_putstr_fd(
+				"minishell: handling open quotes isn't required so..\n", 2);
 		return (NULL);
 	}
 	cmds = (char **)ft_calloc((cmds_count + 1), sizeof(char *));
