@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/03 18:10:40 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/07 17:08:40 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*expand_helper(void *cmd, int flag)
 	while ((*string) && (*string)[i] != '\0' && (*string)[i] != '$')
 		i++;
 	if ((*string)[i++] == '$')
-		while (!ft_strchr(" $?\"\'\0", (*string)[i + tmp]))
+		while (!ft_strchr(" $\"\'\0", (*string)[i + tmp]))
 			tmp++;
 	if ((*string)[i + tmp] != '?')
 		i--;
@@ -73,13 +73,13 @@ static char	*combined(char **tok, char *var)
 	while ((*tok)[i] != '$')
 		i++;
 	i++;
-	while (!ft_strchr(" $\"\'\0?", (*tok)[i + s]))
+	while (!ft_strchr(" $\"\'\0", (*tok)[i + s]))
 		s++;
-	com = (char *)malloc(ft_strlen((*tok)) + var_size + 1);
+	com = (char *)malloc(ft_strlen((*tok)) - s - 1 + var_size + 1);
 	i--;
 	tok_size = norm_comb(0, i, &com, (*tok));
 	i = 0;
-	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0?", var[i]))
+	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0", var[i]))
 		com[tok_size++] = var[i++];
 	var_size = tok_size - i + s + 1;
 	while ((*tok)[var_size] != '\0')
