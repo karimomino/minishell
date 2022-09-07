@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/08/27 17:13:11 by kamin            ###   ########.fr        #
+#    Updated: 2022/09/07 18:28:41 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ CC		=	gcc -fcommon
 all:	$(NAME)
 
 $(NAME): .printing_obj $(OBJS) libft.a parser.a .clear
-		@$(CC) $(CFLAGS) $(OBJS) libft.a parser -I$(INCLUDES) $(LDFLAGS) -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS) libft.a parser.a -I$(INCLUDES) $(LDFLAGS) -o $(NAME)
 		@echo "Compilation Successful!"
 
 .printing_obj:
@@ -68,7 +68,7 @@ parser.a:
 		@echo "Compiling PARSER Files..."
 		@$(MAKE) -C src/parser -s
 		@clear
-		@mv src/parser/parser parser
+		@mv src/parser/parser.a parser.a
 
 
 all:	$(NAME)

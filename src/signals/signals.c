@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/07 11:14:03 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/07 21:08:38 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,18 @@ void	clear_line(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-		t_infoo.retVal = 130;
+		if (g_exitval != -1 || g_exitval != -2)
+		{
+			ft_putstr_fd("\n", 1);
+			rl_on_new_line();
+			rl_replace_line("", 0);
+			rl_redisplay();
+		}
+		if (g_exitval == -1 || g_exitval == -2)
+			g_exitval = -2;
+		else
+			g_exitval = 130;
+		return ; 
 	}
 	else if (sig == SIGQUIT)
 		return ;
@@ -30,7 +37,7 @@ void	clear_line(int sig)
 		exit (0);
 }
 
-void	signals(void)
-{
-	signal(SIGINT, clear_line);
-}
+// void	signals(void)
+// {
+// 	signal(SIGINT, clear_line);
+// }

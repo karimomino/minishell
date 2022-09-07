@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/01 20:36:30 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:28:32 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ static int	cmd_child(t_line *line, char *path, int ret)
 	ft_putstr_fd(": command not found\n", 2);
 	free_nodes(line);
 	free(line);
-	t_infoo.retVal = 127;
-	exit(t_infoo.retVal);
+	g_exitval = 127;
+	exit(g_exitval);
 	return (ret);
 }
 
@@ -115,9 +115,9 @@ int	exec_bin(t_line *line)
 		ret = cmd_child(line, path, ret);
 	else
 	{
-		wait(&t_infoo.retVal);
-		t_infoo.retVal = WEXITSTATUS(t_infoo.retVal);
-		printf("THIS IS THE EXIT STATUS: %d\n", t_infoo.retVal);
+		wait(&g_exitval);
+		g_exitval = WEXITSTATUS(g_exitval);
+		printf("THIS IS THE EXIT STATUS: %d\n", g_exitval);
 	}
 	if (path)
 		free(path);

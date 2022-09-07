@@ -6,12 +6,12 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/08/23 22:04:39 by ommohame         ###   ########.fr        #
+#    Updated: 2022/09/07 18:26:01 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		=		parser
+NAME		=		parser.a
 
 SRCS		=		./parser.c \
 					../utils/print_list.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/07 11:23:20 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/07 18:44:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	redir_in1(t_redir redir, int f)
 		ft_putstr_fd("minihshell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		t_infoo.retVal = 2;
+		g_exitval = 2;
 		return (-1);
 	}
 	if (access(redir.file, R_OK) == -1)
@@ -29,7 +29,7 @@ static int	redir_in1(t_redir redir, int f)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
-		t_infoo.retVal = 126;
+		g_exitval = 126;
 		return (-1);
 	}
 	fd = open(redir.file, O_RDONLY);
@@ -43,7 +43,8 @@ static int	read_herdoc(t_redir redir, int fd)
 {
 	char	*tmp1;
 
-	while (1)
+	g_exitval = -1;
+	while (g_exitval != -2)
 	{
 		tmp1 = readline(">");
 		if (!tmp1)
@@ -53,25 +54,31 @@ static int	read_herdoc(t_redir redir, int fd)
 			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
 		{
 			free(tmp1);
-			close(fd);
 			break ;
 		}
 		ft_putstr_fd(tmp1, fd);
 		ft_putchar_fd('\n', fd);
 		free(tmp1);
 	}
+	if (g_exitval == -2)
+		return (-69);
 	return (1);
 }
 
 int	heredoc(t_redir redir, int f)
 {
 	int		fd;
+	int		ret;
 
 	fd = -1;
 	if (f == 1)
 		fd = open("./src/redirection/.heredoc.txt",
 				O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	if (read_herdoc(redir, fd) != 1)
+	ret = read_herdoc(redir, fd);
+	close(fd);
+	if (ret == -69)
+		return (-69);
+	else if (ret != 1)
 		return (-2);
 	close(fd);
 	if (f == 1)

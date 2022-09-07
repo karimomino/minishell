@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/07 11:06:09 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/07 19:47:10 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	yalla(t_line **line)
 		pipes((*line), (*line)->ncmds);
 	else
 	{
-		if (redirection(*line) != 1)
+		if (redirection(*line) == 0)
 			exec_ft((*line));
 	}
 	free(*line);

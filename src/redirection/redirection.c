@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/24 15:15:18 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/07 20:57:59 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,39 +76,47 @@ static int	redirect(t_line *line, int fd_in, int fd_out)
 	return (1);
 }
 
-static void	redir_loop(t_line *line)
-{	
-	int		f;
+static int	redir_loop(t_line *line)
+{
 	int		fd_in;
 	int		fd_out;
 	t_redir	*redirr;
 
-	f = 0;
 	fd_in = -1;
 	fd_out = -1;
+	rl_catch_signals = 1;
 	while (line->cmd->redir)
 	{
-		if (check_lastredir(*line->cmd->redir))
-			f = 1;
 		if (line->cmd->redir->fd == 1)
-			fd_out = redir_out(*line->cmd->redir, f);
+			fd_out = redir_out(*line->cmd->redir,
+					check_lastredir(*line->cmd->redir));
 		else if (line->cmd->redir->fd == 0)
-			fd_in = redir_in(*line->cmd->redir, f);
+			fd_in = redir_in(*line->cmd->redir,
+					check_lastredir(*line->cmd->redir));
 		redirr = line->cmd->redir;
 		line->cmd->redir = line->cmd->redir->next;
 		free(redirr->file);
 		free(redirr);
-		f = 0;
+		if (fd_in == -69)
+			return (-69);
 	}
+	rl_catch_signals = 0;
 	redirect(line, fd_in, fd_out);
+	return (1);
 }
 
 int	redirection(t_line *line)
 {
+	int		ret;
 	if (!line->cmd->redir || line->cmd->nredir == 0)
 		return (0);
-	redir_loop(line);
+	ret = redir_loop(line);
 	if (!access("./src/redirection/.heredoc.txt", F_OK))
 		unlink("./src/redirection/.heredoc.txt");
+	if (ret == -69)
+	{
+		free_nodes(line);
+		return (-1);
+	}
 	return (1);
 }
