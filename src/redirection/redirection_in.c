@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/01 23:59:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/07 11:23:20 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	redir_in1(t_redir redir, int f)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
-		t_infoo.retVal = 13;
+		t_infoo.retVal = 126;
 		return (-1);
 	}
 	fd = open(redir.file, O_RDONLY);

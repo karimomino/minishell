@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/30 10:38:46 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/07 11:06:09 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	reaser(t_line **line)
 	int		ret;
 	char	*str;
 
-	str = readline("\033[1m\033[32menter a fucking command: \033[0m");
+	str = readline("\033[1m\033[32menter a fucking command (if you\'re not old): \033[0m");
 	if (!str)
 		exit(0);
 	if (!str[0])
