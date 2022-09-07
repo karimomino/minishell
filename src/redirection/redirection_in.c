@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/01 23:10:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:59:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static int	redir_in1(t_redir redir, int f)
 		ft_putstr_fd("minihshell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		return (2);
+		t_infoo.retVal = 2;
+		return (-1);
 	}
 	if (access(redir.file, R_OK) == -1)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
+		t_infoo.retVal = 13;
 		return (-1);
 	}
 	fd = open(redir.file, O_RDONLY);

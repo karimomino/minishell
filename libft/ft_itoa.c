@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 20:25:24 by kamin             #+#    #+#             */
-/*   Updated: 2021/10/14 04:30:10 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/02 01:11:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,12 @@ char	*ft_itoa(int n)
 		nbr /= 10;
 	}
 	return (number);
+}
+#include <stdio.h>
+
+int main()
+{
+	int	a = (int)012;
+	char *s = ft_itoa(a);
+	printf("%s\n", s);
 }
