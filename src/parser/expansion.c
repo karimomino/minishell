@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/05 22:10:24 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/03 18:10:40 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ static char	*expand_helper(void *cmd, int flag)
 	int		tmp;
 	char	*var;
 	char	**string;
+	int		qm;
 
 	i = 0;
 	tmp = 0;
+	qm = 0;
 	if (flag)
 		string = (char **)&((*(t_token **)cmd)->token);
 	else
@@ -28,15 +30,20 @@ static char	*expand_helper(void *cmd, int flag)
 	while ((*string) && (*string)[i] != '\0' && (*string)[i] != '$')
 		i++;
 	if ((*string)[i++] == '$')
-		while (!ft_strchr(" $\"\'\0", (*string)[i + tmp]))
+		while (!ft_strchr(" $?\"\'\0", (*string)[i + tmp]))
 			tmp++;
-	i--;
+	if ((*string)[i + tmp] != '?')
+		i--;
 	var = (char *)malloc(sizeof(char) * tmp);
 	tmp = 0;
 	if ((*string)[i++] == '$')
 	{
-		while (!ft_strchr(" $\"\'\0", (*string)[i]))
+		while (!ft_strchr(" $\"\'\0", (*string)[i]) && !qm)
+		{
+			if ((*string)[i] == '?')
+				qm = 1;
 			var[tmp++] = (*string)[i++];
+		}
 		var[tmp] = '\0';
 	}
 	return (var);
@@ -66,13 +73,13 @@ static char	*combined(char **tok, char *var)
 	while ((*tok)[i] != '$')
 		i++;
 	i++;
-	while (!ft_strchr(" $\"\'\0", (*tok)[i + s]))
+	while (!ft_strchr(" $\"\'\0?", (*tok)[i + s]))
 		s++;
 	com = (char *)malloc(ft_strlen((*tok)) + var_size + 1);
 	i--;
 	tok_size = norm_comb(0, i, &com, (*tok));
 	i = 0;
-	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0", var[i]))
+	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0?", var[i]))
 		com[tok_size++] = var[i++];
 	var_size = tok_size - i + s + 1;
 	while ((*tok)[var_size] != '\0')
@@ -121,8 +128,10 @@ static void	expand(void *cmd, int *i, int flag)
 	{
 		var = expand_helper(cmd, flag);
 		env = getenv(var);
-		if (var)
+		if (var && ft_strcmp(var, "?"))
 			free(var);
+		else if (!ft_strcmp(var, "?"))
+			(*(t_token **)cmd)->token = combined(&(*(t_token **)cmd)->token, ft_itoa(t_infoo.retVal));
 		if (env != NULL && flag)
 			(*(t_token **)cmd)->token = combined(&(*(t_token **)cmd)->token, env);
 		else if (env != NULL && !flag)
@@ -149,7 +158,7 @@ void	ft_expansion(t_line **line)
 				expand(&((*line)->cmd->token), &i, 1);
 			((*line)->cmd->token) = ((*line)->cmd->token)->next;
 		}
-		while ((*line)->cmd->redir)
+		while ((*line)->cmd->redir && (*line)->cmd->redir->type != 2)
 		{
 			i = -1;
 			while (((*line)->cmd->redir) && ((*line)->cmd->redir)->file[++i])

@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/30 14:01:28 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/01 19:38:45 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	exec_bin(t_line *line)
 			printf("PATH: %s\n", path );
 		}
 		ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
-		printf("minishell: %s: command not found\n", line->cmd->token->token);
+		printf("minishell: %s: command not found %d\n", line->cmd->token->token, ret);
 		free_nodes(line);
 		free(line);
 		t_infoo.retVal = 127;
@@ -136,4 +136,5 @@ int	exec_ft(t_line *line)
 	if (line->ncmds == 1)
 		free_cmd(line->cmd);
 	return (ret);
+	
 }
