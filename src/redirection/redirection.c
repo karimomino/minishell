@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/07 20:57:59 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/08 07:09:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ static int	redir_loop(t_line *line)
 int	redirection(t_line *line)
 {
 	int		ret;
+
 	if (!line->cmd->redir || line->cmd->nredir == 0)
 		return (0);
 	ret = redir_loop(line);

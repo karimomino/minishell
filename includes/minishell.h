@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/07 16:28:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/08 07:56:22 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ int		count_env(char **env);
 int		ft_set(int i, char *val);
 int		ft_unset(int i);
 int		free_cmd(t_cmd *cmd);
+
+int		reaser(t_line **line, int f, char *str);
+int		yalla(t_line **line);
 
 void	init_environment();
 int		add_to_env(char *val);

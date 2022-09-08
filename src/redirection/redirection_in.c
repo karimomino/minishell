@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/07 18:44:01 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/08 09:31:10 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,31 @@ static int	redir_in1(t_redir redir, int f)
 	return (-1);
 }
 
+int	heredoc_sig(char *str)
+{
+	t_line	*line;
+
+	if (reaser(&line, 1, str) == 1)
+		yalla(&line);
+	return (-69);
+}
+
 static int	read_herdoc(t_redir redir, int fd)
 {
 	char	*tmp1;
 
 	g_exitval = -1;
+	// rl_catch_signals = 1;
 	while (g_exitval != -2)
 	{
 		tmp1 = readline(">");
 		if (!tmp1)
 			return (-2);
+		if (g_exitval == -2)
+		{
+			heredoc_sig(tmp1);
+			break ;
+		}
 		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1))
 			&& ft_strncmp(tmp1, "", 1)
 			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
@@ -60,6 +75,7 @@ static int	read_herdoc(t_redir redir, int fd)
 		ft_putchar_fd('\n', fd);
 		free(tmp1);
 	}
+	// rl_catch_signals = 0;
 	if (g_exitval == -2)
 		return (-69);
 	return (1);
