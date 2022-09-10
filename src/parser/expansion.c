@@ -6,85 +6,119 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/07 17:08:40 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/09 18:28:10 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+static int	stopper_finder(char *tok)
+{
+	int	i;
+
+	i = -1;
+	while (!ft_strchr(" $?\'\"\0", tok[++i]))
+		;
+	if (i == 0)
+		i++;
+	return (i);
+}
+
 static char	*expand_helper(void *cmd, int flag)
 {
 	int		i;
-	int		tmp;
+	// int		tmp;
 	char	*var;
-	char	**string;
-	int		qm;
+	char	*string;
+	// int		qm;
 
 	i = 0;
-	tmp = 0;
-	qm = 0;
+	// tmp = 0;
+	// qm = 0;
 	if (flag)
-		string = (char **)&((*(t_token **)cmd)->token);
+		string = (*(t_token **)cmd)->token;
 	else
-		string = (char **)&((*(t_redir **)cmd)->file);
-	while ((*string) && (*string)[i] != '\0' && (*string)[i] != '$')
+		string = (*(t_redir **)cmd)->file;
+	if (!string)
+		return (NULL);
+	while (string[i] != '\0' && string[i] != '$')
 		i++;
-	if ((*string)[i++] == '$')
-		while (!ft_strchr(" $\"\'\0", (*string)[i + tmp]))
-			tmp++;
-	if ((*string)[i + tmp] != '?')
-		i--;
-	var = (char *)malloc(sizeof(char) * tmp);
-	tmp = 0;
-	if ((*string)[i++] == '$')
-	{
-		while (!ft_strchr(" $\"\'\0", (*string)[i]) && !qm)
-		{
-			if ((*string)[i] == '?')
-				qm = 1;
-			var[tmp++] = (*string)[i++];
-		}
-		var[tmp] = '\0';
-	}
+	if (string[i] == '\0')
+		return (NULL);
+	// while (!ft_strchr(" $\"\'\0", string[i + tmp]))
+	// 	tmp++;
+	var = ft_substr(string + i + 1, 0, stopper_finder(string + i + 1));
+	// if (string[i + tmp] != '?')
+	// 	i--;
+	// var = (char *)malloc(sizeof(char) * (tmp + 1));
+	// tmp = 0;
+	// if (string[i++] == '$')
+	// {
+	// 	while (!ft_strchr(" $\"\'\0", string[i]) && !qm)
+	// 	{
+	// 		if (string[i] == '?')
+	// 			qm = 1;
+	// 		var[tmp++] = string[i++];
+	// 	}
+	// 	var[tmp] = '\0';
+	// }
 	return (var);
 }
 
-static int	norm_comb(int tok_size, int i, char **com, char *tok)
+static int	cpy_sec(int start, char **com, char *tok, char stopper)
 {
-	while (tok_size < i)
+	int	i;
+	int	j;
+
+	i = start;
+	j = -1;
+	while (tok[++j] != stopper)
 	{
-		(*com)[tok_size] = (tok)[tok_size];
-		tok_size++;
+		if (i < 0)
+			i = 0;
+		(*com)[i] = (tok)[j];
+		i++;
 	}
-	return (tok_size);
+	return (i);
 }
 
-static char	*combined(char **tok, char *var)
+static size_t	calc_malloc_size(char *tok, char *var, char *val)
 {
-	int		tok_size;
-	int		var_size;
+	// int		i;
+	// int		val;
+
+	size_t	size;
+
+	size = ft_strlen(tok) + ft_strlen(val) - ft_strlen(var);
+	// i = -1;
+	// val = -1;
+	// size = 0;
+	// while (tok[++i] != '$' && tok[i] != '\0')
+	// 	size++;
+	// while (var[++val] != '\0')
+	// 	size++;
+	// while (!ft_strchr(" ?\"\'\0",tok[++i]))
+	// 	;
+	// while ((size_t)i < ft_strlen(tok) && tok[++i] != '\0')
+	// 	size++;
+	return (size);
+}
+
+static char	*combined(char *tok, char *val, char *var)
+{
+	ssize_t		tok_i;
 	int		i;
-	int		s;
 	char	*com;
 
-	i = 0;
-	s = 0;
-	var_size = ft_strlen(var);
-	while ((*tok)[i] != '$')
-		i++;
-	i++;
-	while (!ft_strchr(" $\"\'\0", (*tok)[i + s]))
-		s++;
-	com = (char *)malloc(ft_strlen((*tok)) - s - 1 + var_size + 1);
-	i--;
-	tok_size = norm_comb(0, i, &com, (*tok));
-	i = 0;
-	while (tok_size < tok_size + var_size && !ft_strchr(" \"\'\0", var[i]))
-		com[tok_size++] = var[i++];
-	var_size = tok_size - i + s + 1;
-	while ((*tok)[var_size] != '\0')
-		com[tok_size++] = (*tok)[var_size++];
-	com[tok_size] = '\0';
+	i = -1;
+	tok_i = 0;
+ 	com = (char *)ft_calloc((calc_malloc_size(tok, var, val) + 1), 1);
+	i = cpy_sec(i, &com, tok, '$');
+	i = cpy_sec(i, &com, val, '\0');
+	tok_i += ft_strlen(var) + i + 1 - ft_strlen(val);
+	if (tok_i < (ssize_t)ft_strlen(tok))
+		i = cpy_sec(i, &com, tok + tok_i , '\0');
+	com[i] = '\0';
 	return (com);
 }
 
@@ -115,27 +149,36 @@ static void	expand(void *cmd, int *i, int flag)
 	char		*var;
 	char		*env;
 	char		**string;
+	char		*tmp;
 	static int	dq;
 	static int	sq;
 
+	tmp = NULL;
 	if (flag)
 		string = (char **)&((*(t_token **)cmd)->token);
 	else
-	string = (char **)&((*(t_redir **)cmd)->file);
+		string = (char **)&((*(t_redir **)cmd)->file);
 	if (!check_char((*string)[*i], &dq, &sq)
 		&& (((*string)[*i] == '$' && dq == 1)
 			|| ((*string)[*i] == '$' && sq == 0 && dq == 0)))
 	{
 		var = expand_helper(cmd, flag);
 		env = getenv(var);
-		if (var && ft_strcmp(var, "?"))
-			free(var);
-		else if (!ft_strcmp(var, "?"))
-			(*(t_token **)cmd)->token = combined(&(*(t_token **)cmd)->token, ft_itoa(t_infoo.retVal));
+		// if (var && ft_strcmp(var, "?"))
+		// 	free(var);
+		if (!ft_strcmp(var, "?"))
+			tmp = combined(*string, ft_itoa(t_infoo.retVal), var);
 		if (env != NULL && flag)
-			(*(t_token **)cmd)->token = combined(&(*(t_token **)cmd)->token, env);
+			tmp = combined(*string, env, var);
 		else if (env != NULL && !flag)
-			(*(t_redir **)cmd)->file = combined(&(*(t_redir **)cmd)->file, env);
+			(*(t_redir **)cmd)->file = combined(*string, env, var);
+		if (tmp != NULL)
+		{
+			free((*(t_token **)cmd)->token);
+			(*(t_token **)cmd)->token = ft_strdup(tmp);
+		}
+		if (var != NULL && env != NULL)
+			free(tmp);
 	}
 }
 
