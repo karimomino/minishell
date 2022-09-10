@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/07 18:22:47 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/10 17:00:50 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 	int		ac;
 	// int		i;
 
+	val = NULL;
 	if (overwrite == 2)
 		ac = count_env((environ)) + 1;
 	else
@@ -55,7 +56,7 @@ int	ft_env(t_cmd *in)
 	// 	printf("%s=%s\n", envi->var, envi->val);
 	// 	envi = envi->next;
 	// }
-	
+
 	return (SUCCESS);
 }
 
