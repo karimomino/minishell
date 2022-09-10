@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 08:12:29 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/10 16:56:37 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	exec_bin(t_line *line)
 	int		ret;
 	pid_t	pid;
 	char	*path;
-	
+
 	path = is_file_found(line->cmd->token->token);
 	pid = fork();
 	ret = 0;
@@ -136,5 +136,5 @@ int	exec_ft(t_line *line)
 	if (line->ncmds == 1)
 		free_cmd(line->cmd);
 	return (ret);
-	
+
 }
