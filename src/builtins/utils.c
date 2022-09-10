@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 23:39:51 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/27 20:45:05 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/10 23:24:59 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_set(int i, char *val)
 
 int	ft_unset(int i)
 {
+	free(environ[i]);
 	environ[i] = NULL;
 	return (-1);
 }
@@ -67,7 +68,7 @@ void	export_executor(char *name, char *val, int ow, int ac)
 		else if (ow == 0 && i == ac - 2)
 			ow = add_to_env(val);
 			// ow = ft_set(i, val);
-		if (ow == 2 && !ft_strcmp((char *)name, tmp))
+		if (ow == 2 && !ft_strncmp((char *)name, tmp, ft_strlen(tmp)))
 			ow = ft_unset(i);
 		if (tmp)
 			free (tmp);

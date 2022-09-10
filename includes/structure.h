@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/27 17:03:41 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 01:53:04 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_line
 	size_t		npipes;
 	t_cmd		*cmd;
 	int			exit;
+	int			end;
 }	t_line;
 
 #endif

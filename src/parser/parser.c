@@ -3,31 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/10 22:03:39 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 03:34:57 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-t_line	*get_cmds(char **str, t_line *line)
+static void	get_cmds(char **str, t_line **line)
 {
 	size_t	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (cmds(str[i], &line) == -1)
-		{
-			free_nodes(line);
-			return (NULL);
-		}
+		if (cmds(str[i], line) == -1)
+			free_nodes(*line);
 		i++;
 	}
-	ft_expansion(&line);
-	return (line);
+	ft_expansion(line);
 }
 
 void	init_values(t_line *line)
@@ -49,18 +45,15 @@ int	parser_v3_0(char *str, t_line **line)
 	cmd = ft_split_sc(str, '|');
 	if (!cmd)
 		return (-1);
-	(*line) = (t_line *)ft_calloc(1, sizeof(t_line));
-	if (!(*line))
-		return (-1);
 	init_values((*line));
-	(*line) = get_cmds(cmd, (*line));
+	get_cmds(cmd, line);
 	if (!(*line))
 	{
 		free_2d(cmd);
 		free((*line));
 		return (-1);
 	}
-	ret = check_pipes(cmd, str, &(*line));
+	ret = check_pipes(cmd, str, line);
 	free_2d(cmd);
 	if (ret == 0 || ret == -1)
 		return (ret);

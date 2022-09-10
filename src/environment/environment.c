@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 01:54:06 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/27 21:15:17 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 01:00:40 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 int	add_to_env(char *val)
 {
-	char	**env;
 	int		c_size;
+	char	**new;
 	int	i;
 
 	i = -1;
 	c_size = 0;
 	while (environ != NULL && environ[c_size++]);
-	env = (char **)malloc((c_size + 2) * sizeof(char *));
-	if (!env)
-		return (-1);
-	while(environ[++i]);
-	environ[i++] = ft_strdup(val);
-	environ[i] = NULL;
+	new = (char **)malloc(sizeof(char *) * (c_size + 1));
+	while(environ[++i])
+	{
+		new[i] = ft_strdup(environ[i]);
+		free(environ[i]);
+	}
+	new[i++] = ft_strdup(val);
+	new[i] = NULL;
+	free(environ);
+	environ = new;
 	return (-1);
 }
 

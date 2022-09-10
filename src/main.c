@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 01:39:34 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 03:33:36 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,51 +21,60 @@ void	init_minishell(void)
 	init_history();
 }
 
-int	reaser(t_line **line, int f, char *str)
+int	reaser(t_line **line)
 {
 	int		ret;
+	char	*str;
+	char 	*prompt;
 
-	if (f == 0)
-		str = readline(PROMPT_MSG);
+	prompt = alpha_strjoin(6, "\001\e[1;91m\002", getenv("USER"),
+		"👁minishell: \001\e[1;95m\002", getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
+		str = readline(prompt);
 	if (!str)
 		exit(0);
 	if (!str[0])
 		return (-1);
-	ret = parser_v3_0(str, &*line);
+	ret = parser_v3_0(str, line);
 	historyy(str);
 	free(str);
+	free(prompt);
 	return (ret);
 }
 
 int	yalla(t_line **line)
 {
 	if ((*line)->npipes != 0)
-		pipes((*line), (*line)->ncmds);
+		pipes(line, (*line)->ncmds);
 	else
 	{
-		if (redirection(*line) == 0)
-			exec_ft((*line));
+		if (redirection(line) == 0)
+			exec_ft(line);
 	}
-	free(*line);
-	return (1);
+	return (SUCCESS);
 }
 
 int	minishell_loop(void)
 {
 	t_line		*line;
 
-	while (t_infoo.exit == 0)
+	line = (t_line *)ft_calloc(1, sizeof(t_line));
+	if (!line)
+		return (-1);
+	line->exit = 0;
+	line->end = 0;
+	while (line->end == 0)
 	{
-		if (reaser(&line, 0, NULL) == 1)
+		if (reaser(&line) == 1)
 			yalla(&line);
 	}
 	return (1);
 }
 
-// int	main(void)
-// {
-// 	init_minishell();
-// 	if (minishell_loop() == -1)
-// 		exit (EXIT_FAILURE);
-// 	return (EXIT_SUCCESS);
-// }
+int	main(void)
+{
+	init_minishell();
+	// ft_setenv("OLDPWD", NULL, 2);
+	if (minishell_loop() == -1)
+		exit (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}

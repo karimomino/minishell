@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 00:51:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 03:33:02 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <errno.h>
 # include <fcntl.h>
 # include <signal.h>
+# include <sys/stat.h>
 
 # define SUCCESS 0
 # define ERROR 0
@@ -49,20 +50,20 @@ void	export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrit);
 int		ft_env(t_cmd *in);
 int		ft_echo(t_cmd *cmd);
-int		exec_ft(t_line *line);
-int		exec_bin(t_line *line);
-int		exec_builtin(t_line *line);
+int		exec_ft(t_line **line);
+int		exec_bin(t_line **line);
+int		exec_builtin(t_line **line);
 int		ft_pwd(t_cmd *in);
 int		ft_export(t_cmd *cmd, int ow);
 int		ft_cd(t_cmd *cmd);
-int		ft_exit(t_line *in);
+int		ft_exit(t_line **line);
 void	ft_expansion(t_line **line);
 int		count_env(char **env);
 int		ft_set(int i, char *val);
 int		ft_unset(int i);
 int		free_cmd(t_cmd *cmd);
 
-int		reaser(t_line **line, int f, char *str);
+int		reaser(t_line **line);
 int		yalla(t_line **line);
 
 void	init_environment();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/10 14:04:30 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 03:35:48 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,6 @@ static int	redir_in1(t_redir redir, int f)
 	return (-1);
 }
 
-int	heredoc_sig(char *str)
-{
-	t_line	*line;
-
-	if (reaser(&line, 1, str) == 1)
-		yalla(&line);
-	return (-69);
-}
-
 static int	read_herdoc(t_redir redir, int fd)
 {
 	char	*tmp1;
@@ -58,11 +49,8 @@ static int	read_herdoc(t_redir redir, int fd)
 		tmp1 = readline(">");
 		if (g_exitval == -2)
 		{
-			rl_pending_input = tmp1[0];
 			if (tmp1)
 				free(tmp1);
-			// heredoc_sig(tmp1);
-			// rl_done = 0;
 			return (-69);
 		}
 		if (!tmp1)
