@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/09 18:28:10 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/10 14:15:19 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ static int	check_char(char c, int *dq, int *sq)
 	return (ret);
 }
 
-static void	expand(void *cmd, int *i, int flag)
+static int	expand(void *cmd, int *i, int flag)
 {
 	char		*var;
 	char		*env;
@@ -164,13 +164,13 @@ static void	expand(void *cmd, int *i, int flag)
 	{
 		var = expand_helper(cmd, flag);
 		env = getenv(var);
-		// if (var && ft_strcmp(var, "?"))
-		// 	free(var);
+		if (env == NULL)
+			env = ft_strdup("");
 		if (!ft_strcmp(var, "?"))
 			tmp = combined(*string, ft_itoa(t_infoo.retVal), var);
-		if (env != NULL && flag)
+		else if (flag)
 			tmp = combined(*string, env, var);
-		else if (env != NULL && !flag)
+		else if (!flag)
 			(*(t_redir **)cmd)->file = combined(*string, env, var);
 		if (tmp != NULL)
 		{
@@ -178,8 +178,15 @@ static void	expand(void *cmd, int *i, int flag)
 			(*(t_token **)cmd)->token = ft_strdup(tmp);
 		}
 		if (var != NULL && env != NULL)
+		{
 			free(tmp);
+			free(var);
+			if (!ft_strcmp(env, ""))
+				free(env);
+			return (0);
+		}
 	}
+	return (1);
 }
 
 void	ft_expansion(t_line **line)
@@ -198,7 +205,10 @@ void	ft_expansion(t_line **line)
 		{
 			i = -1;
 			while (((*line)->cmd->token) && ((*line)->cmd->token)->token[++i])
-				expand(&((*line)->cmd->token), &i, 1);
+			{
+				if(!expand(&((*line)->cmd->token), &i, 1))
+					i = -1;
+			}
 			((*line)->cmd->token) = ((*line)->cmd->token)->next;
 		}
 		while ((*line)->cmd->redir && (*line)->cmd->redir->type != 2)

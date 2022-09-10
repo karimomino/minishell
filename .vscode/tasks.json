@@ -3,8 +3,8 @@
         {
             "type": "shell",
             "label": "Build",
-            "command": "make",
-            
+            "command": "make re",
+
         }
     ],
     "version": "2.0.0"
