@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/09 19:00:36 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 00:51:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ int		yalla(t_line **line);
 
 void	init_environment();
 int		add_to_env(char *val);
+void	do_nothing(int sig);
 #endif

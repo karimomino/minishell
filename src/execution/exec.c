@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 17:05:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 00:52:13 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ static int	cmd_child(t_line *line, char *path, int ret)
 	return (ret);
 }
 
+
+
 int	exec_bin(t_line *line)
 {
 	int		ret;
@@ -116,9 +118,12 @@ int	exec_bin(t_line *line)
 		ret = cmd_child(line, path, ret);
 	else
 	{
+		signal(SIGINT, do_nothing);
+		signal(SIGQUIT, do_nothing);
 		wait(&g_exitval);
 		g_exitval = WEXITSTATUS(g_exitval);
-		printf("THIS IS THE EXIT STATUS: %d\n", g_exitval);
+		signal(SIGINT, clear_line);
+		signal(SIGQUIT, clear_line);
 	}
 	if (path)
 		free(path);

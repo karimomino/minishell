@@ -21,7 +21,8 @@
 		"fcntl.h": "c",
 		"ratio": "c",
 		"locale": "c",
-		"signal.h": "c"
+		"signal.h": "c",
+		"stdio.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled",
 	"synthwave84.brightness": 0.9,

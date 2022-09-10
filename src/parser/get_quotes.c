@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/23 21:31:47 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 02:08:25 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,26 +83,26 @@ static int	close_quotes(char **str, int i)
 * remove spaces outside quotes
 *	- returns the new trimmed string
 */
-static char	*trim_space(char *str, int i)
-{
-	int		j;
-	char	*trim;
-	char	*new;
+// static char	*trim_space(char *str, int i)
+// {
+// 	int		j;
+// 	char	*trim;
+// 	char	*new;
 
-	j = i + 1;
-	while (str[j] == ' ')
-		j++;
-	trim = ft_substr(str, 0, j);
-	new = ft_substr(str, j, ft_strlen(str) - j);
-	if (!new || !trim)
-	{
-		free(str);
-		free(trim);
-		return (NULL);
-	}
-	new = ft_strjoin(trim, new);
-	return (new);
-}
+// 	j = i + 1;
+// 	while (str[j] == ' ')
+// 		j++;
+// 	trim = ft_substr(str, 0, j);
+// 	new = ft_substr(str, j, ft_strlen(str) - j);
+// 	if (!new || !trim)
+// 	{
+// 		free(str);
+// 		free(trim);
+// 		return (NULL);
+// 	}
+// 	new = ft_strjoin(trim, new);
+// 	return (new);
+// }
 
 /*
 * handles quotes
@@ -121,26 +121,28 @@ char	*qoutes(char *str)
 	{
 		if (new[i] == 34 || new[i] == 39)
 			i = close_quotes(&new, i);
-		if (new[i] == ' ')
-			new = trim_space(new, i);
+		printf("i: %d\n", i);
 		if (i == -1)
-			return (NULL);
-		if (!new)
 			return (NULL);
 		i++;
 	}
 	return (new);
 }
 
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	int		i;
-// 	char	str[10000];
-// 	char	*new;
+# include <readline/readline.h>
+# include <readline/history.h>
+#include <stdio.h>
+int	main(void)
+{
+	char	*str;
+	char	*new;
 
-// 	i = 1;
-// 	scanf("%99[^\n]", str);
-// 	new = qoutes(str);
-// 	printf("%s\n", new);
-// }
+	ft_strlen(NULL);
+	while (1)
+	{
+		str = readline("hi: ");
+		new = qoutes(str);
+		printf("%s\n", new);
+		free(new);
+	}
+}

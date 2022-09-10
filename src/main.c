@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/09 19:37:49 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 01:39:34 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	minishell_loop(void)
 	return (1);
 }
 
-int	main(void)
-{
-	init_minishell();
-	if (minishell_loop() == -1)
-		exit (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+// int	main(void)
+// {
+// 	init_minishell();
+// 	if (minishell_loop() == -1)
+// 		exit (EXIT_FAILURE);
+// 	return (EXIT_SUCCESS);
+// }

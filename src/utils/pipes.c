@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/24 15:16:38 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 01:42:10 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ size_t	check_empty_pipe(char **cmd)
 			free(tmp);
 			ft_putstr_fd("minishell: syntax error ", 2);
 			ft_putstr_fd("near unexpected token '|'\n", 2);
+			// g_exitval = 258;
 			return (-1);
 		}
 		free(tmp);
@@ -86,6 +87,7 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 		|| (p_count > 0 && c_count == 0))
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token '|'\n", 2);
+		// g_exitval = 258;
 		return (-1);
 	}
 	else

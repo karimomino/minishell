@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/10 18:00:41 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 00:52:23 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	clear_line(int sig)
 			// rl_pending_input = 'a';
 			// ft_putstr_fd("\n", 1);
 			ioctl(STDIN_FILENO, TIOCSTI, "\n");
-			write(1, "\n", 1);
+			// write(1, "\n", 1);
 			rl_replace_line("", 0);
 			rl_on_new_line();
 			// rl_redisplay();
@@ -50,4 +50,10 @@ void	clear_line(int sig)
 		return ;
 	else if (sig == SIGUSR1)
 		exit (0);
+}
+
+void	do_nothing(int sig)
+{
+	(void)sig;
+	return ;
 }

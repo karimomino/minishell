@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/27 17:09:53 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 01:19:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ static int	child(t_line *line, int fd[2], int in)
 		exec_ft(line);
 	free_nodes(line);
 	free(line);
+	printf("something\n");
 	exit(0);
 }
 
-/*
-* alka: 1 - kiki: 0
-*/
-static int	pipe_alka(t_line *line, int **in)
+static int	pipe_norm(t_line *line, int **in)
 {
 	int		i;
 	int		pid;
@@ -62,7 +60,7 @@ int	pipes(t_line *line, int n)
 
 	in = (int *)malloc(sizeof(int) * (n + 1));
 	in[0] = -1;
-	pipe_alka(line, &in);
+	pipe_norm(line, &in);
 	i = 0;
 	while (i++ < n)
 	{
