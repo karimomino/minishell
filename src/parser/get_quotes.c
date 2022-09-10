@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_quotes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 02:08:25 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 03:38:26 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,20 +129,20 @@ char	*qoutes(char *str)
 	return (new);
 }
 
-# include <readline/readline.h>
-# include <readline/history.h>
-#include <stdio.h>
-int	main(void)
-{
-	char	*str;
-	char	*new;
+// # include <readline/readline.h>
+// # include <readline/history.h>
+// #include <stdio.h>
+// int	main(void)
+// {
+// 	char	*str;
+// 	char	*new;
 
-	ft_strlen(NULL);
-	while (1)
-	{
-		str = readline("hi: ");
-		new = qoutes(str);
-		printf("%s\n", new);
-		free(new);
-	}
-}
+// 	ft_strlen(NULL);
+// 	while (1)
+// 	{
+// 		str = readline("hi: ");
+// 		new = qoutes(str);
+// 		printf("%s\n", new);
+// 		free(new);
+// 	}
+// }
