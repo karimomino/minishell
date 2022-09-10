@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/20 14:53:31 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:36:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,18 @@ void	free_nodes(t_line *line)
 
 	while (line->cmd)
 	{
-		cmdd = line->cmd;
-		if (line->cmd->token)
-			free_tokens(line->cmd->token);
-		if (line->cmd->redir)
-			free_redirs(line->cmd->redir);
-		line->cmd = line->cmd->next;
-		free(cmdd->exec);
-		free (cmdd->cmd);
-		free (cmdd);
+		if (line->cmd)
+		{
+			cmdd = line->cmd;
+			if (line->cmd->token)
+				free_tokens(line->cmd->token);
+			if (line->cmd->redir)
+				free_redirs(line->cmd->redir);
+			line->cmd = line->cmd->next;
+			free(cmdd->exec);
+			free (cmdd->cmd);
+			free (cmdd);
+		}
 	}
 }
 

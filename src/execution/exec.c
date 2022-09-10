@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/08 09:28:55 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:47:37 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static char	*is_file_found(char *token)
 
 	i = -1;
 	is_file = access(token, F_OK);
-	paths = NULL;
 	f_path = NULL;
 	if (is_file && getenv("PATH"))
 	{
@@ -84,11 +83,12 @@ static char	*is_file_found(char *token)
 
 static int	cmd_child(t_line *line, char *path, int ret)
 {
-	if (path == NULL)
-	{
+	if (path == NULL && ((line->cmd->token->token[0] == '.'
+				&& line->cmd->token->token[1] == '/')
+			|| line->cmd->token->token[0] == '/'))
+		path = ft_strdup(line->cmd->token->token);
+	else if (path == NULL)
 		path = ft_strdup(getenv("PWD"));
-		printf("PATH: %s\n", path);
-	}
 	ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(line->cmd->token->token, 2);

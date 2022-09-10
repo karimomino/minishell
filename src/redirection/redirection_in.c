@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/08 09:31:10 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:45:26 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,20 @@ static int	read_herdoc(t_redir redir, int fd)
 	char	*tmp1;
 
 	g_exitval = -1;
-	// rl_catch_signals = 1;
 	while (g_exitval != -2)
 	{
 		tmp1 = readline(">");
-		if (!tmp1)
-			return (-2);
 		if (g_exitval == -2)
 		{
-			heredoc_sig(tmp1);
-			break ;
+			rl_pending_input = tmp1[0];
+			if (tmp1)
+				free(tmp1);
+			// heredoc_sig(tmp1);
+			// rl_done = 0;
+			return (-69);
 		}
+		if (!tmp1)
+			return (-2);
 		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1))
 			&& ft_strncmp(tmp1, "", 1)
 			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
@@ -75,9 +78,6 @@ static int	read_herdoc(t_redir redir, int fd)
 		ft_putchar_fd('\n', fd);
 		free(tmp1);
 	}
-	// rl_catch_signals = 0;
-	if (g_exitval == -2)
-		return (-69);
 	return (1);
 }
 

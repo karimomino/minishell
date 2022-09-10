@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/08 07:09:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:41:07 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static int	redir_loop(t_line *line)
 
 	fd_in = -1;
 	fd_out = -1;
-	rl_catch_signals = 1;
 	while (line->cmd->redir)
 	{
 		if (line->cmd->redir->fd == 1)
@@ -100,7 +99,6 @@ static int	redir_loop(t_line *line)
 		if (fd_in == -69)
 			return (-69);
 	}
-	rl_catch_signals = 0;
 	redirect(line, fd_in, fd_out);
 	return (1);
 }

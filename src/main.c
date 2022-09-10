@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/08 07:58:46 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:37:49 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	reaser(t_line **line, int f, char *str)
 	int		ret;
 
 	if (f == 0)
-		str = readline("\033[1m\033[32menter a fucking command (if you\'re not old): \033[0m");
+		str = readline(PROMPT_MSG);
 	if (!str)
 		exit(0);
 	if (!str[0])

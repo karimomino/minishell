@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/08 07:56:22 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:00:36 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define BUFFER_SIZE 1
 # define HOMEFLAG 0
 # define OLDPWDFLAG 1
+# define PROMPT_MSG "\033[1m\033[32mminishell: \033[0m"
 
 extern char	**environ;
 

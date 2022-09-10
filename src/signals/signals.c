@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/08 09:32:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/09 19:43:34 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ void	clear_line(int sig)
 	{
 		if (g_exitval == -1 || g_exitval == -2)
 		{
+			rl_done = 1;
+			// rl_pending_input = 'a';
 			ft_putstr_fd("\n", 1);
 			rl_on_new_line();
 			rl_replace_line("", 0);
 			rl_redisplay();
-			ft_putstr_fd("\033[1m\033[32mhello again: \033[0m", 1);
+			//rl_pending_input = rl_line_buffer[0];
+			// ft_putstr_fd("\n", 1);
+			// rl.setPrompt("");
+			// rl_replace_line("", 0);
+			// ft_putstr_fd("test", 1);
 		}
 		else
 		{
