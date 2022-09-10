@@ -3,29 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/09 19:43:34 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/10 18:00:41 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 // int		g_sig = 0;
-
+#include <sys/ioctl.h>
 void	clear_line(int sig)
 {
 	if (sig == SIGINT)
 	{
 		if (g_exitval == -1 || g_exitval == -2)
 		{
-			rl_done = 1;
+			// rl_done = 1;
 			// rl_pending_input = 'a';
-			ft_putstr_fd("\n", 1);
-			rl_on_new_line();
+			// ft_putstr_fd("\n", 1);
+			ioctl(STDIN_FILENO, TIOCSTI, "\n");
+			write(1, "\n", 1);
 			rl_replace_line("", 0);
-			rl_redisplay();
+			rl_on_new_line();
+			// rl_redisplay();
 			//rl_pending_input = rl_line_buffer[0];
 			// ft_putstr_fd("\n", 1);
 			// rl.setPrompt("");

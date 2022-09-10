@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 17:01:50 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/10 17:05:02 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char	*is_file_found(char *token)
 	i = -1;
 	is_file = access(token, F_OK);
 	f_path = NULL;
+	paths = NULL;
 	if (is_file && getenv("PATH"))
 	{
 		paths = ft_split(getenv("PATH"), ':');
