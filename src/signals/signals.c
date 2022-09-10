@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/10 18:00:41 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 01:00:22 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	clear_line(int sig)
 {
 	if (sig == SIGINT)
 	{
-		if (g_exitval == -1 || g_exitval == -2)
-		{
+		// if (g_exitval == -1 || g_exitval == -2)
+		// {
 			// rl_done = 1;
 			// rl_pending_input = 'a';
 			// ft_putstr_fd("\n", 1);
@@ -33,14 +33,14 @@ void	clear_line(int sig)
 			// rl.setPrompt("");
 			// rl_replace_line("", 0);
 			// ft_putstr_fd("test", 1);
-		}
-		else
-		{
-			ft_putstr_fd("\n", 1);
-			rl_on_new_line();
-			rl_replace_line("", 0);
-			rl_redisplay();
-		}
+		// }
+		// else
+		// {
+		// 	ft_putstr_fd("\n", 1);
+		// 	rl_on_new_line();
+		// 	rl_replace_line("", 0);
+		// 	rl_redisplay();
+		// }
 		if (g_exitval == -1 || g_exitval == -2)
 			g_exitval = -2;
 		else

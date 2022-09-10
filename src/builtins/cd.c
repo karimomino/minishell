@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/08/27 20:55:50 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/10 23:18:16 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 
 static void	print_error(char *token)
 {
-	int		is_file;
-	char	*err;
-	char	*tmp;
+	int			is_dir;
+	int			exists;
+	char		*err;
+	struct stat	info;
 
-	is_file = access(token, F_OK);
-	if (is_file)
-		errno = 2;
+	stat(token, &info);
+	is_dir =  S_ISDIR(info.st_mode);
+	exists = access(token, F_OK);
+	if (!is_dir)
+		errno = ENOTDIR;
+	else if (exists)
+		errno = ENOENT;
 	else
-		errno = 20;
-	tmp = ft_strjoin("minishell: cd: ", token);
-	err = ft_strjoin(tmp, ": ");
-	free(tmp);
+		errno = EACCES;
+	err = ft_strjoin("minishell: cd: ", token);
 	perror(err);
 	free(err);
 }
@@ -49,14 +52,15 @@ static int	go(int flag)
 {
 	int		ret;
 	char	*go_path;
+	char	cwd[MAX_PATH];
 
 	if (flag == 0)
 	{
 		go_path = getenv("HOME");
 		if (!go_path)
 		{
-			ft_putstr_fd("minishell : cd: HOME not set", 2);
-			return (ERROR);
+			ft_putstr_fd("minishell : cd: HOME not set\n", 2);
+			return (1);
 		}
 		update_oldpwd();
 	}
@@ -65,12 +69,15 @@ static int	go(int flag)
 		go_path = getenv("OLDPWD");
 		if (!go_path)
 		{
-			ft_putstr_fd("minishell : cd: OLDPWD not set", 2);
-			return (ERROR);
+			ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
+			return (1);
 		}
+		ft_putstr_fd(go_path, 1);
 		update_oldpwd();
 	}
 	ret = chdir(go_path);
+	getcwd(cwd, MAX_PATH);
+	ft_setenv("PWD", cwd, 1);
 	return (ret);
 }
 
@@ -82,9 +89,7 @@ int	ft_cd(t_cmd *cmd)
 	if (cmd->nargs == 1)
 		return (go(HOMEFLAG));
 	if (ft_strcmp(cmd->token->next->token, (char *)"-") == 0)
-	{
 		ret = go(OLDPWDFLAG);
-	}
 	else
 	{
 		update_oldpwd();

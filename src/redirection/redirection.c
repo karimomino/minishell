@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/08 21:41:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 02:41:51 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	check_lastredir(t_redir redir)
 	return (1);
 }
 
-static int	redirect(t_line *line, int fd_in, int fd_out)
+static int	redirect(t_line **line, int fd_in, int fd_out)
 {
 	int	in;
 	int	out;
@@ -76,7 +76,7 @@ static int	redirect(t_line *line, int fd_in, int fd_out)
 	return (1);
 }
 
-static int	redir_loop(t_line *line)
+static int	redir_loop(t_line **line)
 {
 	int		fd_in;
 	int		fd_out;
@@ -84,16 +84,16 @@ static int	redir_loop(t_line *line)
 
 	fd_in = -1;
 	fd_out = -1;
-	while (line->cmd->redir)
+	while ((*line)->cmd->redir)
 	{
-		if (line->cmd->redir->fd == 1)
-			fd_out = redir_out(*line->cmd->redir,
-					check_lastredir(*line->cmd->redir));
-		else if (line->cmd->redir->fd == 0)
-			fd_in = redir_in(*line->cmd->redir,
-					check_lastredir(*line->cmd->redir));
-		redirr = line->cmd->redir;
-		line->cmd->redir = line->cmd->redir->next;
+		if ((*line)->cmd->redir->fd == 1)
+			fd_out = redir_out(*(*line)->cmd->redir,
+					check_lastredir(*(*line)->cmd->redir));
+		else if ((*line)->cmd->redir->fd == 0)
+			fd_in = redir_in(*(*line)->cmd->redir,
+					check_lastredir(*(*line)->cmd->redir));
+		redirr = (*line)->cmd->redir;
+		(*line)->cmd->redir = (*line)->cmd->redir->next;
 		free(redirr->file);
 		free(redirr);
 		if (fd_in == -69)
@@ -103,18 +103,18 @@ static int	redir_loop(t_line *line)
 	return (1);
 }
 
-int	redirection(t_line *line)
+int	redirection(t_line **line)
 {
 	int		ret;
 
-	if (!line->cmd->redir || line->cmd->nredir == 0)
+	if (!(*line)->cmd->redir || (*line)->cmd->nredir == 0)
 		return (0);
 	ret = redir_loop(line);
 	if (!access("./src/redirection/.heredoc.txt", F_OK))
 		unlink("./src/redirection/.heredoc.txt");
 	if (ret == -69)
 	{
-		free_nodes(line);
+		free_nodes(*line);
 		return (-1);
 	}
 	return (1);

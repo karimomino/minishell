@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 17:00:50 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/10 22:48:31 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 	char	*tmp;
 	char	*val;
 	int		ac;
-	// int		i;
 
 	val = NULL;
 	if (overwrite == 2)
@@ -30,10 +29,8 @@ void	ft_setenv(const char *name, const char *value, int overwrite)
 		free(tmp);
 	}
 	export_executor((char *)name, val, overwrite, ac);
-	// environ[i] = NULL;
 	if (overwrite != 2)
 		free(val);
-	// return (i)
 }
 
 int	ft_env(t_cmd *in)
@@ -47,28 +44,20 @@ int	ft_env(t_cmd *in)
 		ft_putstr_fd(environ[i++], 1);
 		ft_putstr_fd("\n", 1);
 	}
-	// (void)in;
-	// t_environ	*envi;
-
-	// envi = *env;
-	// while (envi && envi->next)
-	// {
-	// 	printf("%s=%s\n", envi->var, envi->val);
-	// 	envi = envi->next;
-	// }
-
 	return (SUCCESS);
 }
 
-static int	export_error(char **name, int ow)
+static int	export_error(char *name, char *val, int ow)
 {
-	if (ow == 1 && (ft_strchr(*name, ' ') || !ft_strcmp(*name, "")
-			|| !ft_isalpha((*name)[0])))
+	if (ow == 1 && (ft_strchr(name, ' ') || !ft_strcmp(name, "")
+			|| !ft_isalpha(name[0]) || name == NULL))
 	{
 		errno = EINVAL;
 		perror("minishell: export: \'=\': ");
 		return (1);
 	}
+	if (ow == 1 && (!ft_strcmp(val, "") || val == NULL))
+		return (-1);
 	return (0);
 }
 
@@ -102,10 +91,12 @@ int	ft_export(t_cmd *cmd, int ow)
 		i++;
 	name = ft_substr(tmp, 0, i);
 	val = ft_substr(tmp, ++i, ft_strlen(tmp));
-	err = export_error(&name, ow);
+	err = export_error(name, val, ow);
 	if (!err)
 		export_selector(name, val, ow);
 	free(name);
 	free(val);
+	if (err == -1)
+		err = 0;
 	return (err);
 }

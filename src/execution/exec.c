@@ -6,31 +6,32 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 17:05:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 03:13:34 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	exec_builtin(t_line *line)
+int	exec_builtin(t_line **line)
 {
 	int	ret;
 
 	ret = 0;
-	if (line->cmd->type == 1)
-		ret = ft_echo(line->cmd);
-	else if (line->cmd->type == 2)
-		ret = ft_cd(line->cmd);
-	else if (line->cmd->type == 3)
-		ret = ft_pwd(line->cmd);
-	else if (line->cmd->type == 4)
-		ft_env(line->cmd);
-	else if (line->cmd->type == 5)
-		ft_export(line->cmd, 1);
-	else if (line->cmd->type == 6)
-		ft_export(line->cmd, 2);
-	else if (line->cmd->type == 7)
-		ft_exit(line);
+	if ((*line)->cmd->type == 1)
+		ret = ft_echo((*line)->cmd);
+	else if ((*line)->cmd->type == 2)
+		ret = ft_cd((*line)->cmd);
+	else if ((*line)->cmd->type == 3)
+		ret = ft_pwd((*line)->cmd);
+	else if ((*line)->cmd->type == 4)
+		ret = ft_env((*line)->cmd);
+	else if ((*line)->cmd->type == 5)
+		ret = ft_export((*line)->cmd, 1);
+	else if ((*line)->cmd->type == 6)
+		ret = ft_export((*line)->cmd, 2);
+	else if ((*line)->cmd->type == 7)
+		ret = ft_exit(line);
+	(*line)->exit = ret;
 	return (ret);
 }
 
@@ -82,32 +83,32 @@ static char	*is_file_found(char *token)
 		return (NULL);
 }
 
-static int	cmd_child(t_line *line, char *path, int ret)
+static int	cmd_child(t_line **line, char *path, int ret)
 {
-	if (path == NULL && ((line->cmd->token->token[0] == '.'
-				&& line->cmd->token->token[1] == '/')
-			|| line->cmd->token->token[0] == '/'))
-		path = ft_strdup(line->cmd->token->token);
+	if (path == NULL && (((*line)->cmd->token->token[0] == '.'
+				&& (*line)->cmd->token->token[1] == '/')
+			|| (*line)->cmd->token->token[0] == '/'))
+		path = ft_strdup((*line)->cmd->token->token);
 	else if (path == NULL)
 		path = ft_strdup(getenv("PWD"));
-	ret = execve(path, ft_split(line->cmd->exec, ' '), environ);
+	ret = execve(path, ft_split((*line)->cmd->exec, ' '), environ);
 	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(line->cmd->token->token, 2);
+	ft_putstr_fd((*line)->cmd->token->token, 2);
 	ft_putstr_fd(": command not found\n", 2);
-	free_nodes(line);
-	free(line);
-	g_exitval = 127;
-	exit(g_exitval);
+	free_nodes((*line));
+	free((*line));
+	(*line)->exit = 127;
+	exit((*line)->exit);
 	return (ret);
 }
 
-int	exec_bin(t_line *line)
+int	exec_bin(t_line **line)
 {
 	int		ret;
 	pid_t	pid;
 	char	*path;
 
-	path = is_file_found(line->cmd->token->token);
+	path = is_file_found((*line)->cmd->token->token);
 	pid = fork();
 	ret = 0;
 	if (pid == -1)
@@ -116,32 +117,31 @@ int	exec_bin(t_line *line)
 		ret = cmd_child(line, path, ret);
 	else
 	{
-		wait(&g_exitval);
-		g_exitval = WEXITSTATUS(g_exitval);
-		printf("THIS IS THE EXIT STATUS: %d\n", g_exitval);
+		wait(&(*line)->exit);
+		(*line)->exit = WEXITSTATUS((*line)->exit);
+		printf("THIS IS THE EXIT STATUS: %d\n", (*line)->exit);
 	}
 	if (path)
 		free(path);
 	return (ret);
 }
 
-int	exec_ft(t_line *line)
+int	exec_ft(t_line **line)
 {
 	int		ret;
 	t_token	*head;
 
-	head = line->cmd->token;
+	head = (*line)->cmd->token;
 	ret = 0;
-	if (line->cmd->nargs)
+	if ((*line)->cmd->nargs)
 	{
-		if (line->cmd->type)
+		if ((*line)->cmd->type)
 			ret = exec_builtin(line);
 		else
 			ret = exec_bin(line);
 	}
-	line->cmd->token = head;
-	if (line->ncmds == 1)
-		free_cmd(line->cmd);
+	(*line)->cmd->token = head;
+	if ((*line)->ncmds == 1)
+		free_cmd((*line)->cmd);
 	return (ret);
-
 }

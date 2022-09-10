@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 14:15:19 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 02:46:30 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ static char	*combined(char *tok, char *val, char *var)
  	com = (char *)ft_calloc((calc_malloc_size(tok, var, val) + 1), 1);
 	i = cpy_sec(i, &com, tok, '$');
 	i = cpy_sec(i, &com, val, '\0');
+	if (i < 0)
+		i = 0;
 	tok_i += ft_strlen(var) + i + 1 - ft_strlen(val);
 	if (tok_i < (ssize_t)ft_strlen(tok))
 		i = cpy_sec(i, &com, tok + tok_i , '\0');
@@ -144,7 +146,7 @@ static int	check_char(char c, int *dq, int *sq)
 	return (ret);
 }
 
-static int	expand(void *cmd, int *i, int flag)
+static int	expand(void *cmd, int *i, int flag, int exit)
 {
 	char		*var;
 	char		*env;
@@ -167,17 +169,17 @@ static int	expand(void *cmd, int *i, int flag)
 		if (env == NULL)
 			env = ft_strdup("");
 		if (!ft_strcmp(var, "?"))
-			tmp = combined(*string, ft_itoa(t_infoo.retVal), var);
-		else if (flag)
+			tmp = combined(*string, ft_itoa(exit), var);
+		else if (flag && ft_strcmp(var, ""))
 			tmp = combined(*string, env, var);
-		else if (!flag)
+		else if (!flag && ft_strcmp(var, ""))
 			(*(t_redir **)cmd)->file = combined(*string, env, var);
 		if (tmp != NULL)
 		{
 			free((*(t_token **)cmd)->token);
 			(*(t_token **)cmd)->token = ft_strdup(tmp);
 		}
-		if (var != NULL && env != NULL)
+		if (var != NULL && env != NULL && ft_strcmp(var, ""))
 		{
 			free(tmp);
 			free(var);
@@ -206,7 +208,7 @@ void	ft_expansion(t_line **line)
 			i = -1;
 			while (((*line)->cmd->token) && ((*line)->cmd->token)->token[++i])
 			{
-				if(!expand(&((*line)->cmd->token), &i, 1))
+				if(!expand(&((*line)->cmd->token), &i, 1, (*line)->exit))
 					i = -1;
 			}
 			((*line)->cmd->token) = ((*line)->cmd->token)->next;
@@ -215,7 +217,7 @@ void	ft_expansion(t_line **line)
 		{
 			i = -1;
 			while (((*line)->cmd->redir) && ((*line)->cmd->redir)->file[++i])
-				expand(&((*line)->cmd->redir), &i, 0);
+				expand(&((*line)->cmd->redir), &i, 0, (*line)->exit);
 			((*line)->cmd->redir) = ((*line)->cmd->redir)->next;
 		}
 		((*line)->cmd->token) = head_t;
