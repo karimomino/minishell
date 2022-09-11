@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 03:36:40 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 02:39:04 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-#include <sys/ioctl.h>
 void	clear_line(int sig)
 {
 	if (sig == SIGINT)
 	{
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
+		ft_putchar_fd('\n', 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		if (g_exitval == -1 || g_exitval == -2)
