@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 02:22:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 02:34:59 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,17 @@ static int	redir_out(t_redir redir, int f)
 {
 	int		fd;
 
-	if (!access(redir.file, F_OK) && !access(W_OK) && redir.type == 2)
+	if (access(redir.file, F_OK) && access(redir.file, X_OK)
+		&& redir.type == 2)
 		fd = open(redir.file, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	else if (redir.type == F_OK && !access(X_OK) && redir.type == 1)
+	else if (access(redir.file, F_OK) && access(redir.file, X_OK)
+		&& redir.type == 1)
 		fd = open(redir.file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	else
+	{
+		ft_putendl_fd("minishell: redirection error: permission denied", 2);
+		return (-69);
+	}
 	if (f == 1)
 		return (fd);
 	else
@@ -54,6 +61,8 @@ static int	redirect(t_line **line, int fd_in, int fd_out)
 	int	in;
 	int	out;
 
+	if (fd_in == -69 || fd_out == -69)
+		return (-69);
 	in = dup(STDIN_FILENO);
 	out = dup(STDOUT_FILENO);
 	if (fd_in >= 0)
@@ -86,21 +95,21 @@ static int	redir_loop(t_line **line)
 	fd_out = -1;
 	while ((*line)->cmd->redir)
 	{
-		if ((*line)->cmd->redir->fd == 1)
-			fd_out = redir_out(*(*line)->cmd->redir,
-					check_lastredir(*(*line)->cmd->redir));
-		else if ((*line)->cmd->redir->fd == 0)
-			fd_in = redir_in(*(*line)->cmd->redir,
-					check_lastredir(*(*line)->cmd->redir));
+		if (fd_in != -69 && fd_out != -69)
+		{
+			if ((*line)->cmd->redir->fd == 1)
+				fd_out = redir_out(*(*line)->cmd->redir,
+						check_lastredir(*(*line)->cmd->redir));
+			else if ((*line)->cmd->redir->fd == 0)
+				fd_in = redir_in(*(*line)->cmd->redir,
+						check_lastredir(*(*line)->cmd->redir));
+		}
 		redirr = (*line)->cmd->redir;
 		(*line)->cmd->redir = (*line)->cmd->redir->next;
 		free(redirr->file);
 		free(redirr);
-		if (fd_in == -69)
-			return (-69);
 	}
-	redirect(line, fd_in, fd_out);
-	return (1);
+	return (redirect(line, fd_in, fd_out));
 }
 
 int	redirection(t_line **line)
