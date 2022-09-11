@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 16:44:46 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 01:37:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	signals(void);
 int		init_history(void);
 int		pipes(t_line **line, int n);
 void	remove_all_quotes(t_line **line);
+char	*history_path(void);
 
 #endif

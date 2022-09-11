@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 03:34:32 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 02:10:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	exec_builtin(t_line **line)
 		ret = ft_export((*line)->cmd, 2);
 	else if ((*line)->cmd->type == 7)
 		ret = ft_exit(line);
+	else if ((*line)->cmd->type == 8)
+		ret = print_history(*(*line)->cmd);
 	(*line)->exit = ret;
 	return (ret);
 }

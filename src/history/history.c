@@ -6,47 +6,103 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/01 20:26:04 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 02:10:37 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	init_history(void)
+char	*history_path(void)
 {
-	int		fd;
-	size_t	i;
-	size_t	j;
-	char	*tmp1;
-	char	**his;
+	char	*tmp;
+	char	*path;
+	char	*final;
 
-	fd = open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644);
-	tmp1 = get_next_line(fd);
-	close(fd);
-	if (!tmp1)
-		return (-1);
-	his = ft_split(tmp1, '\n');
-	free(tmp1);
+	tmp = getenv("_");
+	path = ft_substr(tmp, 0, ft_strlen(tmp) - 12);
+	final = ft_strjoin(path, "/src/history/.history");
+	free(path);
+	return (final);
+}
+
+static void	add_the_history(char *str)
+{
+	size_t		i;
+	size_t		j;
+	char		*tmp;
+	char		**his;
+
 	i = 0;
+	his = ft_split(str, '\n');
 	while (his[i])
 	{
 		j = 0;
 		while (ft_isdigit(his[i][j]))
 			j++;
-		tmp1 = ft_strtrim(his[i++] + j, " ");
-		add_history(tmp1);
-		free(tmp1);
+		tmp = ft_strtrim(his[i++] + j, " ");
+		add_history(tmp);
+		free(tmp);
 	}
 	free_2d(his);
+}
+
+int	init_history(void)
+{
+	int		fd;
+	char	*tmp;
+	char	*path;
+
+	path = history_path();
+	fd = open(path, O_RDONLY | O_APPEND | O_CREAT, 0644);
+	free(path);
+	if (fd < 0)
+	{
+		ft_putstr_fd("minishell: FAILED to open history file\n", 2);
+		return (-1);
+	}
+	tmp = get_next_line(fd);
+	if (!tmp)
+	{
+		ft_putstr_fd("minishell: FAILED to read history file\n", 2);
+		return (-1);
+	}
+	add_the_history(tmp);
+	free(tmp);
+	close(fd);
 	return (1);
 }
 
-int	history_file(char *str, int i)
+static size_t	get_cmd_num(void)
 {
 	int		fd;
+	char	*tmp1;
+	char	**tmp2;
+	char	*path;
 
-	fd = open("./src/history/.history", O_WRONLY | O_APPEND | O_CREAT, 0644);
-	if (fd <= 0)
+	path = history_path();
+	fd = open(path, O_RDONLY | O_APPEND | O_CREAT, 0644);
+	free(path);
+	if (!fd)
+		return (0);
+	tmp1 = get_next_line(fd);
+	close(fd);
+	if (!tmp1)
+		return (0);
+	tmp2 = ft_split(tmp1, '\n');
+	free(tmp1);
+	free_2d(tmp2);
+	return (ft_strlenx2(tmp2) + 1);
+}
+
+static int	history_file(char *str, size_t i)
+{
+	int		fd;
+	char	*path;
+
+	path = history_path();
+	fd = open(path, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	free(path);
+	if (fd < 0)
 	{
 		ft_printf("minishell: FAILED to save history\n");
 		return (-1);
@@ -60,88 +116,15 @@ int	history_file(char *str, int i)
 	return (1);
 }
 
-size_t	get_cmd_num(void)
-{
-	int		i;
-	int		fd;
-	char	*tmp1;
-	char	**tmp2;
-
-	fd = open("./src/history/.history", O_RDONLY | O_APPEND | O_CREAT, 0644);
-	tmp1 = get_next_line(fd);
-	close(fd);
-	if (!tmp1)
-		return (1);
-	tmp2 = ft_split(tmp1, '\n');
-	free(tmp1);
-	i = ft_strlenx2(tmp2);
-	free_2d(tmp2);
-	return (i + 1);
-}
-
 int	historyy(char *str)
 {
 	size_t		i;
 
 	i = get_cmd_num();
+	if (i == 0)
+		return (-1);
 	add_history(str);
 	if (history_file(str, i) == -1)
 		return (-1);
-	return (1);
-}
-
-int	print_history(t_cmd cmd)
-{
-	int			fd;
-	size_t		num;
-	size_t		total;
-	size_t		i;
-	char		*tmp1;
-	char		**tmp2;
-
-	if (cmd.nargs > 2)
-	{
-		ft_putstr_fd("minishell: history: too many arguments\n", 2);
-		return (-1);
-	}
-	fd = open("./src/history/.history", O_RDONLY);
-	if (fd <= 0)
-	{
-		ft_putstr_fd("minishell: FAILED to read history\n", 2);
-		return (-1);
-	}
-	num = 0;
-	tmp1 = get_next_line(fd);
-	if (!tmp1)
-		return (-1);
-	tmp2 = ft_split(tmp1, '\n');
-	free(tmp1);
-	total = ft_strlenx2(tmp2);
-	if (cmd.nargs == 2)
-	{
-		i = 0;
-		while (cmd.token->next->token[i])
-		{
-			if (ft_isdigit(cmd.token->next->token[i++]) == 0)
-			{
-				ft_putstr_fd("minishell: history: ", 2);
-				ft_putstr_fd(cmd.token->next->token, 2);
-				ft_putstr_fd(": numeric argument required\n", 2);
-			}
-		}
-		num = ft_atoi(cmd.token->next->token);
-		if (num > total)
-			num = 0;
-		else if (num < total)
-			num = total - num;
-		while (num < total)
-			ft_printf("%s\n", tmp2[num++]);
-	}
-	else
-	{
-		while (tmp2[num])
-			ft_printf("%s\n", tmp2[num++]);
-	}
-	free_2d(tmp2);
 	return (1);
 }

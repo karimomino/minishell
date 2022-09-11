@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 22:04:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:40:18 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	get_cmds(char **str, t_line **line)
 	ft_expansion(line);
 	remove_all_quotes(line);
 	get_exec(line);
-	print_line(*line);
 }
 
 void	init_values(t_line *line)

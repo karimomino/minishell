@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 21:37:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:54:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	minishell_loop(void)
 		if (reaser(&line) == 1)
 			yalla(&line);
 	}
+	// free()
+	free(line);
 	return (1);
 }
 
