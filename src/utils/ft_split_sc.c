@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/10 21:57:19 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 20:56:24 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	cmd_count(char *str, char c)
 			i = skip_quotes(str, i);
 		if (i == -1)
 			return (-1);
-		if ((str[i] == c && str[i - 1] != c && str[i + 1] != c)
+		if ((str[i] == c && str[i - 1] != c)
 			|| str[i + 1] == '\0')
 			count++;
 		i++;
@@ -41,7 +41,7 @@ static int	cmd_len(char *str, char c, int i)
 	{
 		if (str[i] == '\'' || str[i] == '"')
 			i = skip_quotes(str, i);
-		if (str[i] == c && str[i - 1] != c && str[i + 1] != c)
+		if (str[i] == c && str[i - 1] != c)
 			return (i);
 		i++;
 	}

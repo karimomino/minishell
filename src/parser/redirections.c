@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 03:02:12 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/07 11:07:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:18:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@ int	redir_len(char *str, size_t j)
 	while ((str[j] == '>' || str[j] == '<') && str[j])
 		j++;
 	while (str[j] == ' ' && str[j])
-	{
-		if (str[j] == '"' || str[j] == '\'')
-			return (skip_quotes(str, j));
 		j++;
-	}
-	while (str[j] != '>' && str[j] != '<' && str[j])
+	while (str[j] && str[j] != '>' && str[j] != '<' && str[j] != ' ')
 	{
 		if (str[j] == '\"' || str[j] == '\'')
-			return (skip_quotes(str, j));
+			j = skip_quotes(str, j);
 		else if (str[j] == ' ')
 			return (j);
 		j++;

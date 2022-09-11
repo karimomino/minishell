@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/02 20:57:22 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:33:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ramadan_redir(char *str, char ***ret, int *i)
 		return (-1);
 	}
 	if (str[*i] == '>' || str[*i] == '<')
-		*i = *i - 1;
+		*i = *i;
 	return (1);
 }
 

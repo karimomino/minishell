@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 03:33:36 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 21:37:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int	reaser(t_line **line)
 {
 	int		ret;
 	char	*str;
-	char 	*prompt;
+	char	*prompt;
 
 	prompt = alpha_strjoin(6, "\001\e[1;91m\002", getenv("USER"),
-		"👁minishell: \001\e[1;95m\002", getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
+			"👁minishell: \001\e[1;95m\002",
+			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
 		str = readline(prompt);
 	if (!str)
 		exit(0);
@@ -43,6 +44,7 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line)
 {
+	// print_line(*line);
 	if ((*line)->npipes != 0)
 		pipes(line, (*line)->ncmds);
 	else

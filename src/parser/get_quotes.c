@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_quotes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 03:38:26 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 21:30:34 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,104 +29,86 @@ int	skip_quotes(char *str, int i)
 	return (i);
 }
 
-/*
-* trims the outer quotes
-*/
-static char	*trim_quotes(char *str, int i, int j)
+static int	trim_quotes(char **str, int i, int j)
 {
+	int		ret;
 	char	*tmp1;
 	char	*tmp2;
 	char	*tmp3;
 	char	*new;
 
-	tmp1 = ft_substr(str, 0, i);
-	tmp2 = ft_substr(str, i + 1, j - i - 1);
-	tmp3 = ft_substr(str, j + 1, ft_strlen(str) - j);
-	new = ft_strjoin(tmp1, tmp2);
+	tmp1 = ft_substr(*str, 0, i);
+	tmp2 = ft_substr(*str, i + 1, j - i - 1);
+	tmp3 = ft_substr(*str, j + 1, ft_strlen(*str) - j);
+	ret = ft_strlen(tmp1) + ft_strlen(tmp2) - 1;
+	new = alpha_strjoin(3, tmp1, tmp2, tmp3);
 	free(tmp1);
 	free(tmp2);
-	tmp1 = ft_strjoin(new, tmp3);
 	free(tmp3);
-	free(new);
-	free(str);
-	return (tmp1);
+	free(*str);
+	*str = new;
+	return (ret);
 }
 
-/*
-* search for the close of the quotes
-*	- returns -1 if it doesn't find the closing quotes
-*/
 static int	close_quotes(char **str, int i)
 {
 	int		j;
 	char	c;
-	char	*new;
 
-	new = *str;
-	c = new[i];
+	c = (*str)[i];
 	j = i + 1;
-	while (new[j])
+	while ((*str)[j])
 	{
-		if (new[j] == c)
+		if ((*str)[j] == c)
 		{
-			*str = trim_quotes(new, i, j);
-			return (j);
+			return (trim_quotes(str, i, j) - 1);
 		}
 		j++;
 	}
-	if (new[j] != c)
-		return (-1);
 	return (i);
 }
 
-/*
-* remove spaces outside quotes
-*	- returns the new trimmed string
-*/
-// static char	*trim_space(char *str, int i)
-// {
-// 	int		j;
-// 	char	*trim;
-// 	char	*new;
-
-// 	j = i + 1;
-// 	while (str[j] == ' ')
-// 		j++;
-// 	trim = ft_substr(str, 0, j);
-// 	new = ft_substr(str, j, ft_strlen(str) - j);
-// 	if (!new || !trim)
-// 	{
-// 		free(str);
-// 		free(trim);
-// 		return (NULL);
-// 	}
-// 	new = ft_strjoin(trim, new);
-// 	return (new);
-// }
-
-/*
-* handles quotes
-*	- 34: single quote
-*	- 39: double quote
-*	- 92: backslash
-*/
-char	*qoutes(char *str)
+void	quotes(char **str)
 {
 	int		i;
-	char	*new;
 
 	i = 0;
-	new = ft_strdup(str);
-	while (new[i])
+	if (!*str)
+		return ;
+	while ((*str)[i])
 	{
-		if (new[i] == 34 || new[i] == 39)
-			i = close_quotes(&new, i);
-		printf("i: %d\n", i);
-		if (i == -1)
-			return (NULL);
+		if ((*str)[i] == 34 || (*str)[i] == 39)
+			i = close_quotes(str, i);
 		i++;
 	}
-	return (new);
+}
+
+void	remove_all_quotes(t_line **line)
+{
+	t_cmd		*head;
+	t_token		*head_t;
+	t_redir		*head_r;
+
+	head = (*line)->cmd;
+	while ((*line)->cmd)
+	{
+		head_t = (*line)->cmd->token;
+		head_r = (*line)->cmd->redir;
+		while ((*line)->cmd->token)
+		{
+			quotes(&(*line)->cmd->token->token);
+			(*line)->cmd->token = (*line)->cmd->token->next;
+		}
+		while ((*line)->cmd->redir)
+		{
+			quotes(&(*line)->cmd->redir->file);
+			(*line)->cmd->redir = (*line)->cmd->redir->next;
+		}
+		(*line)->cmd->token = head_t;
+		(*line)->cmd->redir = head_r;
+		(*line)->cmd = (*line)->cmd->next;
+	}
+	(*line)->cmd = head;
 }
 
 // # include <readline/readline.h>

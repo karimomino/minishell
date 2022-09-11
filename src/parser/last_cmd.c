@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/01 06:01:04 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:44:10 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,19 @@ int	cmd_arg(char *str, t_token **token, int i)
 int	split_args(char *str, t_token **token, t_cmd **cmd)
 {
 	int			i;
+	char		*tmp;
 	char		**new;
 	t_token		*head;
 
 	i = 0;
-	new = ft_split(str, ' ');
+	tmp = ft_strtrim(str, " ");
+	if (!tmp[0])
+	{
+		free(tmp);
+		return (0);
+	}
+	new = ft_split_sc(tmp, ' ');
+	free(tmp);
 	head = *token;
 	if (!new)
 		return (-1);

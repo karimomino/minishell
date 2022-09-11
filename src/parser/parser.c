@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 03:34:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 22:04:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
+
+void	get_exec(t_line **line)
+{
+	char		*tmp;
+	char		*main;
+	t_cmd		*head;
+	t_token		*head_t;
+
+	head = (*line)->cmd;
+	while ((*line)->cmd)
+	{
+		main = ft_strdup("");
+		head_t = (*line)->cmd->token;
+		while ((*line)->cmd->token)
+		{
+			tmp = alpha_strjoin(3, main, " ", (*line)->cmd->token->token);
+			free (main);
+			main = ft_strdup(tmp);
+			free(tmp);
+			(*line)->cmd->token = (*line)->cmd->token->next;
+		}
+		(*line)->cmd->exec = ft_strdup(main);
+		(*line)->cmd->token = head_t;
+		(*line)->cmd = (*line)->cmd->next;
+		free(main);
+	}
+	(*line)->cmd = head;
+}
 
 static void	get_cmds(char **str, t_line **line)
 {
@@ -24,6 +52,9 @@ static void	get_cmds(char **str, t_line **line)
 		i++;
 	}
 	ft_expansion(line);
+	remove_all_quotes(line);
+	get_exec(line);
+	print_line(*line);
 }
 
 void	init_values(t_line *line)

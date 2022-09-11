@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 02:41:51 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 21:35:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,15 +107,19 @@ int	redirection(t_line **line)
 {
 	int		ret;
 
-	if (!(*line)->cmd->redir || (*line)->cmd->nredir == 0)
-		return (0);
-	ret = redir_loop(line);
-	if (!access("./src/redirection/.heredoc.txt", F_OK))
-		unlink("./src/redirection/.heredoc.txt");
-	if (ret == -69)
+	if ((*line)->cmd)
 	{
-		free_nodes(*line);
-		return (-1);
+		if (!(*line)->cmd->redir || (*line)->cmd->nredir == 0)
+			return (0);
+		ret = redir_loop(line);
+		if (!access("./src/redirection/.heredoc.txt", F_OK))
+			unlink("./src/redirection/.heredoc.txt");
+		if (ret == -69)
+		{
+			free_nodes(*line);
+			return (-1);
+		}
+		return (1);
 	}
-	return (1);
+	return (0);
 }

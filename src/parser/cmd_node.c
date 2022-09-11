@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/23 22:34:48 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:48:35 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ int	cmds_thesecond(t_line **line, char **parsed)
 {
 	while ((*line)->cmd->next)
 		(*line)->cmd = (*line)->cmd->next;
-	if (cmd_exec(&(*line)->cmd, parsed) == -1)
-	{
-		free_2d(parsed);
-		return (-1);
-	}
+	// if (cmd_exec(&(*line)->cmd, parsed) == -1)
+	// {
+	// 	free_2d(parsed);
+	// 	return (-1);
+	// }
 	if (last_cmd_node(parsed, &(*line)->cmd, &(*line)) == -1)
 	{
 		free(parsed);

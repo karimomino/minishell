@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:33:43 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 03:24:54 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 15:06:04 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ static int is_num(char *str)
 
 static int	exit_help(t_line **line)
 {
-	int ret;
-
-	ret = 0;
 	if ((*line)->cmd->nargs > 2)
 	{
 		ft_putstr_fd("minishell: exit: too many arguments\n", 2);
