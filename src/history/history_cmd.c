@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 01:35:14 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 02:11:25 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 02:14:24 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static char	**get_history(int fd)
 	char	**his;
 
 	tmp = get_next_line(fd);
+	close (fd);
 	if (!tmp)
 		return (NULL);
 	his = ft_split(tmp, '\n');
@@ -89,7 +90,6 @@ int	print_history(t_cmd cmd)
 	if (fd == -1)
 		return (-1);
 	his = get_history(fd);
-	close (fd);
 	num = 0;
 	if (cmd.nargs == 2)
 	{

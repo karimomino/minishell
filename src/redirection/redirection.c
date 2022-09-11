@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 21:35:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 02:22:12 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static int	redir_out(t_redir redir, int f)
 {
 	int		fd;
 
-	if (redir.type == 1)
-		fd = open(redir.file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	else
+	if (!access(redir.file, F_OK) && !access(W_OK) && redir.type == 2)
 		fd = open(redir.file, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	else if (redir.type == F_OK && !access(X_OK) && redir.type == 1)
+		fd = open(redir.file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
 	if (f == 1)
 		return (fd);
 	else
