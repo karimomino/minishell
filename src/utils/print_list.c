@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 19:37:01 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:21:50 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_cmd(t_line line)
 
 /*
 * prints the main struct - line -
-*/
+// */
 void	print_line(t_line *line)
 {
 	ft_printf("ncmds: %d\n", line->ncmds);

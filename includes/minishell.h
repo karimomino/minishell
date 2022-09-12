@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 18:31:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:20:28 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@
 extern char	**environ;
 
 int	g_exitval;
-struct s_info
-{
-	int	retVal;
-	int	exit;
-} t_infoo;
 
 void	export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrit);

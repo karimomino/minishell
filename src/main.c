@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 18:47:14 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:20:59 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	minishell_loop(void)
 int	main(void)
 {
 	init_minishell();
-	// ft_setenv("OLDPWD", NULL, 2);
 	if (minishell_loop() == -1)
 		exit (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

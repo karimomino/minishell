@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 23:39:51 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 23:24:59 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 21:57:00 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,30 @@ int	ft_set(int i, char *val)
 
 int	ft_unset(int i)
 {
-	free(environ[i]);
-	environ[i] = NULL;
+	char	**env;
+	int		j;
+	int		environ_i;
+
+	j = 0;
+	while (environ != NULL && environ[j++]);
+	env = (char **)malloc(sizeof(char *) * (j));
+	j = -1;
+	environ_i = -1;
+	while (environ[++j])
+	{
+		if (j == i)
+		{
+			free(environ[++environ_i]);
+			// environ_i++;
+		}
+		if (environ[++environ_i])
+			env[j] = ft_strdup(environ[environ_i]);
+		if (j != i)
+			free(environ[environ_i]);
+	}
+	env[j] = NULL;
+	free(environ);
+	environ = env;
 	return (-1);
 }
 

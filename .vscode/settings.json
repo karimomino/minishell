@@ -25,6 +25,7 @@
 		"stdio.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled",
+	"git.mergeEditor": false,
 	"synthwave84.brightness": 0.9,
 	"synthwave84.disableGlow": false,
 }
