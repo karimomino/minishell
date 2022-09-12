@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 02:10:05 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 16:15:46 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,20 +111,19 @@ int	exec_bin(t_line **line)
 	char	*path;
 
 	path = is_file_found((*line)->cmd->token->token);
-	pid = fork();
 	ret = 0;
-	if (pid == -1)
-		return (errno);
-	else if (!pid)
+	if ((*line)->npipes != 0)
 		ret = cmd_child(line, path, ret);
 	else
 	{
-		signal(SIGINT, do_nothing);
-		signal(SIGQUIT, do_nothing);
-		wait(&(*line)->exit);
-		(*line)->exit = WEXITSTATUS((*line)->exit);
-		signal(SIGINT, clear_line);
-		signal(SIGQUIT, clear_line);
+			pid = fork();
+		ret = 0;
+		if (pid == -1 && (*line)->npipes != 0)
+			return (errno);
+		else if (pid == 0 || pid == -69)
+			ret = cmd_child(line, path, ret);
+		else if (pid != -69)
+		ms_wait(line);
 	}
 	if (path)
 		free(path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 22:10:09 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 13:23:55 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	go(int flag)
 			ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
 			return (1);
 		}
-		ft_putstr_fd(go_path, 1);
+		ft_putendl_fd(go_path, 1);
 		update_oldpwd();
 	}
 	ret = chdir(go_path);

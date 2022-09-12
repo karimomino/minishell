@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 01:54:06 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 01:00:40 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 14:13:46 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_environment(void)
 	{
 		env = (char **)malloc((c_size + 1) * sizeof(char *));
 		while(environ[++i])
-			env[i] = ft_strdup((environ[i]));
+				env[i] = ft_strdup((environ[i]));
 		env[i] = NULL;
 	}
 	else

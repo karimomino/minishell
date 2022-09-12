@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 23:39:51 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 21:57:00 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 14:51:24 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,10 @@ int	ft_unset(int i)
 	while (environ[++j])
 	{
 		if (j == i)
-		{
 			free(environ[++environ_i]);
-			// environ_i++;
-		}
 		if (environ[++environ_i])
 			env[j] = ft_strdup(environ[environ_i]);
-		if (j != i)
-			free(environ[environ_i]);
+		free(environ[environ_i]);
 	}
 	env[j] = NULL;
 	free(environ);

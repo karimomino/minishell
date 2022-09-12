@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 09:15:36 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 15:54:34 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	reaser(t_line **line)
 	char	*str;
 	char	*prompt;
 
-	prompt = alpha_strjoin(6, "\001\e[1;91m\002", getenv("USER"),
+	prompt = alpha_strjoin(6, "\001\e[1;91m\002", " ",
 			"👁minishell: \001\e[1;95m\002",
-			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
-		str = readline(prompt);
+			" ", " 🍆: ", "\001\e[0;39m\002");
+	str = readline(prompt);
 	if (!str)
 		exit(0);
 	if (!str[0])
@@ -69,7 +69,6 @@ int	minishell_loop(void)
 		if (reaser(&line) == 1)
 			yalla(&line);
 	}
-	// free()
 	free(line);
 	return (1);
 }

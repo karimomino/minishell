@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/30 22:31:49 by kamin             #+#    #+#              #
-#    Updated: 2022/09/11 20:20:40 by kamin            ###   ########.fr        #
+#    Updated: 2022/09/12 13:22:12 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS			=	ft_bzero.c ft_strlen.c \
 					ft_printf/ft_putchars.c \
 					ft_memset.c ft_strtrim.c \
 					ft_putnbr_fd.c ft_strlcpy.c \
+					ft_putendl_fd.c \
 
 OBJS			= $(SRCS:.c=.o)
 

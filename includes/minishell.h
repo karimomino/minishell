@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 09:13:30 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 16:15:10 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		count_env(char **env);
 int		ft_set(int i, char *val);
 int		ft_unset(int i);
 int		free_cmd(t_cmd *cmd);
+void	ms_wait(t_line **line);
 
 int		reaser(t_line **line);
 int		yalla(t_line **line);

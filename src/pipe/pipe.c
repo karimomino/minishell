@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 03:37:25 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 16:17:06 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	pipes(t_line **line, int n)
 	i = 0;
 	while (i++ < n)
 	{
-		wait(NULL);
+		ms_wait(line);
 		close(in[i]);
 	}
 	free(in);

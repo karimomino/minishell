@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 02:35:18 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 13:33:01 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 static int	check_flag(char *token)
 {
 	int	not_flag;
+	int	i = 0;
 
 	not_flag = 0;
-	if (*token == '-')
-		token++;
+	i = 0;
+	if (token[i] == '-')
+		i++;
 	else
 		not_flag = 1;
-	while (*token && !not_flag)
+	while (token[i] && !not_flag)
 	{
-		if (*token != 'n')
+		if (token[i] != 'n')
 			not_flag = 1;
-		token++;
+		i++;
 	}
 	return (not_flag);
 }
