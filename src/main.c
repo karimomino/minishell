@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 21:37:40 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:04:30 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@ void	init_minishell(void)
 	signal(SIGQUIT, clear_line);
 	init_history();
 }
-
+#include <term.h>
 int	reaser(t_line **line)
 {
 	int		ret;
 	char	*str;
 	char	*prompt;
 
-	prompt = alpha_strjoin(6, "\001\e[1;91m\002", getenv("USER"),
-			"👁minishell: \001\e[1;95m\002",
-			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
+	prompt = alpha_strjoin(6, "\001\033[1;91m\002", getenv("USER"),
+			"👁minishell: \001\033[1;95m\002",
+			getenv("PWD"), " 🍆: ", "\001\033[0;39m\002");
+			// tputs(tgoto(prompt, 0, 0), 1, NULL);
 		str = readline(prompt);
 	if (!str)
 		exit(0);
@@ -75,7 +76,6 @@ int	minishell_loop(void)
 int	main(void)
 {
 	init_minishell();
-	// ft_setenv("OLDPWD", NULL, 2);
 	if (minishell_loop() == -1)
 		exit (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

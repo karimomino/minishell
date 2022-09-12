@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 23:18:16 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/11 22:10:09 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	print_error(char *token)
 	struct stat	info;
 
 	stat(token, &info);
-	is_dir =  S_ISDIR(info.st_mode);
+	is_dir = S_ISDIR(info.st_mode);
 	exists = access(token, F_OK);
 	if (!is_dir)
 		errno = ENOTDIR;
@@ -77,7 +77,8 @@ static int	go(int flag)
 	}
 	ret = chdir(go_path);
 	getcwd(cwd, MAX_PATH);
-	ft_setenv("PWD", cwd, 1);
+	if (getenv("PWD"))
+		ft_setenv("PWD", cwd, 1);
 	return (ret);
 }
 
