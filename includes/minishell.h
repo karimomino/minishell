@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 16:15:10 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 20:23:52 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <sys/stat.h>
-#include <sys/ioctl.h>
+# include <sys/ioctl.h>
 
 # define SUCCESS 0
 # define ERROR 0

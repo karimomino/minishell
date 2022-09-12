@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 21:48:35 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 15:22:17 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,10 @@ int	cmd_node(char *str, t_cmd **cmd)
 	return (1);
 }
 
-int	cmd_exec(t_cmd **cmd, char **str)
-{
-	if (str[0] && str[1])
-	{
-		(*cmd)->exec = alpha_strjoin(3, str[0], " ", str[1]);
-		if (!(*cmd)->exec)
-			return (-1);
-	}
-	else if (str[0])
-	{
-		(*cmd)->exec = ft_strdup(str[0]);
-		if (!(*cmd)->exec)
-			return (-1);
-	}
-	return (1);
-}
-
 int	cmds_thesecond(t_line **line, char **parsed)
 {
 	while ((*line)->cmd->next)
 		(*line)->cmd = (*line)->cmd->next;
-	// if (cmd_exec(&(*line)->cmd, parsed) == -1)
-	// {
-	// 	free_2d(parsed);
-	// 	return (-1);
-	// }
 	if (last_cmd_node(parsed, &(*line)->cmd, &(*line)) == -1)
 	{
 		free(parsed);

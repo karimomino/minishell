@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 09:14:06 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 20:20:41 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		is_builtin(char *str);
 char	*qoutes(char *str);
 char	**ft_split_sc(char *str, char c);
 char	**ft_split_rd(char *str);
-char	**ft_splitq(char *str);
+char	**ft_split_q(char *str, char c);
 int		skip_quotes(char *str, int i);
 void	free_nodes(t_line *line);
 void	free_2d(char **str);

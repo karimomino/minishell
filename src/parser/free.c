@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/10 17:02:15 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 20:10:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	free_nodes(t_line *line)
 			if (line->cmd->redir)
 				free_redirs(line->cmd->redir);
 			line->cmd = line->cmd->next;
-			free(cmdd->exec);
+			free_2d(cmdd->exec);
 			free (cmdd->cmd);
 			free (cmdd);
 		}
@@ -86,7 +86,7 @@ int	free_cmd(t_cmd *cmd)
 	}
 	cmdd = cmd;
 	cmd = cmd->next;
-	free(cmdd->exec);
+	free_2d(cmdd->exec);
 	free(cmdd->cmd);
 	free(cmdd);
 	return (1);

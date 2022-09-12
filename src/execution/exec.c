@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 16:15:46 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 20:24:16 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	cmd_child(t_line **line, char *path, int ret)
 		path = ft_strdup((*line)->cmd->token->token);
 	else if (path == NULL)
 		path = ft_strdup(getenv("PWD"));
-	ret = execve(path, ft_split((*line)->cmd->exec, ' '), environ);
+	ret = execve(path, (*line)->cmd->exec, environ);
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd((*line)->cmd->token->token, 2);
 	ft_putstr_fd(": command not found\n", 2);

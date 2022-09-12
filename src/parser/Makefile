@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/12 14:53:35 by ommohame          #+#    #+#              #
-#    Updated: 2022/09/11 20:15:58 by kamin            ###   ########.fr        #
+#    Updated: 2022/09/12 20:21:16 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCS		=		./parser.c \
 					../utils/ft_strlenx2.c \
 					../utils/ft_split_sc.c \
 					../utils/ft_split_rd.c \
+					../utils/ft_split_q.c \
 					./cmd_node.c \
 					./expansion.c \
 					./redir_node.c \

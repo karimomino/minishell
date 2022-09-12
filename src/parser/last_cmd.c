@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 21:44:10 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:34:22 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	split_args(char *str, t_token **token, t_cmd **cmd)
 		free(tmp);
 		return (0);
 	}
-	new = ft_split_sc(tmp, ' ');
+	new = ft_split_q(tmp, ' ');
 	free(tmp);
 	head = *token;
 	if (!new)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 09:14:42 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 20:21:34 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	get_exec(t_line **line)
 {
-	char		*tmp;
-	char		*main;
-	t_cmd		*head;
-	t_token		*head_t;
+	size_t	i;
+	char	**exec;
+	t_cmd	*head;
+	t_token	*head_t;
 
 	head = (*line)->cmd;
 	while ((*line)->cmd)
 	{
-		main = ft_strdup("");
+		i = -1;
 		head_t = (*line)->cmd->token;
-		while ((*line)->cmd->token)
+		exec = (char **)malloc(sizeof(char *) * ((*line)->cmd->nargs + 1));
+		if (!exec)
+			return ;
+		while (++i < (*line)->cmd->nargs)
 		{
-			tmp = alpha_strjoin(3, main, " ", (*line)->cmd->token->token);
-			free (main);
-			main = ft_strdup(tmp);
-			free(tmp);
+			exec[i] = ft_strdup((*line)->cmd->token->token);
 			(*line)->cmd->token = (*line)->cmd->token->next;
 		}
-		(*line)->cmd->exec = ft_strdup(main);
+		exec[i] = NULL;
+		(*line)->cmd->exec = exec;
 		(*line)->cmd->token = head_t;
 		(*line)->cmd = (*line)->cmd->next;
-		free(main);
 	}
 	(*line)->cmd = head;
 }
@@ -54,6 +54,7 @@ static void	get_cmds(char **str, t_line **line)
 	ft_expansion(line);
 	remove_all_quotes(line);
 	get_exec(line);
+	// print_line(*line);
 }
 
 void	init_values(t_line *line)
