@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 01:37:01 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:31:43 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		is_builtin(char *str);
 char	*qoutes(char *str);
 char	**ft_split_sc(char *str, char c);
 char	**ft_split_rd(char *str);
-char	**ft_splitq(char *str);
+char	**ft_split_q(char *str, char c);
 int		skip_quotes(char *str, int i);
 void	free_nodes(t_line *line);
 void	free_2d(char **str);

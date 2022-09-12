@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 23:41:49 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:38:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_cmd
 	size_t			nargs;
 	size_t			nredir;
 	char			*cmd;
-	char			*exec;
+	char			**exec;
 	char			**envp;
 	struct s_token	*token;
 	struct s_redir	*redir;
@@ -75,18 +75,11 @@ typedef struct s_cmd
 	struct s_cmd	*next;
 }	t_cmd;
 
-typedef struct s_history
-{
-	size_t				i;
-	char				*cmd;
-	struct s_history	*next;
-}	t_history;
-
-typedef struct s_infohis
-{
-	size_t		total_cmds;
-	t_history	*history;
-}	t_infohis;
+// typedef struct s_infohis
+// {
+// 	size_t		total_cmds;
+// 	t_history	*history;
+// }	t_infohis;
 
 /*
 * analyzes the line and put it in the struct

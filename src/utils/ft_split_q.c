@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_sc.c                                      :+:      :+:    :+:   */
+/*   ft_split_q.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 18:30:15 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:35:18 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ static int	cmd_count(char *str, char c)
 			i = skip_quotes(str, i);
 		if (i == -1)
 			return (-1);
-		if ((str[i] == c && str[i - 1] != c && str[i + 1] != c)
+		if ((str[i] == c)
 			|| str[i + 1] == '\0')
+		{
+			while (str[i] && str[i] == c)
+				i++;
 			count++;
+		}
 		i++;
 	}
 	return (count);
@@ -41,7 +45,7 @@ static int	cmd_len(char *str, char c, int i)
 	{
 		if (str[i] == '\'' || str[i] == '"')
 			i = skip_quotes(str, i);
-		if (str[i] == c && str[i - 1] != c && str[i + 1] != c)
+		if (str[i] == c)
 			return (i);
 		i++;
 	}
@@ -58,9 +62,9 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 	x = 0;
 	while (x < count && str[i])
 	{
-		if ((str[i] == c && str[i - 1] != c && str[i + 1] != c) || i == 0)
+		if (str[i] == c|| i == 0)
 		{
-			if (str[i] == c)
+			while (str[i] == c)
 				i++;
 			j = cmd_len(str, c, i);
 			cmds[x] = ft_substr(str, i, j - i);
@@ -77,7 +81,7 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 	return (cmds);
 }
 
-char	**ft_split_sc(char *str, char c)
+char	**ft_split_q(char *str, char c)
 {
 	int		cmds_count;
 	char	**cmds;

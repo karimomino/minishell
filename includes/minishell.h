@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 02:38:21 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 18:31:29 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <sys/stat.h>
-#include <sys/ioctl.h>
+# include <sys/ioctl.h>
 
 # define SUCCESS 0
 # define ERROR 0

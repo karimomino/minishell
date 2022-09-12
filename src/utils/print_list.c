@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:04:42 by ommohame          #+#    #+#             */
-/*   Updated: 2022/08/01 16:11:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:37:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	print_redir(t_cmd cmd)
 void	print_cmd(t_line line)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
 	while (line.cmd)
@@ -41,9 +42,11 @@ void	print_cmd(t_line line)
 		ft_printf("-------%u-------\n", i);
 		ft_printf("cmd type: %u\n\n", line.cmd->type);
 		ft_printf("cmd: %s\n", line.cmd->cmd);
-		ft_printf("cmd exec: %s\n", line.cmd->exec);
 		ft_printf("nargs: %d\n", line.cmd->nargs);
 		ft_printf("nredir: %d\n", line.cmd->nredir);
+		j = -1;
+		while (line.cmd->exec[++j])
+			printf("exec[%zu] : %s\n", j, line.cmd->exec[j]);
 		ft_printf("\n");
 		print_token(*line.cmd);
 		print_redir(*line.cmd);
