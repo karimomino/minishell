@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_quotes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 19:22:54 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 22:03:03 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static int	close_quotes(char **str, int i)
 	{
 		if ((*str)[j] == c)
 		{
-			return (trim_quotes(str, i, j) - 1);
+			return (trim_quotes(str, i, j));
 		}
 		j++;
 	}
@@ -72,14 +72,14 @@ void	quotes(char **str)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (!*str)
 		return ;
-	while ((*str)[i])
+	while ((*str)[++i])
 	{
 		if ((*str)[i] == 34 || (*str)[i] == 39)
 			i = close_quotes(str, i);
-		i++;
+		// i++;
 	}
 }
 

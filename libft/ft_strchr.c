@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/09 02:22:29 by kamin             #+#    #+#             */
-/*   Updated: 2021/10/09 02:28:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 21:16:53 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 
 	len = ft_strlen(s) + 1;
 	string = (char *)s;
-	if (c > 127 || c < 0)
+	if (c < 0)
 		return (string);
 	while (len-- > 0)
 	{

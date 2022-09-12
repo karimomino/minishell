@@ -6,7 +6,7 @@
 #    By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/09/12 16:15:31 by kamin            ###   ########.fr        #
+#    Updated: 2022/09/12 20:26:40 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRC			=	builtins/env.c \
 				$(DIR_UTILS)squeeze.c $(DIR_UTILS)ft_split_rd.c \
 				$(DIR_UTILS)ft_split_sc.c $(DIR_UTILS)ft_strlenx2.c \
 				$(DIR_UTILS)pipes.c $(DIR_UTILS)print_list.c \
+				$(DIR_UTILS)ft_split_q.c \
 
 OBJS		=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 

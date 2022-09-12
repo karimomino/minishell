@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 02:46:30 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 20:49:44 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ static int	stopper_finder(char *tok)
 static char	*expand_helper(void *cmd, int flag)
 {
 	int		i;
-	// int		tmp;
 	char	*var;
 	char	*string;
-	// int		qm;
 
 	i = 0;
-	// tmp = 0;
-	// qm = 0;
 	if (flag)
 		string = (*(t_token **)cmd)->token;
 	else
@@ -45,23 +41,7 @@ static char	*expand_helper(void *cmd, int flag)
 		i++;
 	if (string[i] == '\0')
 		return (NULL);
-	// while (!ft_strchr(" $\"\'\0", string[i + tmp]))
-	// 	tmp++;
 	var = ft_substr(string + i + 1, 0, stopper_finder(string + i + 1));
-	// if (string[i + tmp] != '?')
-	// 	i--;
-	// var = (char *)malloc(sizeof(char) * (tmp + 1));
-	// tmp = 0;
-	// if (string[i++] == '$')
-	// {
-	// 	while (!ft_strchr(" $\"\'\0", string[i]) && !qm)
-	// 	{
-	// 		if (string[i] == '?')
-	// 			qm = 1;
-	// 		var[tmp++] = string[i++];
-	// 	}
-	// 	var[tmp] = '\0';
-	// }
 	return (var);
 }
 
@@ -84,23 +64,9 @@ static int	cpy_sec(int start, char **com, char *tok, char stopper)
 
 static size_t	calc_malloc_size(char *tok, char *var, char *val)
 {
-	// int		i;
-	// int		val;
-
 	size_t	size;
 
 	size = ft_strlen(tok) + ft_strlen(val) - ft_strlen(var);
-	// i = -1;
-	// val = -1;
-	// size = 0;
-	// while (tok[++i] != '$' && tok[i] != '\0')
-	// 	size++;
-	// while (var[++val] != '\0')
-	// 	size++;
-	// while (!ft_strchr(" ?\"\'\0",tok[++i]))
-	// 	;
-	// while ((size_t)i < ft_strlen(tok) && tok[++i] != '\0')
-	// 	size++;
 	return (size);
 }
 
