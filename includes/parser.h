@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 20:22:02 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 09:14:06 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	signals(void);
 int		init_history(void);
 int		pipes(t_line **line, int n);
 void	remove_all_quotes(t_line **line);
+char	*history_path(void);
 
 #endif

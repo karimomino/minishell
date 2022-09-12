@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 21:27:44 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/12 09:14:42 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	get_cmds(char **str, t_line **line)
 	ft_expansion(line);
 	remove_all_quotes(line);
 	get_exec(line);
-	// print_line(*line);
 }
 
 void	init_values(t_line *line)
