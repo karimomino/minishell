@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:33:43 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/11 15:06:04 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 23:20:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ int	ft_exit(t_line **line)
 	int		ret;
 
 	ret = exit_help(line);
+	free_nodes(*line);
 	if (ret == 1)
 		return (-1);
+	free(*line);
 	ret = (*line)->exit;
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
