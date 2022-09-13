@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 20:10:05 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 20:40:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	free_nodes(t_line *line)
 			if (line->cmd->redir)
 				free_redirs(line->cmd->redir);
 			line->cmd = line->cmd->next;
-			free_2d(cmdd->exec);
+			if (line->cmd->exec)
+				free_2d(cmdd->exec);
 			free (cmdd->cmd);
 			free (cmdd);
 		}

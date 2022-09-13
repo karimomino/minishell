@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 02:10:37 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:06:27 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,10 @@ int	historyy(char *str)
 {
 	size_t		i;
 
+	add_history(str);
 	i = get_cmd_num();
 	if (i == 0)
 		return (-1);
-	add_history(str);
 	if (history_file(str, i) == -1)
 		return (-1);
 	return (1);
