@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 18:38:39 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:48:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_token
 {
 	size_t			i;
+	char			*org;
 	char			*token;
 	struct s_token	*prev;
 	struct s_token	*next;

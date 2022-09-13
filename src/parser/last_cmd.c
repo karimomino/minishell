@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 18:34:22 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 16:49:51 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	cmd_cmd(char *str, t_token **token, t_cmd **cmd, t_line **line)
 		return (-1);
 	new->i = 0;
 	new->token = ft_strtrim(str, " ");
+	new->org = ft_strdup(new->token);
 	(*cmd)->nargs = 1;
 	if ((*cmd)->type > 0)
 		(*line)->nexec++;
@@ -40,6 +41,7 @@ int	cmd_arg(char *str, t_token **token, int i)
 	new->i = i;
 	new->next = NULL;
 	new->token = ft_strdup(str);
+	new->org = ft_strdup(new->token);
 	while ((*token)->next)
 		*token = (*token)->next;
 	new->prev = (*token);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+         #
+#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/09/12 20:26:40 by kamin            ###   ########.fr        #
+#    Updated: 2022/09/13 16:43:56 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,8 @@ SRC			=	builtins/env.c \
 
 OBJS		=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
-# prefix		=	/opt/homebrew/Cellar/readline/8.1.2
-prefix		=	/usr/local/Cellar/readline/8.1
+prefix		=	/opt/homebrew/Cellar/readline/8.1.2
+# prefix		=	/usr/local/Cellar/readline/8.1
 
 exec_prefix	=	${prefix}
 
