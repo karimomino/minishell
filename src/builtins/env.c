@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/10 22:48:31 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/13 18:11:33 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_env(t_cmd *in)
 	return (SUCCESS);
 }
 
-static int	export_error(char *name, char *val, int ow)
+static int	export_error(char *name, int ow)
 {
 	if (ow == 1 && (ft_strchr(name, ' ') || !ft_strcmp(name, "")
 			|| !ft_isalpha(name[0]) || name == NULL))
@@ -56,8 +56,8 @@ static int	export_error(char *name, char *val, int ow)
 		perror("minishell: export: \'=\': ");
 		return (1);
 	}
-	if (ow == 1 && (!ft_strcmp(val, "") || val == NULL))
-		return (-1);
+	// if (ow == 1 && (!ft_strcmp(val, "") || val == NULL))
+	// 	return (-1);
 	return (0);
 }
 
@@ -91,12 +91,10 @@ int	ft_export(t_cmd *cmd, int ow)
 		i++;
 	name = ft_substr(tmp, 0, i);
 	val = ft_substr(tmp, ++i, ft_strlen(tmp));
-	err = export_error(name, val, ow);
+	err = export_error(name, ow);
 	if (!err)
 		export_selector(name, val, ow);
 	free(name);
 	free(val);
-	if (err == -1)
-		err = 0;
 	return (err);
 }
