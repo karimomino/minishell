@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 15:54:41 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/13 22:40:10 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ static int	redir_out(t_redir redir, int f)
 {
 	int		fd;
 
-	if (access(redir.file, F_OK) && access(redir.file, X_OK)
-		&& redir.type == 2)
-		fd = open(redir.file, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	else if (access(redir.file, F_OK) && access(redir.file, X_OK)
-		&& redir.type == 1)
-		fd = open(redir.file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	if ((!access(redir.file, F_OK) && !access(redir.file, W_OK))
+		|| (access(redir.file, F_OK)))
+	{
+		if (redir.type == 2)
+			fd = open(redir.file, O_WRONLY | O_APPEND | O_CREAT, 0644);
+		else
+			fd = open(redir.file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	}	
 	else
 	{
 		ft_putendl_fd("minishell: redirection error: permission denied", 2);
