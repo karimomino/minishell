@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 22:26:45 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 23:01:05 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	cmd_node(char *str, t_cmd **cmd)
 		return (-1);
 	new->cmd = ft_strtrim(str, " ");
 	new->nargs = 0;
-	new->exec = NULL;
 	new->nredir = 0;
 	new->type = 0;
 	new->redir = NULL;
+	new->exec = NULL;
 	new->token = NULL;
 	new->next = NULL;
 	if (!*cmd)

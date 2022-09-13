@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 22:26:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:58:06 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	get_exec(t_line **line)
 	(*line)->cmd = head;
 }
 
-static void	get_cmds(char **str, t_line **line)
+static int	get_cmds(char **str, t_line **line)
 {
 	size_t	i;
 
@@ -48,13 +48,17 @@ static void	get_cmds(char **str, t_line **line)
 	while (str[i])
 	{
 		if (cmds(str[i], line) == -1)
+		{
 			free_nodes(*line);
+			return (-1);
+		}
 		i++;
 	}
 	remove_all_quotes(line);
 	ft_expansion(line);
 	get_exec(line);
-	print_line(*line);
+	// print_line(*line);
+	return (1);
 }
 
 void	init_values(t_line *line)
@@ -77,11 +81,9 @@ int	parser_v3_0(char *str, t_line **line)
 	if (!cmd)
 		return (-1);
 	init_values((*line));
-	get_cmds(cmd, line);
-	if (!(*line))
+	if (get_cmds(cmd, line) == -1)
 	{
 		free_2d(cmd);
-		free((*line));
 		return (-1);
 	}
 	ret = check_pipes(cmd, str, line);

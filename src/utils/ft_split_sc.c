@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 17:30:53 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 21:21:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 23:01:21 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ static char	**split_cmds(char **cmds, char *str, char c, int count)
 			x++;
 			i = j - 1;
 		}
-		if (str[i] == 34 || str[i] == 39)
-			i = skip_quotes(str, i);
 		i++;
 	}
 	cmds[x] = NULL;
