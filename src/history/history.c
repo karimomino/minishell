@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 21:06:27 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:15:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*history_path(void)
 	char	*final;
 
 	tmp = getenv("_");
+	if (!tmp)
+		return (NULL);
 	path = ft_substr(tmp, 0, ft_strlen(tmp) - 12);
 	final = ft_strjoin(path, "/src/history/.history");
 	free(path);
