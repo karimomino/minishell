@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fake_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/14 17:23:34 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:13:53 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,62 @@ static char	*expand_helper(void *cmd, int flag)
 	return (var);
 }
 
+// int	fake_string(t_line *line)
+// {
+// 	size_t	org_i;
+// 	size_t	fake_i;
+// 	size_t	var_size;
+// 	char	*fake;
+// 	char	*tmp;
+// 	char	*var;
+// 	char	*exp;
+
+// 	org_i = 0;
+// 	fake_i = 0;
+// 	var_size = ft_strlen(line->cmd->token->token) + 1;
+// 	fake = (char *)ft_calloc(var_size, sizeof(char));
+// 	if (!fake)
+// 		return (-1);
+// 	while(line->cmd->token->org[org_i])
+// 	{
+// 		if (line->cmd->token->org[org_i] == '$')
+// 		{
+// 			tmp = line->cmd->token->token;
+// 			line->cmd->token->token = line->cmd->token->org + org_i;
+// 			var = expand_helper(&line->cmd->token, 1);
+// 			if (!ft_strcmp(var, "?"))
+// 				exp = ft_itoa(line->exit);
+// 			else
+// 				exp = getenv(var);
+// 			if (exp)
+// 			{
+// 				org_i++;
+// 				var_size = ft_strlen(exp);
+// 				while (var_size--)
+// 					fake[fake_i++] = '#';
+// 				org_i += ft_strlen(var) + 1;
+// 			}
+// 			else
+// 				org_i += ft_strlen(var) + 1;
+// 		}
+// 		else
+// 		{
+// 			fake[fake_i] = line->cmd->token->org[org_i];
+// 			org_i++;
+// 			fake_i++;
+// 		}
+// 	}
+// 	fake[fake_i] = '\0';
+// 	free(line->cmd->token->org);
+// 	line->cmd->token->org = ft_strdup(fake);
+// 	return (1);
+// }
+
 int	fake_string(t_cmd **cmd)
 {
 	size_t	i;
 	size_t	j;
-	size_t	x;
+	ssize_t	x;
 	char	*exp;
 	char	*var;
 	char	*fake;
@@ -57,7 +108,7 @@ int	fake_string(t_cmd **cmd)
 
 	i = 0;
 	j = 0;
-	fake = (char *)malloc(sizeof(char) * (ft_strlen((*cmd)->token->token) + 1));
+	fake = (char *)ft_calloc((ft_strlen((*cmd)->token->token) + 1), sizeof(char));
 	if (!fake)
 		return (-1);
 	while ((*cmd)->token->org[i])
@@ -67,22 +118,34 @@ int	fake_string(t_cmd **cmd)
 			tmp = (*cmd)->token->token;
 			(*cmd)->token->token = (*cmd)->token->org + i;
 			var = expand_helper(&(*cmd)->token, 1);
-			exp = getenv(var);
+			if (!ft_strcmp(var, "?"))
+				exp = ft_itoa(123);
+			else
+				exp = getenv(var);
 			if (exp)
 			{
 				i++;
-				x = ft_strlen(exp) + j;
-				while (j < x)
-					fake[j++] = ' ';
+				x = ft_strlen(exp);
+				while (x > 0)
+				{
+					fake[j++] = '#';
+					x--;
+				}
 				i += ft_strlen(var);
 			}
+			else
+				i += ft_strlen(var) + 1;
 			(*cmd)->token->token = tmp;
 		}
-		fake[j] = (*cmd)->token->org[i];
-		i++;
-		j++;
+		else
+		{
+			fake[j] = (*cmd)->token->org[i];
+			i++;
+			j++;
+		}
 	}
+	fake[j] = '\0';
 	free((*cmd)->token->org);
-	(*cmd)->token->org = fake;
+	(*cmd)->token->org = ft_strdup(fake);
 	return (1);
 }

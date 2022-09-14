@@ -56,10 +56,10 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-src/history/.history
-src/history/.history
-test
-.vscode/configurationCache.log
-.vscode/dryrun.log
-.vscode/targets.log
-.DS_Store
+/src/history/.history
+/.vscode
+/.DS_Store
+minishell
+parser
+libft.a
+
