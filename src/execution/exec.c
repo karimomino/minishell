@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 20:24:16 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/13 23:22:32 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	exec_bin(t_line **line)
 		else if (pid == 0 || pid == -69)
 			ret = cmd_child(line, path, ret);
 		else if (pid != -69)
-		ms_wait(line);
+			ms_wait(line);
 	}
 	if (path)
 		free(path);

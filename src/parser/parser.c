@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 22:58:06 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:54:55 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,15 @@ static int	get_cmds(char **str, t_line **line)
 		}
 		i++;
 	}
-	remove_all_quotes(line);
 	ft_expansion(line);
+	fake_string(&(*line)->cmd);
+	ft_printf("expanded: %s\norignall: ", (*line)->cmd->token->token);
+	for (size_t i = 0; i < ft_strlen((*line)->cmd->token->token); i++)
+	{
+		ft_putchar_fd((*line)->cmd->token->org[i], 1);
+	}
+	printf("\n");
+	remove_all_quotes(line);
 	get_exec(line);
 	// print_line(*line);
 	return (1);
@@ -92,3 +99,16 @@ int	parser_v3_0(char *str, t_line **line)
 		return (ret);
 	return (1);
 }
+
+// # include <readline/readline.h>
+// # include <readline/history.h>
+
+// int main(void)
+// {
+// 	char	*str;
+// 	t_line	*line;
+
+// 	line = (t_line *)ft_calloc(1, sizeof(t_line));
+// 	str = readline("test: ");
+// 	parser_v3_0(str, &line);
+// }
