@@ -58,8 +58,8 @@ dkms.conf
 
 src/history/.history
 src/history/.history
-test
 .vscode/configurationCache.log
+.vscode/*
 .vscode/dryrun.log
 .vscode/targets.log
 .DS_Store
