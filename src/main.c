@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 01:58:30 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 14:39:32 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_minishell(void)
 	init_environment();
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
-	signal(SIGQUIT, clear_line);
+	signal(SIGQUIT, SIG_IGN);
 	init_history();
 }
 

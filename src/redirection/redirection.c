@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:21:47 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 14:59:33 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,9 @@ int	redirection(t_line **line)
 			unlink("./src/redirection/.heredoc.txt");
 		if (ret == -69)
 		{
+			if (sig_exit_code(42) == 130)
+				(*line)->exit = 130;
+			sig_exit_code(-69);
 			free_nodes(*line);
 			return (-1);
 		}

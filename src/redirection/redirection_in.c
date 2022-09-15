@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:37:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 15:01:17 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ static int	read_herdoc(t_redir redir, int fd)
 		tmp1 = readline(">");
 		if (!tmp1)
 			return (-2);
+		if (sig_exit_code(-42) == 130)
+		{
+			if (tmp1)
+				free(tmp1);
+			return (-69);
+		}
 		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1))
 			&& ft_strncmp(tmp1, "", 1)
 			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
@@ -77,9 +83,9 @@ int	heredoc(t_redir redir, int f)
 		return (-69);
 	else if (ret != 1)
 		return (-2);
-	close(fd);
 	if (f == 1)
 		return (open("./src/redirection/.heredoc.txt", O_RDONLY));
+	close(fd);
 	return (-1);
 }
 
