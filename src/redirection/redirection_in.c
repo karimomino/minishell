@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:37:57 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:51:51 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	read_herdoc(t_redir redir, int fd)
 
 	while (1)
 	{
-		tmp1 = readline(">");
+		tmp1 = readline("> ");
 		if (!tmp1)
 			return (-2);
 		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1))

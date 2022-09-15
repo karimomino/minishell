@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 04:26:32 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:52:54 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_minishell(void)
 	init_environment();
 	rl_catch_signals = 0;
 	signal(SIGINT, clear_line);
-	signal(SIGQUIT, clear_line);
+	signal(SIGQUIT, SIG_IGN);
 	init_history();
 }
 
