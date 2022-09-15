@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/14 17:18:04 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:34:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,4 @@ void	clear_line(int sig)
 	}
 	else if (sig == SIGQUIT)
 		return ;
-	else if (sig == SIGUSR1)
-		exit (0);
-}
-
-void	do_nothing(int sig)
-{
-	(void)sig;
-	return ;
 }

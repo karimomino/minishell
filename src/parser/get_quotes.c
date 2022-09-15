@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_quotes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 22:03:03 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 03:45:53 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	close_quotes(char **str, int i)
 	return (i);
 }
 
-void	quotes(char **str)
+void	quotes(char **str, char *org)
 {
 	int		i;
 
@@ -77,9 +77,8 @@ void	quotes(char **str)
 		return ;
 	while ((*str)[++i])
 	{
-		if ((*str)[i] == 34 || (*str)[i] == 39)
+		if (((*str)[i] == 34 || (*str)[i] == 39) && org[i] == (*str)[i])
 			i = close_quotes(str, i);
-		// i++;
 	}
 }
 
@@ -96,12 +95,12 @@ void	remove_all_quotes(t_line **line)
 		head_r = (*line)->cmd->redir;
 		while ((*line)->cmd->token)
 		{
-			quotes(&(*line)->cmd->token->token);
+			quotes(&(*line)->cmd->token->token, (*line)->cmd->token->org);
 			(*line)->cmd->token = (*line)->cmd->token->next;
 		}
 		while ((*line)->cmd->redir)
 		{
-			quotes(&(*line)->cmd->redir->file);
+			quotes(&(*line)->cmd->redir->file, (*line)->cmd->redir->file);
 			(*line)->cmd->redir = (*line)->cmd->redir->next;
 		}
 		(*line)->cmd->token = head_t;

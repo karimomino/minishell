@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/12 16:17:06 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 04:21:12 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	child(t_line **line, int fd[2], int in)
 		dup2(fd[1], STDOUT_FILENO);
 	dup2(in, STDIN_FILENO);
 	close(fd[0]);
-	if (redirection(line) != 1)
+	if (redirection(line) == 0)
 		exec_ft(line);
 	free_nodes(*line);
 	free(*line);

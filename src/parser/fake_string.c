@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fake_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/14 21:13:53 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 04:43:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,12 @@ static int	stopper_finder(char *tok)
 	return (i);
 }
 
-static char	*expand_helper(void *cmd, int flag)
+static char	*expand_helper(char *string)
 {
 	int		i;
 	char	*var;
-	char	*string;
 
 	i = 0;
-	if (flag)
-		string = (*(t_token **)cmd)->token;
-	else
-		string = (*(t_redir **)cmd)->file;
 	if (!string)
 		return (NULL);
 	while (string[i] != '\0' && string[i] != '$')
@@ -45,107 +40,97 @@ static char	*expand_helper(void *cmd, int flag)
 	return (var);
 }
 
-// int	fake_string(t_line *line)
-// {
-// 	size_t	org_i;
-// 	size_t	fake_i;
-// 	size_t	var_size;
-// 	char	*fake;
-// 	char	*tmp;
-// 	char	*var;
-// 	char	*exp;
+char	*get_expanded_value(char *var, int exit_code)
+{
+	if (!ft_strcmp(var, "?"))
+		return (ft_itoa(exit_code));
+	else
+		return (getenv(var));
+}
 
-// 	org_i = 0;
-// 	fake_i = 0;
-// 	var_size = ft_strlen(line->cmd->token->token) + 1;
-// 	fake = (char *)ft_calloc(var_size, sizeof(char));
-// 	if (!fake)
-// 		return (-1);
-// 	while(line->cmd->token->org[org_i])
-// 	{
-// 		if (line->cmd->token->org[org_i] == '$')
-// 		{
-// 			tmp = line->cmd->token->token;
-// 			line->cmd->token->token = line->cmd->token->org + org_i;
-// 			var = expand_helper(&line->cmd->token, 1);
-// 			if (!ft_strcmp(var, "?"))
-// 				exp = ft_itoa(line->exit);
-// 			else
-// 				exp = getenv(var);
-// 			if (exp)
-// 			{
-// 				org_i++;
-// 				var_size = ft_strlen(exp);
-// 				while (var_size--)
-// 					fake[fake_i++] = '#';
-// 				org_i += ft_strlen(var) + 1;
-// 			}
-// 			else
-// 				org_i += ft_strlen(var) + 1;
-// 		}
-// 		else
-// 		{
-// 			fake[fake_i] = line->cmd->token->org[org_i];
-// 			org_i++;
-// 			fake_i++;
-// 		}
-// 	}
-// 	fake[fake_i] = '\0';
-// 	free(line->cmd->token->org);
-// 	line->cmd->token->org = ft_strdup(fake);
-// 	return (1);
-// }
+void	replace_fake_string_exp(char **fake, char *exp, size_t *j)
+{
+	size_t	x;
 
-int	fake_string(t_cmd **cmd)
+	x = ft_strlen(exp);
+	while (x > 0)
+	{
+		(*fake)[(*j)++] = '\0';
+		x--;
+	}
+}
+
+void	replace_fake_string_norm(char **fake, char *org, size_t *i, size_t *j)
+{
+	(*fake)[*j] = org[*i];
+	(*i)++;
+	(*j)++;
+}
+
+void	get_fake_exp_string(char **org, char **fake, int exit_code)
 {
 	size_t	i;
 	size_t	j;
-	ssize_t	x;
-	char	*exp;
 	char	*var;
-	char	*fake;
 	char	*tmp;
+	char	*exp;
 
 	i = 0;
 	j = 0;
-	fake = (char *)ft_calloc((ft_strlen((*cmd)->token->token) + 1), sizeof(char));
-	if (!fake)
-		return (-1);
-	while ((*cmd)->token->org[i])
+	while ((*org)[i])
 	{
-		if ((*cmd)->token->org[i] == '$')
+		if ((*org)[i] == '$')
 		{
-			tmp = (*cmd)->token->token;
-			(*cmd)->token->token = (*cmd)->token->org + i;
-			var = expand_helper(&(*cmd)->token, 1);
-			if (!ft_strcmp(var, "?"))
-				exp = ft_itoa(123);
-			else
-				exp = getenv(var);
+			tmp = ((*org)) + i;
+			var = expand_helper(tmp);
+			exp = get_expanded_value(var, exit_code);
+			i++;
 			if (exp)
-			{
-				i++;
-				x = ft_strlen(exp);
-				while (x > 0)
-				{
-					fake[j++] = '#';
-					x--;
-				}
-				i += ft_strlen(var);
-			}
-			else
-				i += ft_strlen(var) + 1;
-			(*cmd)->token->token = tmp;
+				replace_fake_string_exp(fake, exp, &j);
+			i += ft_strlen(var);
 		}
 		else
-		{
-			fake[j] = (*cmd)->token->org[i];
-			i++;
-			j++;
-		}
+			replace_fake_string_norm(fake, *org, &i, &j);
 	}
-	fake[j] = '\0';
-	free((*cmd)->token->org);
-	(*cmd)->token->org = ft_strdup(fake);
-	return (1);
+	(*fake)[j] = '\0';
+}
+
+void	fake_string(char **org, int exit_code, size_t len)
+{
+	char	*fake;
+
+	fake = (char *)ft_calloc((len + 1), sizeof(char));
+	get_fake_exp_string(org, &fake, exit_code);
+	free(*org);
+	*org = fake;
+}
+
+void	get_struct_fake_string(t_line **line)
+{
+	t_cmd		*head;
+	t_token		*head_t;
+	t_redir		*head_r;
+
+	head = (*line)->cmd;
+	while ((*line)->cmd)
+	{
+		head_t = (*line)->cmd->token;
+		head_r = (*line)->cmd->redir;
+		while ((*line)->cmd->token)
+		{
+			fake_string(&(*line)->cmd->token->org,
+				(*line)->exit, ft_strlen((*line)->cmd->token->token));
+			(*line)->cmd->token = (*line)->cmd->token->next;
+		}
+		while ((*line)->cmd->redir)
+		{
+			fake_string(&(*line)->cmd->redir->org,
+				(*line)->exit, ft_strlen((*line)->cmd->redir->file));
+			(*line)->cmd->redir = (*line)->cmd->redir->next;
+		}
+		(*line)->cmd->token = head_t;
+		(*line)->cmd->redir = head_r;
+		(*line)->cmd = (*line)->cmd->next;
+	}
+	(*line)->cmd = head;
 }

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 16:48:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:44:18 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_redir
 	size_t			i;
 	int				fd;
 	int				type;
+	char			*org;
 	char			*file;
 	struct s_redir	*prev;
 	struct s_redir	*next;

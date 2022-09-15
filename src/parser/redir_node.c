@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:29:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/07/20 22:36:55 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:43:54 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	init_redir_node(char *str, t_redir **new, size_t i)
 	(*new)->fd = redir_what(str);
 	(*new)->type = redir_type(str);
 	(*new)->file = ft_strtrim(str, "> <");
+	(*new)->org = ft_strdup((*new)->file);
 	(*new)->next = NULL;
 	(*new)->i = i;
 	return (1);
