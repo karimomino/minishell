@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:42:22 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/14 22:07:53 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 18:03:19 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ int	to_expand(char c)
 	static int	first;
 
 	ret = 0;
+	if (c == '\0')
+	{
+		dq = 0;
+		sq = 0;
+		first = 0;
+		return (ret);
+	}
 	if (first == 0 && (c == '"' || c == '\''))
 		first = c;
 	else if (first != 0 && (char)first == c)

@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 03:01:14 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 18:03:52 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	parser_v3_0(char *str, t_line **line)
 	int		ret;
 	char	**cmd;
 
+	cmd = NULL;
 	cmd = ft_split_sc(str, '|');
 	if (!cmd)
 		return (-1);
@@ -87,6 +88,7 @@ int	parser_v3_0(char *str, t_line **line)
 		return (-1);
 	}
 	ret = check_pipes(cmd, str, line);
+	// printf("this is the val: %d\n", ret);
 	free_2d(cmd);
 	if (ret == 0 || ret == -1)
 		return (ret);

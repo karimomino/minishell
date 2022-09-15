@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 22:09:25 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 16:31:34 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	free_2d(char **str)
 			free (str[i]);
 			i++;
 		}
+		free (str);
 	}
-	free (str);
 }
 
 void	free_tokens(t_token *token)

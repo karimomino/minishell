@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 13:23:55 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 18:46:05 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static void	print_error(char *token)
 
 static int	update_oldpwd(void)
 {
-	char	cwd[4096];
+	char	cwd[MAX_PATH];
 	char	*oldpwd;
 
-	if (getcwd(cwd, 4096) == NULL)
+	if (getcwd(cwd, MAX_PATH) == NULL)
 		return (ERROR);
 	oldpwd = getenv("OLDPWD");
 	if (oldpwd)
@@ -48,16 +48,12 @@ static int	update_oldpwd(void)
 	return (SUCCESS);
 }
 
-static int	go(int flag)
+static int	go_special(char **path, int flag)
 {
-	int		ret;
-	char	*go_path;
-	char	cwd[MAX_PATH];
-
 	if (flag == 0)
 	{
-		go_path = getenv("HOME");
-		if (!go_path)
+		*path = getenv("HOME");
+		if (!*path)
 		{
 			ft_putstr_fd("minishell : cd: HOME not set\n", 2);
 			return (1);
@@ -66,19 +62,32 @@ static int	go(int flag)
 	}
 	else if (flag == 1)
 	{
-		go_path = getenv("OLDPWD");
-		if (!go_path)
+		*path = getenv("OLDPWD");
+		if (!*path)
 		{
 			ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
 			return (1);
 		}
-		ft_putendl_fd(go_path, 1);
+		ft_putendl_fd(*path, 1);
 		update_oldpwd();
 	}
-	ret = chdir(go_path);
-	getcwd(cwd, MAX_PATH);
-	if (getenv("PWD"))
-		ft_setenv("PWD", cwd, 1);
+	return (0);
+}
+
+static int	go(int flag)
+{
+	int		ret;
+	char	*path;
+	char	cwd[MAX_PATH];
+
+	ret = go_special(&path, flag);
+	if (!ret)
+	{
+		ret = chdir(path);
+		getcwd(cwd, MAX_PATH);
+		if (getenv("PWD"))
+			ft_setenv("PWD", cwd, 1);
+	}
 	return (ret);
 }
 

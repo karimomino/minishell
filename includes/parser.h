@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 02:09:48 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:05:05 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include "structure.h"
 
 void	ft_expansion(t_line **line);
+
+int	to_expand(char c);
+int	check_char(char c, int *dq, int *sq);
 
 void	print_line(t_line *line);
 size_t	ft_strlenx2(char **str);
