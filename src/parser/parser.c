@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/14 22:49:08 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 00:03:59 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,6 @@ static int	get_cmds(char **str, t_line **line)
 	}
 	ft_expansion(line);
 	fake_string(&(*line)->cmd);
-	// ft_printf("expanded: %s\n", (*line)->cmd->token->token);
-	// ft_printf("orignall: %s\n", (*line)->cmd->token->org);
-	printf("\n");
 	remove_all_quotes(line);
 	get_exec(line);
 	// print_line(*line);

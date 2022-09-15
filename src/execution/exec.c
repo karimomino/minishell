@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/13 23:22:32 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 01:52:23 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ static void	is_file_helper(int *is, char ***p, char **path, char **f_path)
 	}
 }
 
+static void	check_access(char *token, int *is_dir)
+{
+	struct stat	info;
+
+	stat(token, &info);
+	printf("WHAT IS THIS: %d\n", S_ISDIR(info.st_mode));
+	if (S_ISDIR(info.st_mode) != 0)
+		*is_dir = 1;
+	
+	printf("WHAT IS THIS PERMISSION %s: %d\n",token, access(token, X_OK));
+	if (access(token, X_OK))
+		*is_dir = 2;
+}
+
 static char	*is_file_found(char *token)
 {
 	char	**paths;
@@ -85,14 +99,30 @@ static char	*is_file_found(char *token)
 		return (NULL);
 }
 
-static int	cmd_child(t_line **line, char *path, int ret)
+static int	cmd_child(t_line **line, char *path, int *is_dir)
 {
+	int	ret;
+
 	if (path == NULL && (((*line)->cmd->token->token[0] == '.'
 				&& (*line)->cmd->token->token[1] == '/')
 			|| (*line)->cmd->token->token[0] == '/'))
-		path = ft_strdup((*line)->cmd->token->token);
+		{
+			path = ft_strdup((*line)->cmd->token->token);
+			check_access(path, is_dir);
+		}
 	else if (path == NULL)
 		path = ft_strdup(getenv("PWD"));
+	if (*is_dir == 1 || *is_dir == 2)
+	{
+		(*line)->exit = 126;
+		printf("is_dir = %d\n", *is_dir);
+		if (*is_dir == 2)
+			errno = EACCES;
+		else
+			errno = EISDIR;
+		perror(NULL);
+		exit((*line)->exit = 126);
+	}
 	ret = execve(path, (*line)->cmd->exec, environ);
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd((*line)->cmd->token->token, 2);
@@ -109,20 +139,21 @@ int	exec_bin(t_line **line)
 	int		ret;
 	pid_t	pid;
 	char	*path;
+	int		is_dir;
 
 	path = is_file_found((*line)->cmd->token->token);
 	ret = 0;
 	if ((*line)->npipes != 0)
-		ret = cmd_child(line, path, ret);
+		ret = cmd_child(line, path, &is_dir);
 	else
 	{
 			pid = fork();
 		ret = 0;
 		if (pid == -1 && (*line)->npipes != 0)
 			return (errno);
-		else if (pid == 0 || pid == -69)
-			ret = cmd_child(line, path, ret);
-		else if (pid != -69)
+		else if (!pid)
+			ret = cmd_child(line, path, &is_dir);
+		else
 			ms_wait(line);
 	}
 	if (path)
