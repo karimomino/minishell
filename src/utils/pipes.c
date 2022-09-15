@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:18:22 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 22:57:50 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:46:53 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parser.h"
 
-size_t	count_pipes(char *str)
+static size_t	count_pipes(char *str)
 {
 	size_t		i;
 	size_t		count;
@@ -30,7 +30,7 @@ size_t	count_pipes(char *str)
 	return (count);
 }
 
-size_t	count_cmds(char **cmd)
+static size_t	count_cmds(char **cmd)
 {
 	size_t		i;
 	size_t		count;
@@ -49,7 +49,7 @@ size_t	count_cmds(char **cmd)
 	return (count);
 }
 
-size_t	check_empty_pipe(char **cmd)
+static size_t	check_empty_pipe(char **cmd, t_line **line)
 {
 	size_t		i;
 	char		*tmp;
@@ -60,10 +60,10 @@ size_t	check_empty_pipe(char **cmd)
 		tmp = ft_strtrim(cmd[i++], " ");
 		if (!tmp[0])
 		{
+			(*line)->exit = 258;
 			free(tmp);
 			ft_putstr_fd("minishell: syntax error ", 2);
 			ft_putstr_fd("near unexpected token '|'\n", 2);
-			// g_exitval = 258;
 			return (-1);
 		}
 		free(tmp);
@@ -79,7 +79,7 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 	p_count = count_pipes(str);
 	c_count = count_cmds(cmd);
 	if (p_count != 0 && c_count != 0)
-		if (check_empty_pipe(cmd) != 1)
+		if (check_empty_pipe(cmd, line) != 1)
 			return (-1);
 	if (c_count == 0 && p_count == 0)
 		return (-1);
@@ -87,7 +87,7 @@ int	check_pipes(char **cmd, char *str, t_line **line)
 		|| (p_count > 0 && c_count == 0))
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token '|'\n", 2);
-		// g_exitval = 258;
+		(*line)->exit = 258;
 		return (-1);
 	}
 	else

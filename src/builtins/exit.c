@@ -6,13 +6,13 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:33:43 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/13 23:20:31 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:45:01 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int is_num(char *str)
+static int	is_num(char *str)
 {
 	size_t	i;
 

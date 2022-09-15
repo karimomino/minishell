@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 21:09:20 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/14 23:42:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ int	cmd_red(char *str, t_redir **redir, t_cmd **cmd)
 		if (redir_node(red, &(*redir), (*cmd)->nredir) == -1)
 		{
 			free(red);
-			ft_printf(
-				"minishell: syntax error near unexpected token \'newline\'\n");
+			ft_putstr_fd(
+				"minishell: syntax error near unexpected token \'newline\'\n", 2);
 			return (-1);
 		}
 		if (*redir && !(*redir)->prev)

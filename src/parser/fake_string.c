@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/14 17:23:34 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:43:39 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,12 @@ static int	stopper_finder(char *tok)
 	return (i);
 }
 
-static char	*expand_helper(void *cmd, int flag)
+static char	*expand_helper(char *string)
 {
 	int		i;
 	char	*var;
-	char	*string;
 
 	i = 0;
-	if (flag)
-		string = (*(t_token **)cmd)->token;
-	else
-		string = (*(t_redir **)cmd)->file;
 	if (!string)
 		return (NULL);
 	while (string[i] != '\0' && string[i] != '$')
@@ -45,44 +40,97 @@ static char	*expand_helper(void *cmd, int flag)
 	return (var);
 }
 
-int	fake_string(t_cmd **cmd)
+char	*get_expanded_value(char *var, int exit_code)
+{
+	if (!ft_strcmp(var, "?"))
+		return (ft_itoa(exit_code));
+	else
+		return (getenv(var));
+}
+
+void	replace_fake_string_exp(char **fake, char *exp, size_t *j)
+{
+	size_t	x;
+
+	x = ft_strlen(exp);
+	while (x > 0)
+	{
+		(*fake)[(*j)++] = '\0';
+		x--;
+	}
+}
+
+void	replace_fake_string_norm(char **fake, char *org, size_t *i, size_t *j)
+{
+	(*fake)[*j] = org[*i];
+	(*i)++;
+	(*j)++;
+}
+
+void	get_fake_exp_string(char **org, char **fake, int exit_code)
 {
 	size_t	i;
 	size_t	j;
-	size_t	x;
-	char	*exp;
 	char	*var;
-	char	*fake;
 	char	*tmp;
+	char	*exp;
 
 	i = 0;
 	j = 0;
-	fake = (char *)malloc(sizeof(char) * (ft_strlen((*cmd)->token->token) + 1));
-	if (!fake)
-		return (-1);
-	while ((*cmd)->token->org[i])
+	while ((*org)[i])
 	{
-		if ((*cmd)->token->org[i] == '$')
+		if ((*org)[i] == '$')
 		{
-			tmp = (*cmd)->token->token;
-			(*cmd)->token->token = (*cmd)->token->org + i;
-			var = expand_helper(&(*cmd)->token, 1);
-			exp = getenv(var);
+			tmp = ((*org)) + i;
+			var = expand_helper(tmp);
+			exp = get_expanded_value(var, exit_code);
+			i++;
 			if (exp)
-			{
-				i++;
-				x = ft_strlen(exp) + j;
-				while (j < x)
-					fake[j++] = ' ';
-				i += ft_strlen(var);
-			}
-			(*cmd)->token->token = tmp;
+				replace_fake_string_exp(fake, exp, &j);
+			i += ft_strlen(var);
 		}
-		fake[j] = (*cmd)->token->org[i];
-		i++;
-		j++;
+		else
+			replace_fake_string_norm(fake, *org, &i, &j);
 	}
-	free((*cmd)->token->org);
-	(*cmd)->token->org = fake;
-	return (1);
+	(*fake)[j] = '\0';
+}
+
+void	fake_string(char **org, int exit_code, size_t len)
+{
+	char	*fake;
+
+	fake = (char *)ft_calloc((len + 1), sizeof(char));
+	get_fake_exp_string(org, &fake, exit_code);
+	free(*org);
+	*org = fake;
+}
+
+void	get_struct_fake_string(t_line **line)
+{
+	t_cmd		*head;
+	t_token		*head_t;
+	t_redir		*head_r;
+
+	head = (*line)->cmd;
+	while ((*line)->cmd)
+	{
+		head_t = (*line)->cmd->token;
+		head_r = (*line)->cmd->redir;
+		while ((*line)->cmd->token)
+		{
+			fake_string(&(*line)->cmd->token->org,
+				(*line)->exit, ft_strlen((*line)->cmd->token->token));
+			(*line)->cmd->token = (*line)->cmd->token->next;
+		}
+		while ((*line)->cmd->redir)
+		{
+			fake_string(&(*line)->cmd->redir->org,
+				(*line)->exit, ft_strlen((*line)->cmd->redir->file));
+			(*line)->cmd->redir = (*line)->cmd->redir->next;
+		}
+		(*line)->cmd->token = head_t;
+		(*line)->cmd->redir = head_r;
+		(*line)->cmd = (*line)->cmd->next;
+	}
+	(*line)->cmd = head;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/11 03:35:48 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 04:37:57 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,9 @@ static int	read_herdoc(t_redir redir, int fd)
 {
 	char	*tmp1;
 
-	g_exitval = -1;
-	while (g_exitval != -2)
+	while (1)
 	{
 		tmp1 = readline(">");
-		if (g_exitval == -2)
-		{
-			if (tmp1)
-				free(tmp1);
-			return (-69);
-		}
 		if (!tmp1)
 			return (-2);
 		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1))

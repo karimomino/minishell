@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/13 23:01:05 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:44:26 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ int	cmd_node(char *str, t_cmd **cmd)
 	{
 		new->prev = NULL;
 		*cmd = new;
+		return (1);
 	}
-	else
-	{
-		while ((*cmd)->next)
-			(*cmd) = (*cmd)->next;
-		new->prev = (*cmd);
-		(*cmd)->next = new;
-	}
+	while ((*cmd)->next)
+		(*cmd) = (*cmd)->next;
+	new->prev = (*cmd);
+	(*cmd)->next = new;
 	return (1);
 }
 
