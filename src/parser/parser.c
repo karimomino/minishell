@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 01:58:14 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 06:02:36 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	get_cmds(char **str, t_line **line)
 		i++;
 	}
 	ft_expansion(line);
-	fake_string(&(*line)->cmd);
+	get_struct_fake_string(line);
 	remove_all_quotes(line);
 	get_exec(line);
 	return (1);
