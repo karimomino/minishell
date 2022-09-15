@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/13 18:11:33 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 04:11:11 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ static int	export_error(char *name, int ow)
 		perror("minishell: export: \'=\': ");
 		return (1);
 	}
-	// if (ow == 1 && (!ft_strcmp(val, "") || val == NULL))
-	// 	return (-1);
 	return (0);
 }
 
