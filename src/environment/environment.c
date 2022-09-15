@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 01:54:06 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 14:13:46 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 04:15:10 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ int	add_to_env(char *val)
 {
 	int		c_size;
 	char	**new;
-	int	i;
+	int		i;
 
 	i = -1;
 	c_size = 0;
-	while (environ != NULL && environ[c_size++]);
-	new = (char **)malloc(sizeof(char *) * (c_size + 1));
-	while(environ[++i])
+	while (environ != NULL && environ[c_size++])
+		;
+	new = (char **)malloc(sizeof(char *) * (c_size + 1))
+		;
+	while (environ[++i])
 	{
 		new[i] = ft_strdup(environ[i]);
 		free(environ[i]);
@@ -45,20 +47,22 @@ static void	init_shlvl(void)
 		curr++;
 	ft_setenv("SHLVL", ft_itoa(curr), 1);
 }
+
 void	init_environment(void)
 {
 	char	**env;
 	char	buff[MAX_PATH];
 	int		c_size;
-	int			i;
+	int		i;
 
 	c_size = -1;
 	i = -1;
-	while (environ != NULL && environ[++c_size]);
+	while (environ != NULL && environ[++c_size])
+		;
 	if (c_size > 0)
 	{
 		env = (char **)malloc((c_size + 1) * sizeof(char *));
-		while(environ[++i])
+		while (environ[++i])
 				env[i] = ft_strdup((environ[i]));
 		env[i] = NULL;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/12 21:11:16 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 04:11:31 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 static int	check_flag(char *token)
 {
 	int	not_flag;
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	not_flag = 0;
 	i = 0;
 	if (token[i] == '-')

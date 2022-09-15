@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 23:39:51 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 04:46:29 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 04:10:46 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_set(int i, char *val)
 {
 	if (environ[i])
 		free(environ[i]);
-
 	environ[i] = ft_strdup(val);
 	return (-1);
 }
@@ -40,8 +39,10 @@ int	ft_unset(int i)
 	int		environ_i;
 
 	j = 0;
-	while (environ != NULL && environ[j++]);
-	env = (char **)malloc(sizeof(char *) * (j));
+	while (environ != NULL && environ[j++])
+		;
+	env = (char **)malloc(sizeof(char *) * (j))
+		;
 	j = -1;
 	environ_i = -1;
 	while (environ[++j])
@@ -58,7 +59,7 @@ int	ft_unset(int i)
 	return (-1);
 }
 
-char *find_name(int i)
+char	*find_name(int i)
 {
 	char	*tmp;
 	int		j;
@@ -85,11 +86,9 @@ void	export_executor(char *name, char *val, int ow, int ac)
 			ow = ft_set(i, val);
 		else if (ow == 0 && i == ac - 2)
 			ow = add_to_env(val);
-			// ow = ft_set(i, val);
 		if (ow == 2 && !ft_strncmp((char *)name, tmp, ft_strlen(tmp)))
 			ow = ft_unset(i);
 		if (tmp)
 			free (tmp);
 	}
-	// return (i);
 }
