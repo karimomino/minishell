@@ -22,7 +22,8 @@
 		"ratio": "c",
 		"locale": "c",
 		"signal.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"type_traits": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled",
 	"git.mergeEditor": false,

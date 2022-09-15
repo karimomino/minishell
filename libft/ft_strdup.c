@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 18:46:43 by kamin             #+#    #+#             */
-/*   Updated: 2021/10/09 01:23:00 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 16:13:23 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*ft_strdup(const char *s1)
 	int		len;
 
 	len = ft_strlen(s1) + 1;
+	dup = NULL;
 	dup = (char *)malloc(len * sizeof(char));
 	if (!dup)
 		return (NULL);

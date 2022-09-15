@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fake_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:43:39 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:31:22 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_fake_exp_string(char **org, char **fake, int exit_code)
 	j = 0;
 	while ((*org)[i])
 	{
-		if ((*org)[i] == '$')
+		if (to_expand((*org)[i]) && (*org)[i] == '$')
 		{
 			tmp = ((*org)) + i;
 			var = expand_helper(tmp);

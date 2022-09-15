@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/14 21:54:21 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 18:07:03 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	navigate_token(t_token **token, int exit)
 			if (!expand(token, &i, 1, exit))
 				i = -1;
 		}
+		if (!(*token)->token[i])
+			to_expand((*token)->token[i]);
 		(*token) = (*token)->next;
 	}
 }
@@ -69,6 +71,8 @@ static void	navigate_redir(t_redir **redir, int exit)
 			if (!expand(redir, &i, 1, exit))
 				i = -1;
 		}
+		if (!(*redir)->file[i])
+			to_expand((*redir)->file[i]);
 		(*redir) = (*redir)->next;
 	}
 }

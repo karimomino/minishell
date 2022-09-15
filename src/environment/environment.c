@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 01:54:06 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 14:24:07 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 15:12:09 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ int	add_to_env(char *val)
 	return (-1);
 }
 
-static void	init_shlvl(void)
+static void	init_shlvl(int c_size)
 {
 	int	curr;
 
-	curr = ft_atoi(getenv("SHLVL"));
-	if (curr == 1000)
-		curr = 1;
-	else
-		curr++;
-	ft_setenv("SHLVL", ft_itoa(curr), 1);
+	if (c_size > 0)
+	{
+		curr = ft_atoi(getenv("SHLVL"));
+		if (curr == 1000)
+			curr = 1;
+		else
+			curr++;
+		ft_setenv("SHLVL", ft_itoa(curr), 1);
+	}
 }
 
 void	init_environment(void)
@@ -74,6 +77,5 @@ void	init_environment(void)
 		env[2] = NULL;
 	}
 	environ = env;
-	if (c_size > 0)
-		init_shlvl();
+	init_shlvl(c_size);
 }
