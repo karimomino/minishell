@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 18:46:05 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 19:14:09 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	go_special(char **path, int flag)
 {
 	if (flag == 0)
 	{
-		*path = getenv("HOME");
+		*path = ft_strdup(getenv("HOME"));
 		if (!*path)
 		{
 			ft_putstr_fd("minishell : cd: HOME not set\n", 2);
@@ -62,7 +62,7 @@ static int	go_special(char **path, int flag)
 	}
 	else if (flag == 1)
 	{
-		*path = getenv("OLDPWD");
+		*path = ft_strdup(getenv("OLDPWD"));
 		if (!*path)
 		{
 			ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
@@ -81,12 +81,14 @@ static int	go(int flag)
 	char	cwd[MAX_PATH];
 
 	ret = go_special(&path, flag);
-	if (!ret)
+	if (ret == 0)
 	{
 		ret = chdir(path);
 		getcwd(cwd, MAX_PATH);
 		if (getenv("PWD"))
 			ft_setenv("PWD", cwd, 1);
+		if (path)
+			free(path);
 	}
 	return (ret);
 }
