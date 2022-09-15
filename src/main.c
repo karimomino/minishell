@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 14:39:32 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 15:07:56 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ int	reaser(t_line **line)
 			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
 	str = readline(prompt);
 	if (!str)
-		exit(0);
+	{
+		ret = (*line)->exit;
+		free(*line);
+		free(str);
+		free(prompt);
+		exit(ret);
+	}
 	if (!str[0])
 		return (-1);
 	ret = parser_v3_0(str, line);

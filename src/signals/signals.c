@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 14:55:09 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 15:04:46 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	sig_exit_code(int flag)
 	if (flag == SIGINT)
 		exit = 130;
 	else if (flag == -69)
-		exit = -1;
+		exit = -1; 
 	return (exit);
 }
 
