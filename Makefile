@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
+#    By: kamin <kamin@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/09/14 23:10:18 by ommohame         ###   ########.fr        #
+#    Updated: 2022/09/15 01:58:39 by kamin            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,10 @@ SRC			=	builtins/env.c \
 				redirection/get_next_line_utils.c \
 				signals/signals.c \
 				pipe/pipe.c \
+				expansion/expansion.c expansion/expand_operations.c \
+				expansion/utils.c \
 				$(DIR_PARSER)cmd_node.c $(DIR_PARSER)cmp_cmd.c \
-				$(DIR_PARSER)commands.c $(DIR_PARSER)expansion.c \
+				$(DIR_PARSER)commands.c \
 				$(DIR_PARSER)free.c $(DIR_PARSER)get_quotes.c \
 				$(DIR_PARSER)last_cmd.c $(DIR_PARSER)parser.c \
 				$(DIR_PARSER)redir_node.c $(DIR_PARSER)redirections.c \
