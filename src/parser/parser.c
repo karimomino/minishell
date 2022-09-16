@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 18:03:52 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 00:32:35 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,22 +88,8 @@ int	parser_v3_0(char *str, t_line **line)
 		return (-1);
 	}
 	ret = check_pipes(cmd, str, line);
-	// printf("this is the val: %d\n", ret);
 	free_2d(cmd);
 	if (ret == 0 || ret == -1)
 		return (ret);
 	return (1);
 }
-
-// # include <readline/readline.h>
-// # include <readline/history.h>
-
-// int main(void)
-// {
-// 	char	*str;
-// 	t_line	*line;
-
-// 	line = (t_line *)ft_calloc(1, sizeof(t_line));
-// 	str = readline("test: ");
-// 	parser_v3_0(str, &line);
-// }

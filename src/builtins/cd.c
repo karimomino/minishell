@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 11:28:47 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 19:14:09 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 19:57:08 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,33 @@ static int	update_oldpwd(void)
 	return (SUCCESS);
 }
 
-static int	go_special(char **path, int flag)
+static char	*go_special(int flag)
 {
+	char	*path;
+
+	path = NULL;
 	if (flag == 0)
 	{
-		*path = ft_strdup(getenv("HOME"));
-		if (!*path)
+		path = ft_strdup(getenv("HOME"));
+		if (!path)
 		{
 			ft_putstr_fd("minishell : cd: HOME not set\n", 2);
-			return (1);
+			return (NULL);
 		}
 		update_oldpwd();
 	}
 	else if (flag == 1)
 	{
-		*path = ft_strdup(getenv("OLDPWD"));
-		if (!*path)
+		path = ft_strdup(getenv("OLDPWD"));
+		if (!path)
 		{
 			ft_putstr_fd("minishell : cd: OLDPWD not set\n", 2);
-			return (1);
+			return (NULL);
 		}
-		ft_putendl_fd(*path, 1);
+		ft_putendl_fd(path, 1);
 		update_oldpwd();
 	}
-	return (0);
+	return (path);
 }
 
 static int	go(int flag)
@@ -80,8 +83,8 @@ static int	go(int flag)
 	char	*path;
 	char	cwd[MAX_PATH];
 
-	ret = go_special(&path, flag);
-	if (ret == 0)
+	path = go_special(flag);
+	if (path != NULL)
 	{
 		ret = chdir(path);
 		getcwd(cwd, MAX_PATH);

@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 17:32:09 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/15 23:43:38 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		count_env(char **env);
 int		ft_set(int i, char *val);
 int		ft_unset(int i);
 int		free_cmd(t_cmd *cmd);
-void	ms_wait(t_line **line);
 
 int		reaser(t_line **line);
 int		yalla(t_line **line);
@@ -77,6 +76,14 @@ int		cpy_sec(int start, char **com, char *tok, char stopper);
 int		expansion_free(char **string, char **tmp, char **var, char **env);
 char	**select_string(void *cmd, int flag);
 char	*get_variable_name(void *cmd, int flag);
-char	*combined(char *tok, char *val, char *var);
+char	*combined(char *tok, char *val, char *var, int index);
 size_t	calc_malloc_size(char *tok, char *var, char *val);
+
+/*****************EXECUTION*****************/
+int		cmd_child(t_line **line, char *path);
+void	ms_wait(t_line **line);
+void	exec_errors(t_line *line, char *path, int *is_dir);
+void	check_access(t_line *line, char *path, int *is_dir);
+void	free_paths(char ***paths, char **f_path, int is_file);
+void	files_access(int *is, char ***p, char **path, char **f_path);
 #endif
