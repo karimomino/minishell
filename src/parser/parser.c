@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 04:46:28 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 04:59:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,3 @@ int	parser_v3_0(char *str, t_line **line)
 		return (ret);
 	return (1);
 }
-
-// # include <readline/readline.h>
-// # include <readline/history.h>
-
-// int main(void)
-// {
-// 	char	*str;
-// 	t_line	*line;
-
-// 	line = (t_line *)ft_calloc(1, sizeof(t_line));
-// 	str = readline("test: ");
-// 	parser_v3_0(str, &line);
-// }

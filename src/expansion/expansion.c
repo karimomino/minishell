@@ -6,13 +6,13 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:19:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 18:07:03 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 00:34:01 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	expand(void *cmd, int *i, int flag, int exit)
+static void	expand(void *cmd, int *i, int flag, int exit)
 {
 	char		*var;
 	char		*env;
@@ -28,15 +28,14 @@ static int	expand(void *cmd, int *i, int flag, int exit)
 		if (env == NULL)
 			env = ft_strdup("");
 		if (!ft_strcmp(var, "?"))
-			tmp = combined(*string, ft_itoa(exit), var);
+			tmp = combined(*string, ft_itoa(exit), var, *i);
 		else if (flag && ft_strcmp(var, ""))
-			tmp = combined(*string, env, var);
+			tmp = combined(*string, env, var, *i);
 		else if (!flag && ft_strcmp(var, ""))
-			tmp = combined(*string, env, var);
-		if (!expansion_free(string, &tmp, &var, &env))
-			return (0);
+			tmp = combined(*string, env, var, *i);
+		*i += ft_strlen(env);
+		expansion_free(string, &tmp, &var, &env);
 	}
-	return (1);
 }
 
 static void	navigate_token(t_token **token, int exit)
@@ -48,12 +47,8 @@ static void	navigate_token(t_token **token, int exit)
 	{
 		i = -1;
 		while ((*token) && (*token)->token[++i])
-		{
-			if (!expand(token, &i, 1, exit))
-				i = -1;
-		}
-		if (!(*token)->token[i])
-			to_expand((*token)->token[i]);
+			expand(token, &i, 1, exit);
+		to_expand('\0');
 		(*token) = (*token)->next;
 	}
 }
@@ -67,12 +62,8 @@ static void	navigate_redir(t_redir **redir, int exit)
 	{
 		i = -1;
 		while ((*redir) && (*redir)->file[++i])
-		{
-			if (!expand(redir, &i, 1, exit))
-				i = -1;
-		}
-		if (!(*redir)->file[i])
-			to_expand((*redir)->file[i]);
+			expand(redir, &i, 1, exit);
+		to_expand('\0');
 		(*redir) = (*redir)->next;
 	}
 }

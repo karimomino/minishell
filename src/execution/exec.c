@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 19:16:55 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 04:59:16 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,45 +37,13 @@ int	exec_builtin(t_line **line)
 	return (ret);
 }
 
-static void	is_file_helper(int *is, char ***p, char **path, char **f_path)
-{
-	int	i;
-
-	i = -1;
-	while (*is == -1 && (*p)[++i])
-	{
-		*f_path = ft_strjoin((*p)[i], *path);
-		*is = access(*f_path, F_OK);
-		if (*is == -1)
-		{
-			free(*f_path);
-			*f_path = NULL;
-		}
-	}
-}
-
-static void	check_access(t_line *line, char *path, int *is_dir)
-{
-	struct stat	info;
-
-	stat(path, &info);
-	if (S_ISDIR(info.st_mode) != 0)
-		*is_dir = 1;
-	if (!access(path, F_OK) && access(path, X_OK))
-		*is_dir = 2;
-	if (access(path, F_OK) && ft_strchr(line->cmd->token->token, '/'))
-		*is_dir = 3;
-}
-
 static char	*is_file_found(char *token)
 {
 	char	**paths;
 	char	*path;
 	char	*f_path;
 	int		is_file;
-	int		i;
 
-	i = -1;
 	is_file = access(token, F_OK);
 	f_path = NULL;
 	paths = NULL;
@@ -83,22 +51,17 @@ static char	*is_file_found(char *token)
 	{
 		paths = ft_split(getenv("PATH"), ':');
 		path = ft_strjoin("/", token);
-		is_file_helper(&is_file, &paths, &path, &f_path);
+		files_access(&is_file, &paths, &path, &f_path);
 		free(path);
 	}
-	while (paths && paths[++i])
-		free(paths[i]);
-	if (paths)
-		free(paths);
-	if (is_file != 0 && f_path != NULL)
-		free(f_path);
+	free_paths(&paths, &f_path, is_file);
 	if (is_file == 0)
 		return (f_path);
 	else
 		return (NULL);
 }
 
-static void	exec_errors(t_line *line, char *path, int *is_dir)
+void	exec_errors(t_line *line, char *path, int *is_dir)
 {
 	char	*tmp;
 
@@ -119,28 +82,6 @@ static void	exec_errors(t_line *line, char *path, int *is_dir)
 			free(tmp);
 		exit(line->exit = 126);
 	}
-}
-
-static int	cmd_child(t_line **line, char *path)
-{
-	int	ret;
-	int	is_dir;
-
-	is_dir = 0;
-	if (path == NULL && (((*line)->cmd->token->token[0] == '.'
-				&& (*line)->cmd->token->token[1] == '/')
-			|| (*line)->cmd->token->token[0] == '/'))
-			path = ft_strdup((*line)->cmd->token->token);
-	exec_errors(*line, path, &is_dir);
-	ret = execve(path, (*line)->cmd->exec, environ);
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd((*line)->cmd->token->token, 2);
-	ft_putstr_fd(": command not found\n", 2);
-	free_nodes((*line));
-	free((*line));
-	(*line)->exit = 127;
-	exit((*line)->exit);
-	return (ret);
 }
 
 int	exec_bin(t_line **line)

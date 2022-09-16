@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:42:22 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 18:03:19 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 00:31:17 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	to_expand(char c)
 		first = c;
 	else if (first != 0 && (char)first == c)
 		first = 0;
-	if (first != '\'' && !check_char(c, &dq, &sq)
+	if (!check_char(c, &dq, &sq) && first != '\''
 		&& ((c == '$' && dq == 1)
 			|| (c == '$' && sq == 0 && dq == 0)))
 			ret = 1;
@@ -56,7 +56,7 @@ char	*get_variable_name(void *cmd, int flag)
 	return (var);
 }
 
-char	*combined(char *tok, char *val, char *var)
+char	*combined(char *tok, char *val, char *var, int index)
 {
 	ssize_t	tok_i;
 	int		i;
@@ -64,8 +64,11 @@ char	*combined(char *tok, char *val, char *var)
 
 	i = -1;
 	tok_i = 0;
+	printf("index = %d\n", index);
 	com = (char *)ft_calloc((calc_malloc_size(tok, var, val) + 1), 1);
-	i = cpy_sec(i, &com, tok, '$');
+	while (++i < index)
+		com[i] = tok[i];
+	i = cpy_sec(i, &com, tok + index, '$');
 	i = cpy_sec(i, &com, val, '\0');
 	if (i < 0)
 		i = 0;
