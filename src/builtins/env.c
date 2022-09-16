@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 04:11:11 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 17:08:45 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,25 @@ int	ft_export(t_cmd *cmd, int ow)
 	int		err;
 
 	i = 0;
-	if (cmd->token->next)
-		tmp = cmd->token->next->token;
-	else
+	while (cmd->token)
 	{
-		ft_env(cmd);
-		return (1);
+		if (cmd->token->next)
+			tmp = cmd->token->next->token;
+		else
+		{
+			ft_env(cmd);
+			return (1);
+		}
+		while (tmp[i] != '=' && tmp[i] != '\0')
+			i++;
+		name = ft_substr(tmp, 0, i);
+		val = ft_substr(tmp, ++i, ft_strlen(tmp));
+		err = export_error(name, ow);
+		if (!err)
+			export_selector(name, val, ow);
+		free(name);
+		free(val);
+		cmd->token = cmd->token->next;
 	}
-	while (tmp[i] != '=' && tmp[i] != '\0')
-		i++;
-	name = ft_substr(tmp, 0, i);
-	val = ft_substr(tmp, ++i, ft_strlen(tmp));
-	err = export_error(name, ow);
-	if (!err)
-		export_selector(name, val, ow);
-	free(name);
-	free(val);
 	return (err);
 }

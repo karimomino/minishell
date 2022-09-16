@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:26:12 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 05:26:15 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 16:59:08 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ static void	expand(void *cmd, int *i, int flag, int exit)
 			tmp = combined(*string, env, var, *i);
 		else if (!flag && ft_strcmp(var, ""))
 			tmp = combined(*string, env, var, *i);
-		*i += ft_strlen(env);
+		else if (!ft_strcmp(var, "") && !ft_strcmp(env, ""))
+			tmp = ft_strdup("");
+		*i += ft_strlen(env) - 1;
 		expansion_free(string, &tmp, &var, &env);
 	}
 }
