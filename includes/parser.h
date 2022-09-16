@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 04:49:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:39:45 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		check_pipes(char **cmd, char *str, t_line **line);
 int		parser_v3_0(char *str, t_line **line);
 int		historyy(char *str);
 int		print_history(t_cmd cmd);
-int		redir_in(t_redir redir, int f);
+int		redir_in(t_line **line, int f);
 int		redirection(t_line **line);
 size_t	gnl_strlen(const char *s);
 char	*gnl_strchr(const char *s, int c);

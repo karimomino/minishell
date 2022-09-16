@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/01 20:33:43 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 04:45:01 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 06:06:04 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_exit(t_line **line)
 	int		ret;
 
 	ret = exit_help(line);
-	free_nodes(*line);
 	if (ret == 1)
-		return (-1);
+		return (1);
+	free_nodes(*line);
 	free(*line);
 	ret = (*line)->exit;
 	close(STDIN_FILENO);

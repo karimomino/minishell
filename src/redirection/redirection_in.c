@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 19:17:44 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:49:10 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	redir_in1(t_redir redir, int f)
+static int	redir_in1(t_redir redir, int f, int *exit)
 {
 	int		fd;
 
@@ -21,16 +21,16 @@ static int	redir_in1(t_redir redir, int f)
 		ft_putstr_fd("minihshell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		g_exitval = 2;
-		return (-1);
+		*exit = 2;
+		return (-69);
 	}
 	if (access(redir.file, R_OK) == -1)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(redir.file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
-		g_exitval = 126;
-		return (-1);
+		*exit = 126;
+		return (-69);
 	}
 	fd = open(redir.file, O_RDONLY);
 	if (f == 1)
@@ -89,10 +89,10 @@ int	heredoc(t_redir redir, int f)
 	return (-1);
 }
 
-int	redir_in(t_redir redir, int f)
+int	redir_in(t_line **line, int f)
 {
-	if (redir.type == 1)
-		return (redir_in1(redir, f));
+	if ((*line)->cmd->redir->type == 1)
+		return (redir_in1(*(*line)->cmd->redir, f, &(*line)->exit));
 	else
-		return (heredoc(redir, f));
+		return (heredoc(*(*line)->cmd->redir, f));
 }

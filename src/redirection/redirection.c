@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 02:15:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 14:59:33 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 05:42:08 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	redir_out(t_redir redir, int f)
 			fd = open(redir.file, O_WRONLY | O_APPEND | O_CREAT, 0644);
 		else
 			fd = open(redir.file, O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	}	
+	}
 	else
 	{
 		ft_putendl_fd("minishell: redirection error: permission denied", 2);
@@ -103,7 +103,7 @@ static int	redir_loop(t_line **line)
 				fd_out = redir_out(*(*line)->cmd->redir,
 						check_lastredir(*(*line)->cmd->redir));
 			else if ((*line)->cmd->redir->fd == 0)
-				fd_in = redir_in(*(*line)->cmd->redir,
+				fd_in = redir_in(line,
 						check_lastredir(*(*line)->cmd->redir));
 		}
 		redirr = (*line)->cmd->redir;
