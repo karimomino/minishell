@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:42:22 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 00:31:17 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 05:05:46 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	*combined(char *tok, char *val, char *var, int index)
 
 	i = -1;
 	tok_i = 0;
-	printf("index = %d\n", index);
 	com = (char *)ft_calloc((calc_malloc_size(tok, var, val) + 1), 1);
 	while (++i < index)
 		com[i] = tok[i];
