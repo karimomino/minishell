@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 18:52:30 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 17:08:45 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 18:16:36 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,25 @@ static int	export_error(char *name, int ow)
 	return (0);
 }
 
-static void	export_selector(char *name, char *val, int ow)
+static int	export_selector(char **name, char **val, int ow, char stop)
 {
-	if (getenv(name) != NULL && ow == 1)
-		ft_setenv(name, val, 1);
-	else if (getenv(name) == NULL && ow == 1)
-		ft_setenv(name, val, 0);
-	else if (ow == 2)
-		ft_setenv(name, NULL, 2);
+	int	err;
+
+	err = export_error(*name, ow);
+	if (!err && stop != '\0')
+	{
+		if (getenv(*name) != NULL && ow == 1)
+			ft_setenv(*name, *val, 1);
+		else if (getenv(*name) == NULL && ow == 1)
+			ft_setenv(*name, *val, 0);
+		else if (ow == 2)
+			ft_setenv(*name, NULL, 2);
+	}
+	free(*name);
+	free(*val);
+	if (stop == '\0')
+		err = 0;
+	return (err);
 }
 
 int	ft_export(t_cmd *cmd, int ow)
@@ -77,9 +88,9 @@ int	ft_export(t_cmd *cmd, int ow)
 	int		i;
 	int		err;
 
-	i = 0;
-	while (cmd->token)
+	while (cmd->token && cmd->token->next)
 	{
+		i = 0;
 		if (cmd->token->next)
 			tmp = cmd->token->next->token;
 		else
@@ -91,11 +102,7 @@ int	ft_export(t_cmd *cmd, int ow)
 			i++;
 		name = ft_substr(tmp, 0, i);
 		val = ft_substr(tmp, ++i, ft_strlen(tmp));
-		err = export_error(name, ow);
-		if (!err)
-			export_selector(name, val, ow);
-		free(name);
-		free(val);
+		err = export_selector(&name, &val, ow, tmp[--i]);
 		cmd->token = cmd->token->next;
 	}
 	return (err);

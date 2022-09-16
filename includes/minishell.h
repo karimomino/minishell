@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 05:34:23 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 19:42:21 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ int		add_to_env(char *val);
 void	do_nothing(int sig);
 
 /*****************EXPANSION*****************/
-int		to_expand(char c);
+int		to_expand(char c, char next);
 int		stopper_finder(char *tok);
 int		check_char(char c,int *dq, int *sq);
 int		cpy_sec(int start, char **com, char *tok, char stopper);
 int		expansion_free(char **string, char **tmp, char **var, char **env);
 char	**select_string(void *cmd, int flag);
 char	*get_variable_name(void *cmd, int flag);
-char	*combined(char *tok, char *val, char *var, int index);
+char	*combined(char *tok, char *val, char *var, int *index);
 size_t	calc_malloc_size(char *tok, char *var, char *val);
 
 /*****************EXECUTION*****************/
