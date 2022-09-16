@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 22:22:35 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:44:26 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 17:22:53 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	cmds(char *str, t_line **line)
 	if (cmd_node(str, &(*line)->cmd) == -1)
 		return (-1);
 	parsed = parse(str);
+	// printf("parsed[2]: %s\n", parsed[2]);
 	if (!parsed)
 		return (-1);
 	if (cmds_thesecond(line, parsed) != 1)

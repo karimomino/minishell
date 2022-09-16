@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/09/16 05:24:06 by kamin            ###   ########.fr        #
+#    Updated: 2022/09/16 17:19:06 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ SRC			=	builtins/env.c \
 
 OBJS		=	$(addprefix $(DIR_S),$(SRC:.c=.o))
 
-prefix		=	/usr/local/Cellar/readline/8.1
+# prefix		=	/usr/local/Cellar/readline/8.1
+prefix		=	/opt/homebrew/Cellar/readline/8.1.2
 
 exec_prefix	=	${prefix}
 
