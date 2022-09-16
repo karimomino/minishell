@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:26:12 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 16:59:08 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 20:14:11 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,21 @@ static void	expand(void *cmd, int *i, int flag, int exit)
 
 	tmp = NULL;
 	string = select_string(cmd, flag);
-	if (to_expand((*string)[*i]))
+	if (to_expand((*string)[*i], (*string)[*i + 1]))
 	{
 		var = get_variable_name(cmd, flag);
+		printf("var: %s\n", var);
 		env = getenv(var);
 		if (env == NULL)
 			env = ft_strdup("");
 		if (!ft_strcmp(var, "?"))
-			tmp = combined(*string, ft_itoa(exit), var, *i);
-		else if (flag && ft_strcmp(var, ""))
-			tmp = combined(*string, env, var, *i);
-		else if (!flag && ft_strcmp(var, ""))
-			tmp = combined(*string, env, var, *i);
-		else if (!ft_strcmp(var, "") && !ft_strcmp(env, ""))
-			tmp = ft_strdup("");
+			tmp = combined(*string, ft_itoa(exit), var, i);
+		else //if (flag && ft_strcmp(var, ""))
+			tmp = combined(*string, env, var, i);
+		// else if (!flag && ft_strcmp(var, ""))
+		// 	tmp = combined(*string, env, var, *i);
+		// else if (!ft_strcmp(var, "") && !ft_strcmp(env, ""))
+		// 	tmp = ft_strdup("");
 		*i += ft_strlen(env) - 1;
 		expansion_free(string, &tmp, &var, &env);
 	}
@@ -50,7 +51,7 @@ static void	navigate_token(t_token **token, int exit)
 		i = -1;
 		while ((*token) && (*token)->token[++i])
 			expand(token, &i, 1, exit);
-		to_expand('\0');
+		to_expand('\0', '\0');
 		(*token) = (*token)->next;
 	}
 }
@@ -65,7 +66,7 @@ static void	navigate_redir(t_redir **redir, int exit)
 		i = -1;
 		while ((*redir) && (*redir)->file[++i])
 			expand(redir, &i, 1, exit);
-		to_expand('\0');
+		to_expand('\0', '\0');
 		(*redir) = (*redir)->next;
 	}
 }

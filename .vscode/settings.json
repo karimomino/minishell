@@ -33,7 +33,8 @@
 		"string": "c",
 		"string_view": "c",
 		"unordered_map": "c",
-		"vector": "c"
+		"vector": "c",
+		"typeinfo": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled",
 	"git.mergeEditor": false,
