@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 05:49:10 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 19:07:46 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,36 @@ int	heredoc(t_redir redir, int f)
 	else if (ret != 1)
 		return (-2);
 	if (f == 1)
-		return (open("./src/redirection/.heredoc.txt", O_RDONLY));
-	close(fd);
+		return (42);
+	// close(fd);
 	return (-1);
 }
 
+int	g_pid;
+
 int	redir_in(t_line **line, int f)
 {
+	int		ret;
+	pid_t	pid;
+
+	ret = 42342;
 	if ((*line)->cmd->redir->type == 1)
 		return (redir_in1(*(*line)->cmd->redir, f, &(*line)->exit));
 	else
-		return (heredoc(*(*line)->cmd->redir, f));
+	{
+		pid = fork();
+		if (!pid)
+		{
+			g_pid = getpid();
+			printf("inside the child: %d\n", g_pid);
+			exit(heredoc(*(*line)->cmd->redir, f));
+		}
+		else
+			waitpid(g_pid, &ret, WEXITED);
+		printf("pid: %d\n", g_pid);
+		printf("WEXITSTATUS(ret): %d\n", WEXITSTATUS(ret));
+		if (WEXITSTATUS(ret) == 42)
+			return (open("./src/redirection/.heredoc.txt", O_RDONLY));
+		return (ret);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 16:31:34 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 18:27:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_2d(char **str)
 			free (str[i]);
 			i++;
 		}
-		free (str);
+		free(str);
 	}
 }
 
@@ -37,7 +37,8 @@ void	free_tokens(t_token *token)
 		tokenn = token;
 		token = token->next;
 		free(tokenn->token);
-		free (tokenn);
+		free(tokenn->org);
+		free(tokenn);
 	}
 }
 
@@ -49,8 +50,9 @@ void	free_redirs(t_redir *redir)
 	{
 		redirr = redir;
 		redir = redir->next;
-		free (redirr->file);
-		free (redirr);
+		free(redirr->file);
+		free(redirr->org);
+		free(redirr);
 	}
 }
 
