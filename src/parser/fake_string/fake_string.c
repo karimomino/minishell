@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 05:04:38 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 21:06:17 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	get_fake_exp_string(char **org, char **fake, int exit_code)
 	j = 0;
 	while ((*org)[i])
 	{
-		if (to_expandd((*org)[i]) && (*org)[i] == '$')
+		if (to_expandd((*org)[i], (*org)[i + 1]) && (*org)[i] == '$')
 		{
 			tmp = ((*org)) + i;
 			var = expand_helper(tmp);
@@ -44,7 +44,7 @@ void	get_fake_exp_string(char **org, char **fake, int exit_code)
 		else
 			replace_fake_string_norm(fake, *org, &i, &j);
 	}
-	to_expandd('\0');
+	to_expandd('\0', '\0');
 	(*fake)[j] = '\0';
 }
 

@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:14:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 04:51:20 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 21:05:26 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,28 @@ int	check_charr(char c, int *dq, int *sq)
 	return (ret);
 }
 
-int	to_expandd(char c)
+int	to_expandd(char c, char next)
 {
 	int			ret;
-	static int	dqq;
-	static int	sqq;
-	static int	firstt;
+	static int	dq;
+	static int	sq;
+	static int	first;
 
 	ret = 0;
 	if (c == '\0')
 	{
-		dqq = 0;
-		sqq = 0;
-		firstt = 0;
+		dq = 0;
+		sq = 0;
+		first = 0;
 		return (ret);
 	}
-	if (firstt == 0 && (c == '"' || c == '\''))
-		firstt = c;
-	else if (firstt != 0 && (char)firstt == c)
-		firstt = 0;
-	if (firstt != '\'' && !check_charr(c, &dqq, &sqq)
-		&& ((c == '$' && dqq == 1)
-			|| (c == '$' && sqq == 0 && dqq == 0)))
+	if (first == 0 && (c == '"' || c == '\''))
+		first = c;
+	else if (first != 0 && (char)first == c)
+		first = 0;
+	if (!check_char(c, &dq, &sq) && first != '\''
+		&& ((c == '$' && dq == 1 && !ft_strchr("\"\'\0",next))
+			|| (c == '$' && sq == 0 && dq == 0)))
 			ret = 1;
 	return (ret);
 }

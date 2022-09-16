@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:57 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 05:39:45 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/16 21:06:04 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 void	ft_expansion(t_line **line);
 
-int		to_expandd(char c);
-int		check_charr(char c, int *dq, int *sq);
+int		to_expandd(char c, char next);
+int		check_char(char c, int *dq, int *sq);
 char	*get_expanded_value(char *var, int exit_code);
 char	*expand_helper(char *string);
 int		stopper_finder(char *tok);
