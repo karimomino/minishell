@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 01:47:45 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 19:34:44 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 04:41:55 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	sig_exit_code(int flag)
 	if (flag == SIGINT)
 		exit = 130;
 	else if (flag == -69)
-		exit = -1; 
+		exit = -1;
 	return (exit);
 }
 

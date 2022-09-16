@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/09/15 22:52:20 by ommohame         ###   ########.fr        #
+#    Updated: 2022/09/16 04:35:54 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC			=	builtins/env.c \
 				main.c \
 				history/history.c \
 				history/history_cmd.c \
+				history/utils.c \
 				redirection/redirection.c \
 				redirection/redirection_in.c \
 				redirection/get_next_line.c \
@@ -43,7 +44,8 @@ SRC			=	builtins/env.c \
 				$(DIR_PARSER)free.c $(DIR_PARSER)get_quotes.c \
 				$(DIR_PARSER)last_cmd.c $(DIR_PARSER)parser.c \
 				$(DIR_PARSER)redir_node.c $(DIR_PARSER)redirections.c \
-				$(DIR_PARSER)split_line.c $(DIR_PARSER)fake_string.c\
+				$(DIR_PARSER)split_line.c \
+				$(DIR_PARSER)fake_string/fake_string.c $(DIR_PARSER)fake_string/utils.c\
 				$(DIR_UTILS)squeeze.c $(DIR_UTILS)ft_split_rd.c \
 				$(DIR_UTILS)ft_split_sc.c $(DIR_UTILS)ft_strlenx2.c \
 				$(DIR_UTILS)pipes.c $(DIR_UTILS)print_list.c \

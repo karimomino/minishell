@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 03:28:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:46:13 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 04:12:40 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,53 +25,6 @@ char	*history_path(void)
 	final = ft_strjoin(path, "/src/history/.history");
 	free(path);
 	return (final);
-}
-
-static void	add_the_history(char *str)
-{
-	size_t		i;
-	size_t		j;
-	char		*tmp;
-	char		**his;
-
-	i = 0;
-	his = ft_split(str, '\n');
-	while (his[i])
-	{
-		j = 0;
-		while (ft_isdigit(his[i][j]))
-			j++;
-		tmp = ft_strtrim(his[i++] + j, " ");
-		add_history(tmp);
-		free(tmp);
-	}
-	free_2d(his);
-}
-
-int	init_history(void)
-{
-	int		fd;
-	char	*tmp;
-	char	*path;
-
-	path = history_path();
-	fd = open(path, O_RDONLY | O_APPEND | O_CREAT, 0644);
-	free(path);
-	if (fd < 0)
-	{
-		ft_putstr_fd("minishell: FAILED to open history file\n", 2);
-		return (-1);
-	}
-	tmp = get_next_line(fd);
-	if (!tmp)
-	{
-		ft_putstr_fd("minishell: FAILED to read history file\n", 2);
-		return (-1);
-	}
-	add_the_history(tmp);
-	free(tmp);
-	close(fd);
-	return (1);
 }
 
 static size_t	get_cmd_num(void)

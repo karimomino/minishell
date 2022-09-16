@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 22:53:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 04:46:28 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	parser_v3_0(char *str, t_line **line)
 		return (-1);
 	}
 	ret = check_pipes(cmd, str, line);
-	// printf("this is the val: %d\n", ret);
 	free_2d(cmd);
 	if (ret == 0 || ret == -1)
 		return (ret);

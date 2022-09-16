@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/14 23:42:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 04:47:43 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	split_args(char *str, t_token **token, t_cmd **cmd)
 	char		**new;
 	t_token		*head;
 
-	i = 0;
+	i = -1;
 	tmp = ft_strtrim(str, " ");
 	if (!tmp[0])
 	{
@@ -66,14 +66,11 @@ int	split_args(char *str, t_token **token, t_cmd **cmd)
 	new = ft_split_q(tmp, ' ');
 	free(tmp);
 	head = *token;
-	if (!new)
-		return (-1);
-	while (new[i])
+	while (new && new[++i])
 	{
 		if (cmd_arg(new[i], &(*token), i + 1) == -1)
 			return (-1);
 		*token = head;
-		i++;
 	}
 	(*cmd)->nargs = ft_strlenx2(new) + 1;
 	free_2d(new);
