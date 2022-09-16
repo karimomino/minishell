@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 05:15:27 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/16 05:30:29 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	reaser(t_line **line)
 			"👁minishell: \001\e[1;95m\002",
 			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
 	str = readline(prompt);
-	if (sig_exit_code(42) == 130)
+	if (sig_exit_code(42) == 130 && sig_exit_code(-69) == -1)
 		(*line)->exit = 130;
 	if (!str)
 	{
