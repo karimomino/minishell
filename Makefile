@@ -6,7 +6,7 @@
 #    By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 05:43:04 by kamin             #+#    #+#              #
-#    Updated: 2022/09/17 16:35:37 by ommohame         ###   ########.fr        #
+#    Updated: 2022/09/17 16:37:28 by ommohame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ SRC			=	builtins/env.c \
 				history/history.c \
 				history/history_cmd.c \
 				history/utils.c \
-				redirection/get_next_line.c \
-				redirection/get_next_line_utils.c \
+				history/get_next_line.c \
+				history/get_next_line_utils.c \
 				redirection/redirection_engine.c \
 				redirection/redirection_in.c \
 				redirection/redirection_out.c \

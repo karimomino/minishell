@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 03:37:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 03:38:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:41:41 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ int	change_fds(t_cmd **cmd)
 	{
 		in = dup(STDIN_FILENO);
 		dup2((*cmd)->in, STDIN_FILENO);
+		close((*cmd)->in);
 		(*cmd)->in = in;
 	}
 	if ((*cmd)->out != -1)
 	{
 		out = dup(STDOUT_FILENO);
 		dup2((*cmd)->out , STDOUT_FILENO);
+		close((*cmd)->out);
 		(*cmd)->out = out;
 	}
 	return (1);
