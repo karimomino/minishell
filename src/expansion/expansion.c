@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:26:12 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 20:14:11 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 15:32:09 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	expand(void *cmd, int *i, int flag, int exit)
 	if (to_expand((*string)[*i], (*string)[*i + 1]))
 	{
 		var = get_variable_name(cmd, flag);
-		printf("var: %s\n", var);
 		env = getenv(var);
 		if (env == NULL)
 			env = ft_strdup("");

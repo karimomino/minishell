@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 10:07:29 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/15 04:11:31 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 16:14:52 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int	ft_echo(t_cmd *cmd)
 		}
 		while (cmd->token)
 		{
-			ft_putstr_fd(cmd->token->token, 1);
-			if (cmd->token->next != NULL)
+			if (ft_strcmp(cmd->token->token, " "))
+				ft_putstr_fd(cmd->token->token, 1);
+			if (cmd->token->next && ft_strcmp(cmd->token->next->token, " "))
 				write(1, " ", 1);
 			cmd->token = cmd->token->next;
 		}
