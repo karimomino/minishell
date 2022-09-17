@@ -62,4 +62,5 @@ dkms.conf
 minishell
 parser
 libft.a
+/42-minishell_bash_tester_2022
 
