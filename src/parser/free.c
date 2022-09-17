@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 17:48:18 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 18:27:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:24:15 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	free_cmd(t_cmd *cmd)
 	{
 		tokenn = cmd->token;
 		cmd->token = cmd->token->next;
+		free(tokenn->org);
 		free(tokenn->token);
 		free(tokenn);
 	}

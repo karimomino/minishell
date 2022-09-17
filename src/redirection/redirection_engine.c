@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 00:13:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 16:33:05 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 17:22:04 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	loop_redir_nodes(t_cmd **cmd, int *exit_code)
 		tmp = (*cmd)->redir;
 		(*cmd)->redir = (*cmd)->redir->next;
 		free(tmp->file);
+		free(tmp->org);
 		free(tmp);
 	}
 	return (1);
@@ -55,10 +56,7 @@ int	loop_redir_nodes(t_cmd **cmd, int *exit_code)
 int	redirection_engine(t_line **line)
 {
 	if (!loop_redir_nodes(&(*line)->cmd, &(*line)->exit))
-	{
-		free_nodes(*line);
 		return (0);
-	}
 	return (1);
 }
 
