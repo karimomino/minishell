@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:14:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 21:05:26 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:22:34 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	to_expandd(char c, char next)
 	else if (first != 0 && (char)first == c)
 		first = 0;
 	if (!check_char(c, &dq, &sq) && first != '\''
-		&& ((c == '$' && dq == 1 && !ft_strchr("\"\'\0",next))
-			|| (c == '$' && sq == 0 && dq == 0)))
+		&& ((c == '$' && dq == 1 && !ft_strchr(" =+^%\"\'\0",next))
+			|| (c == '$' && !sq && !dq && !ft_strchr(" =+^%\"\'\0",next))))
 			ret = 1;
 	return (ret);
 }

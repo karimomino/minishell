@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_quotes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 05:05:54 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:30:15 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ static int	trim_quotes(char **str, int i, int j)
 	free(tmp1);
 	free(tmp2);
 	free(tmp3);
+	printf("str: %s\n", *str);
 	free(*str);
-	*str = new;
+	*str = ft_strdup(new);
+	free(new);
 	return (ret);
 }
 

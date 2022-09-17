@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fake_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 21:06:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:22:39 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,12 @@ static void	loop_helper(t_line **line)
 	}
 	while ((*line)->cmd->redir)
 	{
-		fake_string(&(*line)->cmd->redir->org,
-			(*line)->exit, ft_strlen((*line)->cmd->redir->file));
+		if ((*line)->cmd->redir->fd == 1
+			|| ((*line)->cmd->redir->fd == 0 && (*line)->cmd->redir->type != 2))
+			fake_string(&(*line)->cmd->redir->org,
+				(*line)->exit, ft_strlen((*line)->cmd->redir->file));
+		else
+			(*line)->cmd->redir->org = ft_strdup((*line)->cmd->redir->file);
 		(*line)->cmd->redir = (*line)->cmd->redir->next;
 	}
 	(*line)->cmd->token = head_t;

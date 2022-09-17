@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   last_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 17:48:17 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 17:22:07 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:26:13 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	cmd_red(char *str, t_redir **redir, t_cmd **cmd)
 	t_redir	*head;
 
 	i = 0;
-	// printf("redir str: %s\n", str);
 	while (i != -1)
 	{
 		red = get_redir(str, &i);

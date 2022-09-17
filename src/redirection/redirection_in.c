@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 16:38:35 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:42:00 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	redirect_into_file(t_cmd **cmd, int *exit_code, int f)
 {
 	int		fd;
 
+	if (!check_if_directory((*cmd)->redir->file, exit_code))
+		return (0);
 	if (access((*cmd)->redir->file, F_OK) == -1)
 	{
 		ft_putstr_fd("minihshell: ", 2);

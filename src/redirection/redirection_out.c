@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_out.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 03:38:31 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 03:39:35 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:49:58 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	redirection_out(t_cmd **cmd, int *exit_code, int f)
 {
 	int		fd;
 
-	if ((!access((*cmd)->redir->file, F_OK)
+	if (!check_if_directory((*cmd)->redir->file, exit_code))
+		return (0);
+	else if ((!access((*cmd)->redir->file, F_OK)
 			&& !access((*cmd)->redir->file, W_OK))
 		|| (access((*cmd)->redir->file, F_OK)))
 	{

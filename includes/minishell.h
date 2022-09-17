@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/17 03:44:11 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 19:39:46 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 
 extern char	**environ;
 
+int		check_if_directory(char *str, int *exit_code);
 int		sig_exit_code(int flag);
 int		change_fds(t_cmd **cmd);
 int		start_redir_engine(t_line **line);

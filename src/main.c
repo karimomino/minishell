@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/17 16:37:40 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:49:10 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,12 @@ int	yalla(t_line **line)
 	int		in;
 	int		out;
 
-	start_redir_engine(line);
+	// print_line(*line);
+	if (!start_redir_engine(line))
+	{
+		free_nodes(*line);
+		return (0);
+	}
 	if ((*line)->npipes != 0)
 		pipes(line, (*line)->ncmds);
 	else
