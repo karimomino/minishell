@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:42:22 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 20:38:37 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 16:12:45 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	to_expand(char c, char next)
 	else if (first != 0 && (char)first == c)
 		first = 0;
 	if (!check_char(c, &dq, &sq) && first != '\''
-		&& ((c == '$' && dq == 1 && !ft_strchr("\"\'\0",next))
-			|| (c == '$' && sq == 0 && dq == 0)))
+		&& ((c == '$' && dq == 1 && !ft_strchr("=+)(^%\"\'\0",next))
+			|| (c == '$' && !sq && !dq && !ft_strchr("=+)(^%\"\'\0",next))))
 			ret = 1;
 	return (ret);
 }
@@ -69,7 +69,7 @@ char	*combined(char *tok, char *val, char *var, int *index)
 	com = (char *)ft_calloc((calc_malloc_size(tok, var, val) + 1), 1);
 	while (++i < *index)
 		com[i] = tok[i];
-	i += cpy_sec(i, &com, tok + *index, '$');
+	// i += cpy_sec(i, &com, tok + *index, '$');
 	// if (ft_strchr("\"\'\0",tok[*index + 1]))
 	// {
 	// 	com[i] = tok[*index];
@@ -91,7 +91,10 @@ int	expansion_free(char **string, char **tmp, char **var, char **env)
 	if (tmp != NULL)
 	{
 		free(*string);
-		*string = ft_strdup(*tmp);
+		if(!ft_strcmp(*tmp, ""))
+			*string = ft_strdup(" ");
+		else
+			*string = ft_strdup(*tmp);
 	}
 	if (*var != NULL && *env != NULL && ft_strcmp(*var, ""))
 	{
