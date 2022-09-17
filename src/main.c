@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 05:30:29 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:19:25 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	reaser(t_line **line)
 	prompt = alpha_strjoin(6, "\001\e[1;91m\002", getenv("USER"),
 			"👁minishell: \001\e[1;95m\002",
 			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
-	str = readline(prompt);
+	str = readline("");
 	if (sig_exit_code(42) == 130 && sig_exit_code(-69) == -1)
 		(*line)->exit = 130;
 	if (!str)

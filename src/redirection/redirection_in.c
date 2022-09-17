@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 05:49:10 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:19:20 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static int	read_herdoc(t_redir redir, int fd)
 
 	while (1)
 	{
-		tmp1 = readline("> ");
+		tmp1 = readline("");
+		// tmp1 = readline("> ");
 		if (!tmp1)
 			return (-2);
 		if (sig_exit_code(-42) == 130)

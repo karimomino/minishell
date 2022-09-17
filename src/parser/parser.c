@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 03:52:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 20:00:46 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 13:47:35 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	get_cmds(char **str, t_line **line)
 	get_struct_fake_string(line);
 	remove_all_quotes(line);
 	get_exec(line);
-	print_line(*line);
+	// print_line(*line);
 	return (1);
 }
 
