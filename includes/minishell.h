@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:18:24 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 19:42:21 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 03:44:11 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@
 extern char	**environ;
 
 int		sig_exit_code(int flag);
+int		change_fds(t_cmd **cmd);
+int		start_redir_engine(t_line **line);
+void	reset_fds(int in, int out);
+int		redirection_out(t_cmd **cmd, int *exit_code, int f);
+int		redirection_in(t_cmd **cmd, int *exit_code, int f);
 
 void	export_executor(char *name, char *val, int ow, int ac);
 void	ft_setenv(const char *name, const char *value, int overwrit);

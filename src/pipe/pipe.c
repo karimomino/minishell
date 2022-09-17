@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 23:23:04 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/15 04:21:12 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:34:21 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 
 static int	child(t_line **line, int fd[2], int in)
 {
+	int		inn;
+	int		out;
+
 	if ((*line)->cmd->next)
 		dup2(fd[1], STDOUT_FILENO);
 	dup2(in, STDIN_FILENO);
 	close(fd[0]);
-	if (redirection(line) == 0)
+	if ((*line)->cmd->in != -2
+		&& (*line)->cmd->out != -2)
+	{
+		change_fds(&(*line)->cmd);
+		inn = (*line)->cmd->in;
+		out = (*line)->cmd->out;
 		exec_ft(line);
+		reset_fds(inn, out);
+	}
 	free_nodes(*line);
 	free(*line);
 	exit(0);

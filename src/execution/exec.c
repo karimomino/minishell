@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 08:17:33 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 04:59:16 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:30:35 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	exec_bin(t_line **line)
 		ret = cmd_child(line, path);
 	else
 	{
-			pid = fork();
+		pid = fork();
 		ret = 0;
 		if (pid == -1 && (*line)->npipes != 0)
 			return (errno);

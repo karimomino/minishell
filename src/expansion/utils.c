@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 21:34:59 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 18:22:21 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:51:48 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	stopper_finder(char *tok)
 	int	i;
 
 	i = -1;
-	while (!ft_strchr(" $?\'\"\0", tok[++i]))
+	while (!ft_strchr(" $\'\"\0", tok[++i]))
 		;
 	// if (i == 0)
 	// 	i++;

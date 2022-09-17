@@ -34,7 +34,10 @@
 		"string_view": "c",
 		"unordered_map": "c",
 		"vector": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"__locale": "c",
+		"ios": "c",
+		"stat.h": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled",
 	"git.mergeEditor": false,

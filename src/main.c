@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/16 18:32:33 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 16:33:43 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,23 @@ int	reaser(t_line **line)
 
 int	yalla(t_line **line)
 {
+	int		in;
+	int		out;
+
+	start_redir_engine(line);
 	if ((*line)->npipes != 0)
 		pipes(line, (*line)->ncmds);
 	else
 	{
-		if (redirection(line) == 0)
+		if ((*line)->cmd->in != -2
+			&& (*line)->cmd->out != -2)
+		{
+			change_fds(&(*line)->cmd);
+			in = (*line)->cmd->in;
+			out = (*line)->cmd->out;
 			exec_ft(line);
+			reset_fds(in, out);
+		}
 	}
 	return (SUCCESS);
 }

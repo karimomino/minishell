@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 01:35:36 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 18:25:54 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 00:12:44 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_redir
 */
 typedef struct s_cmd
 {
+	int				in;
+	int				out;
 	int				type;
 	size_t			nargs;
 	size_t			nredir;

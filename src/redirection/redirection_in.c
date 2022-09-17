@@ -5,115 +5,112 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 00:04:27 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 19:07:46 by ommohame         ###   ########.fr       */
+/*   Created: 2022/09/17 03:42:30 by ommohame          #+#    #+#             */
+/*   Updated: 2022/09/17 16:35:24 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	redir_in1(t_redir redir, int f, int *exit)
+static int	redirect_into_file(t_cmd **cmd, int *exit_code, int f)
 {
 	int		fd;
 
-	if (access(redir.file, F_OK) == -1)
+	if (access((*cmd)->redir->file, F_OK) == -1)
 	{
 		ft_putstr_fd("minihshell: ", 2);
-		ft_putstr_fd(redir.file, 2);
+		ft_putstr_fd((*cmd)->redir->file, 2);
 		ft_putstr_fd(": No such file or directory\n", 2);
-		*exit = 2;
-		return (-69);
+		*exit_code = 1;
+		return (0);
 	}
-	if (access(redir.file, R_OK) == -1)
+	else if (access((*cmd)->redir->file, R_OK) == -1)
 	{
 		ft_putstr_fd("minishell: ", 2);
-		ft_putstr_fd(redir.file, 2);
+		ft_putstr_fd((*cmd)->redir->file, 2);
 		ft_putstr_fd(": Permission denied\n", 2);
-		*exit = 126;
-		return (-69);
+		*exit_code = 1;
+		return (0);
 	}
-	fd = open(redir.file, O_RDONLY);
+	fd = open((*cmd)->redir->file, O_RDONLY);
+	if (fd == -1)
+		return (0);
 	if (f == 1)
-		return (fd);
-	close (fd);
-	return (-1);
+		(*cmd)->in = fd;
+	else
+		close (fd);
+	return (1);
 }
 
-static int	read_herdoc(t_redir redir, int fd)
+int	heredoc_child(t_cmd **cmd, int fd[2])
 {
-	char	*tmp1;
+	char	*tmp;
 
+	close(fd[0]);
 	while (1)
 	{
-		tmp1 = readline("> ");
-		if (!tmp1)
-			return (-2);
+		tmp = readline("> ");
+		if (!tmp)
+			return (0);
 		if (sig_exit_code(-42) == 130)
 		{
-			if (tmp1)
-				free(tmp1);
-			return (-69);
+			if (tmp)
+				free(tmp);
+			return (0);
 		}
-		if (!ft_strncmp(tmp1, redir.file, ft_strlen(tmp1))
-			&& ft_strncmp(tmp1, "", 1)
-			&& (ft_strlen(tmp1) == ft_strlen(redir.file)))
+		if (!ft_strcmp(tmp, (*cmd)->redir->file))
 		{
-			free(tmp1);
+			free(tmp);
 			break ;
 		}
-		ft_putstr_fd(tmp1, fd);
-		ft_putchar_fd('\n', fd);
-		free(tmp1);
+		ft_putstr_fd(tmp, fd[1]);
+		ft_putchar_fd('\n', fd[1]);
+		free(tmp);
 	}
 	return (1);
 }
 
-int	heredoc(t_redir redir, int f)
-{
-	int		fd;
-	int		ret;
-
-	fd = -1;
-	if (f == 1)
-		fd = open("./src/redirection/.heredoc.txt",
-				O_WRONLY | O_TRUNC | O_CREAT, 0644);
-	ret = read_herdoc(redir, fd);
-	close(fd);
-	if (ret == -69)
-		return (-69);
-	else if (ret != 1)
-		return (-2);
-	if (f == 1)
-		return (42);
-	// close(fd);
-	return (-1);
-}
-
-int	g_pid;
-
-int	redir_in(t_line **line, int f)
+int	heredoc(t_cmd **cmd, int *exit_code, int f)
 {
 	int		ret;
 	pid_t	pid;
+	int		fd[2];
 
-	ret = 42342;
-	if ((*line)->cmd->redir->type == 1)
-		return (redir_in1(*(*line)->cmd->redir, f, &(*line)->exit));
+	pipe(fd);
+	pid = fork();
+	if (!pid)
+		exit(heredoc_child(cmd, fd));
 	else
 	{
-		pid = fork();
-		if (!pid)
+		close(fd[1]);
+		wait(&ret);
+		if (!WEXITSTATUS(ret))
 		{
-			g_pid = getpid();
-			printf("inside the child: %d\n", g_pid);
-			exit(heredoc(*(*line)->cmd->redir, f));
+			close(fd[0]);
+			*exit_code = 130;
+			sig_exit_code(-69);
+			return (0);
 		}
+		if (f == 1)
+			(*cmd)->in = fd[0];
 		else
-			waitpid(g_pid, &ret, WEXITED);
-		printf("pid: %d\n", g_pid);
-		printf("WEXITSTATUS(ret): %d\n", WEXITSTATUS(ret));
-		if (WEXITSTATUS(ret) == 42)
-			return (open("./src/redirection/.heredoc.txt", O_RDONLY));
-		return (ret);
+			close(fd[0]);
 	}
+	return (1);
+}
+
+int	redirection_in(t_cmd **cmd, int *exit_code, int f)
+{
+
+	if ((*cmd)->redir->type == 1)
+	{
+		if (!redirect_into_file(cmd, exit_code, f))
+			return (0);
+	}
+	else
+	{
+		if (!heredoc(cmd, exit_code, f))
+			return (0);
+	}
+	return (1);
 }
