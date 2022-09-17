@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 20:30:15 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 20:30:57 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	quotes(char **str, char *org)
 			tmp = i;
 			len = ft_strlen(*str);
 			i = close_quotes(str, org, i, len);
-			close_quotes(&org, org, tmp, len);
+			// close_quotes(&org, org, tmp, len);
 		}
 	}
 }
