@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 05:26:12 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/17 15:32:09 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:48:26 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,13 @@ static void	navigate_redir(t_redir **redir, int exit)
 	while (*redir)
 	{
 		i = -1;
-		while ((*redir) && (*redir)->file[++i])
-			expand(redir, &i, 1, exit);
-		to_expand('\0', '\0');
+		if ((*redir)->fd == 1
+			|| ((*redir)->fd == 0 && (*redir)->type != 2))
+		{
+			while ((*redir) && (*redir)->file[++i])
+				expand(redir, &i, 0, exit);
+			to_expand('\0', '\0');
+		}
 		(*redir) = (*redir)->next;
 	}
 }

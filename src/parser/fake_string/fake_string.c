@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/16 21:06:17 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 21:23:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	fake_string(char **org, int exit_code, size_t len)
 	fake = (char *)ft_calloc((len + 1), sizeof(char));
 	get_fake_exp_string(org, &fake, exit_code);
 	free(*org);
-	*org = fake;
+	*org = ft_strdup(fake);
+	free(fake);
 }
 
 static void	loop_helper(t_line **line)
@@ -73,8 +74,12 @@ static void	loop_helper(t_line **line)
 	}
 	while ((*line)->cmd->redir)
 	{
-		fake_string(&(*line)->cmd->redir->org,
-			(*line)->exit, ft_strlen((*line)->cmd->redir->file));
+		if ((*line)->cmd->redir->fd == 1
+			|| ((*line)->cmd->redir->fd == 0 && (*line)->cmd->redir->type != 2))
+			fake_string(&(*line)->cmd->redir->org,
+				(*line)->exit, ft_strlen((*line)->cmd->redir->file));
+		else
+			(*line)->cmd->redir->org = ft_strdup((*line)->cmd->redir->file);
 		(*line)->cmd->redir = (*line)->cmd->redir->next;
 	}
 	(*line)->cmd->token = head_t;

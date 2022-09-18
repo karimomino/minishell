@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 00:13:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 17:22:04 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 20:36:03 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ static int	check_if_last(t_redir redir, int f)
 			if (redir.fd == f)
 				return (0);
 		}
+	}
+	return (1);
+}
+
+int	check_if_directory(char *str, int *exit_code)
+{
+	struct stat	info;
+
+	stat(str, &info);
+	if (S_ISDIR(info.st_mode) != 0)
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putstr_fd((":Is a directory\n"), 2);
+		*exit_code = 1;
+		return (0);
 	}
 	return (1);
 }

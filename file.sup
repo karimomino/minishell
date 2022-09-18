@@ -1,15 +1,14 @@
-
-
 {
-   readline suppresion
-   Memcheck:Leak
-   ...
-   fun:readline
+    readline
+    Memcheck:Leak
+    fun:*
+    ...
+    fun:readline
 }
-
 {
-   history suppresion
-   Memcheck:Leak
-   ...
-   fun:add_history
+    add_history
+    Memcheck:Leak
+    fun:*
+    ...
+    fun:add_history
 }

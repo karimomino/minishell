@@ -6,7 +6,7 @@
 /*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:20:16 by kamin             #+#    #+#             */
-/*   Updated: 2022/09/17 17:22:13 by ommohame         ###   ########.fr       */
+/*   Updated: 2022/09/17 22:08:31 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	reaser(t_line **line)
 	prompt = alpha_strjoin(6, "\001\e[1;91m\002", getenv("USER"),
 			"👁minishell: \001\e[1;95m\002",
 			getenv("PWD"), " 🍆: ", "\001\e[0;39m\002");
-	str = readline("");
+	str = readline(prompt);
 	if (sig_exit_code(42) == 130 && sig_exit_code(-69) == -1)
 		(*line)->exit = 130;
 	if (!str)
@@ -55,7 +55,12 @@ int	yalla(t_line **line)
 	int		in;
 	int		out;
 
-	start_redir_engine(line);
+	// print_line(*line);
+	if (!start_redir_engine(line))
+	{
+		free_nodes(*line);
+		return (0);
+	}
 	if ((*line)->npipes != 0)
 		pipes(line, (*line)->ncmds);
 	else
@@ -77,7 +82,7 @@ int	minishell_loop(void)
 {
 	t_line		*line;
 
-	line = (t_line *)ft_calloc(1, sizeof(t_line));
+	line = (t_line *)malloc(1 * sizeof(t_line));
 	if (!line)
 		return (-1);
 	line->exit = 0;
