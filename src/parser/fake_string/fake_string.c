@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fake_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 14:09:54 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 20:22:39 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 21:23:56 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	fake_string(char **org, int exit_code, size_t len)
 	fake = (char *)ft_calloc((len + 1), sizeof(char));
 	get_fake_exp_string(org, &fake, exit_code);
 	free(*org);
-	*org = fake;
+	*org = ft_strdup(fake);
+	free(fake);
 }
 
 static void	loop_helper(t_line **line)

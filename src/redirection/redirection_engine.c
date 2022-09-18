@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection_engine.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 00:13:06 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 19:41:11 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 20:36:03 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	loop_redir_nodes(t_cmd **cmd, int *exit_code)
 		tmp = (*cmd)->redir;
 		(*cmd)->redir = (*cmd)->redir->next;
 		free(tmp->file);
+		free(tmp->org);
 		free(tmp);
 	}
 	return (1);

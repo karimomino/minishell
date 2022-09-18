@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
+/*   By: ommohame < ommohame@student.42abudhabi.ae> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 04:14:28 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 20:22:34 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/17 21:20:50 by ommohame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	replace_fake_string_exp(char **fake, char *exp, size_t *j)
 	x = ft_strlen(exp);
 	while (x > 0)
 	{
-		(*fake)[(*j)++] = '\0';
+		(*fake)[(*j)++] = '#';
 		x--;
 	}
 }

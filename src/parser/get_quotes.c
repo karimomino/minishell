@@ -6,7 +6,7 @@
 /*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 19:58:44 by ommohame          #+#    #+#             */
-/*   Updated: 2022/09/17 20:30:57 by kamin            ###   ########.fr       */
+/*   Updated: 2022/09/18 16:54:13 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	trim_quotes(char **str, int i, int j)
 	free(tmp1);
 	free(tmp2);
 	free(tmp3);
-	printf("str: %s\n", *str);
 	free(*str);
 	*str = ft_strdup(new);
 	free(new);
