@@ -20,7 +20,7 @@ The minishell project involves implementing a command-line interpreter that can 
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/your_username/minishell.git
+   git clone https://github.com/karimomino/minishell.git
    cd minishell
    ```
 
